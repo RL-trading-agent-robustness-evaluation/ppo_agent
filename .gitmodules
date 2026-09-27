@@ -1,0 +1,3 @@
+[submodule "victimagent"]
+	path = victimagent
+	url = https://github.com/RL-trading-agent-robustness-evaluation/victimagent.git

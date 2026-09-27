@@ -1,0 +1,46 @@
+version: 1
+status: draft_preregistered_before_ppo_training
+algorithm: PPO
+implementation: stable_baselines3
+implementation_version: 2.9.0
+policy: MlpPolicy
+device: cpu
+
+shared_contract:
+  victimagent_commit: 5701400076bd3ad4fa80dbc86d5687f480c26021
+  environment: SingleAssetTradingEnvV4
+  observation_dimensions: 10
+  action_weights: [0.0, 0.5, 1.0]
+  initial_cash: 1000000.0
+  transaction_cost_bps: 10.0
+  episode_length_decisions: 504
+  random_start: true
+  train: ['2010-01-04', '2018-12-31']
+  validation: ['2019-01-01', '2021-12-31']
+  known_period: ['2022-01-01', '2025-12-31']
+  known_period_access_during_development: false
+
+# Algorithm-specific choices do not alter the shared environment or evaluation.
+# Freeze this file before formal runs; revisions require a new config version.
+model:
+  learning_rate: 0.0003
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  normalize_advantage: true
+  ent_coef: 0.0
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  policy_net_arch: [64, 64]
+  activation_fn: Tanh
+
+formal:
+  seeds: [0, 1, 2, 3, 4]
+  total_timesteps_per_seed: 200000
+  deterministic_validation: true
+  report_all_seeds: true
+  checkpoint_selection: final_training_checkpoint
+
