@@ -15,6 +15,7 @@ validation, provenance, and reporting.
 - 2022-01-01 through 2025-12-31 is an already-opened known period and is not loaded
   by the development harness.
 - Formal seeds: 0–4; budget: 200,000 steps per seed.
+- PPO learning rate decays linearly from `3e-4` to `3e-5` over each run.
 
 The older `../rltrade` tree is historical reference only and is neither imported nor
 executed by this project.
@@ -34,6 +35,14 @@ data/processed/market_base_with_splits.csv
 data/interim/distribution_events.csv
 ```
 
+Build those outputs from the four frozen files in `data/raw/`, then run the
+V4 integration preflight:
+
+```powershell
+.venv\Scripts\python scripts\build_shared_data.py --root .
+.venv\Scripts\python scripts\run_ppo_preflight.py --root .
+```
+
 Run one formal seed only after the PPO configuration is accepted and the canonical
 data files are present:
 
@@ -41,6 +50,12 @@ data files are present:
 .venv\Scripts\python scripts\run_ppo_clean_benchmark.py --seed 0 --root . --data-root .
 ```
 
-`--timesteps` is a clearly labelled development-smoke override. A run is formal only
-when the override is omitted and the recorded budget is exactly 200,000 steps.
+Before formal execution, run the separate smoke path:
+
+```powershell
+.venv\Scripts\python scripts\run_ppo_clean_benchmark.py --smoke --seed 0 --root . --data-root .
+```
+
+`--timesteps` is accepted only with `--smoke`. Formal execution requires a clean
+committed worktree and always uses exactly 200,000 steps.
 

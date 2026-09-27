@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "victimagent_commit": "5701400076bd3ad4fa80dbc86d5687f480c26021",
+  "environment": "SingleAssetTradingEnvV4",
+  "observation_shape": [
+    10
+  ],
+  "actions": [
+    0.0,
+    0.5,
+    1.0
+  ],
+  "train_rows": 2264,
+  "validation_rows": 757,
+  "known_period_accessed": false
+}

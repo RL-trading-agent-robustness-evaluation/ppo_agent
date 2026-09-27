@@ -1,0 +1,42 @@
+[
+  {
+    "file_name": "crsp_dsf_spy_tlt_gld_2009_2025.csv",
+    "bytes": 3595557,
+    "sha256": "3448d24ac6f7ac82cb982db27187ab6daa5614f2431b824eabd670332993eb98",
+    "source": {
+      "provider": "CRSP via WRDS",
+      "table": "crsp_a_stock.dsf_v2",
+      "downloaded_at_utc": null
+    }
+  },
+  {
+    "file_name": "stkdistributions_spy_tlt_gld_2009_2025.csv",
+    "bytes": 26444,
+    "sha256": "6e0f2b756c5663f23e1ab34cc3e27a0806d8a50f4f605c649bd705f161a2a288",
+    "source": {
+      "provider": "CRSP via WRDS",
+      "table": "crsp_a_stock.stkdistributions",
+      "downloaded_at_utc": null
+    }
+  },
+  {
+    "file_name": "DGS3MO_2009_2025.csv",
+    "bytes": 70236,
+    "sha256": "c8cea3d1d9b96e912335925ed138a686e7f4b65a3a37222df95f6e046495caed",
+    "source": {
+      "provider": "FRED",
+      "series": "DGS3MO",
+      "downloaded_at_utc": null
+    }
+  },
+  {
+    "file_name": "DTB3_2009_2025.csv",
+    "bytes": 70242,
+    "sha256": "a3a61574e7e65dbd38eb73da087eb3f32c2f636b51247d59ba642bf5b9539399",
+    "source": {
+      "provider": "FRED",
+      "series": "DTB3",
+      "downloaded_at_utc": null
+    }
+  }
+]

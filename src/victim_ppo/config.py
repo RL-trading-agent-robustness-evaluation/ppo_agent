@@ -50,6 +50,13 @@ class PPOConfigV4:
             raise ValueError("formal budget must be 200000 steps per seed")
         if int(r["model"]["n_steps"]) % int(r["model"]["batch_size"]):
             raise ValueError("PPO rollout size must be divisible by batch size")
+        model = r["model"]
+        if model.get("learning_rate_schedule") != "linear":
+            raise ValueError("PPO V4 requires the preregistered linear learning-rate schedule")
+        initial = float(model["learning_rate_initial"])
+        final = float(model["learning_rate_final"])
+        if not 0 < final < initial:
+            raise ValueError("learning rate must descend from a positive initial to positive final value")
 
 
 def load_config(path: str | Path) -> PPOConfigV4:

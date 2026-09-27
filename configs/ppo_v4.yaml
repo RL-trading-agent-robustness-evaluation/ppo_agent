@@ -1,5 +1,5 @@
 version: 1
-status: draft_preregistered_before_ppo_training
+status: frozen_before_ppo_training
 algorithm: PPO
 implementation: stable_baselines3
 implementation_version: 2.9.0
@@ -23,7 +23,9 @@ shared_contract:
 # Algorithm-specific choices do not alter the shared environment or evaluation.
 # Freeze this file before formal runs; revisions require a new config version.
 model:
-  learning_rate: 0.0003
+  learning_rate_schedule: linear
+  learning_rate_initial: 0.0003
+  learning_rate_final: 0.00003
   n_steps: 2048
   batch_size: 64
   n_epochs: 10

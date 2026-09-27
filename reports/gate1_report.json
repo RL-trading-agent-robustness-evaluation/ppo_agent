@@ -1,0 +1,223 @@
+{
+  "generated_at_utc": "2026-09-27T08:18:12.954672+00:00",
+  "gate_1_status": "PASS",
+  "failure_count": 0,
+  "warning_count": 2,
+  "checks": [
+    {
+      "check_id": "schema.market_daily",
+      "status": "PASS",
+      "message": "Required columns are present.",
+      "evidence": {
+        "missing_columns": []
+      }
+    },
+    {
+      "check_id": "schema.distributions",
+      "status": "PASS",
+      "message": "Required columns are present.",
+      "evidence": {
+        "missing_columns": []
+      }
+    },
+    {
+      "check_id": "market.valid_dates",
+      "status": "PASS",
+      "message": "All market dates parse.",
+      "evidence": {
+        "invalid_date_rows": 0
+      }
+    },
+    {
+      "check_id": "market.asset_identity",
+      "status": "PASS",
+      "message": "PERMNO-to-ticker mapping matches the frozen contract.",
+      "evidence": {
+        "expected": {
+          "84398": "SPY",
+          "89468": "TLT",
+          "90448": "GLD"
+        },
+        "unexpected": {}
+      }
+    },
+    {
+      "check_id": "market.unique_monotonic_dates",
+      "status": "PASS",
+      "message": "Dates are unique and monotonic within each PERMNO.",
+      "evidence": {
+        "duplicate_rows": 0,
+        "monotonic": true
+      }
+    },
+    {
+      "check_id": "market.ohlc_bounds",
+      "status": "PASS",
+      "message": "OHLC bounds hold.",
+      "evidence": {
+        "violating_rows": 0
+      }
+    },
+    {
+      "check_id": "market.core_values",
+      "status": "PASS",
+      "message": "Core prices and volume are finite and valid.",
+      "evidence": {
+        "missing": {
+          "dlyopen": 0,
+          "dlyhigh": 0,
+          "dlylow": 0,
+          "dlyclose": 0,
+          "dlyvol": 0
+        },
+        "nonfinite": {
+          "dlyopen": 0,
+          "dlyhigh": 0,
+          "dlylow": 0,
+          "dlyclose": 0,
+          "dlyvol": 0
+        },
+        "invalid_rows": 0
+      }
+    },
+    {
+      "check_id": "market.cross_asset_calendar",
+      "status": "PASS",
+      "message": "All three ETFs have the same observed CRSP trading dates.",
+      "evidence": {
+        "sessions": 4276,
+        "missing_by_ticker": {
+          "GLD": 0,
+          "SPY": 0,
+          "TLT": 0
+        }
+      }
+    },
+    {
+      "check_id": "market.external_exchange_calendar",
+      "status": "WARN",
+      "message": "No external NYSE calendar is bundled. The pipeline uses identical CRSP sessions across three active ETFs as its canonical calendar; add an exchange-calendar package for an independent formal check.",
+      "evidence": {}
+    },
+    {
+      "check_id": "market.regular_trading_rows",
+      "status": "PASS",
+      "message": "All rows are active, regular-way observations.",
+      "evidence": {
+        "non_regular_rows": 0
+      }
+    },
+    {
+      "check_id": "distributions.required_dates",
+      "status": "PASS",
+      "message": "All supplied events have ex-date and payment date.",
+      "evidence": {
+        "invalid_rows": 0
+      }
+    },
+    {
+      "check_id": "distributions.daily_amount_reconciliation",
+      "status": "PASS",
+      "message": "All overlapping distribution amounts reconcile within source precision.",
+      "evidence": {
+        "tolerance": 1e-05,
+        "matched_events": 272,
+        "amount_mismatches": 0,
+        "event_only_rows": 0
+      }
+    },
+    {
+      "check_id": "distributions.coverage_through_test_end",
+      "status": "PASS",
+      "message": "Distribution event coverage includes the locked test end.",
+      "evidence": {
+        "required_through": "2025-12-31",
+        "last_distribution_ex_date": "2025-12-19",
+        "missing_event_rows": 0,
+        "missing_dates": []
+      }
+    },
+    {
+      "check_id": "cash.DGS3MO.dates",
+      "status": "PASS",
+      "message": "Cash-rate dates parse and are unique.",
+      "evidence": {
+        "invalid_dates": 0,
+        "duplicate_dates": 0
+      }
+    },
+    {
+      "check_id": "cash.DGS3MO.missing_observations",
+      "status": "PASS",
+      "message": "Missing FRED values are retained in raw and excluded before backward-looking as-of alignment; they usually represent non-publication dates.",
+      "evidence": {
+        "missing_values": 183
+      }
+    },
+    {
+      "check_id": "cash.DTB3.dates",
+      "status": "PASS",
+      "message": "Cash-rate dates parse and are unique.",
+      "evidence": {
+        "invalid_dates": 0,
+        "duplicate_dates": 0
+      }
+    },
+    {
+      "check_id": "cash.DTB3.missing_observations",
+      "status": "PASS",
+      "message": "Missing FRED values are retained in raw and excluded before backward-looking as-of alignment; they usually represent non-publication dates.",
+      "evidence": {
+        "missing_values": 183
+      }
+    },
+    {
+      "check_id": "cash.coverage_for_warmup",
+      "status": "PASS",
+      "message": "Cash-rate snapshots cover the required warm-up start.",
+      "evidence": {
+        "required_from": "2009-01-02",
+        "dgs3mo_first": "2009-01-02",
+        "dtb3_first": "2009-01-02"
+      }
+    },
+    {
+      "check_id": "cash.primary_available_in_formal_periods",
+      "status": "PASS",
+      "message": "Lagged DGS3MO is available for every formal train, validation, and test row.",
+      "evidence": {
+        "missing_formal_rows": 0
+      }
+    },
+    {
+      "check_id": "processed.raw_traceability",
+      "status": "PASS",
+      "message": "Every processed row maps to one unique raw market row.",
+      "evidence": {
+        "processed_rows": 12828,
+        "unique_source_rows": 12828
+      }
+    },
+    {
+      "check_id": "processed.no_normalization_fit",
+      "status": "PASS",
+      "message": "No normalization was fit in the data pipeline.",
+      "evidence": {
+        "normalized_columns": []
+      }
+    },
+    {
+      "check_id": "metadata.download_timestamps",
+      "status": "WARN",
+      "message": "Original download timestamps were not embedded in the supplied files; checksums still freeze the exact snapshots.",
+      "evidence": {
+        "files": [
+          "crsp_dsf_spy_tlt_gld_2009_2025.csv",
+          "stkdistributions_spy_tlt_gld_2009_2025.csv",
+          "DGS3MO_2009_2025.csv",
+          "DTB3_2009_2025.csv"
+        ]
+      }
+    }
+  ]
+}

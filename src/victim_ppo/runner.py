@@ -15,6 +15,18 @@ from victimagent.v4.evaluation import rollout
 from .config import PPOConfigV4
 
 
+def linear_schedule(initial: float, final: float):
+    """SB3 schedule: progress_remaining descends from 1.0 to 0.0."""
+    if not 0 < final < initial:
+        raise ValueError("expected 0 < final < initial")
+
+    def schedule(progress_remaining: float) -> float:
+        progress = min(1.0, max(0.0, float(progress_remaining)))
+        return final + progress * (initial - final)
+
+    return schedule
+
+
 def make_environment(bundle, config: PPOConfigV4, *, training: bool):
     shared = config.raw["shared_contract"]
     return SingleAssetTradingEnvV4(
@@ -55,9 +67,12 @@ def build_model(env, config: PPOConfigV4, *, seed: int, log_dir: Path):
 
     hp = config.model
     activation = {"Tanh": torch.nn.Tanh, "ReLU": torch.nn.ReLU}[hp["activation_fn"]]
+    learning_rate = linear_schedule(
+        float(hp["learning_rate_initial"]), float(hp["learning_rate_final"])
+    )
     return PPO(
         config.raw["policy"], env,
-        learning_rate=float(hp["learning_rate"]), n_steps=int(hp["n_steps"]),
+        learning_rate=learning_rate, n_steps=int(hp["n_steps"]),
         batch_size=int(hp["batch_size"]), n_epochs=int(hp["n_epochs"]),
         gamma=float(hp["gamma"]), gae_lambda=float(hp["gae_lambda"]),
         clip_range=float(hp["clip_range"]), normalize_advantage=bool(hp["normalize_advantage"]),
