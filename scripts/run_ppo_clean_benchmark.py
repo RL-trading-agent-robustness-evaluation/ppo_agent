@@ -10,6 +10,15 @@ import subprocess
 import sys
 
 import pandas as pd
+import numpy as np
+
+
+FORMAL_SEEDS = (0, 1, 2, 3, 4)
+SUMMARY_METRICS = (
+    "final_wealth", "cagr", "annualized_mean_excess_return",
+    "sharpe_excess_cash", "annualized_volatility", "max_drawdown",
+    "average_exposure", "total_turnover", "total_transaction_cost",
+)
 
 
 def sha256_file(path: Path) -> str:
@@ -55,9 +64,77 @@ def write_report(root: Path, seed: int, report: dict, *, smoke: bool) -> None:
     stem.with_suffix(".md").write_text("\n".join(text), encoding="utf-8")
 
 
+def _summary(values: list[float]) -> dict[str, float]:
+    array = np.asarray(values, dtype=float)
+    if len(array) != len(FORMAL_SEEDS) or not np.isfinite(array).all():
+        raise ValueError("aggregate metric requires five finite seed values")
+    return {
+        "mean": float(array.mean()), "median": float(np.median(array)),
+        "std": float(array.std(ddof=1)), "min": float(array.min()),
+        "max": float(array.max()),
+        "iqr": float(np.percentile(array, 75) - np.percentile(array, 25)),
+    }
+
+
+def aggregate_reports(root: Path) -> dict:
+    reports = []
+    for seed in FORMAL_SEEDS:
+        path = root / f"reports/PPO_CLEAN_SEED{seed}.json"
+        if not path.is_file():
+            raise FileNotFoundError(f"missing formal seed report: {path.name}")
+        report = json.loads(path.read_text(encoding="utf-8"))
+        if report.get("seed") != seed or report.get("run_type") != "formal":
+            raise ValueError(f"seed/report identity mismatch: {path.name}")
+        if report.get("test_partition_accessed") is not False or report.get(
+                "known_period_accessed") is not False:
+            raise ValueError(f"known-period access detected: seed {seed}")
+        training = report.get("training", {})
+        if training.get("total_timesteps") != 200_000 or training.get(
+                "formal_budget") is not True:
+            raise ValueError(f"short or non-formal budget: seed {seed}")
+        if report.get("technical_pass") is not True:
+            raise ValueError(f"technical failure: seed {seed}")
+        if abs(float(report["reward_nav_invariant_error"])) > 1e-10:
+            raise ValueError(f"reward–NAV failure: seed {seed}")
+        if report.get("frozen_evaluation", {}).get("evaluation_state_unchanged") is not True:
+            raise ValueError(f"mutable evaluation: seed {seed}")
+        reports.append(report)
+    provenance = reports[0]["provenance"]
+    for report in reports[1:]:
+        if report["provenance"] != provenance:
+            raise ValueError("mixed commit/config/data/package provenance across seeds")
+    metrics = {
+        metric: _summary([float(report["validation"][metric]) for report in reports])
+        for metric in SUMMARY_METRICS
+    }
+    result = {
+        "status": "PASS", "algorithm": "PPO", "seeds": list(FORMAL_SEEDS),
+        "runs_retained": len(reports), "known_period_accessed": False,
+        "provenance": provenance, "summary": metrics,
+        "per_seed": [{"seed": report["seed"], **report["validation"]} for report in reports],
+    }
+    out = root / "reports/PPO_CLEAN_BENCHMARK.json"
+    out.write_text(json.dumps(result, indent=2, allow_nan=False), encoding="utf-8")
+    lines = [
+        "# PPO V4 clean benchmark — five-seed aggregate", "",
+        "All preregistered seeds 0–4 are retained. The 2022–2025 known period was not accessed.",
+        "", "| Metric | Mean | Median | Std | Min | Max | IQR |",
+        "|---|---:|---:|---:|---:|---:|---:|",
+    ]
+    for metric, values in metrics.items():
+        lines.append(f"| {metric} | {values['mean']:.6g} | {values['median']:.6g} | "
+                     f"{values['std']:.6g} | {values['min']:.6g} | "
+                     f"{values['max']:.6g} | {values['iqr']:.6g} |")
+    lines += ["", "Technical PASS is not evidence of economic superiority.", ""]
+    (root / "reports/PPO_CLEAN_BENCHMARK.md").write_text(
+        "\n".join(lines), encoding="utf-8")
+    return result
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Train one PPO seed on shared victimagent V4")
-    parser.add_argument("--seed", type=int, required=True)
+    parser.add_argument("--seed", type=int)
+    parser.add_argument("--aggregate", action="store_true")
     parser.add_argument("--root", type=Path, default=Path("."))
     parser.add_argument("--data-root", type=Path, default=Path("."))
     parser.add_argument("--smoke", action="store_true",
@@ -66,6 +143,13 @@ def main() -> None:
                         help="Smoke-only step override; forbidden for formal runs")
     args = parser.parse_args()
     root, data_root = args.root.resolve(), args.data_root.resolve()
+    if args.aggregate:
+        if args.seed is not None or args.smoke or args.timesteps is not None:
+            raise ValueError("--aggregate cannot be combined with run arguments")
+        aggregate_reports(root)
+        return
+    if args.seed is None:
+        parser.error("--seed is required unless --aggregate is used")
     sys.path[:0] = [str(root / "src"), str(root / "victimagent/src")]
 
     from victim_ppo.config import V4_COMMIT, load_config
@@ -123,13 +207,19 @@ def main() -> None:
         "algorithm": "PPO", "seed": args.seed,
         "test_partition_accessed": False, "known_period_accessed": False,
         "run_type": "smoke" if args.smoke else "formal",
+        "technical_pass": bool(frozen["evaluation_state_unchanged"] and abs(error) <= 1e-10),
         "training": {"partition": "train", "total_timesteps": timesteps,
                      "formal_budget": timesteps == 200_000},
         "validation": metrics, "reward_nav_invariant_error": error,
         "frozen_evaluation": frozen,
-        "artifacts": {"checkpoint": str(artifact.with_suffix('.zip').relative_to(root)),
-                      "scaler": str(scaler_path.relative_to(root)),
-                      "trajectory": str(trajectory.relative_to(root))},
+        "artifacts": {
+            "checkpoint": str(artifact.with_suffix('.zip').relative_to(root)),
+            "checkpoint_sha256": sha256_file(artifact.with_suffix('.zip')),
+            "scaler": str(scaler_path.relative_to(root)),
+            "scaler_sha256": sha256_file(scaler_path),
+            "trajectory": str(trajectory.relative_to(root)),
+            "trajectory_sha256": sha256_file(trajectory),
+        },
         "provenance": {
             "outer_commit": git_sha(root), "victimagent_commit": submodule_sha,
             "config_sha256": sha256_file(config_path),

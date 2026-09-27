@@ -123,3 +123,20 @@ entry identifies whether a change was made by Codex, the user, or an external to
 - The first local commit attempt was rejected because the managed sandbox exposed
   `.git` as read-only; no index or commit was created by that attempt.
 
+### 16:49 — Codex — Five-seed PPO aggregation added
+
+- Added `--aggregate` to require exactly formal seeds 0–4 and reject missing,
+  short-budget, failed, known-period, mutable-evaluation, or mixed-provenance runs.
+- Added mean, median, sample standard deviation, minimum, maximum, and IQR across
+  every retained seed for the declared validation metrics.
+- Added checkpoint, scaler, and trajectory SHA-256 hashes to each future run report.
+- Added an aggregation failure test and documented the command.
+- No formal training or GitHub operation had been performed at this point.
+
+### 16:51 — Codex — Aggregator verified and prepared for local commit
+
+- All three outer PPO tests passed after adding strict aggregation.
+- Prepared the aggregation implementation, test, documentation, and devlog for
+  a local Git commit before starting any formal seed.
+- No GitHub push was requested or performed.
+

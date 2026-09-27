@@ -50,6 +50,15 @@ data files are present:
 .venv\Scripts\python scripts\run_ppo_clean_benchmark.py --seed 0 --root . --data-root .
 ```
 
+After all five seeds finish, create the strict aggregate:
+
+```powershell
+.venv\Scripts\python scripts\run_ppo_clean_benchmark.py --aggregate --root .
+```
+
+Aggregation rejects missing seeds, short budgets, technical failures, known-period
+access, mutable evaluation state, and mixed code/config/data/package provenance.
+
 Before formal execution, run the separate smoke path:
 
 ```powershell
