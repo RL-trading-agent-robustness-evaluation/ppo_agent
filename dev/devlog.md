@@ -140,3 +140,39 @@ entry identifies whether a change was made by Codex, the user, or an external to
   a local Git commit before starting any formal seed.
 - No GitHub push was requested or performed.
 
+### 17:04 — Codex — Formal PPO seed 0 completed
+
+- Ran the preregistered formal seed 0 for exactly 200,000 training steps at
+  outer commit `2bb1d6676cdd8b87f269d967054a97725c636e48` and victimagent V4 commit
+  `5701400076bd3ad4fa80dbc86d5687f480c26021`.
+- The linear learning rate descended from `3e-4` toward the declared `3e-5`
+  floor; all recorded optimizer diagnostics remained finite.
+- Deterministic 2019–2021 validation technically passed with no known-period
+  access, unchanged parameters/optimizer/scaler, and reward–NAV error
+  `1.44e-15`.
+- Validation metrics: final wealth `1.487132×`, CAGR `14.1673%`, annualized
+  excess return `14.0949%`, Sharpe versus lagged cash `0.769862`, maximum
+  drawdown `-33.6840%`, turnover `21.052604`, and transaction costs
+  `$25,074.53`.
+- Generated `reports/PPO_CLEAN_SEED0.{json,md}` and local checkpoint, scaler,
+  training-log, and validation-trajectory artifacts with SHA-256 hashes.
+- Deliberately did not commit between formal seeds so every seed will record the
+  identical research-code provenance required by the strict aggregator.
+- No GitHub push was performed.
+
+## 2026-09-30
+
+### 11:20 — Codex — V4 formal study preserved as historical reference
+
+- Verified and staged the completed formal reports for PPO seeds 0–4 together
+  with the strict five-seed aggregate report (`PPO_CLEAN_BENCHMARK`).
+- Preserved the reports at outer research-code commit
+  `2bb1d6676cdd8b87f269d967054a97725c636e48` and victimagent V4 commit
+  `5701400076bd3ad4fa80dbc86d5687f480c26021`.
+- The aggregate retained all five seeds and reported median validation CAGR
+  `23.9079%`, Sharpe `1.245645`, maximum drawdown `-27.0204%`, and final wealth
+  `1.900426x`; these results remain historical V4 evidence and will not be
+  overwritten by the V9 study.
+- Prepared a dedicated local commit before changing the victimagent submodule or
+  adding any V9 implementation. No GitHub push was performed.
+
