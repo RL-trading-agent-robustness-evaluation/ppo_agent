@@ -1,0 +1,339 @@
+{
+  "status": "PASS",
+  "error": null,
+  "formal": true,
+  "algorithm": "PPO",
+  "arm": "v9_trend_gate",
+  "ppo_arm": "ppo_v9_gate_nav",
+  "fold": "fold_1",
+  "seed": 1,
+  "total_timesteps": 500000,
+  "created_at_utc": "2026-09-30T06:52:27.145464+00:00",
+  "known_period_accessed": false,
+  "preflight": {
+    "status": "PASS",
+    "victimagent_commit": "f4988db5c98d9248533c4ca852cc48ca3f6b7aad",
+    "ppo_repo_commit": "2bbad36d42dfc4f075c52c22dad5de4f1a7e29dc",
+    "required_raw_files": [
+      "crsp_dsf_spy_1993_2008.csv",
+      "crsp_dsf_spy_tlt_gld_2009_2025.csv",
+      "stkdistributions_spy_1993_2008.csv",
+      "stkdistributions_spy_tlt_gld_2009_2025.csv",
+      "DGS3MO_1993_2008.csv",
+      "DGS3MO_2009_2025.csv"
+    ],
+    "missing_raw_files": [],
+    "known_period_accessed": false,
+    "ppo_config_sha256": "289ced9859416ce588d5a10c60f495f0bee4a9b8870f1b31aa7437e8a425a012",
+    "upstream": {
+      "status": "PASS",
+      "git_commit": "f4988db5c98d9248533c4ca852cc48ca3f6b7aad",
+      "known_period_accessed": false,
+      "config_sha256": {
+        "configs/v8_final.yaml": "866a9b7b2eaf7d78dae5d8c47931ceaad396c10762b1fc142b4c56d89df2a6d7",
+        "configs/v8_folds.yaml": "6b376b74b63c463a5970bbc19081f380536535f7e6d046300a04babcfe3eb0ea",
+        "configs/dqn_v2_search.yaml": "bd87d5246f48557bf414145257b40e3c60837c558683e72cdded363ef091a28c"
+      },
+      "data_build": {
+        "raw_sha256": {
+          "crsp_dsf_spy_1993_2008.csv": "f0f5991198e196fffe9e7dfde47b73694e88a823748a1cdd78ff8f27380399bc",
+          "crsp_dsf_spy_tlt_gld_2009_2025.csv": "3448d24ac6f7ac82cb982db27187ab6daa5614f2431b824eabd670332993eb98",
+          "stkdistributions_spy_1993_2008.csv": "a0b0632be384ed3fccdfb2a6c5d39492dc4f47ce710db9bdb5d5aa1d46f4f4c5",
+          "stkdistributions_spy_tlt_gld_2009_2025.csv": "6e0f2b756c5663f23e1ab34cc3e27a0806d8a50f4f605c649bd705f161a2a288",
+          "DGS3MO_1993_2008.csv": "b1409435f79906df7c6dd7f7d2d91a53be8a6bc6132b4c40554f39aaf1782fff",
+          "DGS3MO_2009_2025.csv": "c8cea3d1d9b96e912335925ed138a686e7f4b65a3a37222df95f6e046495caed"
+        },
+        "processed_sha256": {
+          "data/processed/v8/spy_market_1993_2025.csv": "281ed8c0530720b5cedf4abd7e9288375dad4fe073f55b0b814560ebcb54af9b",
+          "data/interim/v8/spy_cash_distributions_1993_2025.csv": "a981523e00b05e804091bf4671835bade363559215403614344bf5a099541668"
+        }
+      },
+      "fold_audit": {
+        "status": "PASS",
+        "global_checks": {
+          "dates_parse": true,
+          "expanding_train_start_is_constant": true,
+          "validation_windows_do_not_overlap": true,
+          "all_selection_dates_end_before_2022": true,
+          "lagged_cash_rate_is_available": true
+        },
+        "per_fold": {
+          "fold_1": {
+            "train_precedes_validation": true,
+            "no_train_validation_overlap": true,
+            "each_fold_has_at_least_one_full_504_decision_training_episode": true,
+            "warmup_coverage_is_available": true,
+            "corporate_action_coverage_is_available": true,
+            "validation_has_sessions": true
+          },
+          "fold_2": {
+            "train_precedes_validation": true,
+            "no_train_validation_overlap": true,
+            "each_fold_has_at_least_one_full_504_decision_training_episode": true,
+            "warmup_coverage_is_available": true,
+            "corporate_action_coverage_is_available": true,
+            "validation_has_sessions": true
+          },
+          "fold_3": {
+            "train_precedes_validation": true,
+            "no_train_validation_overlap": true,
+            "each_fold_has_at_least_one_full_504_decision_training_episode": true,
+            "warmup_coverage_is_available": true,
+            "corporate_action_coverage_is_available": true,
+            "validation_has_sessions": true
+          }
+        }
+      },
+      "python": "3.14.4",
+      "packages": {
+        "stable-baselines3": "2.9.0",
+        "torch": "2.14.0",
+        "numpy": "2.5.3",
+        "gymnasium": "1.3.0",
+        "pandas": "2.3.3"
+      }
+    }
+  },
+  "hyperparameters": {
+    "learning_rate_schedule": "linear",
+    "learning_rate_initial": 0.0003,
+    "learning_rate_final": 3e-05,
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "normalize_advantage": true,
+    "ent_coef": 0.0,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "policy_net_arch": [
+      64,
+      64
+    ],
+    "activation_fn": "Tanh"
+  },
+  "scaler": {
+    "columns": [
+      "log_return_1",
+      "log_return_5",
+      "close_to_sma_5",
+      "close_to_sma_20",
+      "close_to_sma_60",
+      "realized_volatility_20",
+      "close_to_sma_200",
+      "log_return_126",
+      "log_return_252",
+      "realized_volatility_60",
+      "volatility_ratio_20_60",
+      "cash_rate_known"
+    ],
+    "mean": [
+      0.0003484015938359815,
+      0.0017624529449917754,
+      0.0007258136148056917,
+      0.003486261276415308,
+      0.01087190820227162,
+      0.16256221900082468,
+      0.03713436826773848,
+      0.0438960135768991,
+      0.08693450770653278,
+      0.16916196578701592,
+      0.9652964861461482,
+      0.02763468186134853
+    ],
+    "scale": [
+      0.012199480487122412,
+      0.024869745798035723,
+      0.012468487237680658,
+      0.025704022733659793,
+      0.04410338462179861,
+      0.09846533177490187,
+      0.08683327778746665,
+      0.12189843383922208,
+      0.18243907187193478,
+      0.09159675570161646,
+      0.2236850972987482,
+      0.02237725971905665
+    ]
+  },
+  "train_window": {
+    "rows": 5265,
+    "first_date": "1994-02-01",
+    "last_date": "2014-12-31",
+    "cash_distribution_events": 86,
+    "trend_up_share": 0.739031339031339
+  },
+  "validation_window": {
+    "rows": 504,
+    "first_date": "2015-01-02",
+    "last_date": "2016-12-30",
+    "cash_distribution_events": 8,
+    "trend_up_share": 0.7976190476190477
+  },
+  "checkpoint_path": "artifacts/checkpoints/v9_ppo/ppo_v9_gate_nav_fold_1_seed1_v9spec1.zip",
+  "checkpoint_sha256": "67619b02b139dc3a4cafa5387b20f1aa27f0231746ecb1104b86d455b02584f6",
+  "train_seconds": 1529.1,
+  "requested_timesteps": 500000,
+  "actual_timesteps": 501760,
+  "final_logged_loss": 0.0036749739665538073,
+  "tensorboard_path": "tensorboard/v9_ppo/ppo_v9_gate_nav_fold_1_seed1_v9spec1",
+  "training_log_path": "artifacts/logs/v9_ppo/ppo_v9_gate_nav_fold_1_seed1_v9spec1",
+  "technical_pass": true,
+  "evaluation_state_unchanged": true,
+  "reward_nav_error": 3.608224830031759e-16,
+  "responsiveness": {
+    "method": "cyclic_shift_first_12_market_and_rate_dimensions",
+    "account_and_rule_dimensions_preserved": true,
+    "action_change_ratio": 0.2882703777335984,
+    "original_action_types": [
+      0,
+      1,
+      2
+    ],
+    "perturbed_action_types": [
+      0,
+      1,
+      2
+    ],
+    "eligible": true
+  },
+  "state_responsive": true,
+  "near_constant_policy": false,
+  "trajectory_path": "artifacts/trajectories/v9_ppo/ppo_v9_gate_nav_fold_1_seed1_v9spec1_validation.csv",
+  "trajectory_sha256": "e0287a7a9b5deffb869faba3270c2686b4e0f688d20ac10a402bb95705176ae9",
+  "agent_action_distribution": {
+    "0": 0.23658051689860835,
+    "1": 0.28429423459244535,
+    "2": 0.47912524850894633
+  },
+  "gated_action_distribution": {
+    "0": 0.03777335984095427,
+    "1": 0.0874751491053678,
+    "2": 0.8747514910536779
+  },
+  "executed_action_distribution": {
+    "0": 0.013916500994035786,
+    "1": 0.055666003976143144,
+    "2": 0.7713717693836978,
+    "None": 0.15904572564612326
+  },
+  "gate_override_share": 0.3956262425447316,
+  "gate_forced_share": 0.7972166998011928,
+  "steps": 503,
+  "start_date": "2015-01-02",
+  "end_date": "2016-12-30",
+  "final_wealth": 1.1000215751355376,
+  "cagr": 0.0489908230415288,
+  "annualized_mean_excess_return": 0.0529292260943787,
+  "annualized_mean_gross_excess_return": 0.05798888804735485,
+  "sharpe_excess_cash": 0.4473004162177605,
+  "annualized_volatility": 0.11833838905161242,
+  "max_drawdown": -0.12212026611651305,
+  "average_exposure": 0.8968520552344118,
+  "total_turnover": 10.099245882329377,
+  "number_of_trades": 44,
+  "total_transaction_cost": 9974.974445,
+  "action_distribution": {
+    "0": 0.23658051689860835,
+    "1": 0.28429423459244535,
+    "2": 0.47912524850894633
+  },
+  "baselines": {
+    "cash": {
+      "steps": 503,
+      "start_date": "2015-01-02",
+      "end_date": "2016-12-30",
+      "final_wealth": 1.0036618519196026,
+      "cagr": 0.0018355404134542397,
+      "annualized_mean_excess_return": 6.981873378657901e-16,
+      "annualized_mean_gross_excess_return": 6.981873378657901e-16,
+      "sharpe_excess_cash": null,
+      "annualized_volatility": 0.00013076497568643443,
+      "max_drawdown": 0.0,
+      "average_exposure": 0.0,
+      "total_turnover": 0.0,
+      "number_of_trades": 0,
+      "total_transaction_cost": 0.0,
+      "action_distribution": {
+        "0": 1.0
+      }
+    },
+    "buy_and_hold": {
+      "steps": 503,
+      "start_date": "2015-01-02",
+      "end_date": "2016-12-30",
+      "final_wealth": 1.1366146906263972,
+      "cagr": 0.06635576766828533,
+      "annualized_mean_excess_return": 0.07218204638504996,
+      "annualized_mean_gross_excess_return": 0.07268254133558674,
+      "sharpe_excess_cash": 0.5141801274875838,
+      "annualized_volatility": 0.1403878550817401,
+      "max_drawdown": -0.12809506158689954,
+      "average_exposure": 0.9821897583329836,
+      "total_turnover": 0.9990038099999999,
+      "number_of_trades": 1,
+      "total_transaction_cost": 999.0038099999999,
+      "action_distribution": {
+        "-1": 0.9980119284294234,
+        "2": 0.0019880715705765406
+      }
+    },
+    "constant_50": {
+      "steps": 503,
+      "start_date": "2015-01-02",
+      "end_date": "2016-12-30",
+      "final_wealth": 1.0745038190786445,
+      "cagr": 0.03671066624600039,
+      "annualized_mean_excess_return": 0.03670406222529166,
+      "annualized_mean_gross_excess_return": 0.03735296733474098,
+      "sharpe_excess_cash": 0.5155325611364676,
+      "annualized_volatility": 0.0712016100606784,
+      "max_drawdown": -0.06514065240951517,
+      "average_exposure": 0.49990275263700096,
+      "total_turnover": 1.295235198623017,
+      "number_of_trades": 480,
+      "total_transaction_cost": 1303.765885,
+      "action_distribution": {
+        "1": 1.0
+      }
+    },
+    "sma_200_gate_only": {
+      "steps": 503,
+      "start_date": "2015-01-02",
+      "end_date": "2016-12-30",
+      "final_wealth": 0.997087748779247,
+      "cagr": -0.0014621877248631732,
+      "annualized_mean_excess_return": 0.0016925163002306164,
+      "annualized_mean_gross_excess_return": 0.007206203760347753,
+      "sharpe_excess_cash": 0.016952562995769593,
+      "annualized_volatility": 0.09984585589560681,
+      "max_drawdown": -0.12441536576997514,
+      "average_exposure": 0.77775924219786,
+      "total_turnover": 11.005495208090935,
+      "number_of_trades": 16,
+      "total_transaction_cost": 10546.3509,
+      "action_distribution": {
+        "0": 1.0
+      },
+      "action_trace": {
+        "agent_action_distribution": {
+          "0": 1.0
+        },
+        "gated_action_distribution": {
+          "0": 0.20278330019880716,
+          "2": 0.7972166998011928
+        },
+        "executed_action_distribution": {
+          "0": 0.1709741550695825,
+          "2": 0.7196819085487077,
+          "None": 0.10934393638170974
+        },
+        "gate_override_share": 0.7972166998011928,
+        "gate_forced_share": 0.7972166998011928
+      }
+    }
+  },
+  "log_relative_wealth_vs_buy_and_hold": -0.03272448148861539
+}
