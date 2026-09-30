@@ -65,7 +65,7 @@ formal:
   overshoot_reason: SB3 completes the final 2048-step rollout
   deterministic_validation: true
   retain_all_runs: true
-  final_arm: ppo_v9_gate_relative
+  final_arm: v9_gate_relative_reward
 
 final:
   train_start: '1994-02-01'

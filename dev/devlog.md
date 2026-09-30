@@ -282,3 +282,13 @@ entry identifies whether a change was made by Codex, the user, or an external to
   evidence and will not be included in the revised formal aggregation.
 - No final training or 2022–2025 known-period access was performed.
 
+### 14:24 — Codex — V9 validation summary contract completed
+
+- Expanded revised aggregation to generate append-only
+  `reports/v9_ppo/VALIDATION_SUMMARY.{json,md}` with per-arm/per-fold median
+  log wealth versus buy-and-hold, win counts, paired reward deltas, all required
+  risk/cost/exposure/gate statistics, five-day-rule blocked share, technical and
+  behavioral issue lists, baselines, and the pinned DQN descriptive reference.
+- Changed the configured final-arm identifier to the required shared name
+  `v9_gate_relative_reward`; it remains preregistered rather than selected.
+

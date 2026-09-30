@@ -319,7 +319,7 @@ def aggregate(root: Path, config: PPOConfigV9) -> dict[str, Any]:
                         or row.get("actual_timesteps") != EXPECTED_ACTUAL_TIMESTEPS):
                     raise ValueError(f"invalid formal PPO V9 record: {path}")
                 records[(arm, fold, seed)] = row
-    pairs, folds = [], {}
+    pairs, paired_folds = [], {}
     for fold in FOLDS:
         fold_rows = []
         for seed in SEEDS:
@@ -330,16 +330,80 @@ def aggregate(root: Path, config: PPOConfigV9) -> dict[str, Any]:
                     "treatment_wealth": treatment["final_wealth"], "delta_log_wealth": delta}
             pairs.append(pair)
             fold_rows.append(delta)
-        folds[fold] = {"median_delta_log_wealth": float(np.median(fold_rows)),
-                       "treatment_wins": int(sum(x > 0 for x in fold_rows))}
+        paired_folds[fold] = {"median_delta_log_wealth": float(np.median(fold_rows)),
+                              "positive_delta_count": int(sum(x > 0 for x in fold_rows))}
+    metric_names = ("final_wealth", "cagr", "annualized_mean_excess_return",
+                    "sharpe_excess_cash", "annualized_volatility", "max_drawdown",
+                    "average_exposure", "total_turnover", "total_transaction_cost",
+                    "gate_forced_share", "gate_override_share")
+    by_arm_fold, baselines = {}, {}
+    failures, unresponsive, constant = [], [], []
+    for arm in ARMS:
+        by_arm_fold[arm] = {}
+        for fold in FOLDS:
+            rows = [records[(arm, fold, seed)] for seed in SEEDS]
+            rel = [r["log_relative_wealth_vs_buy_and_hold"] for r in rows]
+            blocked = [float(r["executed_action_distribution"].get("None", 0.0)) for r in rows]
+            by_arm_fold[arm][fold] = {
+                "median_log_wealth_vs_buy_and_hold": float(np.median(rel)),
+                "wins_vs_buy_and_hold": int(sum(x > 0 for x in rel)),
+                "median_five_day_rule_blocked_share": float(np.median(blocked)),
+                "median_metrics": {name: (None if all(r.get(name) is None for r in rows)
+                    else float(np.median([r[name] for r in rows if r.get(name) is not None])))
+                    for name in metric_names},
+            }
+            baselines.setdefault(fold, rows[0]["baselines"])
+            for row in rows:
+                key = {"arm": row["arm"], "fold": fold, "seed": row["seed"]}
+                if not row["technical_pass"]:
+                    failures.append(key)
+                if not row["state_responsive"]:
+                    unresponsive.append(key)
+                if row["near_constant_policy"]:
+                    constant.append(key)
+    dqn_path = root / "victimagent/reports/v9/VALIDATION_DECISION.json"
+    dqn = json.loads(dqn_path.read_text(encoding="utf-8"))
     summary = {
         "status": "PASS", "created_at_utc": now(), "known_period_accessed": False,
-        "contrast": "ppo_v9_gate_relative minus ppo_v9_gate_nav",
-        "pairs": pairs, "folds": folds,
+        "algorithm": "PPO", "record_revision": config.raw["formal"]["record_revision"],
+        "contrast": "v9_gate_relative_reward minus v9_trend_gate",
+        "arm_fold_summary": by_arm_fold, "baselines": baselines,
+        "paired_reward_contrast": {"all_pairs": pairs, "per_fold": paired_folds},
         "mean_of_fold_median_delta_log_wealth": float(np.mean(
-            [folds[f]["median_delta_log_wealth"] for f in FOLDS])),
-        "final_arm_preregistered_not_selected": config.raw["formal"]["final_arm"],
+            [paired_folds[f]["median_delta_log_wealth"] for f in FOLDS])),
+        "technical_failures": failures, "non_state_responsive": unresponsive,
+        "near_constant_policy": constant,
+        "dqn_descriptive_reference_not_paired": {
+            "source": "victimagent/reports/v9/VALIDATION_DECISION.json",
+            "scores": dqn["scores"], "buy_and_hold": dqn["buy_and_hold"]},
+        "final_arm_preregistered_not_selected": "v9_gate_relative_reward",
     }
-    write_new(root / REPORTS / "VALIDATION_REWARD_ABLATION.json", summary)
+    write_new(root / REPORTS / "VALIDATION_SUMMARY.json", summary)
+    lines = ["# PPO V9 validation summary", "",
+             "Known period accessed: **no**. Final arm was preregistered as "
+             "`v9_gate_relative_reward`; validation does not select an arm.", "",
+             "| Arm | Fold | Median log(W/B&H) | Wins vs B&H | Median wealth | Sharpe | Max DD | Exposure | Turnover | Cost | Gate forced | Gate override | 5-day blocked |",
+             "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
+    for arm in ARMS:
+        for fold in FOLDS:
+            item, m = by_arm_fold[arm][fold], by_arm_fold[arm][fold]["median_metrics"]
+            lines.append(f"| {config.upstream_arm(arm)} | {fold} | {item['median_log_wealth_vs_buy_and_hold']:+.4f} | "
+                         f"{item['wins_vs_buy_and_hold']}/5 | {m['final_wealth']:.4f} | {m['sharpe_excess_cash']:.3f} | "
+                         f"{m['max_drawdown']:.2%} | {m['average_exposure']:.3f} | {m['total_turnover']:.2f} | "
+                         f"{m['total_transaction_cost']:.2f} | {m['gate_forced_share']:.2%} | "
+                         f"{m['gate_override_share']:.2%} | {item['median_five_day_rule_blocked_share']:.2%} |")
+    lines += ["", "## Paired reward contrast", "",
+              "| Fold | Median log(W relative/W NAV) | Positive pairs |",
+              "|---|---:|---:|"]
+    for fold in FOLDS:
+        item = paired_folds[fold]
+        lines.append(f"| {fold} | {item['median_delta_log_wealth']:+.4f} | {item['positive_delta_count']}/5 |")
+    lines += ["", f"Technical failures: {len(failures)}; non-responsive: {len(unresponsive)}; "
+              f"near-constant policies: {len(constant)}.", "",
+              "DQN values in the JSON are descriptive references from the pinned victimagent report, not paired PPO comparisons.", ""]
+    md = root / REPORTS / "VALIDATION_SUMMARY.md"
+    md.parent.mkdir(parents=True, exist_ok=True)
+    with md.open("x", encoding="utf-8") as handle:
+        handle.write("\n".join(lines))
     return summary
 
