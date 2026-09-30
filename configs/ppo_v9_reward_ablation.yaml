@@ -59,6 +59,7 @@ smoke:
   requested_timesteps: 20000
 
 formal:
+  record_revision: v9spec1
   requested_timesteps_per_run: 500000
   expected_sb3_timesteps_per_run: 501760
   overshoot_reason: SB3 completes the final 2048-step rollout

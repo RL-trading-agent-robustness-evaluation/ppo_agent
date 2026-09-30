@@ -15,6 +15,7 @@ def test_frozen_v9_contract_and_rollout_overshoot():
     assert config.raw["shared_contract"]["victimagent_commit"] == EXPECTED_PIN
     assert tuple(config.raw["arms"]) == ARMS
     assert config.raw["formal"]["expected_sb3_timesteps_per_run"] == EXPECTED_ACTUAL_TIMESTEPS
+    assert config.raw["formal"]["record_revision"] == "v9spec1"
     assert config.upstream_arm(ARMS[0]) == "v9_trend_gate"
     assert config.upstream_arm(ARMS[1]) == "v9_gate_relative_reward"
 

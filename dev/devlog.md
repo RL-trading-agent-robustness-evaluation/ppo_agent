@@ -259,3 +259,26 @@ entry identifies whether a change was made by Codex, the user, or an external to
   data build and smoke corrections: all 27 tests passed with upstream precision
   warnings only. Prepared the verified formal-run code for a local commit.
 
+### 14:09 — Codex — Updated handoff compliance audit paused formal matrix
+
+- Read the user's updated PPO/A2C V9 handoff in full and audited the frozen PPO
+  runner and completed records against its literal field and report contract.
+- Confirmed that the data, folds, 20-dimensional observations, official V9
+  environment factory, gate, rewards, actions, costs, seeds, PPO settings,
+  deterministic true-NAV evaluation, responsiveness check, and 501,760 realized
+  transitions for a 500,000 requested budget were compliant.
+- Found reporting gaps: PPO-local rather than victimagent arm names in `arm`, no
+  explicit `algorithm`, `total_timesteps`, or outer-repository commit fields,
+  no hard assertion of the frozen DQN buy-and-hold wealth values, and an
+  incomplete validation summary generator.
+- Stopped hidden supervisor PID 44284 before it could launch further batches.
+  Four already-running fold-1 control seeds were subsequently interrupted; all
+  reservations and any completed records remain intact and were not deleted or
+  overwritten.
+- Registered append-only formal record revision `v9spec1`, changed new records
+  to use victimagent arm names with a separate PPO-local label, added algorithm,
+  requested total timesteps, outer commit provenance, and exact per-fold DQN
+  buy-and-hold assertions. Existing records remain historical/noncompliant-schema
+  evidence and will not be included in the revised formal aggregation.
+- No final training or 2022–2025 known-period access was performed.
+

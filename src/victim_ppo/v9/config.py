@@ -60,6 +60,8 @@ def load_config(path: str | Path) -> PPOConfigV9:
         raise ValueError("formal PPO budget changed")
     if formal["expected_sb3_timesteps_per_run"] != EXPECTED_ACTUAL_TIMESTEPS:
         raise ValueError("documented SB3 rollout budget changed")
+    if formal["record_revision"] != "v9spec1":
+        raise ValueError("formal record schema revision changed")
     if raw["model"]["n_steps"] != 2048 or raw["model"]["ent_coef"] != 0.0:
         raise ValueError("frozen PPO rollout or entropy setting changed")
     if raw["formal"]["final_arm"] != "ppo_v9_gate_relative":

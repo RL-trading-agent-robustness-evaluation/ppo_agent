@@ -47,9 +47,10 @@ def main() -> None:
     elif args.run:
         if args.arm is None or args.fold is None or args.seed is None:
             parser.error("--run requires --arm, --fold, and --seed")
+        revision = config.raw["formal"]["record_revision"]
         result = run_cell(root, config, arm=args.arm, fold_id=args.fold, seed=args.seed,
                           requested_timesteps=config.raw["formal"]["requested_timesteps_per_run"],
-                          threads=args.threads)
+                          tag=f"_{revision}", threads=args.threads)
     else:
         result = aggregate(root, config)
     print(json.dumps(result, indent=2, allow_nan=False, default=str))

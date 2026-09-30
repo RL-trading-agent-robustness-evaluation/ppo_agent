@@ -27,6 +27,11 @@ from .config import (ARMS, EXPECTED_ACTUAL_TIMESTEPS, EXPECTED_PIN, FOLDS,
 RECORDS = Path("experiments/v9_ppo/records")
 ATTEMPTS = Path("experiments/v9_ppo/attempts")
 REPORTS = Path("reports/v9_ppo")
+EXPECTED_BUY_AND_HOLD = {
+    "fold_1": 1.1366146906263972,
+    "fold_2": 1.1510616812248984,
+    "fold_3": 1.9801822999404477,
+}
 
 
 def now() -> str:
@@ -65,6 +70,11 @@ def resolved_submodule_pin(root: Path) -> str:
     ).stdout.strip()
 
 
+def git_commit(root: Path) -> str:
+    return subprocess.run(["git", "-C", str(root), "rev-parse", "HEAD"], check=True,
+                          capture_output=True, text=True).stdout.strip()
+
+
 def preflight(root: Path, config: PPOConfigV9, *, require_data: bool = True,
               require_clean: bool = False) -> dict[str, Any]:
     victim = root / "victimagent"
@@ -91,6 +101,7 @@ def preflight(root: Path, config: PPOConfigV9, *, require_data: bool = True,
     result: dict[str, Any] = {
         "status": "WAITING_FOR_DATA" if missing else "READY_FOR_DATA_BUILD",
         "victimagent_commit": resolved,
+        "ppo_repo_commit": git_commit(root),
         "required_raw_files": list(RAW_FILES),
         "missing_raw_files": missing,
         "known_period_accessed": False,
@@ -246,7 +257,7 @@ def run_cell(root: Path, config: PPOConfigV9, *, arm: str, fold_id: str, seed: i
              requested_timesteps: int, tag: str = "", threads: int = 1) -> dict[str, Any]:
     if arm not in ARMS or fold_id not in FOLDS or seed not in SEEDS:
         raise ValueError("invalid PPO V9 arm, fold, or seed")
-    formal = requested_timesteps == 500_000 and not tag
+    formal = requested_timesteps == 500_000
     provenance = preflight(root, config, require_data=True, require_clean=formal)
     victim = root / "victimagent"
     v8._set_threads(threads)
@@ -270,6 +281,8 @@ def run_cell(root: Path, config: PPOConfigV9, *, arm: str, fold_id: str, seed: i
         evaluation = _evaluate(root, config, checkpoint, validation, val_spy, arm, seed, label)
         baselines = v9._baselines_with_rule(validation, val_spy)
         bh = baselines["buy_and_hold"]["final_wealth"]
+        if not math.isclose(bh, EXPECTED_BUY_AND_HOLD[fold_id], rel_tol=0.0, abs_tol=1e-12):
+            raise RuntimeError(f"{fold_id} buy-and-hold {bh} != frozen DQN value")
         result = {**training, **evaluation, "baselines": baselines,
                   "log_relative_wealth_vs_buy_and_hold":
                       math.log(evaluation["final_wealth"] / bh)}
@@ -279,8 +292,9 @@ def run_cell(root: Path, config: PPOConfigV9, *, arm: str, fold_id: str, seed: i
         raise
     finally:
         write_new(record_path, {
-            "status": status, "error": error, "formal": formal, "arm": arm,
-            "victimagent_arm": config.upstream_arm(arm), "fold": fold_id, "seed": seed,
+            "status": status, "error": error, "formal": formal,
+            "algorithm": "PPO", "arm": config.upstream_arm(arm), "ppo_arm": arm,
+            "fold": fold_id, "seed": seed, "total_timesteps": requested_timesteps,
             "created_at_utc": now(), "known_period_accessed": False,
             "preflight": provenance, "hyperparameters": config.model,
             "scaler": scaler_fingerprint(train.observation_builder),
@@ -297,7 +311,8 @@ def aggregate(root: Path, config: PPOConfigV9) -> dict[str, Any]:
     for arm in ARMS:
         for fold in FOLDS:
             for seed in SEEDS:
-                path = root / RECORDS / f"{arm}_{fold}_seed{seed}.json"
+                revision = config.raw["formal"]["record_revision"]
+                path = root / RECORDS / f"{arm}_{fold}_seed{seed}_{revision}.json"
                 row = json.loads(path.read_text(encoding="utf-8"))
                 if (row.get("status") != "PASS" or not row.get("formal")
                         or row.get("known_period_accessed") is not False
