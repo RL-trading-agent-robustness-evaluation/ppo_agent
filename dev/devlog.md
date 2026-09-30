@@ -292,3 +292,35 @@ entry identifies whether a change was made by Codex, the user, or an external to
 - Changed the configured final-arm identifier to the required shared name
   `v9_gate_relative_reward`; it remains preregistered rather than selected.
 
+### 20:12 — User/Codex — Local validation stopped after active batch
+
+- At the user's request, stopped validation supervisor PID 40160 so it cannot
+  launch another local batch. The four already-running fold-1 relative-reward
+  cells continue to completion and remain append-only.
+- Added `notebooks/ppo_v9_colab_resume.ipynb` for a Google Drive/Colab handoff.
+  The notebook checks out frozen PPO commit `2bbad36`, verifies victimagent pin
+  `f4988db`, restores existing records and artifacts, rebuilds and verifies the
+  canonical data, refuses ambiguous prior attempts, trains only missing
+  `v9spec1` cells with at most two CPU workers, syncs evidence to Drive after
+  each PASS, and aggregates only after all 30 records pass.
+- Prepared ignored Git bundle `artifacts/ppo_v9_code_2bbad36.bundle` so Colab
+  can reproduce the unpushed frozen outer commit without publishing it first.
+- The notebook does not perform final training or read the known period. Raw
+  licensed files remain Drive-local and are never committed.
+- This notebook and log remain uncommitted while the current formal cells finish
+  so every validation run continues to report frozen code commit `2bbad36`.
+
+### 20:18 — Codex — Local batch completed and Colab state frozen
+
+- Confirmed the four active fold-1 relative-reward cells completed at 501,760
+  transitions with PASS records. Local corrected validation now contains 20 of
+  30 cells, and no local training worker or supervisor remains active.
+- Prepared ignored archive `artifacts/ppo_v9_state_after20.zip` containing the
+  append-only experiment state and all completed V9 PPO checkpoints and
+  trajectories required for the Colab continuation.
+- Updated the notebook to restore this archive before discovering the remaining
+  cells; therefore Colab will train only the final 10 missing cells.
+- Validated the notebook JSON and compiled every Python code cell; verified the
+  state archive contains 115 entries. Prepared the notebook and this log for a
+  local commit; ignored transfer archives remain outside Git.
+
