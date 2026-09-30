@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "victim-ppo"
 version = "0.1.0"
-description = "PPO victim agent using the pinned shared victimagent V4 environment"
+description = "PPO victim agent using pinned shared victimagent environment contracts"
 requires-python = ">=3.11"
 dependencies = [
   "gymnasium>=1.0,<2.0",

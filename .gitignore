@@ -8,4 +8,6 @@ artifacts/
 data/
 reports/PPO_SMOKE_SEED*.json
 reports/PPO_SMOKE_SEED*.md
+experiments/v9_ppo/attempts/*_smoke.json
+experiments/v9_ppo/records/*_smoke.json
 

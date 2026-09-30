@@ -176,3 +176,31 @@ entry identifies whether a change was made by Codex, the user, or an external to
 - Prepared a dedicated local commit before changing the victimagent submodule or
   adding any V9 implementation. No GitHub push was performed.
 
+### 11:21 — Codex — V4 historical-reference commit created
+
+- Created local commit `f0961ae` (`docs: preserve PPO V4 formal results`) with
+  all five formal seed reports, the aggregate benchmark, and their development
+  log history.
+- No GitHub push was performed.
+
+### 11:26 — Codex — PPO V9 reward-ablation scaffold implemented
+
+- Advanced the victimagent submodule to the team V9 pin
+  `f4988db5c98d9248533c4ca852cc48ca3f6b7aad`.
+- Added the frozen two-arm PPO reward-ablation configuration, preserving the
+  linear `3e-4` to `3e-5` learning-rate schedule, `n_steps=2048`, and the
+  documented 500,000 requested / 501,760 realized SB3 transition budget.
+- Added V9 PPO construction, training, true-NAV evaluation, action tracing,
+  state-responsiveness checks, append-only cell records, paired aggregation,
+  TensorBoard output, a serial 30-cell matrix launcher, and user commands.
+- Added explicit six-file raw-data gating. `victimagent/data/raw/` remains empty;
+  no V4 outer-repository data was copied or reused.
+- Added PPO V9 contract and SPY relative-reward tests. The combined outer PPO
+  suite and pinned victimagent V8/V9 suites passed: 27 tests, with 10 upstream
+  Gymnasium float32 precision warnings and no failures.
+- Ran data-free preflight successfully. It reports `WAITING_FOR_DATA`, lists all
+  six missing raw inputs, confirms the exact V9 pin, and confirms that the known
+  period was not accessed.
+- Prepared a local V9 scaffold commit after the successful verification run.
+- No training, data build, known-period access, or GitHub push was performed.
+
