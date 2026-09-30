@@ -324,3 +324,13 @@ entry identifies whether a change was made by Codex, the user, or an external to
   state archive contains 115 entries. Prepared the notebook and this log for a
   local commit; ignored transfer archives remain outside Git.
 
+### 20:24 — Codex — Colab code source changed to GitHub
+
+- Updated the Colab notebook to clone the PPO repository directly from GitHub's
+  `v9` branch and then check out frozen training commit `2bbad36`.
+- Removed the Drive code-bundle requirement. The Drive state archive remains
+  required because checkpoints and trajectories are prohibited from Git, and
+  the six licensed raw inputs remain Drive-only under the team contract.
+- Revalidated the notebook JSON and compiled all Python cells after the change;
+  prepared the notebook and log for a local commit. No GitHub push was made.
+
