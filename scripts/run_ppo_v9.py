@@ -22,6 +22,8 @@ def main() -> None:
     parser.add_argument("--fold", choices=FOLDS)
     parser.add_argument("--seed", type=int, choices=SEEDS)
     parser.add_argument("--threads", type=int, default=1)
+    parser.add_argument("--tag", default="_smoke",
+                        help="append-only smoke attempt suffix; ignored for formal runs")
     args = parser.parse_args()
     root = args.root.resolve()
     config = load_config(root / "configs/ppo_v9_reward_ablation.yaml")
@@ -32,14 +34,16 @@ def main() -> None:
             raise FileNotFoundError("add all required files before building: " + ", ".join(missing))
         result = build_v8_data(root / "victimagent", root / "victimagent")
     elif args.preflight:
-        result = preflight(root, config, require_data=False)
+        initial = preflight(root, config, require_data=False)
+        result = (initial if initial["missing_raw_files"]
+                  else preflight(root, config, require_data=True))
     elif args.smoke:
         if not args.arm:
             parser.error("--smoke requires --arm")
         spec = config.raw["smoke"]
         result = run_cell(root, config, arm=args.arm, fold_id=spec["fold"],
                           seed=spec["seed"], requested_timesteps=spec["requested_timesteps"],
-                          tag="_smoke", threads=args.threads)
+                          tag=args.tag, threads=args.threads)
     elif args.run:
         if args.arm is None or args.fold is None or args.seed is None:
             parser.error("--run requires --arm, --fold, and --seed")

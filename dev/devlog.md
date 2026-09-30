@@ -204,3 +204,58 @@ entry identifies whether a change was made by Codex, the user, or an external to
 - Prepared a local V9 scaffold commit after the successful verification run.
 - No training, data build, known-period access, or GitHub push was performed.
 
+### 12:55 — User/Codex — V9 raw inputs supplied and canonical data built
+
+- The user supplied the six V8/V9 contract inputs under the outer ignored
+  `data/raw/` directory, plus supplemental DFF, DTB3, full-history DGS3MO, and
+  VIX files.
+- Verified that both CRSP market files and both distribution files exactly match
+  the victimagent V9 pinned SHA-256 values. The two FRED DGS3MO inputs are
+  intentionally unpinned by the team contract.
+- Copied only the six contract inputs into the ignored
+  `victimagent/data/raw/` directory. Supplemental series remain unused because
+  the frozen V8/V9 observation contract declares `external_series: none`.
+- Ran the official victimagent V8 data builder. It passed with 8,286 market
+  rows, 130 distribution events, and the required processed hashes:
+  market `281ed8c0530720b5cedf4abd7e9288375dad4fe073f55b0b814560ebcb54af9b`;
+  events `a981523e00b05e804091bf4671835bade363559215403614344bf5a099541668`.
+- Updated the V9 CLI so preflight performs full upstream fold/data/hash checks
+  automatically once all six raw inputs exist, while retaining the useful
+  `WAITING_FOR_DATA` result when inputs are absent.
+- Adjusted formal cleanliness validation to allow the official builder's
+  untracked `victimagent/reports/v8/DATA_BUILD.json`, while still rejecting any
+  tracked submodule modification and enforcing the exact pinned submodule SHA.
+- No training or known-period access was performed.
+
+### 12:57 — Codex — First V9 control smoke stopped before training
+
+- Attempted the preregistered 20,000-step `ppo_v9_gate_nav` smoke cell for
+  fold 1, seed 0.
+- Stable-Baselines3 stopped during logger construction because the TensorBoard
+  package was not installed. No model learning step occurred and no checkpoint
+  or validation trajectory was produced.
+- Retained the failed smoke reservation and record as append-only audit
+  evidence; no file was overwritten or deleted.
+- Added TensorBoard as an explicit runtime dependency and added smoke retry tags
+  so corrected attempts receive new identities such as `_smoke_retry1`.
+
+### 13:01 — Codex — Both corrected PPO V9 smoke cells passed
+
+- Installed the declared TensorBoard 2.21.0 runtime and retained it only in the
+  ignored local virtual environment.
+- Completed new append-only 20,000-requested-step (`20,480` realized) smoke
+  attempts for both `ppo_v9_gate_nav` and `ppo_v9_gate_relative`, fold 1 seed 0.
+- Both runs produced finite losses, updated model parameters, preserved the
+  train-only scaler, preserved model/optimizer/scaler state during evaluation,
+  terminated naturally, passed the true reward–NAV identity at approximately
+  `1.54e-15`, and passed the state-responsiveness check.
+- Both smoke policies produced validation wealth `1.110581x`; this equality is
+  not interpreted as a performance result because smoke runs are technical
+  checks and the trend gate dominated most decisions in this window.
+- TensorBoard logs, checkpoints, training CSV logs, validation trajectories,
+  attempt reservations, and run records were written to their V9 PPO-specific
+  ignored artifact namespaces. No known-period data was accessed.
+- Reran the combined outer PPO and pinned victimagent V8/V9 suites after the
+  data build and smoke corrections: all 27 tests passed with upstream precision
+  warnings only. Prepared the verified formal-run code for a local commit.
+

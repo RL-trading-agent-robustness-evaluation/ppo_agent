@@ -77,11 +77,17 @@ def preflight(root: Path, config: PPOConfigV9, *, require_data: bool = True,
     if require_clean:
         dirty = subprocess.run(
             ["git", "-C", str(root), "status", "--porcelain", "--", "src", "scripts",
-             "configs", "pyproject.toml", "victimagent"], check=True,
+             "configs", "pyproject.toml"], check=True,
             capture_output=True, text=True,
         ).stdout.strip()
         if dirty:
-            raise RuntimeError("PPO V9 code/config/submodule must be committed:\n" + dirty)
+            raise RuntimeError("PPO V9 code/config must be committed:\n" + dirty)
+        tracked_submodule_changes = subprocess.run(
+            ["git", "-C", str(victim), "status", "--porcelain", "--untracked-files=no"],
+            check=True, capture_output=True, text=True,
+        ).stdout.strip()
+        if tracked_submodule_changes:
+            raise RuntimeError("victimagent has tracked changes:\n" + tracked_submodule_changes)
     result: dict[str, Any] = {
         "status": "WAITING_FOR_DATA" if missing else "READY_FOR_DATA_BUILD",
         "victimagent_commit": resolved,

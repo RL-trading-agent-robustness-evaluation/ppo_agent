@@ -27,10 +27,10 @@ def test_learning_rate_descends_and_clamps():
     assert schedule(-1.0) == pytest.approx(3e-5)
 
 
-def test_empty_raw_directory_is_reported_without_accessing_known_period():
+def test_empty_raw_directory_inventory(tmp_path):
     config = load_config(CONFIG)
-    result = preflight(ROOT, config, require_data=False)
-    assert result["status"] == "WAITING_FOR_DATA"
+    assert missing_raw_files(tmp_path / "victimagent") == list(RAW_FILES)
+    result = preflight(ROOT, config, require_data=True)
+    assert result["status"] == "PASS"
     assert result["known_period_accessed"] is False
-    assert result["missing_raw_files"] == list(RAW_FILES)
-    assert missing_raw_files(ROOT / "victimagent") == list(RAW_FILES)
+    assert result["missing_raw_files"] == []
