@@ -479,3 +479,24 @@ entry identifies whether a change was made by Codex, the user, or an external to
 - Preserved the standalone JSON/Markdown report and attempt record. Five full
   trajectories remain in the ignored shared-artifact path with SHA-256 hashes
   recorded in the JSON and are not committed.
+
+### 19:42 — User/Codex — V4/V9/V10 2022–2025 descriptive comparison completed
+
+- Reused the completed V9 fold-3 diagnostic without rerunning it and evaluated
+  all five existing V4 formal checkpoints and all five V10 streak-pilot
+  checkpoints on the same 2022-01-03 through 2025-12-31 window (1,002 steps).
+- No model training, scaler fitting on known-period rows, seed selection,
+  checkpoint selection, or tuning occurred. Every original checkpoint and
+  scaler was verified before deterministic rollout, and all technical checks
+  passed.
+- Median final wealth was V4 `1.194199`, V9 relative fold 3 `1.344896`, V10
+  streak pilot `1.494758`, and executable SPY buy-and-hold `1.483104`.
+  Wins versus buy-and-hold were respectively 1/5, 2/5, and 3/5.
+- The report labels the result
+  `known_period_descriptive_comparison_v4_v9_v10_not_final_test`. V4, V9, and
+  V10 differ in training windows, features, training budgets, and execution
+  contracts, so these figures are descriptive only and cannot establish a
+  causal reward improvement or select a final model.
+- Preserved the complete per-seed JSON and Traditional Chinese Markdown
+  comparison. New V4/V10 trajectories remain ignored local artifacts with
+  their SHA-256 hashes recorded in the JSON.
