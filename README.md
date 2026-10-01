@@ -7,6 +7,29 @@ uses the victimagent submodule pinned to
 `f4988db5c98d9248533c4ca852cc48ca3f6b7aad` and the frozen configuration in
 `configs/ppo_v9_reward_ablation.yaml`.
 
+## V10 NAV plus positive-streak reward study
+
+V10 keeps the V9 environment and trend gate fixed, then compares true NAV
+reward with a capped training-only bonus for consecutive positive NAV returns.
+The Traditional Chinese contract is
+`docs/PPO_V10_NAV_TREND_REWARD_SPEC_ZH_HANT.md`; the machine-readable contract
+is `configs/ppo_v10_nav_trend_reward.yaml`.
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_ppo_v10.py --preflight
+.\.venv\Scripts\python.exe scripts\run_ppo_v10.py --smoke --arm ppo_v10_gate_nav --tag _smoke1
+.\.venv\Scripts\python.exe scripts\run_ppo_v10.py --smoke --arm ppo_v10_gate_nav_streak --tag _smoke1
+```
+
+After both smoke runs pass and the V10 code/config are committed, run the
+formal 30-cell matrix with:
+
+```powershell
+.\scripts\run_ppo_v10_matrix.ps1 -Threads 1
+```
+
+The V10 runner cannot access the 2022–2025 known period.
+
 Raw licensed inputs belong in `victimagent/data/raw/`, not the outer `data/`
 directory. Until all six files are present, preflight reports
 `WAITING_FOR_DATA` and data building/training is intentionally blocked:

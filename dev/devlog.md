@@ -357,3 +357,41 @@ entry identifies whether a change was made by Codex, the user, or an external to
   records (15/15 control and 7/15 relative-reward), with eight reward cells
   still outstanding. The two active fold-2 workers were not interrupted.
 
+## 2026-10-01
+
+### 09:41 — Codex — PPO V10 NAV plus positive-streak reward specification drafted
+
+- Added `docs/PPO_V10_NAV_TREND_REWARD_SPEC_ZH_HANT.md` in Traditional Chinese
+  as a draft handoff for teammates and implementation agents.
+- Preserved the V9 data, folds, V4 ledger and clock, trend gate, five-session
+  rule, PPO settings, true-NAV evaluation, provenance, and known-period policy.
+- Defined the only treatment change as a capped reward bonus proportional to
+  positive NAV log return and increasing across a consecutive positive-return
+  streak, with proposed pre-freeze values `beta=0.10` and `streak_cap=5`.
+- No V10 implementation, smoke, formal training, selection, or known-period
+  access was performed.
+
+### 10:03 — Codex — PPO V10 made deployable and smoke-verified
+
+- Froze `configs/ppo_v10_nav_trend_reward.yaml` with the V9 parent pin, two
+  gate-fixed arms, `beta=0.10`, `streak_cap=5`, the unchanged PPO settings,
+  three folds, five seeds, and a 30-cell formal matrix.
+- Added the isolated `victim_ppo.v10` reward wrapper, contract loader, runner,
+  append-only run records, training diagnostics, deterministic true-NAV
+  evaluation, paired aggregation, adoption rule, CLI, and serial matrix script.
+- Added V10 contract and reward tests, README commands, and smoke-artifact
+  ignore rules. The complete outer PPO suite passed: 12 tests.
+- V10 preflight passed the exact victimagent pin, processed-data hashes, all
+  three fold audits, package checks, and confirmed no known-period access.
+- Completed separate 20,000-requested-step smoke runs for both arms; SB3
+  realized 20,480 transitions in each. Both passed finite-loss, parameter
+  update, scaler immutability, natural evaluation, reward–NAV identity,
+  evaluation-state immutability, and state-responsiveness checks.
+- The treatment smoke recorded a nonzero streak bonus and evaluation still used
+  unshaped true NAV reward. Smoke wealth is diagnostic only and is not a V10
+  performance result.
+- Created the local commit `feat: add deployable PPO V10 streak reward study`
+  containing only the V10 implementation, specification, tests, documentation,
+  and artifact policy. Existing V9 records and reports were left untouched.
+- No GitHub push was requested or performed.
+- No formal V10 matrix or known-period confirmation was started.

@@ -13,4 +13,6 @@ experiments/v9_ppo/records/*_smoke*.json
 artifacts/checkpoints/v9_ppo/
 artifacts/trajectories/v9_ppo/
 tensorboard/v9_ppo/
+experiments/v10_ppo/attempts/*_smoke*.json
+experiments/v10_ppo/records/*_smoke*.json
 
