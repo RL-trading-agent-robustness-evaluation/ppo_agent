@@ -435,3 +435,16 @@ entry identifies whether a change was made by Codex, the user, or an external to
   through 2014 for 200k steps. The table is descriptive, not a matched causal
   reward ablation.
 - No additional model training or known-period access occurred.
+
+### 15:37 — User/Codex — V10 pilot validation evidence prepared for publication
+
+- Retained all 10 append-only attempt reservations and all 10 PASS run records
+  from the paired fold-1 pilot: five NAV-control and five streak-reward seeds,
+  each with 200,000 requested / 200,704 realized transitions.
+- Retained the generated JSON and Markdown pilot summary. The streak treatment
+  won 0/5 paired seeds and had median delta log wealth `-0.025721`; the report
+  labels this as development-pilot evidence with no formal selection effect.
+- Verified that `origin` had no existing `v10` branch, so publishing this
+  workspace will create `origin/v10` without replacing a remote branch.
+- Checkpoints, trajectories, TensorBoard logs, raw licensed data, and ignored
+  local runtime artifacts remain excluded from Git.
