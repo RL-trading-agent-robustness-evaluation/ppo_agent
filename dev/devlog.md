@@ -458,3 +458,45 @@ entry identifies whether a change was made by Codex, the user, or an external to
   `aa59d7a7090634e5a34d4603aa633ef479f0be67` immediately after the push.
 - No pull request was created and no model binaries or licensed raw data were
   published.
+
+### 18:23 — User/Codex — PPO V9 fold-3 known-period diagnostic completed
+
+- Confirmed that no five-seed PPO V9 final-model set trained through 2021 and
+  no prior fold-3 2022–2025 diagnostic report existed in this workspace.
+- Added and tested a rollout-only evaluator for the five existing fold-3
+  relative-reward checkpoints. No `learn()` call, optimizer update, scaler
+  refit, checkpoint selection, or model/reward tuning occurred.
+- Evaluated 2022-01-03 through 2025-12-31 for exactly 1,002 steps with the
+  shared V9 environment, trend gate, five-session rule, 10 bps cost, frozen
+  train-only scaler, deterministic policy, and true after-cost NAV reward.
+- All checkpoint, config, scaler, processed-data, model-state, optimizer-state,
+  termination, finite-NAV, and reward–NAV identity checks passed. Executable
+  SPY buy-and-hold reproduced final wealth `1.48310441640342` exactly.
+- Five-seed median final wealth was `1.344896`; range was `1.167182` to
+  `1.521299`, and 2/5 seeds beat buy-and-hold. This is explicitly labeled
+  `known_period_diagnostic_fold3_not_final_test`, not an untouched test or a
+  final-model confirmation.
+- Preserved the standalone JSON/Markdown report and attempt record. Five full
+  trajectories remain in the ignored shared-artifact path with SHA-256 hashes
+  recorded in the JSON and are not committed.
+
+### 19:42 — User/Codex — V4/V9/V10 2022–2025 descriptive comparison completed
+
+- Reused the completed V9 fold-3 diagnostic without rerunning it and evaluated
+  all five existing V4 formal checkpoints and all five V10 streak-pilot
+  checkpoints on the same 2022-01-03 through 2025-12-31 window (1,002 steps).
+- No model training, scaler fitting on known-period rows, seed selection,
+  checkpoint selection, or tuning occurred. Every original checkpoint and
+  scaler was verified before deterministic rollout, and all technical checks
+  passed.
+- Median final wealth was V4 `1.194199`, V9 relative fold 3 `1.344896`, V10
+  streak pilot `1.494758`, and executable SPY buy-and-hold `1.483104`.
+  Wins versus buy-and-hold were respectively 1/5, 2/5, and 3/5.
+- The report labels the result
+  `known_period_descriptive_comparison_v4_v9_v10_not_final_test`. V4, V9, and
+  V10 differ in training windows, features, training budgets, and execution
+  contracts, so these figures are descriptive only and cannot establish a
+  causal reward improvement or select a final model.
+- Preserved the complete per-seed JSON and Traditional Chinese Markdown
+  comparison. New V4/V10 trajectories remain ignored local artifacts with
+  their SHA-256 hashes recorded in the JSON.
