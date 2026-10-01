@@ -420,3 +420,18 @@ entry identifies whether a change was made by Codex, the user, or an external to
 - The complete workspace test suite passed 16 tests and V10 preflight passed
   the pinned environment, data hashes, fold audits, and known-period guard.
 - No pilot training had started at the time of this entry.
+
+### 13:55 — User/Codex — Common-period 2019–2021 comparison completed
+
+- Deterministically evaluated all five V10 streak-reward pilot checkpoints on
+  2019–2021 with the unchanged V9 ledger, gate, costs, and each model's original
+  fold-1 train-only scaler; all five evaluations passed technical checks.
+- Combined the fresh V10 results with retained five-seed V4, V9 NAV-control,
+  V9 relative-reward, and executable SPY buy-and-hold evidence.
+- Median final wealth was V4 `1.9004x`, V9 control `1.8121x`, V9 relative
+  `1.9405x`, V10 streak `1.7841x`, and SPY buy-and-hold `1.9802x`.
+- Recorded explicit comparability limits: V4 used its historical 10-feature
+  protocol; V9 fold 3 trained through 2018 for 500k steps; V10 trained only
+  through 2014 for 200k steps. The table is descriptive, not a matched causal
+  reward ablation.
+- No additional model training or known-period access occurred.

@@ -1,0 +1,293 @@
+{
+  "status": "PASS",
+  "period": "2019-01-02 through 2021-12-31",
+  "known_period_accessed": false,
+  "comparison_caveats": [
+    "V4 uses the historical 10-feature V4 protocol and 200k steps.",
+    "V9 control and relative use the 20-feature V9 fold-3 protocol, train through 2018, and 500k steps.",
+    "V10 streak uses the 20-feature V9 environment, its fold-1 scaler, train through 2014, and 200k steps.",
+    "This is a descriptive common-period comparison, not a matched causal reward ablation."
+  ],
+  "spy_buy_and_hold": {
+    "final_wealth": 1.9801822999404477,
+    "cagr": 0.25620330401709324,
+    "sharpe_excess_cash": 1.1332062246134036,
+    "annualized_volatility": 0.21403320039246068,
+    "max_drawdown": -0.3312925415387149,
+    "average_exposure": 0.9791064722020385,
+    "total_turnover": 0.9988775199999999,
+    "total_transaction_cost": 998.8775199999999
+  },
+  "median_metrics": {
+    "v4": {
+      "final_wealth": 1.9004263271873139,
+      "cagr": 0.23907910285303147,
+      "sharpe_excess_cash": 1.2456450496530347,
+      "annualized_volatility": 0.1913794078519165,
+      "max_drawdown": -0.2702042701210018,
+      "average_exposure": 0.864186568704457,
+      "total_turnover": 20.009208980652343,
+      "total_transaction_cost": 23338.32804
+    },
+    "v9_control": {
+      "final_wealth": 1.8121438506652363,
+      "cagr": 0.21955641367109702,
+      "sharpe_excess_cash": 1.0084234638889165,
+      "annualized_volatility": 0.20928924700733512,
+      "max_drawdown": -0.32777567673702235,
+      "average_exposure": 0.9426540178186066,
+      "total_turnover": 8.048336361147616,
+      "total_transaction_cost": 8595.0242
+    },
+    "v9_relative": {
+      "final_wealth": 1.9404570138938249,
+      "cagr": 0.24773260093271499,
+      "sharpe_excess_cash": 1.163358784727657,
+      "annualized_volatility": 0.18349807141866323,
+      "max_drawdown": -0.2904011670183063,
+      "average_exposure": 0.9506437003910171,
+      "total_turnover": 7.065274206153844,
+      "total_transaction_cost": 7733.523450000001
+    },
+    "v10_streak": {
+      "final_wealth": 1.7841170078598554,
+      "cagr": 0.21322636514218263,
+      "sharpe_excess_cash": 1.0764501708223098,
+      "annualized_volatility": 0.1872416350682331,
+      "max_drawdown": -0.2957546459417624,
+      "average_exposure": 0.9538964184945893,
+      "total_turnover": 9.057180916153632,
+      "total_transaction_cost": 10297.872530999999
+    }
+  },
+  "per_seed": {
+    "v4": [
+      {
+        "seed": 0,
+        "final_wealth": 1.48713235796854,
+        "cagr": 0.14167311284775486,
+        "sharpe_excess_cash": 0.7698623806239713,
+        "annualized_volatility": 0.18306203265460888,
+        "max_drawdown": -0.33684029354661005,
+        "average_exposure": 0.7443289853240204,
+        "total_turnover": 21.05260378585698,
+        "total_transaction_cost": 25074.52747
+      },
+      {
+        "seed": 1,
+        "final_wealth": 2.058065706962566,
+        "cagr": 0.2724875799342783,
+        "sharpe_excess_cash": 1.3102069358860968,
+        "annualized_volatility": 0.1913794078519165,
+        "max_drawdown": -0.2702042701210018,
+        "average_exposure": 0.9157355549454772,
+        "total_turnover": 17.936362903497212,
+        "total_transaction_cost": 21100.64702
+      },
+      {
+        "seed": 2,
+        "final_wealth": 1.9004263271873139,
+        "cagr": 0.23907910285303147,
+        "sharpe_excess_cash": 1.1234254369554726,
+        "annualized_volatility": 0.2013564030867901,
+        "max_drawdown": -0.33685038521502986,
+        "average_exposure": 0.864186568704457,
+        "total_turnover": 11.077553941337083,
+        "total_transaction_cost": 11761.85008
+      },
+      {
+        "seed": 3,
+        "final_wealth": 1.8472901531908288,
+        "cagr": 0.22740293656985577,
+        "sharpe_excess_cash": 1.2456450496530347,
+        "annualized_volatility": 0.16908154532782071,
+        "max_drawdown": -0.17941135172121547,
+        "average_exposure": 0.8523184117022773,
+        "total_turnover": 57.00599629924358,
+        "total_transaction_cost": 75306.1029
+      },
+      {
+        "seed": 4,
+        "final_wealth": 2.0158818234114237,
+        "cagr": 0.2637195395826717,
+        "sharpe_excess_cash": 1.2672544288762684,
+        "annualized_volatility": 0.19267287577216466,
+        "max_drawdown": -0.25929598365268847,
+        "average_exposure": 0.9288253822321378,
+        "total_turnover": 20.009208980652343,
+        "total_transaction_cost": 23338.32804
+      }
+    ],
+    "v9_control": [
+      {
+        "seed": 0,
+        "final_wealth": 1.7068840822911837,
+        "cagr": 0.1954327694617246,
+        "sharpe_excess_cash": 0.9534565133180043,
+        "annualized_volatility": 0.19920028768200343,
+        "max_drawdown": -0.32777567673702235,
+        "average_exposure": 0.9395247957391624,
+        "total_turnover": 7.981860838267111,
+        "total_transaction_cost": 8256.99213
+      },
+      {
+        "seed": 1,
+        "final_wealth": 1.791053864236088,
+        "cagr": 0.21479923412282997,
+        "sharpe_excess_cash": 1.1143883813971929,
+        "annualized_volatility": 0.18186674458655658,
+        "max_drawdown": -0.24152487417050528,
+        "average_exposure": 0.9194994354283952,
+        "total_turnover": 9.10155993306822,
+        "total_transaction_cost": 9638.826210000001
+      },
+      {
+        "seed": 2,
+        "final_wealth": 1.8121438506652363,
+        "cagr": 0.21955641367109702,
+        "sharpe_excess_cash": 1.0031682061091733,
+        "annualized_volatility": 0.21183712101790925,
+        "max_drawdown": -0.33687109857333564,
+        "average_exposure": 0.9426540178186066,
+        "total_turnover": 8.048336361147616,
+        "total_transaction_cost": 8595.0242
+      },
+      {
+        "seed": 3,
+        "final_wealth": 1.8325404096766862,
+        "cagr": 0.22412222560160822,
+        "sharpe_excess_cash": 1.0084234638889165,
+        "annualized_volatility": 0.21513448878414243,
+        "max_drawdown": -0.3368517183514348,
+        "average_exposure": 0.9571835578116498,
+        "total_turnover": 9.067886624730304,
+        "total_transaction_cost": 9844.33348
+      },
+      {
+        "seed": 4,
+        "final_wealth": 1.898546076964793,
+        "cagr": 0.2386696728031994,
+        "sharpe_excess_cash": 1.0873876190825633,
+        "annualized_volatility": 0.20928924700733512,
+        "max_drawdown": -0.315183927328608,
+        "average_exposure": 0.9863385803437951,
+        "total_turnover": 3.0212436511707175,
+        "total_transaction_cost": 3079.8367399999997
+      }
+    ],
+    "v9_relative": [
+      {
+        "seed": 0,
+        "final_wealth": 1.9623539782689394,
+        "cagr": 0.252415870366935,
+        "sharpe_excess_cash": 1.28601506307733,
+        "annualized_volatility": 0.1810624388765887,
+        "max_drawdown": -0.26617568353162435,
+        "average_exposure": 0.9506437003910171,
+        "total_turnover": 7.065274206153844,
+        "total_transaction_cost": 7733.523450000001
+      },
+      {
+        "seed": 1,
+        "final_wealth": 1.9706684965005579,
+        "cagr": 0.2541850394130898,
+        "sharpe_excess_cash": 1.3476743415074588,
+        "annualized_volatility": 0.17273149942627197,
+        "max_drawdown": -0.24575090291155866,
+        "average_exposure": 0.9626562303747148,
+        "total_turnover": 5.154351048053276,
+        "total_transaction_cost": 5319.23036
+      },
+      {
+        "seed": 2,
+        "final_wealth": 1.7895651897719154,
+        "cagr": 0.21446203318720602,
+        "sharpe_excess_cash": 0.998543325054718,
+        "annualized_volatility": 0.20779953503087317,
+        "max_drawdown": -0.3368408193838316,
+        "average_exposure": 0.9493633140619259,
+        "total_turnover": 5.047162131704418,
+        "total_transaction_cost": 5396.83566
+      },
+      {
+        "seed": 3,
+        "final_wealth": 1.7118092026696423,
+        "cagr": 0.1965832889287049,
+        "sharpe_excess_cash": 1.0243727434946792,
+        "annualized_volatility": 0.18349807141866323,
+        "max_drawdown": -0.2904011670183063,
+        "average_exposure": 0.9270681252551299,
+        "total_turnover": 8.074030430322914,
+        "total_transaction_cost": 8448.014580000001
+      },
+      {
+        "seed": 4,
+        "final_wealth": 1.9404570138938249,
+        "cagr": 0.24773260093271499,
+        "sharpe_excess_cash": 1.163358784727657,
+        "annualized_volatility": 0.20018517725997534,
+        "max_drawdown": -0.30580189892959164,
+        "average_exposure": 0.9553428511674796,
+        "total_turnover": 9.00821512663631,
+        "total_transaction_cost": 9884.813297
+      }
+    ],
+    "v10_streak": [
+      {
+        "seed": 0,
+        "final_wealth": 1.7105388034277982,
+        "cagr": 0.19628673199292246,
+        "sharpe_excess_cash": 0.9388690942824437,
+        "annualized_volatility": 0.20414020399812402,
+        "max_drawdown": -0.33242998949167724,
+        "average_exposure": 0.9621115447482066,
+        "total_turnover": 7.962201062537707,
+        "total_transaction_cost": 8352.96371
+      },
+      {
+        "seed": 1,
+        "final_wealth": 1.6538973760850082,
+        "cagr": 0.18291270772113166,
+        "sharpe_excess_cash": 0.9464898726670469,
+        "annualized_volatility": 0.1872416350682331,
+        "max_drawdown": -0.2957546459417624,
+        "average_exposure": 0.9426936022731938,
+        "total_turnover": 9.994310312230239,
+        "total_transaction_cost": 10325.62002
+      },
+      {
+        "seed": 2,
+        "final_wealth": 1.8781617612876231,
+        "cagr": 0.23421349004328684,
+        "sharpe_excess_cash": 1.0764501708223098,
+        "annualized_volatility": 0.2076475924148562,
+        "max_drawdown": -0.3213336306096827,
+        "average_exposure": 0.9572773963817337,
+        "total_turnover": 10.960873566885308,
+        "total_transaction_cost": 12045.842560000001
+      },
+      {
+        "seed": 3,
+        "final_wealth": 1.7841170078598554,
+        "cagr": 0.21322636514218263,
+        "sharpe_excess_cash": 1.359981898161642,
+        "annualized_volatility": 0.1433896871141174,
+        "max_drawdown": -0.168436503640219,
+        "average_exposure": 0.8966401895179786,
+        "total_turnover": 7.038901057332631,
+        "total_transaction_cost": 7555.312510000001
+      },
+      {
+        "seed": 4,
+        "final_wealth": 1.9600714746617538,
+        "cagr": 0.2519293243614418,
+        "sharpe_excess_cash": 1.3069193396797076,
+        "annualized_volatility": 0.1773698488274818,
+        "max_drawdown": -0.20257608138318672,
+        "average_exposure": 0.9538964184945893,
+        "total_turnover": 9.057180916153632,
+        "total_transaction_cost": 10297.872530999999
+      }
+    ]
+  }
+}
