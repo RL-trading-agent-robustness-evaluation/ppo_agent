@@ -15,4 +15,9 @@ artifacts/trajectories/v9_ppo/
 tensorboard/v9_ppo/
 experiments/v10_ppo/attempts/*_smoke*.json
 experiments/v10_ppo/records/*_smoke*.json
+artifacts/checkpoints/v10_ppo/
+artifacts/trajectories/v10_ppo/
+artifacts/logs/v10_ppo/
+artifacts/logs/v10_ppo_pilot_supervisor/
+tensorboard/v10_ppo/
 

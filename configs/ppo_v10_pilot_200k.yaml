@@ -1,0 +1,16 @@
+version: 1
+status: frozen_before_ppo_v10_pilot
+purpose: paired_small_sample_reward_check
+parent_config: configs/ppo_v10_nav_trend_reward.yaml
+fold: fold_1
+validation_window: ['2015-01-01', '2016-12-31']
+seeds: [0, 1, 2, 3, 4]
+arms: [ppo_v10_gate_nav, ppo_v10_gate_nav_streak]
+requested_timesteps_per_run: 200000
+expected_sb3_timesteps_per_run: 200704
+record_tag: pilot200k_v1
+comparison: paired_log_final_wealth_streak_over_nav
+evaluation_reward: true_nav_log_return_unshaped
+known_period_accessed: false
+selection_effect: none
+

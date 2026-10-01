@@ -405,3 +405,18 @@ entry identifies whether a change was made by Codex, the user, or an external to
   smoke-verified implementation.
 - No reward value, environment behavior, training setting, formal artifact, or
   known-period policy changed.
+
+### 13:14 — User/Codex — PPO V10 paired 200k pilot prepared
+
+- Designated this `ppo_v10` checkout as the only experiment workspace; all
+  sibling projects remain read-only references.
+- Preserved the pre-existing completed V9 workspace state in a local snapshot
+  commit before importing the frozen V10 implementation.
+- Added a frozen one-fold paired pilot: `fold_1`, seeds 0–4, both NAV-control
+  and NAV-plus-streak arms, 200,000 requested / 200,704 expected SB3 steps per
+  run, for 10 independent training cells total.
+- Added a bounded parallel launcher and paired aggregator. The pilot reports all
+  seed pairs and cannot access the known period or alter formal V10 selection.
+- The complete workspace test suite passed 16 tests and V10 preflight passed
+  the pinned environment, data hashes, fold audits, and known-period guard.
+- No pilot training had started at the time of this entry.
