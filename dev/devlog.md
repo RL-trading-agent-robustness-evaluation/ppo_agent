@@ -395,3 +395,13 @@ entry identifies whether a change was made by Codex, the user, or an external to
   and artifact policy. Existing V9 records and reports were left untouched.
 - No GitHub push was requested or performed.
 - No formal V10 matrix or known-period confirmation was started.
+
+### 10:07 — User/Codex — PPO V10 specification promoted from draft to frozen
+
+- At the user's approval, removed the draft label from the Traditional Chinese
+  V10 specification and marked it frozen for formal implementation and training.
+- Replaced provisional wording for the reward parameters, wrapper, and adoption
+  rule with definitive contract language matching the already frozen YAML and
+  smoke-verified implementation.
+- No reward value, environment behavior, training setting, formal artifact, or
+  known-period policy changed.

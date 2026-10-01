@@ -1,6 +1,6 @@
-# PPO V10 規格草案：NAV 與連續正報酬趨勢獎勵
+# PPO V10 規格：NAV 與連續正報酬趨勢獎勵
 
-**狀態：草案，尚未凍結，禁止據此啟動正式訓練。** 這是 PPO V9 的最小變更延伸。V10 保留 V9 的資料、三個驗證 fold、環境、觀察值、動作、交易成本、SMA-200 trend gate、五交易日規則、PPO 超參數、評估方式及稽核要求，只替換 treatment arm 的訓練獎勵。其他組員或代理若發現本文件與凍結的 V9 契約衝突，應停止執行並回報，不得自行推測或修改。
+**狀態：已凍結，可供正式實作與訓練使用。** 這是 PPO V9 的最小變更延伸。V10 保留 V9 的資料、三個驗證 fold、環境、觀察值、動作、交易成本、SMA-200 trend gate、五交易日規則、PPO 超參數、評估方式及稽核要求，只替換 treatment arm 的訓練獎勵。其他組員或代理若發現本文件與凍結的 V9 契約衝突，應停止執行並回報，不得自行推測或修改。
 
 ## 1. 研究問題
 
@@ -49,7 +49,7 @@ else:
 
 ### 3.3 V10 treatment 的訓練 reward
 
-提議的凍結值：
+凍結值：
 
 ```text
 beta = 0.10
@@ -80,7 +80,7 @@ r_train[t] = r_nav[t] + bonus[t]
 
 若 `r_nav <= 0`，`bonus = 0`，training reward 完全等於真實 NAV reward。使用與正報酬幅度成比例且有上限的 bonus，可避免只因極小的正報酬就取得固定高額獎勵，也避免無限延長 streak 造成 reward 爆增。
 
-`beta` 與 `streak_cap` 在任何 smoke 或正式訓練之前必須凍結。正式結果出現後不得調整並沿用 V10 名稱；任何不同數值都必須建立新的版本或明確標示為探索性實驗。
+`beta` 與 `streak_cap` 已凍結。正式結果出現後不得調整並沿用 V10 名稱；任何不同數值都必須建立新的版本或明確標示為探索性實驗。
 
 ## 4. 實驗 arms 與因果對照
 
@@ -97,7 +97,7 @@ V9 的 `ppo_v9_gate_relative` 結果可作歷史描述，但不得與 V10 treatm
 
 ## 5. Wrapper 行為與必要欄位
 
-建議新增獨立的 `PositiveStreakRewardWrapper`，放置於 V9 gate 之外，且只在 treatment 的 **training environment** 使用。wrapper 不得更改價格、觀察值、action、gate、成交、ledger、NAV、成本、終止條件或 episode 長度。
+實作使用獨立的 `PositiveStreakRewardWrapper`，放置於 V9 gate 之外，且只在 treatment 的 **training environment** 使用。wrapper 不得更改價格、觀察值、action、gate、成交、ledger、NAV、成本、終止條件或 episode 長度。
 
 每一步至少保留以下 `info`：
 
@@ -161,14 +161,14 @@ delta_reward = log(W_gate_nav_streak / W_gate_nav)
 
 ### 7.3 預先固定的採用規則
 
-建議 V10 treatment 只有在以下條件全部成立時才可取代 control：
+V10 treatment 只有在以下條件全部成立時才可取代 control：
 
 1. 三個 fold 中至少兩個 fold 的 paired median `delta_reward > 0`；
 2. 15 個 paired runs 中至少 10 個 `delta_reward > 0`；
 3. treatment 的三-fold median maximum-drawdown magnitude 不得比 control 惡化超過 `2.0` percentage points；
 4. treatment 的三-fold median transaction cost 不得高於 control 超過 `10%`。
 
-這是工程採用規則，不是統計顯著性或經濟優越性的證明。若團隊不同意第 3、4 項門檻，必須在任何 V10 smoke 或正式訓練前修訂並凍結。
+這是已凍結的工程採用規則，不是統計顯著性或經濟優越性的證明。任何門檻變更都必須建立新的版本，不得沿用 V10 名稱。
 
 ## 8. 正式訓練前必須通過的測試
 
