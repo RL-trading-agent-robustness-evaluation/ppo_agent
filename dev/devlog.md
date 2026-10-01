@@ -500,3 +500,16 @@ entry identifies whether a change was made by Codex, the user, or an external to
 - Preserved the complete per-seed JSON and Traditional Chinese Markdown
   comparison. New V4/V10 trajectories remain ignored local artifacts with
   their SHA-256 hashes recorded in the JSON.
+
+### 19:54 — User/Codex — Two-page PPO progress summary rendered
+
+- Extended the established academic green summary-card design into two
+  1600×900 PNG pages intended for direct Canva placement.
+- Page 1 records the V4, both V9 arms, and V10 specifications and observations,
+  followed by the five-seed median comparison on the common 2019–2021 window.
+- Page 2 presents the 2022–2025 known-period diagnostic, seed wealth ranges,
+  technical audit status, and a cautious interpretation of the apparent V10
+  signal and its comparability limits.
+- Visually inspected both pages at original resolution and corrected footer
+  spacing and unsupported glyphs. The renderer reads the retained JSON reports
+  so the displayed metrics remain traceable and reproducible.
