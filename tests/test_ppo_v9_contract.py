@@ -4,7 +4,7 @@ import pytest
 
 from victim_ppo.v9.config import (ARMS, EXPECTED_ACTUAL_TIMESTEPS, EXPECTED_PIN,
                                   RAW_FILES, load_config, missing_raw_files)
-from victim_ppo.v9.runner import linear_schedule, preflight
+from victim_ppo.v9.runner import linear_schedule, preflight, write_new
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/ppo_v9_reward_ablation.yaml"
@@ -36,3 +36,17 @@ def test_empty_raw_directory_inventory(tmp_path):
     assert result["status"] == "PASS"
     assert result["known_period_accessed"] is False
     assert result["missing_raw_files"] == []
+
+
+def test_records_are_append_only(tmp_path):
+    path = tmp_path / "record.json"
+    write_new(path, {"status": "reserved"})
+    with pytest.raises(FileExistsError):
+        write_new(path, {"status": "overwritten"})
+
+
+def test_final_and_confirmation_contract_is_frozen():
+    config = load_config(CONFIG)
+    assert tuple(config.raw["final"]["seeds"]) == (0, 1, 2, 3, 4)
+    assert config.raw["final"]["requested_timesteps_per_seed"] == 500_000
+    assert config.raw["final"]["known_period"]["one_shot"] is True

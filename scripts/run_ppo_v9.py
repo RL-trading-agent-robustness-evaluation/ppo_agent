@@ -6,7 +6,8 @@ import json
 from pathlib import Path
 
 from victim_ppo.v9.config import ARMS, FOLDS, SEEDS, load_config
-from victim_ppo.v9.runner import aggregate, preflight, run_cell
+from victim_ppo.v9.runner import (aggregate, confirm_known_period, preflight,
+                                  run_cell, run_final_seed)
 
 
 def main() -> None:
@@ -17,6 +18,8 @@ def main() -> None:
     mode.add_argument("--smoke", action="store_true")
     mode.add_argument("--run", action="store_true")
     mode.add_argument("--aggregate", action="store_true")
+    mode.add_argument("--final-run", action="store_true")
+    mode.add_argument("--confirm-known-period", action="store_true")
     parser.add_argument("--root", type=Path, default=Path("."))
     parser.add_argument("--arm", choices=ARMS)
     parser.add_argument("--fold", choices=FOLDS)
@@ -51,8 +54,14 @@ def main() -> None:
         result = run_cell(root, config, arm=args.arm, fold_id=args.fold, seed=args.seed,
                           requested_timesteps=config.raw["formal"]["requested_timesteps_per_run"],
                           tag=f"_{revision}", threads=args.threads)
-    else:
+    elif args.aggregate:
         result = aggregate(root, config)
+    elif args.final_run:
+        if args.seed is None:
+            parser.error("--final-run requires --seed")
+        result = run_final_seed(root, config, seed=args.seed, threads=args.threads)
+    else:
+        result = confirm_known_period(root, config)
     print(json.dumps(result, indent=2, allow_nan=False, default=str))
 
 

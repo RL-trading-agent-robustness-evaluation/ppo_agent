@@ -1,0 +1,595 @@
+{
+  "status": "PASS",
+  "created_at_utc": "2026-09-30T16:04:47.800604+00:00",
+  "known_period_accessed": false,
+  "algorithm": "PPO",
+  "record_revision": "v9spec1",
+  "contrast": "v9_gate_relative_reward minus v9_trend_gate",
+  "arm_fold_summary": {
+    "ppo_v9_gate_nav": {
+      "fold_1": {
+        "median_log_wealth_vs_buy_and_hold": -0.04030209010227415,
+        "wins_vs_buy_and_hold": 0,
+        "median_five_day_rule_blocked_share": 0.14910536779324055,
+        "median_metrics": {
+          "final_wealth": 1.091717544255398,
+          "cagr": 0.04501032502337576,
+          "annualized_mean_excess_return": 0.04945840473518007,
+          "sharpe_excess_cash": 0.4089555565888039,
+          "annualized_volatility": 0.1209464854095785,
+          "max_drawdown": -0.13867647107186898,
+          "average_exposure": 0.902967675615835,
+          "total_turnover": 8.013074267987822,
+          "total_transaction_cost": 7885.22167,
+          "gate_forced_share": 0.7972166998011928,
+          "gate_override_share": 0.6023856858846919
+        }
+      },
+      "fold_2": {
+        "median_log_wealth_vs_buy_and_hold": -0.027194500623566868,
+        "wins_vs_buy_and_hold": 2,
+        "median_five_day_rule_blocked_share": 0.07784431137724551,
+        "median_metrics": {
+          "final_wealth": 1.1201809300288872,
+          "cagr": 0.058675180527526516,
+          "annualized_mean_excess_return": 0.05088870859095321,
+          "sharpe_excess_cash": 0.3955401174590471,
+          "annualized_volatility": 0.12243252220053398,
+          "max_drawdown": -0.18901884318649387,
+          "average_exposure": 0.9631268633053407,
+          "total_turnover": 6.019181103597876,
+          "total_transaction_cost": 7185.811390000001,
+          "gate_forced_share": 0.9201596806387226,
+          "gate_override_share": 0.7864271457085829
+        }
+      },
+      "fold_3": {
+        "median_log_wealth_vs_buy_and_hold": -0.08867831889110205,
+        "wins_vs_buy_and_hold": 0,
+        "median_five_day_rule_blocked_share": 0.06613756613756613,
+        "median_metrics": {
+          "final_wealth": 1.8121438506652363,
+          "cagr": 0.21955641367109702,
+          "annualized_mean_excess_return": 0.21253959789845167,
+          "sharpe_excess_cash": 1.0084234638889165,
+          "annualized_volatility": 0.20928924700733512,
+          "max_drawdown": -0.32777567673702235,
+          "average_exposure": 0.9426540178186066,
+          "total_turnover": 8.048336361147616,
+          "total_transaction_cost": 8595.0242,
+          "gate_forced_share": 0.8862433862433863,
+          "gate_override_share": 0.5092592592592593
+        }
+      }
+    },
+    "ppo_v9_gate_relative": {
+      "fold_1": {
+        "median_log_wealth_vs_buy_and_hold": -0.04897953544201921,
+        "wins_vs_buy_and_hold": 1,
+        "median_five_day_rule_blocked_share": 0.14910536779324055,
+        "median_metrics": {
+          "final_wealth": 1.0822852084143308,
+          "cagr": 0.0404706341664407,
+          "annualized_mean_excess_return": 0.04472715974889396,
+          "sharpe_excess_cash": 0.37959566201514616,
+          "annualized_volatility": 0.13161220324596046,
+          "max_drawdown": -0.14399598192622132,
+          "average_exposure": 0.9174585938482702,
+          "total_turnover": 9.001726950762235,
+          "total_transaction_cost": 8549.12318,
+          "gate_forced_share": 0.7972166998011928,
+          "gate_override_share": 0.6620278330019881
+        }
+      },
+      "fold_2": {
+        "median_log_wealth_vs_buy_and_hold": 0.013477101094037127,
+        "wins_vs_buy_and_hold": 4,
+        "median_five_day_rule_blocked_share": 0.0718562874251497,
+        "median_metrics": {
+          "final_wealth": 1.16667966202795,
+          "cagr": 0.08053036614349285,
+          "annualized_mean_excess_return": 0.07077981743554142,
+          "sharpe_excess_cash": 0.5701048799560703,
+          "annualized_volatility": 0.12263243346479191,
+          "max_drawdown": -0.17865551276131564,
+          "average_exposure": 0.9658984739028773,
+          "total_turnover": 5.031566412232356,
+          "total_transaction_cost": 5903.78124,
+          "gate_forced_share": 0.9201596806387226,
+          "gate_override_share": 0.654690618762475
+        }
+      },
+      "fold_3": {
+        "median_log_wealth_vs_buy_and_hold": -0.020265391641119918,
+        "wins_vs_buy_and_hold": 0,
+        "median_five_day_rule_blocked_share": 0.08597883597883597,
+        "median_metrics": {
+          "final_wealth": 1.9404570138938249,
+          "cagr": 0.24773260093271499,
+          "annualized_mean_excess_return": 0.2328588700957599,
+          "sharpe_excess_cash": 1.163358784727657,
+          "annualized_volatility": 0.18349807141866323,
+          "max_drawdown": -0.2904011670183063,
+          "average_exposure": 0.9506437003910171,
+          "total_turnover": 7.065274206153844,
+          "total_transaction_cost": 7733.523450000001,
+          "gate_forced_share": 0.8862433862433863,
+          "gate_override_share": 0.34656084656084657
+        }
+      }
+    }
+  },
+  "baselines": {
+    "fold_1": {
+      "cash": {
+        "steps": 503,
+        "start_date": "2015-01-02",
+        "end_date": "2016-12-30",
+        "final_wealth": 1.0036618519196026,
+        "cagr": 0.0018355404134542397,
+        "annualized_mean_excess_return": 6.981873378657901e-16,
+        "annualized_mean_gross_excess_return": 6.981873378657901e-16,
+        "sharpe_excess_cash": null,
+        "annualized_volatility": 0.00013076497568643443,
+        "max_drawdown": 0.0,
+        "average_exposure": 0.0,
+        "total_turnover": 0.0,
+        "number_of_trades": 0,
+        "total_transaction_cost": 0.0,
+        "action_distribution": {
+          "0": 1.0
+        }
+      },
+      "buy_and_hold": {
+        "steps": 503,
+        "start_date": "2015-01-02",
+        "end_date": "2016-12-30",
+        "final_wealth": 1.1366146906263972,
+        "cagr": 0.06635576766828533,
+        "annualized_mean_excess_return": 0.07218204638504996,
+        "annualized_mean_gross_excess_return": 0.07268254133558674,
+        "sharpe_excess_cash": 0.5141801274875838,
+        "annualized_volatility": 0.1403878550817401,
+        "max_drawdown": -0.12809506158689954,
+        "average_exposure": 0.9821897583329836,
+        "total_turnover": 0.9990038099999999,
+        "number_of_trades": 1,
+        "total_transaction_cost": 999.0038099999999,
+        "action_distribution": {
+          "-1": 0.9980119284294234,
+          "2": 0.0019880715705765406
+        }
+      },
+      "constant_50": {
+        "steps": 503,
+        "start_date": "2015-01-02",
+        "end_date": "2016-12-30",
+        "final_wealth": 1.0745038190786445,
+        "cagr": 0.03671066624600039,
+        "annualized_mean_excess_return": 0.03670406222529166,
+        "annualized_mean_gross_excess_return": 0.03735296733474098,
+        "sharpe_excess_cash": 0.5155325611364676,
+        "annualized_volatility": 0.0712016100606784,
+        "max_drawdown": -0.06514065240951517,
+        "average_exposure": 0.49990275263700096,
+        "total_turnover": 1.295235198623017,
+        "number_of_trades": 480,
+        "total_transaction_cost": 1303.765885,
+        "action_distribution": {
+          "1": 1.0
+        }
+      },
+      "sma_200_gate_only": {
+        "steps": 503,
+        "start_date": "2015-01-02",
+        "end_date": "2016-12-30",
+        "final_wealth": 0.997087748779247,
+        "cagr": -0.0014621877248631732,
+        "annualized_mean_excess_return": 0.0016925163002306164,
+        "annualized_mean_gross_excess_return": 0.007206203760347753,
+        "sharpe_excess_cash": 0.016952562995769593,
+        "annualized_volatility": 0.09984585589560681,
+        "max_drawdown": -0.12441536576997514,
+        "average_exposure": 0.77775924219786,
+        "total_turnover": 11.005495208090935,
+        "number_of_trades": 16,
+        "total_transaction_cost": 10546.3509,
+        "action_distribution": {
+          "0": 1.0
+        },
+        "action_trace": {
+          "agent_action_distribution": {
+            "0": 1.0
+          },
+          "gated_action_distribution": {
+            "0": 0.20278330019880716,
+            "2": 0.7972166998011928
+          },
+          "executed_action_distribution": {
+            "0": 0.1709741550695825,
+            "2": 0.7196819085487077,
+            "None": 0.10934393638170974
+          },
+          "gate_override_share": 0.7972166998011928,
+          "gate_forced_share": 0.7972166998011928
+        }
+      }
+    },
+    "fold_2": {
+      "cash": {
+        "steps": 501,
+        "start_date": "2017-01-03",
+        "end_date": "2018-12-31",
+        "final_wealth": 1.0292080150758445,
+        "cagr": 0.014569206668917145,
+        "annualized_mean_excess_return": 1.47150012593449e-17,
+        "annualized_mean_gross_excess_return": 1.47150012593449e-17,
+        "sharpe_excess_cash": null,
+        "annualized_volatility": 0.0006844517932420675,
+        "max_drawdown": 0.0,
+        "average_exposure": 0.0,
+        "total_turnover": 0.0,
+        "number_of_trades": 0,
+        "total_transaction_cost": 0.0,
+        "action_distribution": {
+          "0": 1.0
+        }
+      },
+      "buy_and_hold": {
+        "steps": 501,
+        "start_date": "2017-01-03",
+        "end_date": "2018-12-31",
+        "final_wealth": 1.1510616812248984,
+        "cagr": 0.07323881706030533,
+        "annualized_mean_excess_return": 0.06430412999469541,
+        "annualized_mean_gross_excess_return": 0.06480653034295887,
+        "sharpe_excess_cash": 0.5081413307480833,
+        "annualized_volatility": 0.12650775197339692,
+        "max_drawdown": -0.1875748977764874,
+        "average_exposure": 0.9839648366338241,
+        "total_turnover": 0.99881974,
+        "number_of_trades": 1,
+        "total_transaction_cost": 998.81974,
+        "action_distribution": {
+          "-1": 0.998003992015968,
+          "2": 0.001996007984031936
+        }
+      },
+      "constant_50": {
+        "steps": 501,
+        "start_date": "2017-01-03",
+        "end_date": "2018-12-31",
+        "final_wealth": 1.091481158833717,
+        "cagr": 0.04495991853142156,
+        "annualized_mean_excess_return": 0.031647723234975826,
+        "annualized_mean_gross_excess_return": 0.032239900033807,
+        "sharpe_excess_cash": 0.4884440396922903,
+        "annualized_volatility": 0.06475479452189996,
+        "max_drawdown": -0.09794375844851211,
+        "average_exposure": 0.49987988821521423,
+        "total_turnover": 1.1773038738667434,
+        "number_of_trades": 469,
+        "total_transaction_cost": 1244.409495,
+        "action_distribution": {
+          "1": 1.0
+        }
+      },
+      "sma_200_gate_only": {
+        "steps": 501,
+        "start_date": "2017-01-03",
+        "end_date": "2018-12-31",
+        "final_wealth": 1.1184372934581885,
+        "cagr": 0.05784694353050712,
+        "annualized_mean_excess_return": 0.048190761948404916,
+        "annualized_mean_gross_excess_return": 0.05222382072307395,
+        "sharpe_excess_cash": 0.4280026616295048,
+        "annualized_volatility": 0.1125541559449052,
+        "max_drawdown": -0.16378005147434893,
+        "average_exposure": 0.9261699954452809,
+        "total_turnover": 8.01810494487776,
+        "number_of_trades": 15,
+        "total_transaction_cost": 9387.87155,
+        "action_distribution": {
+          "0": 1.0
+        },
+        "action_trace": {
+          "agent_action_distribution": {
+            "0": 1.0
+          },
+          "gated_action_distribution": {
+            "0": 0.07984031936127745,
+            "2": 0.9201596806387226
+          },
+          "executed_action_distribution": {
+            "0": 0.031936127744510975,
+            "2": 0.8882235528942116,
+            "None": 0.07984031936127745
+          },
+          "gate_override_share": 0.9201596806387226,
+          "gate_forced_share": 0.9201596806387226
+        }
+      }
+    },
+    "fold_3": {
+      "cash": {
+        "steps": 756,
+        "start_date": "2019-01-02",
+        "end_date": "2021-12-31",
+        "final_wealth": 1.0252411130988004,
+        "cagr": 0.008357293018967038,
+        "annualized_mean_excess_return": 9.2402400699498e-17,
+        "annualized_mean_gross_excess_return": 9.2402400699498e-17,
+        "sharpe_excess_cash": null,
+        "annualized_volatility": 0.0007770754150285964,
+        "max_drawdown": 0.0,
+        "average_exposure": 0.0,
+        "total_turnover": 0.0,
+        "number_of_trades": 0,
+        "total_transaction_cost": 0.0,
+        "action_distribution": {
+          "0": 1.0
+        }
+      },
+      "buy_and_hold": {
+        "steps": 756,
+        "start_date": "2019-01-02",
+        "end_date": "2021-12-31",
+        "final_wealth": 1.9801822999404477,
+        "cagr": 0.25620330401709324,
+        "annualized_mean_excess_return": 0.2425804427322919,
+        "annualized_mean_gross_excess_return": 0.24291340190562524,
+        "sharpe_excess_cash": 1.1332062246134036,
+        "annualized_volatility": 0.21403320039246068,
+        "max_drawdown": -0.3312925415387149,
+        "average_exposure": 0.9791064722020385,
+        "total_turnover": 0.9988775199999999,
+        "number_of_trades": 1,
+        "total_transaction_cost": 998.8775199999999,
+        "action_distribution": {
+          "-1": 0.9986772486772487,
+          "2": 0.0013227513227513227
+        }
+      },
+      "constant_50": {
+        "steps": 756,
+        "start_date": "2019-01-02",
+        "end_date": "2021-12-31",
+        "final_wealth": 1.4543782632925715,
+        "cagr": 0.13321557048898214,
+        "annualized_mean_excess_return": 0.1225794999811977,
+        "annualized_mean_gross_excess_return": 0.12325492550604902,
+        "sharpe_excess_cash": 1.1202817911889835,
+        "annualized_volatility": 0.10938737507915154,
+        "max_drawdown": -0.18172159742420946,
+        "average_exposure": 0.499856071826686,
+        "total_turnover": 2.026276574554015,
+        "number_of_trades": 708,
+        "total_transaction_cost": 2309.597164,
+        "action_distribution": {
+          "1": 1.0
+        }
+      },
+      "sma_200_gate_only": {
+        "steps": 756,
+        "start_date": "2019-01-02",
+        "end_date": "2021-12-31",
+        "final_wealth": 1.6433152198674728,
+        "cagr": 0.18038038511832988,
+        "annualized_mean_excess_return": 0.1667841010456869,
+        "annualized_mean_gross_excess_return": 0.16845300889755468,
+        "sharpe_excess_cash": 1.214793850062144,
+        "annualized_volatility": 0.13724486492717675,
+        "max_drawdown": -0.1521525658743096,
+        "average_exposure": 0.8806015308239605,
+        "total_turnover": 5.006723555603486,
+        "number_of_trades": 17,
+        "total_transaction_cost": 5119.50512,
+        "action_distribution": {
+          "0": 1.0
+        },
+        "action_trace": {
+          "agent_action_distribution": {
+            "0": 1.0
+          },
+          "gated_action_distribution": {
+            "0": 0.11375661375661375,
+            "2": 0.8862433862433863
+          },
+          "executed_action_distribution": {
+            "0": 0.09788359788359788,
+            "2": 0.8624338624338624,
+            "None": 0.03968253968253968
+          },
+          "gate_override_share": 0.8862433862433863,
+          "gate_forced_share": 0.8862433862433863
+        }
+      }
+    }
+  },
+  "paired_reward_contrast": {
+    "all_pairs": [
+      {
+        "fold": "fold_1",
+        "seed": 0,
+        "control_wealth": 1.0661293524161763,
+        "treatment_wealth": 1.1567763521343868,
+        "delta_log_wealth": 0.08160246761721283
+      },
+      {
+        "fold": "fold_1",
+        "seed": 1,
+        "control_wealth": 1.1000215751355376,
+        "treatment_wealth": 1.0822852084143308,
+        "delta_log_wealth": -0.016255053953403785
+      },
+      {
+        "fold": "fold_1",
+        "seed": 2,
+        "control_wealth": 1.091717544255398,
+        "treatment_wealth": 0.9989717654767365,
+        "delta_log_wealth": -0.08878094827693157
+      },
+      {
+        "fold": "fold_1",
+        "seed": 3,
+        "control_wealth": 1.0596228380007158,
+        "treatment_wealth": 1.0634290280021155,
+        "delta_log_wealth": 0.003585587465088007
+      },
+      {
+        "fold": "fold_1",
+        "seed": 4,
+        "control_wealth": 1.1288693425655465,
+        "treatment_wealth": 1.1051957292021917,
+        "delta_log_wealth": -0.021194100224029594
+      },
+      {
+        "fold": "fold_2",
+        "seed": 0,
+        "control_wealth": 1.1201809300288872,
+        "treatment_wealth": 1.16667966202795,
+        "delta_log_wealth": 0.04067160171760396
+      },
+      {
+        "fold": "fold_2",
+        "seed": 1,
+        "control_wealth": 1.2484383719019823,
+        "treatment_wealth": 1.1616055286207527,
+        "delta_log_wealth": -0.07209034324226145
+      },
+      {
+        "fold": "fold_2",
+        "seed": 2,
+        "control_wealth": 1.1547697315718952,
+        "treatment_wealth": 1.1723851510454637,
+        "delta_log_wealth": 0.015139306847462576
+      },
+      {
+        "fold": "fold_2",
+        "seed": 3,
+        "control_wealth": 1.1071829446609072,
+        "treatment_wealth": 1.1801231047046974,
+        "delta_log_wealth": 0.06379985732165758
+      },
+      {
+        "fold": "fold_2",
+        "seed": 4,
+        "control_wealth": 1.091564544606904,
+        "treatment_wealth": 1.1489183541576033,
+        "delta_log_wealth": 0.051208909049111656
+      },
+      {
+        "fold": "fold_3",
+        "seed": 0,
+        "control_wealth": 1.7068840822911837,
+        "treatment_wealth": 1.9623539782689394,
+        "delta_log_wealth": 0.1394752276914244
+      },
+      {
+        "fold": "fold_3",
+        "seed": 1,
+        "control_wealth": 1.791053864236088,
+        "treatment_wealth": 1.9706684965005579,
+        "delta_log_wealth": 0.09556862593613692
+      },
+      {
+        "fold": "fold_3",
+        "seed": 2,
+        "control_wealth": 1.8121438506652363,
+        "treatment_wealth": 1.7895651897719154,
+        "delta_log_wealth": -0.012537912650966904
+      },
+      {
+        "fold": "fold_3",
+        "seed": 3,
+        "control_wealth": 1.8325404096766862,
+        "treatment_wealth": 1.7118092026696423,
+        "delta_log_wealth": -0.06815238173074079
+      },
+      {
+        "fold": "fold_3",
+        "seed": 4,
+        "control_wealth": 1.898546076964793,
+        "treatment_wealth": 1.9404570138938249,
+        "delta_log_wealth": 0.021835148914087794
+      }
+    ],
+    "per_fold": {
+      "fold_1": {
+        "median_delta_log_wealth": -0.016255053953403785,
+        "positive_delta_count": 2
+      },
+      "fold_2": {
+        "median_delta_log_wealth": 0.04067160171760396,
+        "positive_delta_count": 4
+      },
+      "fold_3": {
+        "median_delta_log_wealth": 0.021835148914087794,
+        "positive_delta_count": 3
+      }
+    }
+  },
+  "mean_of_fold_median_delta_log_wealth": 0.015417232226095987,
+  "technical_failures": [],
+  "non_state_responsive": [],
+  "near_constant_policy": [
+    {
+      "arm": "v9_trend_gate",
+      "fold": "fold_1",
+      "seed": 4
+    }
+  ],
+  "dqn_descriptive_reference_not_paired": {
+    "source": "victimagent/reports/v9/VALIDATION_DECISION.json",
+    "scores": {
+      "v9_relative_reward": {
+        "score_mean_of_fold_median_log_wealth_vs_bh": -0.14691663864090257,
+        "per_fold_median_log_wealth_vs_bh": {
+          "fold_1": -0.17714645075122515,
+          "fold_2": 0.00861394755166456,
+          "fold_3": -0.2722174127231471
+        },
+        "per_fold_median_log_wealth_vs_incumbent": {
+          "fold_1": -0.019308141984205107,
+          "fold_2": 0.08555256075285146,
+          "fold_3": -0.0006625612121440875
+        },
+        "folds_beating_incumbent": 1
+      },
+      "v9_trend_gate": {
+        "score_mean_of_fold_median_log_wealth_vs_bh": -0.06145647728174062,
+        "per_fold_median_log_wealth_vs_bh": {
+          "fold_1": -0.09496278838002116,
+          "fold_2": 0.01587624221051557,
+          "fold_3": -0.10528288567571627
+        },
+        "per_fold_median_log_wealth_vs_incumbent": {
+          "fold_1": -0.030470761485474243,
+          "fold_2": 0.12057906639702044,
+          "fold_3": 0.12135173274280604
+        },
+        "folds_beating_incumbent": 2
+      },
+      "v9_gate_relative_reward": {
+        "score_mean_of_fold_median_log_wealth_vs_bh": -0.012132011166969709,
+        "per_fold_median_log_wealth_vs_bh": {
+          "fold_1": -0.03753564863263542,
+          "fold_2": 0.04940508602783699,
+          "fold_3": -0.0482654708961107
+        },
+        "per_fold_median_log_wealth_vs_incumbent": {
+          "fold_1": 0.08120024347612224,
+          "fold_2": 0.12729636025431063,
+          "fold_3": 0.09130757046587766
+        },
+        "folds_beating_incumbent": 3
+      }
+    },
+    "buy_and_hold": {
+      "fold_1": 1.1366146906263972,
+      "fold_2": 1.1510616812248984,
+      "fold_3": 1.9801822999404477
+    }
+  },
+  "final_arm_preregistered_not_selected": "v9_gate_relative_reward"
+}

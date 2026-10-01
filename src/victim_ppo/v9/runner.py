@@ -22,11 +22,14 @@ from victimagent.v8 import study as v8
 from victimagent.v9 import study as v9
 
 from .config import (ARMS, EXPECTED_ACTUAL_TIMESTEPS, EXPECTED_PIN, FOLDS,
-                     RAW_FILES, SEEDS, PPOConfigV9, missing_raw_files)
+                     KNOWN_BUY_AND_HOLD, RAW_FILES, SEEDS, PPOConfigV9,
+                     missing_raw_files)
 
 RECORDS = Path("experiments/v9_ppo/records")
 ATTEMPTS = Path("experiments/v9_ppo/attempts")
 REPORTS = Path("reports/v9_ppo")
+FINAL_RECORDS = Path("experiments/v9_ppo/final_records")
+FINAL_ATTEMPTS = Path("experiments/v9_ppo/final_attempts")
 EXPECTED_BUY_AND_HOLD = {
     "fold_1": 1.1366146906263972,
     "fold_2": 1.1510616812248984,
@@ -73,6 +76,13 @@ def resolved_submodule_pin(root: Path) -> str:
 def git_commit(root: Path) -> str:
     return subprocess.run(["git", "-C", str(root), "rev-parse", "HEAD"], check=True,
                           capture_output=True, text=True).stdout.strip()
+
+
+def package_versions() -> dict[str, str]:
+    return {name: version(dist) for name, dist in {
+        "stable_baselines3": "stable-baselines3", "torch": "torch",
+        "numpy": "numpy", "gymnasium": "gymnasium", "pandas": "pandas",
+    }.items()}
 
 
 def preflight(root: Path, config: PPOConfigV9, *, require_data: bool = True,
@@ -297,6 +307,7 @@ def run_cell(root: Path, config: PPOConfigV9, *, arm: str, fold_id: str, seed: i
             "fold": fold_id, "seed": seed, "total_timesteps": requested_timesteps,
             "created_at_utc": now(), "known_period_accessed": False,
             "preflight": provenance, "hyperparameters": config.model,
+            "package_versions": package_versions(),
             "scaler": scaler_fingerprint(train.observation_builder),
             "train_window": train.metadata, "validation_window": validation.metadata,
             "checkpoint_path": checkpoint.relative_to(root).as_posix() if checkpoint else None,
@@ -304,6 +315,132 @@ def run_cell(root: Path, config: PPOConfigV9, *, arm: str, fold_id: str, seed: i
             **result,
         })
     return json.loads(record_path.read_text(encoding="utf-8"))
+
+
+def run_final_seed(root: Path, config: PPOConfigV9, *, seed: int,
+                   threads: int = 1) -> dict[str, Any]:
+    """Train one preregistered final seed without loading the known period."""
+    if seed not in SEEDS:
+        raise ValueError("invalid PPO V9 final seed")
+    provenance = preflight(root, config, require_data=True, require_clean=True)
+    victim = root / "victimagent"
+    v8._set_threads(threads)
+    market, events = v8._v8_inputs(victim, victim)  # defaults to before 2022
+    bundle, spy = v9.v9_bundle(market, events, fit=v9.FINAL_WINDOW,
+                               select=v9.FINAL_WINDOW)
+    label = f"final_v9_gate_relative_reward_seed{seed}"
+    attempt = root / FINAL_ATTEMPTS / f"{label}.json"
+    record_path = root / FINAL_RECORDS / f"{label}.json"
+    if attempt.exists() or record_path.exists():
+        raise FileExistsError(f"PPO V9 final seed already attempted: {label}")
+    write_new(attempt, {"status": "reserved", "created_at_utc": now(),
+                        "seed": seed, "known_period_accessed": False})
+    checkpoint, result, status, error = None, {}, "FAIL", None
+    try:
+        checkpoint, training = _train(
+            root, config, bundle, spy, "ppo_v9_gate_relative", seed,
+            int(config.raw["final"]["requested_timesteps_per_seed"]), label,
+        )
+        evaluation = _evaluate(root, config, checkpoint, bundle, spy,
+                               "ppo_v9_gate_relative", seed, label)
+        result = {**training, **evaluation}
+        status = "PASS" if evaluation["technical_pass"] else "FAIL"
+    except BaseException as exc:
+        error = f"{type(exc).__name__}: {exc}"
+        raise
+    finally:
+        write_new(record_path, {
+            "status": status, "error": error, "algorithm": "PPO",
+            "arm": "v9_gate_relative_reward", "seed": seed,
+            "total_timesteps": int(config.raw["final"]["requested_timesteps_per_seed"]),
+            "created_at_utc": now(), "known_period_accessed": False,
+            "preflight": provenance, "hyperparameters": config.model,
+            "package_versions": package_versions(),
+            "scaler": scaler_fingerprint(bundle.observation_builder),
+            "train_window": bundle.metadata,
+            "checkpoint_path": checkpoint.relative_to(root).as_posix() if checkpoint else None,
+            "checkpoint_sha256": sha256_file(checkpoint) if checkpoint else None,
+            **result,
+        })
+    return json.loads(record_path.read_text(encoding="utf-8"))
+
+
+def confirm_known_period(root: Path, config: PPOConfigV9) -> dict[str, Any]:
+    """Perform the append-only, one-shot known-period confirmation for all seeds."""
+    from stable_baselines3 import PPO
+
+    preflight_result = preflight(root, config, require_data=True, require_clean=True)
+    attempt = root / FINAL_ATTEMPTS / "known_period_confirmation.json"
+    report = root / REPORTS / "KNOWN_PERIOD_CONFIRMATION.json"
+    manifest_path = root / REPORTS / "FINAL_VICTIM_MANIFEST.json"
+    if attempt.exists() or report.exists() or manifest_path.exists():
+        raise FileExistsError("known-period confirmation has already been attempted")
+    records = []
+    for seed in SEEDS:
+        path = root / FINAL_RECORDS / f"final_v9_gate_relative_reward_seed{seed}.json"
+        row = json.loads(path.read_text(encoding="utf-8"))
+        if (row.get("status") != "PASS" or row.get("known_period_accessed") is not False
+                or row.get("actual_timesteps") != EXPECTED_ACTUAL_TIMESTEPS):
+            raise RuntimeError(f"final seed is not eligible for confirmation: {path}")
+        records.append(row)
+    write_new(attempt, {"status": "reserved", "created_at_utc": now(),
+                        "label": "known_period_confirmation_not_untouched_test"})
+
+    victim = root / "victimagent"
+    market, events = v8._v8_inputs(victim, victim, before=None)
+    known, spy = v9.v9_bundle(market, events, fit=v9.FINAL_WINDOW, select=v8.KNOWN)
+    baselines = v9._baselines_with_rule(known, spy)
+    bh = baselines["buy_and_hold"]["final_wealth"]
+    if not math.isclose(bh, KNOWN_BUY_AND_HOLD, rel_tol=0.0, abs_tol=1e-12):
+        raise RuntimeError(f"known-period buy-and-hold {bh} != frozen DQN value")
+    seed_results = []
+    expected_scaler = scaler_sha256(known.observation_builder)
+    expected_scaler_fingerprint = scaler_fingerprint(known.observation_builder)
+    for row in records:
+        checkpoint = root / row["checkpoint_path"]
+        if sha256_file(checkpoint) != row["checkpoint_sha256"]:
+            raise RuntimeError(f"checkpoint hash changed: {checkpoint}")
+        if row["scaler"] != expected_scaler_fingerprint:
+            raise RuntimeError(f"known-period scaler differs for seed {row['seed']}")
+        model = PPO.load(checkpoint, env=v9._environment(
+            known, spy, "v9_gate_relative_reward", training=False), device="cpu")
+        model.policy.set_training_mode(False)
+        observations: list[np.ndarray] = []
+        before = (parameter_sha256(model), optimizer_sha256(model), expected_scaler)
+        def choose(observation, _index):
+            observations.append(np.asarray(observation).copy())
+            action, _ = model.predict(observation, deterministic=True)
+            return int(np.asarray(action).item())
+        env = v9._environment(known, spy, "v9_gate_relative_reward", training=False)
+        rows, metrics, nav_error = rollout(env, choose, seed=int(row["seed"]))
+        trace = v9._action_trace(rows, known, "v9_gate_relative_reward")
+        after = (parameter_sha256(model), optimizer_sha256(model),
+                 scaler_sha256(known.observation_builder))
+        seed_results.append({"seed": row["seed"], "technical_pass": before == after and abs(nav_error) <= 1e-10,
+                             "reward_nav_error": nav_error,
+                             "responsiveness": responsiveness(model, observations),
+                             **metrics, **trace})
+    payload = {"status": "PASS" if all(x["technical_pass"] for x in seed_results) else "FAIL",
+               "label": "known_period_confirmation_not_untouched_test",
+               "created_at_utc": now(), "buy_and_hold": bh,
+               "baselines": baselines, "seeds": seed_results,
+               "preflight": preflight_result}
+    write_new(report, payload)
+    manifest = {
+        "algorithm": "PPO", "arm": "v9_gate_relative_reward",
+        "environment": "victimagent.v9.study._environment",
+        "wrappers": ["TradeDecisionEnv(v3_min_hold_five)", "TrendGateWrapper",
+                     "RelativeRewardWrapper(training only)"],
+        "victimagent_commit": EXPECTED_PIN,
+        "ppo_repo_commit": git_commit(root), "config_sha256": sha256_file(config.path),
+        "processed_data_sha256": config.raw["shared_contract"]["expected_processed_sha256"],
+        "scaler": records[0]["scaler"], "attack_policy": "use_all_5_seeds",
+        "checkpoints": [{"seed": r["seed"], "path": r["checkpoint_path"],
+                         "sha256": r["checkpoint_sha256"]} for r in records],
+        "confirmation_report": report.relative_to(root).as_posix(),
+    }
+    write_new(manifest_path, manifest)
+    return payload
 
 
 def aggregate(root: Path, config: PPOConfigV9) -> dict[str, Any]:

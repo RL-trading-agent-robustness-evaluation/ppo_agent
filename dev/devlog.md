@@ -334,3 +334,26 @@ entry identifies whether a change was made by Codex, the user, or an external to
 - Revalidated the notebook JSON and compiled all Python cells after the change;
   prepared the notebook and log for a local commit. No GitHub push was made.
 
+### 21:10 — User/Codex — Remaining validation resumed locally
+
+- At the user's request, audited the append-only matrix and confirmed exactly 20
+  compliant PASS records, 10 missing cells, and zero ambiguous attempts for the
+  missing cells.
+- Resumed only the 10 missing `v9_gate_relative_reward` cells (folds 2 and 3,
+  seeds 0–4) with a hidden supervisor limited to two simultaneous processes and
+  one Torch thread per process.
+- The supervisor will run compliant aggregation only after all 30 records pass;
+  final training and known-period confirmation remain out of scope for this run.
+
+### 22:08 — Codex — V4/V9 interim comparison image prepared
+
+- Added `reports/v9_ppo/render_ppo_interim_summary.py` and generated
+  `reports/v9_ppo/ppo_v4_v9_interim_summary.png` in the same academic green
+  table style as the supplied A2C reference image.
+- The image compares SPY buy-and-hold, historical V4 PPO, and the completed V9
+  NAV-control arm on the common 2019–2021 window. It also reports the completed
+  fold-1 reward ablation without treating it as a final conclusion.
+- Marked V9 explicitly `INCOMPLETE`: the snapshot contains 22/30 formal PASS
+  records (15/15 control and 7/15 relative-reward), with eight reward cells
+  still outstanding. The two active fold-2 workers were not interrupted.
+

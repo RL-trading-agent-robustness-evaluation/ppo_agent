@@ -36,6 +36,20 @@ The requested budget remains 500,000. With `n_steps=2048`, SB3 completes the
 last rollout and records 501,760 actual transitions. Both reward arms use the
 same PPO configuration and evaluation always uses true NAV reward.
 
+After the validation summary has been reviewed and explicitly approved, train
+all five preregistered final seeds. Only after all five records pass may the
+one-shot known-period command be run:
+
+```powershell
+0..4 | ForEach-Object { .\.venv\Scripts\python.exe scripts\run_ppo_v9.py --final-run --seed $_ }
+.\.venv\Scripts\python.exe scripts\run_ppo_v9.py --confirm-known-period
+```
+
+The confirmation command creates its attempt reservation before reading
+2022–2025, verifies every checkpoint and scaler, and writes
+`FINAL_VICTIM_MANIFEST.json`. Existing attempt, report, or manifest files make
+the command stop rather than overwrite or repeat the confirmation.
+
 ## Historical V4 study
 
 This is the downstream PPO implementation for the RL trading-agent robustness project.

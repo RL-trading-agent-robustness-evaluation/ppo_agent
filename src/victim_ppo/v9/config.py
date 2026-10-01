@@ -12,6 +12,7 @@ FOLDS = ("fold_1", "fold_2", "fold_3")
 SEEDS = (0, 1, 2, 3, 4)
 REQUESTED_TIMESTEPS = 500_000
 EXPECTED_ACTUAL_TIMESTEPS = 501_760
+KNOWN_BUY_AND_HOLD = 1.48310441640342
 RAW_FILES = (
     "crsp_dsf_spy_1993_2008.csv",
     "crsp_dsf_spy_tlt_gld_2009_2025.csv",
@@ -66,6 +67,12 @@ def load_config(path: str | Path) -> PPOConfigV9:
         raise ValueError("frozen PPO rollout or entropy setting changed")
     if raw["formal"]["final_arm"] != "v9_gate_relative_reward":
         raise ValueError("the preregistered final arm changed")
+    final = raw["final"]
+    if (tuple(final["seeds"]) != SEEDS
+            or final["requested_timesteps_per_seed"] != REQUESTED_TIMESTEPS
+            or not final["no_seed_selection"]
+            or not final["known_period"]["one_shot"]):
+        raise ValueError("frozen PPO final-training contract changed")
     return PPOConfigV9(path, raw)
 
 
