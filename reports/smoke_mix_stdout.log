@@ -1,0 +1,205 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791376578.011504   38544 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791376585.836688   38544 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+{
+  "status": "PASS",
+  "namespace": "smoke",
+  "label": "ppo_v11_vix_mix_fold_1_seed0_smoke_implementation1",
+  "arm": "ppo_v11_vix_mix",
+  "fold": "fold_1",
+  "seed": 0,
+  "technical_pass": true,
+  "config_version": "v11spec2_200k",
+  "audit": {
+    "status": "PASS",
+    "data_hashes": {
+      "market": "281ed8c0530720b5cedf4abd7e9288375dad4fe073f55b0b814560ebcb54af9b",
+      "events": "a981523e00b05e804091bf4671835bade363559215403614344bf5a099541668",
+      "vix": "675f9bcb86ee88799f8f7a8b7ee9c30f7a0be26a26df8f9549bddf9e84c4a598"
+    },
+    "implementation_hashes": {
+      "src/victim_ppo/v11/__init__.py": "9a73115324dd3c869d8dc5e95389f2e6a8bc25973351949fde6fa0c233e50748",
+      "src/victim_ppo/v11/config.py": "da9440643503845d9d0d26d8861e35671f4fb0200a399b3641b70b56950693bd",
+      "src/victim_ppo/v11/data.py": "09aeb8a060f9b6ba730d4a9c2f590e57b7219d2ef959d90b47cfb663290b3039",
+      "src/victim_ppo/v11/environment.py": "a6eb1c0c29536024de1852d654becdd97a031babe1170570a307067a635182e4",
+      "src/victim_ppo/v11/policy.py": "b2c969a1f74a1c38d0335c6d3b4fbf581f24f478f60352330a222c6cde67a49f",
+      "src/victim_ppo/v11/runner.py": "106511622cc0702727dd4903f726c5d6888913aaa2fc2034599a2e216520c81e",
+      "scripts/record_source_manifest.py": "64545c9e747abf5863a61816cdb8c399b7dfaf4821afcce40bda67de4761c275",
+      "scripts/run_ppo_v11.py": "57f1be51409919d2b95de9739b4485d1c0fe057ff7c732beb7fa98d805544a71"
+    },
+    "config_sha256": "69a5b308ccccdae5d800860c2ac5c152bc1bf3e417fe196808d6395ad1601932",
+    "spec_sha256": "cc6b80ad7c708afb86ac5c200d748defd138a2e41252a5193a12edadd3304279",
+    "prompt_sha256": "002d7a1f167490eda497b6c39a4f27975fbb8249afae6739ecd1a030cb988812",
+    "parent_commit": "f4988db5c98d9248533c4ca852cc48ca3f6b7aad",
+    "source_manifest_sha256": "fc00844c8b4c141ab3c952ae111e235ce2f0abb7fab7f4378e3a4bb68a614727",
+    "initial_requested": 200000,
+    "initial_expected": 200704,
+    "fine_tune_transitions": 32768,
+    "scaler_sha256": "ac363bc12ccee1f1e229a19f29c24a0abcc137d449da47613e7d0156603f79a1",
+    "initialization_date": "2010-12-31",
+    "packages": {
+      "stable-baselines3": "2.9.0",
+      "torch": "2.14.0",
+      "gymnasium": "1.3.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3"
+    },
+    "known_period_accessed": false,
+    "budget_estimate": {
+      "trajectories": 45,
+      "initial_transitions": 9031680,
+      "maximum_updates_per_trajectory": 144,
+      "note": "Conservative calendar bound; CPU seconds measured by smoke, not guessed."
+    }
+  },
+  "known_period_accessed": false,
+  "evaluation_reward": "true_nav_log_return",
+  "evaluation_learning": "smoke_score_only",
+  "metrics": {
+    "steps": 20,
+    "start_date": "2011-01-04",
+    "end_date": "2011-02-02",
+    "final_wealth": 1.0298234013310603,
+    "cagr": 0.44792049595329586,
+    "annualized_mean_excess_return": 0.3750207624834356,
+    "annualized_mean_gross_excess_return": 0.3876077764194356,
+    "sharpe_excess_cash": 3.342588047894142,
+    "annualized_volatility": 0.11220222050249017,
+    "max_drawdown": -0.017462272562322245,
+    "average_exposure": 0.9999647263568388,
+    "total_turnover": 0.99896936,
+    "number_of_trades": 1,
+    "total_transaction_cost": 998.96936,
+    "action_distribution": {
+      "0": 1.0
+    },
+    "sharpe_numerator": 0.001488177628902522,
+    "sharpe_denominator": 0.0070676036466648705
+  },
+  "baselines": {
+    "cash": {
+      "steps": 20,
+      "start_date": "2011-01-04",
+      "end_date": "2011-02-02",
+      "final_wealth": 1.000120737285743,
+      "cagr": 0.0015217301621257562,
+      "annualized_mean_excess_return": 4.33375411972763e-15,
+      "annualized_mean_gross_excess_return": 4.33375411972763e-15,
+      "sharpe_excess_cash": null,
+      "annualized_volatility": 6.249450054367736e-05,
+      "max_drawdown": 0.0,
+      "average_exposure": 0.0,
+      "total_turnover": 0.0,
+      "number_of_trades": 0,
+      "total_transaction_cost": 0.0,
+      "action_distribution": {
+        "0": 1.0
+      }
+    },
+    "buy_and_hold": {
+      "steps": 20,
+      "start_date": "2011-01-04",
+      "end_date": "2011-02-02",
+      "final_wealth": 1.0298234013310603,
+      "cagr": 0.44792049595329586,
+      "annualized_mean_excess_return": 0.3750207624834356,
+      "annualized_mean_gross_excess_return": 0.3876077764194356,
+      "sharpe_excess_cash": 3.342588047894142,
+      "annualized_volatility": 0.11220222050249017,
+      "max_drawdown": -0.017462272562322245,
+      "average_exposure": 0.9999647263568388,
+      "total_turnover": 0.99896936,
+      "number_of_trades": 1,
+      "total_transaction_cost": 998.96936,
+      "action_distribution": {
+        "-1": 0.95,
+        "2": 0.05
+      }
+    },
+    "constant_50": {
+      "steps": 20,
+      "start_date": "2011-01-04",
+      "end_date": "2011-02-02",
+      "final_wealth": 1.014959644671534,
+      "cagr": 0.20564987914266397,
+      "annualized_mean_excess_return": 0.1871379162295028,
+      "annualized_mean_gross_excess_return": 0.1938173829432422,
+      "sharpe_excess_cash": 3.3384417186813637,
+      "annualized_volatility": 0.05606295932482432,
+      "max_drawdown": -0.00872384593751141,
+      "average_exposure": 0.49994885528205274,
+      "total_turnover": 0.5301164058523422,
+      "number_of_trades": 20,
+      "total_transaction_cost": 530.313555,
+      "action_distribution": {
+        "1": 1.0
+      }
+    },
+    "sma_200_gate_only": {
+      "steps": 20,
+      "start_date": "2011-01-04",
+      "end_date": "2011-02-02",
+      "final_wealth": 1.0298234013310603,
+      "cagr": 0.44792049595329586,
+      "annualized_mean_excess_return": 0.3750207624834356,
+      "annualized_mean_gross_excess_return": 0.3876077764194356,
+      "sharpe_excess_cash": 3.342588047894142,
+      "annualized_volatility": 0.11220222050249017,
+      "max_drawdown": -0.017462272562322245,
+      "average_exposure": 0.9999647263568388,
+      "total_turnover": 0.99896936,
+      "number_of_trades": 1,
+      "total_transaction_cost": 998.96936,
+      "action_distribution": {
+        "0": 1.0
+      },
+      "action_trace": {
+        "agent_action_distribution": {
+          "0": 1.0
+        },
+        "gated_action_distribution": {
+          "2": 1.0
+        },
+        "executed_action_distribution": {
+          "2": 0.75,
+          "None": 0.25
+        },
+        "gate_override_share": 1.0,
+        "gate_forced_share": 1.0
+      }
+    }
+  },
+  "action_trace": {
+    "agent_action_distribution": {
+      "0": 1.0
+    },
+    "gated_action_distribution": {
+      "2": 1.0
+    },
+    "executed_action_distribution": {
+      "2": 0.75,
+      "None": 0.25
+    },
+    "gate_override_share": 1.0,
+    "gate_forced_share": 1.0
+  },
+  "responsiveness": {
+    "method": "cyclic_shift_first_12_market_and_rate_dimensions",
+    "account_and_rule_dimensions_preserved": true,
+    "action_change_ratio": 0.0,
+    "original_action_types": [
+      0
+    ],
+    "perturbed_action_types": [
+      0
+    ],
+    "eligible": false
+  },
+  "completed_fine_tunes": 1,
+  "total_transitions": 53248,
+  "trajectory_sha256": "7c63f9db7aee8fc4e90f72f30e7b961a2712d35aa1004645b584330158936561",
+  "final_checkpoint_sha256": "a0ceda852822d608a4c735eeb0c3024ba5470b38376d94c236f4462a2e998e94",
+  "reward_nav_error": 2.0122792321330962e-16,
+  "seconds": 292.29186669993214
+}

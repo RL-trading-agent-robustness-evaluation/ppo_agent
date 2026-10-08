@@ -513,3 +513,105 @@ entry identifies whether a change was made by Codex, the user, or an external to
 - Visually inspected both pages at original resolution and corrected footer
   spacing and unsupported glyphs. The renderer reads the retained JSON reports
   so the displayed metrics remain traceable and reproducible.
+
+## 2026-10-07
+
+### 20:41 — User/Codex — V11 specification handoff and 200k implementation
+
+- Carried forward the V10 development log into the new `ppo_v11` folder;
+  earlier entries describe inherited V10 history, not experiments rerun in V11.
+- Recorded the preceding design discussion and two Traditional Chinese
+  handoffs: V11 research/implementation specification and agent prompt.
+  Decisions: 2010–2021 initial-training domain; chronological warm-start PPO;
+  causal online learning during validation and the opened 2022–2025 period;
+  fixed NAV/relative/NAV-plus-streak weights 30/20/50; preserved V10 beta 0.10,
+  streak cap 5, SMA-200 gate, five-session rule and numerical adoption gates.
+- Added a 126-session recency half-life, 80% exponential/20% uniform endpoint
+  sampler, 63-transition windows, 252-session initialization and frozen initial
+  scaler; VIX controls update intervals using a lagged five-session mean,
+  inverse-square clock referenced to 20, and 21–252-session bounds.
+- User reduced initialization from 500k to 200k: new revision
+  `v11spec2_200k`, requested 200,000 / actual 200,704 transitions, with unchanged
+  32,768-transition fine-tunes. Original V10-folder V11 documents remain intact.
+- Created an independent folder rather than copying Git metadata, environment
+  binaries, old experiments or checkpoints. Reused unchanged PPO/shared source,
+  configs and processed market/dividend inputs; source commits and file hashes
+  are recorded in `SOURCE_MANIFEST.json`. Licensed local data remains ignored.
+- Implemented isolated history training, training-only mixed rewards, fresh
+  PPO rollouts with optimizer continuation, deterministic NAV-only scoring,
+  delayed checkpoint activation, append-only provenance, safe full-checkpoint
+  resume and paired reward/schedule aggregation. Added CLI, matrix script,
+  preflight, README and the verification report.
+- Verified 19 tests, preflight and all three smoke arms. Each smoke used
+  20,480 initialization plus one complete 32,768 update. Tests cover causality,
+  sampling, VIX/lag/fill, reward identities, capped/zero/reset streaks, unchanged
+  ledger, action-before-update ordering, checkpoint hashes and adoption edges.
+  Detailed responsiveness and smoke-versus-final-source limitations are in
+  `reports/V11_IMPLEMENTATION_CHECKS.md`; smoke is not formal performance evidence.
+- Calendar-derived formal budget is 33,116,160 transitions across 45 trajectories.
+  No formal 200k cell, full matrix, sensitivity study or known-period run was
+  started. No Git commit, remote push or PR was created by this V11 task.
+
+### 20:54 — User/Codex — Five-seed adaptive 2022–2025 evaluation started
+
+- User explicitly requested 2022–2025 evaluation and allowed dynamic policy
+  updates during testing and later deployment; subsequent clarification chose
+  all five seeds 0–4. Only smoke checkpoints existed, so every seed first builds
+  its chronological 2010–2021 mixed-reward model with the frozen 200k initializer.
+- Added an explicit direct-known-period diagnostic entry point. This honors
+  the user's direct evaluation request without misrepresenting completion of
+  the separate 45-cell selection matrix or using the opened period for tuning.
+- Added a training-only read cache for dates/prices/observation rows while
+  inheriting the original V4 ledger and execution methods. Verified exact
+  equality of observations, rewards, full info, fills, costs and termination
+  against the unchanged parent at three episode starts. Expanded tests: 22 passed.
+- Started seeds 0 and 1 with two concurrent workers; seeds 2–4 remain queued.
+  Preserved protocol/config/source hashes before launch. Each seed will save
+  its pre-2022 checkpoint, adaptive test updates, final NAV trajectory and full
+  deployment boundary state. Results are pending; no adoption claim is made.
+
+### 21:00 — User/Codex — Background execution and quiet completion monitoring
+
+- User chose to continue the five-seed run in the background and receive a
+  notification on completion or failure. The existing supervisor remains
+  active; no duplicate models or alternate parameter sets were launched.
+- Created the current-chat heartbeat `v11-adaptive-evaluation-completion` at a
+  15-minute cadence. It stays quiet during healthy progress, verifies all five
+  retained results, links the final report and disables itself after completion
+  or an unrecoverable failure. It must not relaunch or tune the experiment.
+- Confirmed seeds 0/1 were progressing at 88,064 initializer transitions each;
+  seeds 2–4 are queued. The results are still pending. Keep the local computer
+  awake and the desktop app open for execution and completion monitoring.
+
+## 2026-10-08
+
+### 01:37 — User/Codex — Five-seed adaptive 2022–2025 evaluation completed and verified
+
+- All five user-authorized mixed-reward seeds 0–4 completed successfully. Each
+  trajectory used 200,000 requested / 200,704 actual initialization transitions,
+  24 pre-2022 fine-tunes and 9 causal 2022–2025 fine-tunes of 32,768 transitions;
+  total 1,282,048 transitions per seed. No seed was discarded or selected.
+- Evaluated 1,002 steps from 2022-01-03 through 2025-12-31 with deterministic
+  actions, unchanged costs/gate/holding rule, frozen scaler and true net NAV
+  scoring. Dynamic policy updates used observed history only, with delayed
+  activation; all nine test updates were preserved in each trajectory.
+- Independently verified technical_pass, finite/positive NAV, reward–NAV
+  identities, trajectory/final/pre-2022 checkpoint SHA-256 hashes, summary
+  consistency and deployment boundary state. All checks passed.
+- Median final wealth 1.4509065 (+45.09%), median CAGR 9.7724%, median maximum
+  drawdown -19.0903%; executable SPY buy-and-hold final wealth 1.4831044.
+  Seeds 0 and 3 beat buy-and-hold; 2/5 wins. Final wealth by seed:
+  0=1.5736918, 1=1.4509065, 2=1.2948698, 3=1.6458626, 4=1.3502323.
+- Preserved reports/v11_ppo/adaptive_2022_2025_adaptive_20261007_1.json and .md,
+  all experiment records, pre-2022 and final checkpoints, and full deployment
+  account/optimizer/clock/RNG state. Later causal updates remain authorized.
+- This is a direct adaptive known-period diagnostic, not an untouched test or
+  evidence of separate reward/schedule causality. The 45-cell selection matrix
+  remains unexecuted. Completion monitor is being disabled after this notice.
+
+## 2026-10-08 — V11 GitHub 發布
+
+- 使用者要求push目前V11進度到GitHub。建立獨立V11 Git checkout，沿用V10的fc803aa歷史，在同一ppo_agent repository的v11-adaptive-policy新分支發布，不改V10分支。
+- 保留Git已追蹤的V4／V9／V10歷史文件與紀錄；victimagent仍使用原submodule commit f4988db5c98d9248533c4ca852cc48ca3f6b7aad，不把虛擬環境或licensed datasets送上GitHub。
+- 發布範圍：V11 source/config、研究規格、代理Prompt、22測試與smoke驗證紀錄、五seeds adaptive 2022–2025結果、provenance及devlog。模型checkpoints、raw/processed datasets與runtime artifacts繼續依既有ignore rules排除。
+- V11五模型已完成；沒有修改既有訓練參數、重跑模型或影響目前背景V12執行。

@@ -1,0 +1,25 @@
+{
+  "created_utc": "2026-10-07T12:53:56.641390+00:00",
+  "user_authorization": "Run all five seeds on 2022\u20132025; dynamic updates allowed in testing and later deployment.",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "arm": "ppo_v11_vix_mix",
+  "initialization_requested": 200000,
+  "fine_tune_steps": 32768,
+  "config_sha256": "69a5b308ccccdae5d800860c2ac5c152bc1bf3e417fe196808d6395ad1601932",
+  "source_hashes": {
+    "src/victim_ppo/v11/config.py": "da9440643503845d9d0d26d8861e35671f4fb0200a399b3641b70b56950693bd",
+    "src/victim_ppo/v11/data.py": "09aeb8a060f9b6ba730d4a9c2f590e57b7219d2ef959d90b47cfb663290b3039",
+    "src/victim_ppo/v11/environment.py": "f0b2ff760c8abcee5ed546a560db89e4769b91ed7a3b0bdccb1c933df42fa3b6",
+    "src/victim_ppo/v11/policy.py": "b2c969a1f74a1c38d0335c6d3b4fbf581f24f478f60352330a222c6cde67a49f",
+    "src/victim_ppo/v11/runner.py": "5d6b10ff9a511c9c1ee99ea832189ec5d6e5eef63beafd8a4bc1233df9e8ae02",
+    "src/victim_ppo/v11/__init__.py": "9a73115324dd3c869d8dc5e95389f2e6a8bc25973351949fde6fa0c233e50748"
+  },
+  "untouched_test": false,
+  "selection_matrix_completed": false
+}

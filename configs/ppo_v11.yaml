@@ -1,0 +1,41 @@
+version: v11spec2_200k
+policy: MlpPolicy
+device: cpu
+initial_requested_transitions: 200000
+initial_expected_transitions: 200704
+fine_tune_transitions: 32768
+initialization_sessions: 252
+episode_transitions: 63
+half_life: 126
+recent_mass: 0.8
+vix_reference: 20.0
+vix_exponent: 2
+period_normal: 126
+period_min: 21
+period_max: 252
+vix_fill_limit: 3
+weights: [0.3, 0.2, 0.5]
+beta: 0.1
+streak_cap: 5
+parent_commit: f4988db5c98d9248533c4ca852cc48ca3f6b7aad
+market: data/processed/v8/spy_market_1993_2025.csv
+events: data/interim/v8/spy_cash_distributions_1993_2025.csv
+vix: data/raw/VIXCLS_1990_2026.csv
+vix_source: https://fred.stlouisfed.org/series/VIXCLS
+market_sha256: 281ed8c0530720b5cedf4abd7e9288375dad4fe073f55b0b814560ebcb54af9b
+events_sha256: a981523e00b05e804091bf4671835bade363559215403614344bf5a099541668
+model:
+  learning_rate_initial: 0.0003
+  learning_rate_final: 0.00003
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  normalize_advantage: true
+  ent_coef: 0.0
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  policy_net_arch: [64, 64]
+  activation_fn: Tanh

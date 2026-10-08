@@ -1,0 +1,2730 @@
+{
+  "status": "PASS",
+  "label": "user_requested_direct_adaptive_known_period_diagnostic",
+  "test_period": [
+    "2022-01-01",
+    "2025-12-31"
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "arm": "ppo_v11_vix_mix",
+  "selection_matrix_completed": false,
+  "untouched_test": false,
+  "updates_allowed_in_testing_and_later_deployment": true,
+  "medians": {
+    "final_wealth": 1.450906514525365,
+    "cagr": 0.09772361088149739,
+    "sharpe_excess_cash": 0.413617967192748,
+    "max_drawdown": -0.1909028079589531,
+    "total_transaction_cost": 13463.786695,
+    "total_turnover": 12.996938664026876,
+    "average_exposure": 0.9296571668608467
+  },
+  "buy_and_hold_final_wealth": 1.48310441640342,
+  "wins_vs_buy_and_hold": 2,
+  "records": [
+    {
+      "seed": 0,
+      "metrics": {
+        "steps": 1002,
+        "start_date": "2022-01-03",
+        "end_date": "2025-12-31",
+        "final_wealth": 1.5736918131711508,
+        "cagr": 0.12029195568047646,
+        "annualized_mean_excess_return": 0.08616790677903707,
+        "annualized_mean_gross_excess_return": 0.08993376091556977,
+        "sharpe_excess_cash": 0.5300966559682048,
+        "annualized_volatility": 0.1626076495226383,
+        "max_drawdown": -0.1909028079589531,
+        "average_exposure": 0.9533558252931846,
+        "total_turnover": 14.973753352403842,
+        "number_of_trades": 32,
+        "total_transaction_cost": 14234.28977,
+        "action_distribution": {
+          "0": 0.0658682634730539,
+          "1": 0.000998003992015968,
+          "2": 0.9331337325349301
+        },
+        "sharpe_numerator": 0.00034193613801205186,
+        "sharpe_denominator": 0.010239770146748615
+      },
+      "baselines": {
+        "cash": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.1776127021403875,
+          "cagr": 0.041806695599185595,
+          "annualized_mean_excess_return": 7.917628656574739e-16,
+          "annualized_mean_gross_excess_return": 7.917628656574739e-16,
+          "sharpe_excess_cash": null,
+          "annualized_volatility": 0.001906431840562114,
+          "max_drawdown": 0.0,
+          "average_exposure": 0.0,
+          "total_turnover": 0.0,
+          "number_of_trades": 0,
+          "total_transaction_cost": 0.0,
+          "action_distribution": {
+            "0": 1.0
+          }
+        },
+        "buy_and_hold": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.48310441640342,
+          "cagr": 0.1037760930367726,
+          "annualized_mean_excess_return": 0.07351609435467346,
+          "annualized_mean_gross_excess_return": 0.07376726302629023,
+          "sharpe_excess_cash": 0.4171091646318196,
+          "annualized_volatility": 0.17631530178118698,
+          "max_drawdown": -0.2471092613381709,
+          "average_exposure": 0.9758908050375079,
+          "total_turnover": 0.99869448,
+          "number_of_trades": 1,
+          "total_transaction_cost": 998.6944800000001,
+          "action_distribution": {
+            "-1": 0.999001996007984,
+            "2": 0.000998003992015968
+          }
+        },
+        "constant_50": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.3498002189129414,
+          "cagr": 0.07803878180220147,
+          "annualized_mean_excess_return": 0.03838313247585847,
+          "annualized_mean_gross_excess_return": 0.03902051579892371,
+          "sharpe_excess_cash": 0.4260034685330498,
+          "annualized_volatility": 0.09017426837704533,
+          "max_drawdown": -0.12375740301830263,
+          "average_exposure": 0.4997731095862974,
+          "total_turnover": 2.53435749885461,
+          "number_of_trades": 919,
+          "total_transaction_cost": 2642.0405976,
+          "action_distribution": {
+            "1": 1.0
+          }
+        },
+        "sma_200_gate_only": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.2661771723048416,
+          "cagr": 0.06090462656456874,
+          "annualized_mean_excess_return": 0.024489333457219885,
+          "annualized_mean_gross_excess_return": 0.029261525241361826,
+          "sharpe_excess_cash": 0.21931466161783156,
+          "annualized_volatility": 0.11174603266178251,
+          "max_drawdown": -0.2085696100363884,
+          "average_exposure": 0.7424838069209877,
+          "total_turnover": 18.975143522659593,
+          "number_of_trades": 27,
+          "total_transaction_cost": 17368.174285,
+          "action_distribution": {
+            "0": 1.0
+          },
+          "action_trace": {
+            "agent_action_distribution": {
+              "0": 1.0
+            },
+            "gated_action_distribution": {
+              "0": 0.26147704590818366,
+              "2": 0.7385229540918163
+            },
+            "executed_action_distribution": {
+              "0": 0.21157684630738524,
+              "2": 0.6936127744510978,
+              "None": 0.09481037924151696
+            },
+            "gate_override_share": 0.7385229540918163,
+            "gate_forced_share": 0.7385229540918163
+          }
+        }
+      },
+      "training_transitions": 987136,
+      "testing_learning_transitions": 294912,
+      "testing_updates": [
+        {
+          "cutoff": "2022-03-01",
+          "activation": "2022-03-02",
+          "reason": {
+            "vix_mean": 29.578000000000003,
+            "vix_window": [
+              {
+                "date": "2022-02-22 00:00:00",
+                "raw": 28.81,
+                "value": 28.81,
+                "filled": false
+              },
+              {
+                "date": "2022-02-23 00:00:00",
+                "raw": 31.02,
+                "value": 31.02,
+                "filled": false
+              },
+              {
+                "date": "2022-02-24 00:00:00",
+                "raw": 30.32,
+                "value": 30.32,
+                "filled": false
+              },
+              {
+                "date": "2022-02-25 00:00:00",
+                "raw": 27.59,
+                "value": 27.59,
+                "filled": false
+              },
+              {
+                "date": "2022-02-28 00:00:00",
+                "raw": 30.15,
+                "value": 30.15,
+                "filled": false
+              }
+            ],
+            "raw_period": 57.609343642985635,
+            "period": 58,
+            "elapsed": 59,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2022-05-12",
+          "activation": "2022-05-13",
+          "reason": {
+            "vix_mean": 32.338,
+            "vix_window": [
+              {
+                "date": "2022-05-05 00:00:00",
+                "raw": 31.2,
+                "value": 31.2,
+                "filled": false
+              },
+              {
+                "date": "2022-05-06 00:00:00",
+                "raw": 30.19,
+                "value": 30.19,
+                "filled": false
+              },
+              {
+                "date": "2022-05-09 00:00:00",
+                "raw": 34.75,
+                "value": 34.75,
+                "filled": false
+              },
+              {
+                "date": "2022-05-10 00:00:00",
+                "raw": 32.99,
+                "value": 32.99,
+                "filled": false
+              },
+              {
+                "date": "2022-05-11 00:00:00",
+                "raw": 32.56,
+                "value": 32.56,
+                "filled": false
+              }
+            ],
+            "raw_period": 48.19524840674445,
+            "period": 48,
+            "elapsed": 51,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2022-09-02",
+          "activation": "2022-09-06",
+          "reason": {
+            "vix_mean": 25.881999999999998,
+            "vix_window": [
+              {
+                "date": "2022-08-26 00:00:00",
+                "raw": 25.56,
+                "value": 25.56,
+                "filled": false
+              },
+              {
+                "date": "2022-08-29 00:00:00",
+                "raw": 26.21,
+                "value": 26.21,
+                "filled": false
+              },
+              {
+                "date": "2022-08-30 00:00:00",
+                "raw": 26.21,
+                "value": 26.21,
+                "filled": false
+              },
+              {
+                "date": "2022-08-31 00:00:00",
+                "raw": 25.87,
+                "value": 25.87,
+                "filled": false
+              },
+              {
+                "date": "2022-09-01 00:00:00",
+                "raw": 25.56,
+                "value": 25.56,
+                "filled": false
+              }
+            ],
+            "raw_period": 75.23758911034065,
+            "period": 75,
+            "elapsed": 78,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2023-02-23",
+          "activation": "2023-02-24",
+          "reason": {
+            "vix_mean": 20.716,
+            "vix_window": [
+              {
+                "date": "2023-02-15 00:00:00",
+                "raw": 18.23,
+                "value": 18.23,
+                "filled": false
+              },
+              {
+                "date": "2023-02-16 00:00:00",
+                "raw": 20.17,
+                "value": 20.17,
+                "filled": false
+              },
+              {
+                "date": "2023-02-17 00:00:00",
+                "raw": 20.02,
+                "value": 20.02,
+                "filled": false
+              },
+              {
+                "date": "2023-02-21 00:00:00",
+                "raw": 22.87,
+                "value": 22.87,
+                "filled": false
+              },
+              {
+                "date": "2023-02-22 00:00:00",
+                "raw": 22.29,
+                "value": 22.29,
+                "filled": false
+              }
+            ],
+            "raw_period": 117.44072719894805,
+            "period": 117,
+            "elapsed": 118,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2023-10-04",
+          "activation": "2023-10-05",
+          "reason": {
+            "vix_mean": 18.094,
+            "vix_window": [
+              {
+                "date": "2023-09-27 00:00:00",
+                "raw": 18.22,
+                "value": 18.22,
+                "filled": false
+              },
+              {
+                "date": "2023-09-28 00:00:00",
+                "raw": 17.34,
+                "value": 17.34,
+                "filled": false
+              },
+              {
+                "date": "2023-09-29 00:00:00",
+                "raw": 17.52,
+                "value": 17.52,
+                "filled": false
+              },
+              {
+                "date": "2023-10-02 00:00:00",
+                "raw": 17.61,
+                "value": 17.61,
+                "filled": false
+              },
+              {
+                "date": "2023-10-03 00:00:00",
+                "raw": 19.78,
+                "value": 19.78,
+                "filled": false
+              }
+            ],
+            "raw_period": 153.94350290548203,
+            "period": 154,
+            "elapsed": 154,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2024-07-25",
+          "activation": "2024-07-26",
+          "reason": {
+            "vix_mean": 16.024,
+            "vix_window": [
+              {
+                "date": "2024-07-18 00:00:00",
+                "raw": 15.93,
+                "value": 15.93,
+                "filled": false
+              },
+              {
+                "date": "2024-07-19 00:00:00",
+                "raw": 16.52,
+                "value": 16.52,
+                "filled": false
+              },
+              {
+                "date": "2024-07-22 00:00:00",
+                "raw": 14.91,
+                "value": 14.91,
+                "filled": false
+              },
+              {
+                "date": "2024-07-23 00:00:00",
+                "raw": 14.72,
+                "value": 14.72,
+                "filled": false
+              },
+              {
+                "date": "2024-07-24 00:00:00",
+                "raw": 18.04,
+                "value": 18.04,
+                "filled": false
+              }
+            ],
+            "raw_period": 196.28570125341196,
+            "period": 196,
+            "elapsed": 202,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-02-28",
+          "activation": "2025-03-03",
+          "reason": {
+            "vix_mean": 19.369999999999997,
+            "vix_window": [
+              {
+                "date": "2025-02-21 00:00:00",
+                "raw": 18.21,
+                "value": 18.21,
+                "filled": false
+              },
+              {
+                "date": "2025-02-24 00:00:00",
+                "raw": 18.98,
+                "value": 18.98,
+                "filled": false
+              },
+              {
+                "date": "2025-02-25 00:00:00",
+                "raw": 19.43,
+                "value": 19.43,
+                "filled": false
+              },
+              {
+                "date": "2025-02-26 00:00:00",
+                "raw": 19.1,
+                "value": 19.1,
+                "filled": false
+              },
+              {
+                "date": "2025-02-27 00:00:00",
+                "raw": 21.13,
+                "value": 21.13,
+                "filled": false
+              }
+            ],
+            "raw_period": 134.3294680739633,
+            "period": 134,
+            "elapsed": 149,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-04-10",
+          "activation": "2025-04-11",
+          "reason": {
+            "vix_mean": 41.652,
+            "vix_window": [
+              {
+                "date": "2025-04-03 00:00:00",
+                "raw": 30.02,
+                "value": 30.02,
+                "filled": false
+              },
+              {
+                "date": "2025-04-04 00:00:00",
+                "raw": 45.31,
+                "value": 45.31,
+                "filled": false
+              },
+              {
+                "date": "2025-04-07 00:00:00",
+                "raw": 46.98,
+                "value": 46.98,
+                "filled": false
+              },
+              {
+                "date": "2025-04-08 00:00:00",
+                "raw": 52.33,
+                "value": 52.33,
+                "filled": false
+              },
+              {
+                "date": "2025-04-09 00:00:00",
+                "raw": 33.62,
+                "value": 33.62,
+                "filled": false
+              }
+            ],
+            "raw_period": 29.050848197614826,
+            "period": 29,
+            "elapsed": 29,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-10-16",
+          "activation": "2025-10-17",
+          "reason": {
+            "vix_mean": 19.714000000000002,
+            "vix_window": [
+              {
+                "date": "2025-10-09 00:00:00",
+                "raw": 16.43,
+                "value": 16.43,
+                "filled": false
+              },
+              {
+                "date": "2025-10-10 00:00:00",
+                "raw": 21.66,
+                "value": 21.66,
+                "filled": false
+              },
+              {
+                "date": "2025-10-13 00:00:00",
+                "raw": 19.03,
+                "value": 19.03,
+                "filled": false
+              },
+              {
+                "date": "2025-10-14 00:00:00",
+                "raw": 20.81,
+                "value": 20.81,
+                "filled": false
+              },
+              {
+                "date": "2025-10-15 00:00:00",
+                "raw": 20.64,
+                "value": 20.64,
+                "filled": false
+              }
+            ],
+            "raw_period": 129.6823978242422,
+            "period": 130,
+            "elapsed": 130,
+            "due": true,
+            "reason": "vix"
+          }
+        }
+      ],
+      "reward_nav_error": 1.4988010832439613e-15,
+      "record": "experiments\\v11_ppo\\records\\known_ppo_v11_vix_mix_known_seed0_adaptive_20261007_1.json",
+      "record_sha256": "4cce20a1af077e568e4221254787413c7a38400e3b9db6bc5f00a8082c7694bf",
+      "responsiveness": {
+        "method": "cyclic_shift_first_12_market_and_rate_dimensions",
+        "account_and_rule_dimensions_preserved": true,
+        "action_change_ratio": 0.03992015968063872,
+        "original_action_types": [
+          0,
+          1,
+          2
+        ],
+        "perturbed_action_types": [
+          0,
+          1,
+          2
+        ],
+        "eligible": true
+      }
+    },
+    {
+      "seed": 1,
+      "metrics": {
+        "steps": 1002,
+        "start_date": "2022-01-03",
+        "end_date": "2025-12-31",
+        "final_wealth": 1.450906514525365,
+        "cagr": 0.09772361088149739,
+        "annualized_mean_excess_return": 0.06476374183418925,
+        "annualized_mean_gross_excess_return": 0.06803243299520201,
+        "sharpe_excess_cash": 0.413617967192748,
+        "annualized_volatility": 0.15662589097546264,
+        "max_drawdown": -0.1816422764692719,
+        "average_exposure": 0.9365322271101214,
+        "total_turnover": 12.996938664026876,
+        "number_of_trades": 28,
+        "total_transaction_cost": 13463.786695,
+        "action_distribution": {
+          "0": 0.6826347305389222,
+          "1": 0.000998003992015968,
+          "2": 0.31636726546906185
+        },
+        "sharpe_numerator": 0.000256998975532497,
+        "sharpe_denominator": 0.009863527656773645
+      },
+      "baselines": {
+        "cash": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.1776127021403875,
+          "cagr": 0.041806695599185595,
+          "annualized_mean_excess_return": 7.917628656574739e-16,
+          "annualized_mean_gross_excess_return": 7.917628656574739e-16,
+          "sharpe_excess_cash": null,
+          "annualized_volatility": 0.001906431840562114,
+          "max_drawdown": 0.0,
+          "average_exposure": 0.0,
+          "total_turnover": 0.0,
+          "number_of_trades": 0,
+          "total_transaction_cost": 0.0,
+          "action_distribution": {
+            "0": 1.0
+          }
+        },
+        "buy_and_hold": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.48310441640342,
+          "cagr": 0.1037760930367726,
+          "annualized_mean_excess_return": 0.07351609435467346,
+          "annualized_mean_gross_excess_return": 0.07376726302629023,
+          "sharpe_excess_cash": 0.4171091646318196,
+          "annualized_volatility": 0.17631530178118698,
+          "max_drawdown": -0.2471092613381709,
+          "average_exposure": 0.9758908050375079,
+          "total_turnover": 0.99869448,
+          "number_of_trades": 1,
+          "total_transaction_cost": 998.6944800000001,
+          "action_distribution": {
+            "-1": 0.999001996007984,
+            "2": 0.000998003992015968
+          }
+        },
+        "constant_50": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.3498002189129414,
+          "cagr": 0.07803878180220147,
+          "annualized_mean_excess_return": 0.03838313247585847,
+          "annualized_mean_gross_excess_return": 0.03902051579892371,
+          "sharpe_excess_cash": 0.4260034685330498,
+          "annualized_volatility": 0.09017426837704533,
+          "max_drawdown": -0.12375740301830263,
+          "average_exposure": 0.4997731095862974,
+          "total_turnover": 2.53435749885461,
+          "number_of_trades": 919,
+          "total_transaction_cost": 2642.0405976,
+          "action_distribution": {
+            "1": 1.0
+          }
+        },
+        "sma_200_gate_only": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.2661771723048416,
+          "cagr": 0.06090462656456874,
+          "annualized_mean_excess_return": 0.024489333457219885,
+          "annualized_mean_gross_excess_return": 0.029261525241361826,
+          "sharpe_excess_cash": 0.21931466161783156,
+          "annualized_volatility": 0.11174603266178251,
+          "max_drawdown": -0.2085696100363884,
+          "average_exposure": 0.7424838069209877,
+          "total_turnover": 18.975143522659593,
+          "number_of_trades": 27,
+          "total_transaction_cost": 17368.174285,
+          "action_distribution": {
+            "0": 1.0
+          },
+          "action_trace": {
+            "agent_action_distribution": {
+              "0": 1.0
+            },
+            "gated_action_distribution": {
+              "0": 0.26147704590818366,
+              "2": 0.7385229540918163
+            },
+            "executed_action_distribution": {
+              "0": 0.21157684630738524,
+              "2": 0.6936127744510978,
+              "None": 0.09481037924151696
+            },
+            "gate_override_share": 0.7385229540918163,
+            "gate_forced_share": 0.7385229540918163
+          }
+        }
+      },
+      "training_transitions": 987136,
+      "testing_learning_transitions": 294912,
+      "testing_updates": [
+        {
+          "cutoff": "2022-03-01",
+          "activation": "2022-03-02",
+          "reason": {
+            "vix_mean": 29.578000000000003,
+            "vix_window": [
+              {
+                "date": "2022-02-22 00:00:00",
+                "raw": 28.81,
+                "value": 28.81,
+                "filled": false
+              },
+              {
+                "date": "2022-02-23 00:00:00",
+                "raw": 31.02,
+                "value": 31.02,
+                "filled": false
+              },
+              {
+                "date": "2022-02-24 00:00:00",
+                "raw": 30.32,
+                "value": 30.32,
+                "filled": false
+              },
+              {
+                "date": "2022-02-25 00:00:00",
+                "raw": 27.59,
+                "value": 27.59,
+                "filled": false
+              },
+              {
+                "date": "2022-02-28 00:00:00",
+                "raw": 30.15,
+                "value": 30.15,
+                "filled": false
+              }
+            ],
+            "raw_period": 57.609343642985635,
+            "period": 58,
+            "elapsed": 59,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2022-05-12",
+          "activation": "2022-05-13",
+          "reason": {
+            "vix_mean": 32.338,
+            "vix_window": [
+              {
+                "date": "2022-05-05 00:00:00",
+                "raw": 31.2,
+                "value": 31.2,
+                "filled": false
+              },
+              {
+                "date": "2022-05-06 00:00:00",
+                "raw": 30.19,
+                "value": 30.19,
+                "filled": false
+              },
+              {
+                "date": "2022-05-09 00:00:00",
+                "raw": 34.75,
+                "value": 34.75,
+                "filled": false
+              },
+              {
+                "date": "2022-05-10 00:00:00",
+                "raw": 32.99,
+                "value": 32.99,
+                "filled": false
+              },
+              {
+                "date": "2022-05-11 00:00:00",
+                "raw": 32.56,
+                "value": 32.56,
+                "filled": false
+              }
+            ],
+            "raw_period": 48.19524840674445,
+            "period": 48,
+            "elapsed": 51,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2022-09-02",
+          "activation": "2022-09-06",
+          "reason": {
+            "vix_mean": 25.881999999999998,
+            "vix_window": [
+              {
+                "date": "2022-08-26 00:00:00",
+                "raw": 25.56,
+                "value": 25.56,
+                "filled": false
+              },
+              {
+                "date": "2022-08-29 00:00:00",
+                "raw": 26.21,
+                "value": 26.21,
+                "filled": false
+              },
+              {
+                "date": "2022-08-30 00:00:00",
+                "raw": 26.21,
+                "value": 26.21,
+                "filled": false
+              },
+              {
+                "date": "2022-08-31 00:00:00",
+                "raw": 25.87,
+                "value": 25.87,
+                "filled": false
+              },
+              {
+                "date": "2022-09-01 00:00:00",
+                "raw": 25.56,
+                "value": 25.56,
+                "filled": false
+              }
+            ],
+            "raw_period": 75.23758911034065,
+            "period": 75,
+            "elapsed": 78,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2023-02-23",
+          "activation": "2023-02-24",
+          "reason": {
+            "vix_mean": 20.716,
+            "vix_window": [
+              {
+                "date": "2023-02-15 00:00:00",
+                "raw": 18.23,
+                "value": 18.23,
+                "filled": false
+              },
+              {
+                "date": "2023-02-16 00:00:00",
+                "raw": 20.17,
+                "value": 20.17,
+                "filled": false
+              },
+              {
+                "date": "2023-02-17 00:00:00",
+                "raw": 20.02,
+                "value": 20.02,
+                "filled": false
+              },
+              {
+                "date": "2023-02-21 00:00:00",
+                "raw": 22.87,
+                "value": 22.87,
+                "filled": false
+              },
+              {
+                "date": "2023-02-22 00:00:00",
+                "raw": 22.29,
+                "value": 22.29,
+                "filled": false
+              }
+            ],
+            "raw_period": 117.44072719894805,
+            "period": 117,
+            "elapsed": 118,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2023-10-04",
+          "activation": "2023-10-05",
+          "reason": {
+            "vix_mean": 18.094,
+            "vix_window": [
+              {
+                "date": "2023-09-27 00:00:00",
+                "raw": 18.22,
+                "value": 18.22,
+                "filled": false
+              },
+              {
+                "date": "2023-09-28 00:00:00",
+                "raw": 17.34,
+                "value": 17.34,
+                "filled": false
+              },
+              {
+                "date": "2023-09-29 00:00:00",
+                "raw": 17.52,
+                "value": 17.52,
+                "filled": false
+              },
+              {
+                "date": "2023-10-02 00:00:00",
+                "raw": 17.61,
+                "value": 17.61,
+                "filled": false
+              },
+              {
+                "date": "2023-10-03 00:00:00",
+                "raw": 19.78,
+                "value": 19.78,
+                "filled": false
+              }
+            ],
+            "raw_period": 153.94350290548203,
+            "period": 154,
+            "elapsed": 154,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2024-07-25",
+          "activation": "2024-07-26",
+          "reason": {
+            "vix_mean": 16.024,
+            "vix_window": [
+              {
+                "date": "2024-07-18 00:00:00",
+                "raw": 15.93,
+                "value": 15.93,
+                "filled": false
+              },
+              {
+                "date": "2024-07-19 00:00:00",
+                "raw": 16.52,
+                "value": 16.52,
+                "filled": false
+              },
+              {
+                "date": "2024-07-22 00:00:00",
+                "raw": 14.91,
+                "value": 14.91,
+                "filled": false
+              },
+              {
+                "date": "2024-07-23 00:00:00",
+                "raw": 14.72,
+                "value": 14.72,
+                "filled": false
+              },
+              {
+                "date": "2024-07-24 00:00:00",
+                "raw": 18.04,
+                "value": 18.04,
+                "filled": false
+              }
+            ],
+            "raw_period": 196.28570125341196,
+            "period": 196,
+            "elapsed": 202,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-02-28",
+          "activation": "2025-03-03",
+          "reason": {
+            "vix_mean": 19.369999999999997,
+            "vix_window": [
+              {
+                "date": "2025-02-21 00:00:00",
+                "raw": 18.21,
+                "value": 18.21,
+                "filled": false
+              },
+              {
+                "date": "2025-02-24 00:00:00",
+                "raw": 18.98,
+                "value": 18.98,
+                "filled": false
+              },
+              {
+                "date": "2025-02-25 00:00:00",
+                "raw": 19.43,
+                "value": 19.43,
+                "filled": false
+              },
+              {
+                "date": "2025-02-26 00:00:00",
+                "raw": 19.1,
+                "value": 19.1,
+                "filled": false
+              },
+              {
+                "date": "2025-02-27 00:00:00",
+                "raw": 21.13,
+                "value": 21.13,
+                "filled": false
+              }
+            ],
+            "raw_period": 134.3294680739633,
+            "period": 134,
+            "elapsed": 149,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-04-10",
+          "activation": "2025-04-11",
+          "reason": {
+            "vix_mean": 41.652,
+            "vix_window": [
+              {
+                "date": "2025-04-03 00:00:00",
+                "raw": 30.02,
+                "value": 30.02,
+                "filled": false
+              },
+              {
+                "date": "2025-04-04 00:00:00",
+                "raw": 45.31,
+                "value": 45.31,
+                "filled": false
+              },
+              {
+                "date": "2025-04-07 00:00:00",
+                "raw": 46.98,
+                "value": 46.98,
+                "filled": false
+              },
+              {
+                "date": "2025-04-08 00:00:00",
+                "raw": 52.33,
+                "value": 52.33,
+                "filled": false
+              },
+              {
+                "date": "2025-04-09 00:00:00",
+                "raw": 33.62,
+                "value": 33.62,
+                "filled": false
+              }
+            ],
+            "raw_period": 29.050848197614826,
+            "period": 29,
+            "elapsed": 29,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-10-16",
+          "activation": "2025-10-17",
+          "reason": {
+            "vix_mean": 19.714000000000002,
+            "vix_window": [
+              {
+                "date": "2025-10-09 00:00:00",
+                "raw": 16.43,
+                "value": 16.43,
+                "filled": false
+              },
+              {
+                "date": "2025-10-10 00:00:00",
+                "raw": 21.66,
+                "value": 21.66,
+                "filled": false
+              },
+              {
+                "date": "2025-10-13 00:00:00",
+                "raw": 19.03,
+                "value": 19.03,
+                "filled": false
+              },
+              {
+                "date": "2025-10-14 00:00:00",
+                "raw": 20.81,
+                "value": 20.81,
+                "filled": false
+              },
+              {
+                "date": "2025-10-15 00:00:00",
+                "raw": 20.64,
+                "value": 20.64,
+                "filled": false
+              }
+            ],
+            "raw_period": 129.6823978242422,
+            "period": 130,
+            "elapsed": 130,
+            "due": true,
+            "reason": "vix"
+          }
+        }
+      ],
+      "reward_nav_error": -6.661338147750939e-16,
+      "record": "experiments\\v11_ppo\\records\\known_ppo_v11_vix_mix_known_seed1_adaptive_20261007_1.json",
+      "record_sha256": "54beece9dd077e604f6a6b8214e267462c5fe1a8861f1005cfc5f0a6c3c799bd",
+      "responsiveness": {
+        "method": "cyclic_shift_first_12_market_and_rate_dimensions",
+        "account_and_rule_dimensions_preserved": true,
+        "action_change_ratio": 0.07085828343313373,
+        "original_action_types": [
+          0,
+          2
+        ],
+        "perturbed_action_types": [
+          0,
+          2
+        ],
+        "eligible": true
+      }
+    },
+    {
+      "seed": 2,
+      "metrics": {
+        "steps": 1002,
+        "start_date": "2022-01-03",
+        "end_date": "2025-12-31",
+        "final_wealth": 1.2948698065842577,
+        "cagr": 0.06687676154867961,
+        "annualized_mean_excess_return": 0.030138892337515065,
+        "annualized_mean_gross_excess_return": 0.03465875728215267,
+        "sharpe_excess_cash": 0.26961061239342704,
+        "annualized_volatility": 0.11186213269623,
+        "max_drawdown": -0.19067750035775033,
+        "average_exposure": 0.7455400293119386,
+        "total_turnover": 17.971843946535273,
+        "number_of_trades": 28,
+        "total_transaction_cost": 16797.545885,
+        "action_distribution": {
+          "0": 0.9840319361277445,
+          "1": 0.013972055888223553,
+          "2": 0.001996007984031936
+        },
+        "sharpe_numerator": 0.00011959877911712328,
+        "sharpe_denominator": 0.007041902924557897
+      },
+      "baselines": {
+        "cash": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.1776127021403875,
+          "cagr": 0.041806695599185595,
+          "annualized_mean_excess_return": 7.917628656574739e-16,
+          "annualized_mean_gross_excess_return": 7.917628656574739e-16,
+          "sharpe_excess_cash": null,
+          "annualized_volatility": 0.001906431840562114,
+          "max_drawdown": 0.0,
+          "average_exposure": 0.0,
+          "total_turnover": 0.0,
+          "number_of_trades": 0,
+          "total_transaction_cost": 0.0,
+          "action_distribution": {
+            "0": 1.0
+          }
+        },
+        "buy_and_hold": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.48310441640342,
+          "cagr": 0.1037760930367726,
+          "annualized_mean_excess_return": 0.07351609435467346,
+          "annualized_mean_gross_excess_return": 0.07376726302629023,
+          "sharpe_excess_cash": 0.4171091646318196,
+          "annualized_volatility": 0.17631530178118698,
+          "max_drawdown": -0.2471092613381709,
+          "average_exposure": 0.9758908050375079,
+          "total_turnover": 0.99869448,
+          "number_of_trades": 1,
+          "total_transaction_cost": 998.6944800000001,
+          "action_distribution": {
+            "-1": 0.999001996007984,
+            "2": 0.000998003992015968
+          }
+        },
+        "constant_50": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.3498002189129414,
+          "cagr": 0.07803878180220147,
+          "annualized_mean_excess_return": 0.03838313247585847,
+          "annualized_mean_gross_excess_return": 0.03902051579892371,
+          "sharpe_excess_cash": 0.4260034685330498,
+          "annualized_volatility": 0.09017426837704533,
+          "max_drawdown": -0.12375740301830263,
+          "average_exposure": 0.4997731095862974,
+          "total_turnover": 2.53435749885461,
+          "number_of_trades": 919,
+          "total_transaction_cost": 2642.0405976,
+          "action_distribution": {
+            "1": 1.0
+          }
+        },
+        "sma_200_gate_only": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.2661771723048416,
+          "cagr": 0.06090462656456874,
+          "annualized_mean_excess_return": 0.024489333457219885,
+          "annualized_mean_gross_excess_return": 0.029261525241361826,
+          "sharpe_excess_cash": 0.21931466161783156,
+          "annualized_volatility": 0.11174603266178251,
+          "max_drawdown": -0.2085696100363884,
+          "average_exposure": 0.7424838069209877,
+          "total_turnover": 18.975143522659593,
+          "number_of_trades": 27,
+          "total_transaction_cost": 17368.174285,
+          "action_distribution": {
+            "0": 1.0
+          },
+          "action_trace": {
+            "agent_action_distribution": {
+              "0": 1.0
+            },
+            "gated_action_distribution": {
+              "0": 0.26147704590818366,
+              "2": 0.7385229540918163
+            },
+            "executed_action_distribution": {
+              "0": 0.21157684630738524,
+              "2": 0.6936127744510978,
+              "None": 0.09481037924151696
+            },
+            "gate_override_share": 0.7385229540918163,
+            "gate_forced_share": 0.7385229540918163
+          }
+        }
+      },
+      "training_transitions": 987136,
+      "testing_learning_transitions": 294912,
+      "testing_updates": [
+        {
+          "cutoff": "2022-03-01",
+          "activation": "2022-03-02",
+          "reason": {
+            "vix_mean": 29.578000000000003,
+            "vix_window": [
+              {
+                "date": "2022-02-22 00:00:00",
+                "raw": 28.81,
+                "value": 28.81,
+                "filled": false
+              },
+              {
+                "date": "2022-02-23 00:00:00",
+                "raw": 31.02,
+                "value": 31.02,
+                "filled": false
+              },
+              {
+                "date": "2022-02-24 00:00:00",
+                "raw": 30.32,
+                "value": 30.32,
+                "filled": false
+              },
+              {
+                "date": "2022-02-25 00:00:00",
+                "raw": 27.59,
+                "value": 27.59,
+                "filled": false
+              },
+              {
+                "date": "2022-02-28 00:00:00",
+                "raw": 30.15,
+                "value": 30.15,
+                "filled": false
+              }
+            ],
+            "raw_period": 57.609343642985635,
+            "period": 58,
+            "elapsed": 59,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2022-05-12",
+          "activation": "2022-05-13",
+          "reason": {
+            "vix_mean": 32.338,
+            "vix_window": [
+              {
+                "date": "2022-05-05 00:00:00",
+                "raw": 31.2,
+                "value": 31.2,
+                "filled": false
+              },
+              {
+                "date": "2022-05-06 00:00:00",
+                "raw": 30.19,
+                "value": 30.19,
+                "filled": false
+              },
+              {
+                "date": "2022-05-09 00:00:00",
+                "raw": 34.75,
+                "value": 34.75,
+                "filled": false
+              },
+              {
+                "date": "2022-05-10 00:00:00",
+                "raw": 32.99,
+                "value": 32.99,
+                "filled": false
+              },
+              {
+                "date": "2022-05-11 00:00:00",
+                "raw": 32.56,
+                "value": 32.56,
+                "filled": false
+              }
+            ],
+            "raw_period": 48.19524840674445,
+            "period": 48,
+            "elapsed": 51,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2022-09-02",
+          "activation": "2022-09-06",
+          "reason": {
+            "vix_mean": 25.881999999999998,
+            "vix_window": [
+              {
+                "date": "2022-08-26 00:00:00",
+                "raw": 25.56,
+                "value": 25.56,
+                "filled": false
+              },
+              {
+                "date": "2022-08-29 00:00:00",
+                "raw": 26.21,
+                "value": 26.21,
+                "filled": false
+              },
+              {
+                "date": "2022-08-30 00:00:00",
+                "raw": 26.21,
+                "value": 26.21,
+                "filled": false
+              },
+              {
+                "date": "2022-08-31 00:00:00",
+                "raw": 25.87,
+                "value": 25.87,
+                "filled": false
+              },
+              {
+                "date": "2022-09-01 00:00:00",
+                "raw": 25.56,
+                "value": 25.56,
+                "filled": false
+              }
+            ],
+            "raw_period": 75.23758911034065,
+            "period": 75,
+            "elapsed": 78,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2023-02-23",
+          "activation": "2023-02-24",
+          "reason": {
+            "vix_mean": 20.716,
+            "vix_window": [
+              {
+                "date": "2023-02-15 00:00:00",
+                "raw": 18.23,
+                "value": 18.23,
+                "filled": false
+              },
+              {
+                "date": "2023-02-16 00:00:00",
+                "raw": 20.17,
+                "value": 20.17,
+                "filled": false
+              },
+              {
+                "date": "2023-02-17 00:00:00",
+                "raw": 20.02,
+                "value": 20.02,
+                "filled": false
+              },
+              {
+                "date": "2023-02-21 00:00:00",
+                "raw": 22.87,
+                "value": 22.87,
+                "filled": false
+              },
+              {
+                "date": "2023-02-22 00:00:00",
+                "raw": 22.29,
+                "value": 22.29,
+                "filled": false
+              }
+            ],
+            "raw_period": 117.44072719894805,
+            "period": 117,
+            "elapsed": 118,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2023-10-04",
+          "activation": "2023-10-05",
+          "reason": {
+            "vix_mean": 18.094,
+            "vix_window": [
+              {
+                "date": "2023-09-27 00:00:00",
+                "raw": 18.22,
+                "value": 18.22,
+                "filled": false
+              },
+              {
+                "date": "2023-09-28 00:00:00",
+                "raw": 17.34,
+                "value": 17.34,
+                "filled": false
+              },
+              {
+                "date": "2023-09-29 00:00:00",
+                "raw": 17.52,
+                "value": 17.52,
+                "filled": false
+              },
+              {
+                "date": "2023-10-02 00:00:00",
+                "raw": 17.61,
+                "value": 17.61,
+                "filled": false
+              },
+              {
+                "date": "2023-10-03 00:00:00",
+                "raw": 19.78,
+                "value": 19.78,
+                "filled": false
+              }
+            ],
+            "raw_period": 153.94350290548203,
+            "period": 154,
+            "elapsed": 154,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2024-07-25",
+          "activation": "2024-07-26",
+          "reason": {
+            "vix_mean": 16.024,
+            "vix_window": [
+              {
+                "date": "2024-07-18 00:00:00",
+                "raw": 15.93,
+                "value": 15.93,
+                "filled": false
+              },
+              {
+                "date": "2024-07-19 00:00:00",
+                "raw": 16.52,
+                "value": 16.52,
+                "filled": false
+              },
+              {
+                "date": "2024-07-22 00:00:00",
+                "raw": 14.91,
+                "value": 14.91,
+                "filled": false
+              },
+              {
+                "date": "2024-07-23 00:00:00",
+                "raw": 14.72,
+                "value": 14.72,
+                "filled": false
+              },
+              {
+                "date": "2024-07-24 00:00:00",
+                "raw": 18.04,
+                "value": 18.04,
+                "filled": false
+              }
+            ],
+            "raw_period": 196.28570125341196,
+            "period": 196,
+            "elapsed": 202,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-02-28",
+          "activation": "2025-03-03",
+          "reason": {
+            "vix_mean": 19.369999999999997,
+            "vix_window": [
+              {
+                "date": "2025-02-21 00:00:00",
+                "raw": 18.21,
+                "value": 18.21,
+                "filled": false
+              },
+              {
+                "date": "2025-02-24 00:00:00",
+                "raw": 18.98,
+                "value": 18.98,
+                "filled": false
+              },
+              {
+                "date": "2025-02-25 00:00:00",
+                "raw": 19.43,
+                "value": 19.43,
+                "filled": false
+              },
+              {
+                "date": "2025-02-26 00:00:00",
+                "raw": 19.1,
+                "value": 19.1,
+                "filled": false
+              },
+              {
+                "date": "2025-02-27 00:00:00",
+                "raw": 21.13,
+                "value": 21.13,
+                "filled": false
+              }
+            ],
+            "raw_period": 134.3294680739633,
+            "period": 134,
+            "elapsed": 149,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-04-10",
+          "activation": "2025-04-11",
+          "reason": {
+            "vix_mean": 41.652,
+            "vix_window": [
+              {
+                "date": "2025-04-03 00:00:00",
+                "raw": 30.02,
+                "value": 30.02,
+                "filled": false
+              },
+              {
+                "date": "2025-04-04 00:00:00",
+                "raw": 45.31,
+                "value": 45.31,
+                "filled": false
+              },
+              {
+                "date": "2025-04-07 00:00:00",
+                "raw": 46.98,
+                "value": 46.98,
+                "filled": false
+              },
+              {
+                "date": "2025-04-08 00:00:00",
+                "raw": 52.33,
+                "value": 52.33,
+                "filled": false
+              },
+              {
+                "date": "2025-04-09 00:00:00",
+                "raw": 33.62,
+                "value": 33.62,
+                "filled": false
+              }
+            ],
+            "raw_period": 29.050848197614826,
+            "period": 29,
+            "elapsed": 29,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-10-16",
+          "activation": "2025-10-17",
+          "reason": {
+            "vix_mean": 19.714000000000002,
+            "vix_window": [
+              {
+                "date": "2025-10-09 00:00:00",
+                "raw": 16.43,
+                "value": 16.43,
+                "filled": false
+              },
+              {
+                "date": "2025-10-10 00:00:00",
+                "raw": 21.66,
+                "value": 21.66,
+                "filled": false
+              },
+              {
+                "date": "2025-10-13 00:00:00",
+                "raw": 19.03,
+                "value": 19.03,
+                "filled": false
+              },
+              {
+                "date": "2025-10-14 00:00:00",
+                "raw": 20.81,
+                "value": 20.81,
+                "filled": false
+              },
+              {
+                "date": "2025-10-15 00:00:00",
+                "raw": 20.64,
+                "value": 20.64,
+                "filled": false
+              }
+            ],
+            "raw_period": 129.6823978242422,
+            "period": 130,
+            "elapsed": 130,
+            "due": true,
+            "reason": "vix"
+          }
+        }
+      ],
+      "reward_nav_error": -7.216449660063518e-16,
+      "record": "experiments\\v11_ppo\\records\\known_ppo_v11_vix_mix_known_seed2_adaptive_20261007_1.json",
+      "record_sha256": "3163799e512475eecdcc7d91a05ba652b430583c09f9c72c54463d11ff9a8e06",
+      "responsiveness": {
+        "method": "cyclic_shift_first_12_market_and_rate_dimensions",
+        "account_and_rule_dimensions_preserved": true,
+        "action_change_ratio": 0.015968063872255488,
+        "original_action_types": [
+          0,
+          1,
+          2
+        ],
+        "perturbed_action_types": [
+          0,
+          1,
+          2
+        ],
+        "eligible": true
+      }
+    },
+    {
+      "seed": 3,
+      "metrics": {
+        "steps": 1002,
+        "start_date": "2022-01-03",
+        "end_date": "2025-12-31",
+        "final_wealth": 1.6458625666642965,
+        "cagr": 0.1329472915313492,
+        "annualized_mean_excess_return": 0.09742917681390036,
+        "annualized_mean_gross_excess_return": 0.10050373401692013,
+        "sharpe_excess_cash": 0.5979188103377399,
+        "annualized_volatility": 0.1630099985857442,
+        "max_drawdown": -0.1937038066761353,
+        "average_exposure": 0.9296571668608467,
+        "total_turnover": 12.225025069150089,
+        "number_of_trades": 104,
+        "total_transaction_cost": 11433.074265000001,
+        "action_distribution": {
+          "0": 0.012974051896207584,
+          "1": 0.7105788423153693,
+          "2": 0.27644710578842313
+        },
+        "sharpe_numerator": 0.0003866237175154776,
+        "sharpe_denominator": 0.010264706744323103
+      },
+      "baselines": {
+        "cash": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.1776127021403875,
+          "cagr": 0.041806695599185595,
+          "annualized_mean_excess_return": 7.917628656574739e-16,
+          "annualized_mean_gross_excess_return": 7.917628656574739e-16,
+          "sharpe_excess_cash": null,
+          "annualized_volatility": 0.001906431840562114,
+          "max_drawdown": 0.0,
+          "average_exposure": 0.0,
+          "total_turnover": 0.0,
+          "number_of_trades": 0,
+          "total_transaction_cost": 0.0,
+          "action_distribution": {
+            "0": 1.0
+          }
+        },
+        "buy_and_hold": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.48310441640342,
+          "cagr": 0.1037760930367726,
+          "annualized_mean_excess_return": 0.07351609435467346,
+          "annualized_mean_gross_excess_return": 0.07376726302629023,
+          "sharpe_excess_cash": 0.4171091646318196,
+          "annualized_volatility": 0.17631530178118698,
+          "max_drawdown": -0.2471092613381709,
+          "average_exposure": 0.9758908050375079,
+          "total_turnover": 0.99869448,
+          "number_of_trades": 1,
+          "total_transaction_cost": 998.6944800000001,
+          "action_distribution": {
+            "-1": 0.999001996007984,
+            "2": 0.000998003992015968
+          }
+        },
+        "constant_50": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.3498002189129414,
+          "cagr": 0.07803878180220147,
+          "annualized_mean_excess_return": 0.03838313247585847,
+          "annualized_mean_gross_excess_return": 0.03902051579892371,
+          "sharpe_excess_cash": 0.4260034685330498,
+          "annualized_volatility": 0.09017426837704533,
+          "max_drawdown": -0.12375740301830263,
+          "average_exposure": 0.4997731095862974,
+          "total_turnover": 2.53435749885461,
+          "number_of_trades": 919,
+          "total_transaction_cost": 2642.0405976,
+          "action_distribution": {
+            "1": 1.0
+          }
+        },
+        "sma_200_gate_only": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.2661771723048416,
+          "cagr": 0.06090462656456874,
+          "annualized_mean_excess_return": 0.024489333457219885,
+          "annualized_mean_gross_excess_return": 0.029261525241361826,
+          "sharpe_excess_cash": 0.21931466161783156,
+          "annualized_volatility": 0.11174603266178251,
+          "max_drawdown": -0.2085696100363884,
+          "average_exposure": 0.7424838069209877,
+          "total_turnover": 18.975143522659593,
+          "number_of_trades": 27,
+          "total_transaction_cost": 17368.174285,
+          "action_distribution": {
+            "0": 1.0
+          },
+          "action_trace": {
+            "agent_action_distribution": {
+              "0": 1.0
+            },
+            "gated_action_distribution": {
+              "0": 0.26147704590818366,
+              "2": 0.7385229540918163
+            },
+            "executed_action_distribution": {
+              "0": 0.21157684630738524,
+              "2": 0.6936127744510978,
+              "None": 0.09481037924151696
+            },
+            "gate_override_share": 0.7385229540918163,
+            "gate_forced_share": 0.7385229540918163
+          }
+        }
+      },
+      "training_transitions": 987136,
+      "testing_learning_transitions": 294912,
+      "testing_updates": [
+        {
+          "cutoff": "2022-03-01",
+          "activation": "2022-03-02",
+          "reason": {
+            "vix_mean": 29.578000000000003,
+            "vix_window": [
+              {
+                "date": "2022-02-22 00:00:00",
+                "raw": 28.81,
+                "value": 28.81,
+                "filled": false
+              },
+              {
+                "date": "2022-02-23 00:00:00",
+                "raw": 31.02,
+                "value": 31.02,
+                "filled": false
+              },
+              {
+                "date": "2022-02-24 00:00:00",
+                "raw": 30.32,
+                "value": 30.32,
+                "filled": false
+              },
+              {
+                "date": "2022-02-25 00:00:00",
+                "raw": 27.59,
+                "value": 27.59,
+                "filled": false
+              },
+              {
+                "date": "2022-02-28 00:00:00",
+                "raw": 30.15,
+                "value": 30.15,
+                "filled": false
+              }
+            ],
+            "raw_period": 57.609343642985635,
+            "period": 58,
+            "elapsed": 59,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2022-05-12",
+          "activation": "2022-05-13",
+          "reason": {
+            "vix_mean": 32.338,
+            "vix_window": [
+              {
+                "date": "2022-05-05 00:00:00",
+                "raw": 31.2,
+                "value": 31.2,
+                "filled": false
+              },
+              {
+                "date": "2022-05-06 00:00:00",
+                "raw": 30.19,
+                "value": 30.19,
+                "filled": false
+              },
+              {
+                "date": "2022-05-09 00:00:00",
+                "raw": 34.75,
+                "value": 34.75,
+                "filled": false
+              },
+              {
+                "date": "2022-05-10 00:00:00",
+                "raw": 32.99,
+                "value": 32.99,
+                "filled": false
+              },
+              {
+                "date": "2022-05-11 00:00:00",
+                "raw": 32.56,
+                "value": 32.56,
+                "filled": false
+              }
+            ],
+            "raw_period": 48.19524840674445,
+            "period": 48,
+            "elapsed": 51,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2022-09-02",
+          "activation": "2022-09-06",
+          "reason": {
+            "vix_mean": 25.881999999999998,
+            "vix_window": [
+              {
+                "date": "2022-08-26 00:00:00",
+                "raw": 25.56,
+                "value": 25.56,
+                "filled": false
+              },
+              {
+                "date": "2022-08-29 00:00:00",
+                "raw": 26.21,
+                "value": 26.21,
+                "filled": false
+              },
+              {
+                "date": "2022-08-30 00:00:00",
+                "raw": 26.21,
+                "value": 26.21,
+                "filled": false
+              },
+              {
+                "date": "2022-08-31 00:00:00",
+                "raw": 25.87,
+                "value": 25.87,
+                "filled": false
+              },
+              {
+                "date": "2022-09-01 00:00:00",
+                "raw": 25.56,
+                "value": 25.56,
+                "filled": false
+              }
+            ],
+            "raw_period": 75.23758911034065,
+            "period": 75,
+            "elapsed": 78,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2023-02-23",
+          "activation": "2023-02-24",
+          "reason": {
+            "vix_mean": 20.716,
+            "vix_window": [
+              {
+                "date": "2023-02-15 00:00:00",
+                "raw": 18.23,
+                "value": 18.23,
+                "filled": false
+              },
+              {
+                "date": "2023-02-16 00:00:00",
+                "raw": 20.17,
+                "value": 20.17,
+                "filled": false
+              },
+              {
+                "date": "2023-02-17 00:00:00",
+                "raw": 20.02,
+                "value": 20.02,
+                "filled": false
+              },
+              {
+                "date": "2023-02-21 00:00:00",
+                "raw": 22.87,
+                "value": 22.87,
+                "filled": false
+              },
+              {
+                "date": "2023-02-22 00:00:00",
+                "raw": 22.29,
+                "value": 22.29,
+                "filled": false
+              }
+            ],
+            "raw_period": 117.44072719894805,
+            "period": 117,
+            "elapsed": 118,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2023-10-04",
+          "activation": "2023-10-05",
+          "reason": {
+            "vix_mean": 18.094,
+            "vix_window": [
+              {
+                "date": "2023-09-27 00:00:00",
+                "raw": 18.22,
+                "value": 18.22,
+                "filled": false
+              },
+              {
+                "date": "2023-09-28 00:00:00",
+                "raw": 17.34,
+                "value": 17.34,
+                "filled": false
+              },
+              {
+                "date": "2023-09-29 00:00:00",
+                "raw": 17.52,
+                "value": 17.52,
+                "filled": false
+              },
+              {
+                "date": "2023-10-02 00:00:00",
+                "raw": 17.61,
+                "value": 17.61,
+                "filled": false
+              },
+              {
+                "date": "2023-10-03 00:00:00",
+                "raw": 19.78,
+                "value": 19.78,
+                "filled": false
+              }
+            ],
+            "raw_period": 153.94350290548203,
+            "period": 154,
+            "elapsed": 154,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2024-07-25",
+          "activation": "2024-07-26",
+          "reason": {
+            "vix_mean": 16.024,
+            "vix_window": [
+              {
+                "date": "2024-07-18 00:00:00",
+                "raw": 15.93,
+                "value": 15.93,
+                "filled": false
+              },
+              {
+                "date": "2024-07-19 00:00:00",
+                "raw": 16.52,
+                "value": 16.52,
+                "filled": false
+              },
+              {
+                "date": "2024-07-22 00:00:00",
+                "raw": 14.91,
+                "value": 14.91,
+                "filled": false
+              },
+              {
+                "date": "2024-07-23 00:00:00",
+                "raw": 14.72,
+                "value": 14.72,
+                "filled": false
+              },
+              {
+                "date": "2024-07-24 00:00:00",
+                "raw": 18.04,
+                "value": 18.04,
+                "filled": false
+              }
+            ],
+            "raw_period": 196.28570125341196,
+            "period": 196,
+            "elapsed": 202,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-02-28",
+          "activation": "2025-03-03",
+          "reason": {
+            "vix_mean": 19.369999999999997,
+            "vix_window": [
+              {
+                "date": "2025-02-21 00:00:00",
+                "raw": 18.21,
+                "value": 18.21,
+                "filled": false
+              },
+              {
+                "date": "2025-02-24 00:00:00",
+                "raw": 18.98,
+                "value": 18.98,
+                "filled": false
+              },
+              {
+                "date": "2025-02-25 00:00:00",
+                "raw": 19.43,
+                "value": 19.43,
+                "filled": false
+              },
+              {
+                "date": "2025-02-26 00:00:00",
+                "raw": 19.1,
+                "value": 19.1,
+                "filled": false
+              },
+              {
+                "date": "2025-02-27 00:00:00",
+                "raw": 21.13,
+                "value": 21.13,
+                "filled": false
+              }
+            ],
+            "raw_period": 134.3294680739633,
+            "period": 134,
+            "elapsed": 149,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-04-10",
+          "activation": "2025-04-11",
+          "reason": {
+            "vix_mean": 41.652,
+            "vix_window": [
+              {
+                "date": "2025-04-03 00:00:00",
+                "raw": 30.02,
+                "value": 30.02,
+                "filled": false
+              },
+              {
+                "date": "2025-04-04 00:00:00",
+                "raw": 45.31,
+                "value": 45.31,
+                "filled": false
+              },
+              {
+                "date": "2025-04-07 00:00:00",
+                "raw": 46.98,
+                "value": 46.98,
+                "filled": false
+              },
+              {
+                "date": "2025-04-08 00:00:00",
+                "raw": 52.33,
+                "value": 52.33,
+                "filled": false
+              },
+              {
+                "date": "2025-04-09 00:00:00",
+                "raw": 33.62,
+                "value": 33.62,
+                "filled": false
+              }
+            ],
+            "raw_period": 29.050848197614826,
+            "period": 29,
+            "elapsed": 29,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-10-16",
+          "activation": "2025-10-17",
+          "reason": {
+            "vix_mean": 19.714000000000002,
+            "vix_window": [
+              {
+                "date": "2025-10-09 00:00:00",
+                "raw": 16.43,
+                "value": 16.43,
+                "filled": false
+              },
+              {
+                "date": "2025-10-10 00:00:00",
+                "raw": 21.66,
+                "value": 21.66,
+                "filled": false
+              },
+              {
+                "date": "2025-10-13 00:00:00",
+                "raw": 19.03,
+                "value": 19.03,
+                "filled": false
+              },
+              {
+                "date": "2025-10-14 00:00:00",
+                "raw": 20.81,
+                "value": 20.81,
+                "filled": false
+              },
+              {
+                "date": "2025-10-15 00:00:00",
+                "raw": 20.64,
+                "value": 20.64,
+                "filled": false
+              }
+            ],
+            "raw_period": 129.6823978242422,
+            "period": 130,
+            "elapsed": 130,
+            "due": true,
+            "reason": "vix"
+          }
+        }
+      ],
+      "reward_nav_error": -2.1094237467877974e-15,
+      "record": "experiments\\v11_ppo\\records\\known_ppo_v11_vix_mix_known_seed3_adaptive_20261007_1.json",
+      "record_sha256": "518b29917f41e08ba0f327b9d15f5fef6b57356ccfe65d3696aec9a59218bd21",
+      "responsiveness": {
+        "method": "cyclic_shift_first_12_market_and_rate_dimensions",
+        "account_and_rule_dimensions_preserved": true,
+        "action_change_ratio": 0.08682634730538923,
+        "original_action_types": [
+          0,
+          1,
+          2
+        ],
+        "perturbed_action_types": [
+          0,
+          1,
+          2
+        ],
+        "eligible": true
+      }
+    },
+    {
+      "seed": 4,
+      "metrics": {
+        "steps": 1002,
+        "start_date": "2022-01-03",
+        "end_date": "2025-12-31",
+        "final_wealth": 1.3502323384941535,
+        "cagr": 0.07812522870586136,
+        "annualized_mean_excess_return": 0.04748633414136989,
+        "annualized_mean_gross_excess_return": 0.05055495415698787,
+        "sharpe_excess_cash": 0.2932661400386134,
+        "annualized_volatility": 0.1619909954222065,
+        "max_drawdown": -0.23626532162419933,
+        "average_exposure": 0.9202961839160012,
+        "total_turnover": 12.20141768114766,
+        "number_of_trades": 123,
+        "total_transaction_cost": 10984.930905,
+        "action_distribution": {
+          "0": 0.010978043912175649,
+          "1": 0.7874251497005988,
+          "2": 0.20159680638722555
+        },
+        "sharpe_numerator": 0.00018843783389432497,
+        "sharpe_denominator": 0.010200147470439746
+      },
+      "baselines": {
+        "cash": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.1776127021403875,
+          "cagr": 0.041806695599185595,
+          "annualized_mean_excess_return": 7.917628656574739e-16,
+          "annualized_mean_gross_excess_return": 7.917628656574739e-16,
+          "sharpe_excess_cash": null,
+          "annualized_volatility": 0.001906431840562114,
+          "max_drawdown": 0.0,
+          "average_exposure": 0.0,
+          "total_turnover": 0.0,
+          "number_of_trades": 0,
+          "total_transaction_cost": 0.0,
+          "action_distribution": {
+            "0": 1.0
+          }
+        },
+        "buy_and_hold": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.48310441640342,
+          "cagr": 0.1037760930367726,
+          "annualized_mean_excess_return": 0.07351609435467346,
+          "annualized_mean_gross_excess_return": 0.07376726302629023,
+          "sharpe_excess_cash": 0.4171091646318196,
+          "annualized_volatility": 0.17631530178118698,
+          "max_drawdown": -0.2471092613381709,
+          "average_exposure": 0.9758908050375079,
+          "total_turnover": 0.99869448,
+          "number_of_trades": 1,
+          "total_transaction_cost": 998.6944800000001,
+          "action_distribution": {
+            "-1": 0.999001996007984,
+            "2": 0.000998003992015968
+          }
+        },
+        "constant_50": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.3498002189129414,
+          "cagr": 0.07803878180220147,
+          "annualized_mean_excess_return": 0.03838313247585847,
+          "annualized_mean_gross_excess_return": 0.03902051579892371,
+          "sharpe_excess_cash": 0.4260034685330498,
+          "annualized_volatility": 0.09017426837704533,
+          "max_drawdown": -0.12375740301830263,
+          "average_exposure": 0.4997731095862974,
+          "total_turnover": 2.53435749885461,
+          "number_of_trades": 919,
+          "total_transaction_cost": 2642.0405976,
+          "action_distribution": {
+            "1": 1.0
+          }
+        },
+        "sma_200_gate_only": {
+          "steps": 1002,
+          "start_date": "2022-01-03",
+          "end_date": "2025-12-31",
+          "final_wealth": 1.2661771723048416,
+          "cagr": 0.06090462656456874,
+          "annualized_mean_excess_return": 0.024489333457219885,
+          "annualized_mean_gross_excess_return": 0.029261525241361826,
+          "sharpe_excess_cash": 0.21931466161783156,
+          "annualized_volatility": 0.11174603266178251,
+          "max_drawdown": -0.2085696100363884,
+          "average_exposure": 0.7424838069209877,
+          "total_turnover": 18.975143522659593,
+          "number_of_trades": 27,
+          "total_transaction_cost": 17368.174285,
+          "action_distribution": {
+            "0": 1.0
+          },
+          "action_trace": {
+            "agent_action_distribution": {
+              "0": 1.0
+            },
+            "gated_action_distribution": {
+              "0": 0.26147704590818366,
+              "2": 0.7385229540918163
+            },
+            "executed_action_distribution": {
+              "0": 0.21157684630738524,
+              "2": 0.6936127744510978,
+              "None": 0.09481037924151696
+            },
+            "gate_override_share": 0.7385229540918163,
+            "gate_forced_share": 0.7385229540918163
+          }
+        }
+      },
+      "training_transitions": 987136,
+      "testing_learning_transitions": 294912,
+      "testing_updates": [
+        {
+          "cutoff": "2022-03-01",
+          "activation": "2022-03-02",
+          "reason": {
+            "vix_mean": 29.578000000000003,
+            "vix_window": [
+              {
+                "date": "2022-02-22 00:00:00",
+                "raw": 28.81,
+                "value": 28.81,
+                "filled": false
+              },
+              {
+                "date": "2022-02-23 00:00:00",
+                "raw": 31.02,
+                "value": 31.02,
+                "filled": false
+              },
+              {
+                "date": "2022-02-24 00:00:00",
+                "raw": 30.32,
+                "value": 30.32,
+                "filled": false
+              },
+              {
+                "date": "2022-02-25 00:00:00",
+                "raw": 27.59,
+                "value": 27.59,
+                "filled": false
+              },
+              {
+                "date": "2022-02-28 00:00:00",
+                "raw": 30.15,
+                "value": 30.15,
+                "filled": false
+              }
+            ],
+            "raw_period": 57.609343642985635,
+            "period": 58,
+            "elapsed": 59,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2022-05-12",
+          "activation": "2022-05-13",
+          "reason": {
+            "vix_mean": 32.338,
+            "vix_window": [
+              {
+                "date": "2022-05-05 00:00:00",
+                "raw": 31.2,
+                "value": 31.2,
+                "filled": false
+              },
+              {
+                "date": "2022-05-06 00:00:00",
+                "raw": 30.19,
+                "value": 30.19,
+                "filled": false
+              },
+              {
+                "date": "2022-05-09 00:00:00",
+                "raw": 34.75,
+                "value": 34.75,
+                "filled": false
+              },
+              {
+                "date": "2022-05-10 00:00:00",
+                "raw": 32.99,
+                "value": 32.99,
+                "filled": false
+              },
+              {
+                "date": "2022-05-11 00:00:00",
+                "raw": 32.56,
+                "value": 32.56,
+                "filled": false
+              }
+            ],
+            "raw_period": 48.19524840674445,
+            "period": 48,
+            "elapsed": 51,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2022-09-02",
+          "activation": "2022-09-06",
+          "reason": {
+            "vix_mean": 25.881999999999998,
+            "vix_window": [
+              {
+                "date": "2022-08-26 00:00:00",
+                "raw": 25.56,
+                "value": 25.56,
+                "filled": false
+              },
+              {
+                "date": "2022-08-29 00:00:00",
+                "raw": 26.21,
+                "value": 26.21,
+                "filled": false
+              },
+              {
+                "date": "2022-08-30 00:00:00",
+                "raw": 26.21,
+                "value": 26.21,
+                "filled": false
+              },
+              {
+                "date": "2022-08-31 00:00:00",
+                "raw": 25.87,
+                "value": 25.87,
+                "filled": false
+              },
+              {
+                "date": "2022-09-01 00:00:00",
+                "raw": 25.56,
+                "value": 25.56,
+                "filled": false
+              }
+            ],
+            "raw_period": 75.23758911034065,
+            "period": 75,
+            "elapsed": 78,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2023-02-23",
+          "activation": "2023-02-24",
+          "reason": {
+            "vix_mean": 20.716,
+            "vix_window": [
+              {
+                "date": "2023-02-15 00:00:00",
+                "raw": 18.23,
+                "value": 18.23,
+                "filled": false
+              },
+              {
+                "date": "2023-02-16 00:00:00",
+                "raw": 20.17,
+                "value": 20.17,
+                "filled": false
+              },
+              {
+                "date": "2023-02-17 00:00:00",
+                "raw": 20.02,
+                "value": 20.02,
+                "filled": false
+              },
+              {
+                "date": "2023-02-21 00:00:00",
+                "raw": 22.87,
+                "value": 22.87,
+                "filled": false
+              },
+              {
+                "date": "2023-02-22 00:00:00",
+                "raw": 22.29,
+                "value": 22.29,
+                "filled": false
+              }
+            ],
+            "raw_period": 117.44072719894805,
+            "period": 117,
+            "elapsed": 118,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2023-10-04",
+          "activation": "2023-10-05",
+          "reason": {
+            "vix_mean": 18.094,
+            "vix_window": [
+              {
+                "date": "2023-09-27 00:00:00",
+                "raw": 18.22,
+                "value": 18.22,
+                "filled": false
+              },
+              {
+                "date": "2023-09-28 00:00:00",
+                "raw": 17.34,
+                "value": 17.34,
+                "filled": false
+              },
+              {
+                "date": "2023-09-29 00:00:00",
+                "raw": 17.52,
+                "value": 17.52,
+                "filled": false
+              },
+              {
+                "date": "2023-10-02 00:00:00",
+                "raw": 17.61,
+                "value": 17.61,
+                "filled": false
+              },
+              {
+                "date": "2023-10-03 00:00:00",
+                "raw": 19.78,
+                "value": 19.78,
+                "filled": false
+              }
+            ],
+            "raw_period": 153.94350290548203,
+            "period": 154,
+            "elapsed": 154,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2024-07-25",
+          "activation": "2024-07-26",
+          "reason": {
+            "vix_mean": 16.024,
+            "vix_window": [
+              {
+                "date": "2024-07-18 00:00:00",
+                "raw": 15.93,
+                "value": 15.93,
+                "filled": false
+              },
+              {
+                "date": "2024-07-19 00:00:00",
+                "raw": 16.52,
+                "value": 16.52,
+                "filled": false
+              },
+              {
+                "date": "2024-07-22 00:00:00",
+                "raw": 14.91,
+                "value": 14.91,
+                "filled": false
+              },
+              {
+                "date": "2024-07-23 00:00:00",
+                "raw": 14.72,
+                "value": 14.72,
+                "filled": false
+              },
+              {
+                "date": "2024-07-24 00:00:00",
+                "raw": 18.04,
+                "value": 18.04,
+                "filled": false
+              }
+            ],
+            "raw_period": 196.28570125341196,
+            "period": 196,
+            "elapsed": 202,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-02-28",
+          "activation": "2025-03-03",
+          "reason": {
+            "vix_mean": 19.369999999999997,
+            "vix_window": [
+              {
+                "date": "2025-02-21 00:00:00",
+                "raw": 18.21,
+                "value": 18.21,
+                "filled": false
+              },
+              {
+                "date": "2025-02-24 00:00:00",
+                "raw": 18.98,
+                "value": 18.98,
+                "filled": false
+              },
+              {
+                "date": "2025-02-25 00:00:00",
+                "raw": 19.43,
+                "value": 19.43,
+                "filled": false
+              },
+              {
+                "date": "2025-02-26 00:00:00",
+                "raw": 19.1,
+                "value": 19.1,
+                "filled": false
+              },
+              {
+                "date": "2025-02-27 00:00:00",
+                "raw": 21.13,
+                "value": 21.13,
+                "filled": false
+              }
+            ],
+            "raw_period": 134.3294680739633,
+            "period": 134,
+            "elapsed": 149,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-04-10",
+          "activation": "2025-04-11",
+          "reason": {
+            "vix_mean": 41.652,
+            "vix_window": [
+              {
+                "date": "2025-04-03 00:00:00",
+                "raw": 30.02,
+                "value": 30.02,
+                "filled": false
+              },
+              {
+                "date": "2025-04-04 00:00:00",
+                "raw": 45.31,
+                "value": 45.31,
+                "filled": false
+              },
+              {
+                "date": "2025-04-07 00:00:00",
+                "raw": 46.98,
+                "value": 46.98,
+                "filled": false
+              },
+              {
+                "date": "2025-04-08 00:00:00",
+                "raw": 52.33,
+                "value": 52.33,
+                "filled": false
+              },
+              {
+                "date": "2025-04-09 00:00:00",
+                "raw": 33.62,
+                "value": 33.62,
+                "filled": false
+              }
+            ],
+            "raw_period": 29.050848197614826,
+            "period": 29,
+            "elapsed": 29,
+            "due": true,
+            "reason": "vix"
+          }
+        },
+        {
+          "cutoff": "2025-10-16",
+          "activation": "2025-10-17",
+          "reason": {
+            "vix_mean": 19.714000000000002,
+            "vix_window": [
+              {
+                "date": "2025-10-09 00:00:00",
+                "raw": 16.43,
+                "value": 16.43,
+                "filled": false
+              },
+              {
+                "date": "2025-10-10 00:00:00",
+                "raw": 21.66,
+                "value": 21.66,
+                "filled": false
+              },
+              {
+                "date": "2025-10-13 00:00:00",
+                "raw": 19.03,
+                "value": 19.03,
+                "filled": false
+              },
+              {
+                "date": "2025-10-14 00:00:00",
+                "raw": 20.81,
+                "value": 20.81,
+                "filled": false
+              },
+              {
+                "date": "2025-10-15 00:00:00",
+                "raw": 20.64,
+                "value": 20.64,
+                "filled": false
+              }
+            ],
+            "raw_period": 129.6823978242422,
+            "period": 130,
+            "elapsed": 130,
+            "due": true,
+            "reason": "vix"
+          }
+        }
+      ],
+      "reward_nav_error": -1.9984014443252818e-15,
+      "record": "experiments\\v11_ppo\\records\\known_ppo_v11_vix_mix_known_seed4_adaptive_20261007_1.json",
+      "record_sha256": "dfb7d46091d02a19b95f64a78615a6f1fc35863dcf4358d87ed46ef9e62fc98e",
+      "responsiveness": {
+        "method": "cyclic_shift_first_12_market_and_rate_dimensions",
+        "account_and_rule_dimensions_preserved": true,
+        "action_change_ratio": 0.06387225548902195,
+        "original_action_types": [
+          0,
+          1,
+          2
+        ],
+        "perturbed_action_types": [
+          0,
+          1,
+          2
+        ],
+        "eligible": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "status": "IMPLEMENTED_SMOKE_VERIFIED_NOT_FORMALLY_TRAINED",
+  "tests_passed": 19,
+  "initial_requested_transitions": 200000,
+  "initial_expected_transitions": 200704,
+  "fine_tune_transitions": 32768,
+  "smoke_records": [
+    {
+      "arm": "ppo_v11_fixed_nav",
+      "record": "experiments/v11_ppo/records/smoke_ppo_v11_fixed_nav_fold_1_seed0_smoke_implementation1.json",
+      "record_sha256": "7d9b3ad7f2b30377b4513625dccb63ecb292eaebc26904dc2d24816c1f089297",
+      "total_transitions": 53248,
+      "seconds": 291.71348019992,
+      "reward_nav_error": 2.0122792321330962e-16,
+      "training_responsive": [
+        true,
+        true
+      ],
+      "scoring_responsive": false,
+      "update_losses": [
+        {
+          "train/entropy_loss": -0.9561383116990327,
+          "train/policy_gradient_loss": -0.00300801042249077,
+          "train/value_loss": 0.00039467973465434625,
+          "train/loss": -0.0058929151855409145
+        },
+        {
+          "train/entropy_loss": -0.6917920354753733,
+          "train/policy_gradient_loss": -0.001502290685311891,
+          "train/value_loss": 0.000164402888094628,
+          "train/loss": -0.002260687295347452
+        }
+      ]
+    },
+    {
+      "arm": "ppo_v11_vix_mix",
+      "record": "experiments/v11_ppo/records/smoke_ppo_v11_vix_mix_fold_1_seed0_smoke_implementation1.json",
+      "record_sha256": "74dff448d4c7bf9be70b0e72ec3ccc178fe63140cdb037c72c2d59c1bead2e45",
+      "total_transitions": 53248,
+      "seconds": 292.29186669993214,
+      "reward_nav_error": 2.0122792321330962e-16,
+      "training_responsive": [
+        true,
+        true
+      ],
+      "scoring_responsive": false,
+      "update_losses": [
+        {
+          "train/entropy_loss": -0.9941907368600369,
+          "train/policy_gradient_loss": -0.0025522649826598353,
+          "train/value_loss": 0.00037898804230280804,
+          "train/loss": 0.0020905062556266785
+        },
+        {
+          "train/entropy_loss": -0.7230122162029147,
+          "train/policy_gradient_loss": -0.0012208491018100176,
+          "train/value_loss": 0.00016242754170434637,
+          "train/loss": 0.0001957528875209391
+        }
+      ]
+    },
+    {
+      "arm": "ppo_v11_vix_nav",
+      "record": "experiments/v11_ppo/records/smoke_ppo_v11_vix_nav_fold_1_seed0_smoke_implementation1.json",
+      "record_sha256": "b738aa5270fb3d3463726c8253cedb8f24570bc36158074c35b5003b4bcf1bd7",
+      "total_transitions": 53248,
+      "seconds": 224.82281809998676,
+      "reward_nav_error": 2.0122792321330962e-16,
+      "training_responsive": [
+        true,
+        true
+      ],
+      "scoring_responsive": false,
+      "update_losses": [
+        {
+          "train/entropy_loss": -0.9561383116990327,
+          "train/policy_gradient_loss": -0.00300801042249077,
+          "train/value_loss": 0.00039467973465434625,
+          "train/loss": -0.0058929151855409145
+        },
+        {
+          "train/entropy_loss": -0.6917920354753733,
+          "train/policy_gradient_loss": -0.001502290685311891,
+          "train/value_loss": 0.000164402888094628,
+          "train/loss": -0.002260687295347452
+        }
+      ]
+    }
+  ],
+  "formal_executed": false,
+  "known_period_executed": false,
+  "source_tree_sha256": {
+    "src/victim_ppo/v11/__init__.py": "9a73115324dd3c869d8dc5e95389f2e6a8bc25973351949fde6fa0c233e50748",
+    "src/victim_ppo/v11/config.py": "da9440643503845d9d0d26d8861e35671f4fb0200a399b3641b70b56950693bd",
+    "src/victim_ppo/v11/data.py": "09aeb8a060f9b6ba730d4a9c2f590e57b7219d2ef959d90b47cfb663290b3039",
+    "src/victim_ppo/v11/environment.py": "a6eb1c0c29536024de1852d654becdd97a031babe1170570a307067a635182e4",
+    "src/victim_ppo/v11/policy.py": "b2c969a1f74a1c38d0335c6d3b4fbf581f24f478f60352330a222c6cde67a49f",
+    "src/victim_ppo/v11/runner.py": "7dfd963fc5b19508eb786d9dadb946d9c2645f174d76e83fb931290297c9e5ea",
+    "scripts/record_source_manifest.py": "64545c9e747abf5863a61816cdb8c399b7dfaf4821afcce40bda67de4761c275",
+    "scripts/run_ppo_v11.py": "57f1be51409919d2b95de9739b4485d1c0fe057ff7c732beb7fa98d805544a71",
+    "scripts/summarize_checks.py": "2b2d818cfc012d007c00904beb070f70615c69c3fa0640705c534a405cd781b4",
+    "tests/conftest.py": "abac28df39aa1abd75ac02acf5437d1bd6899b573fc0b0bc69686cf53f27067f",
+    "tests/test_v11.py": "bfee80f36847b8ccdb92f49d6b4594edeabb1ab3cdffc2ce3fc6972372a09888",
+    "tests/test_v11_reward_sequence.py": "396f1ade5b8c07d4b9aaeba2d4cf1f3ee5da390590eeca90c3171459fe6f3534"
+  }
+}
