@@ -39,7 +39,11 @@ def preflight(root, config):
     # All development values must satisfy the documented missing-data rule.
     for index in range(251, len(data.sessions)):
         schedule_at(data.vix, index, 251)
-    source_manifest = root/'SOURCE_MANIFEST.json'
+    # Fresh clones validate recorded Git content and hash local line endings;
+    # original experiment manifests remain untouched for historical audits.
+    source_manifest = root/'LOCAL_SOURCE_MANIFEST.json'
+    if not source_manifest.exists():
+        source_manifest = root/'SOURCE_MANIFEST.json'
     if not source_manifest.exists():
         raise FileNotFoundError('SOURCE_MANIFEST.json required')
     source = json.loads(source_manifest.read_text(encoding='utf-8'))

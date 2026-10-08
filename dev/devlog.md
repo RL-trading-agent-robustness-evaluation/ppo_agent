@@ -615,3 +615,9 @@ entry identifies whether a change was made by Codex, the user, or an external to
 - 保留Git已追蹤的V4／V9／V10歷史文件與紀錄；victimagent仍使用原submodule commit f4988db5c98d9248533c4ca852cc48ca3f6b7aad，不把虛擬環境或licensed datasets送上GitHub。
 - 發布範圍：V11 source/config、研究規格、代理Prompt、22測試與smoke驗證紀錄、五seeds adaptive 2022–2025結果、provenance及devlog。模型checkpoints、raw/processed datasets與runtime artifacts繼續依既有ignore rules排除。
 - V11五模型已完成；沒有修改既有訓練參數、重跑模型或影響目前背景V12執行。
+
+## 2026-10-08 — V11 已推送與 fresh-clone 審計支援
+
+- 使用者明確確認將source／specs／devlog／logs／results發布至既有ppo_agent的v11-adaptive-policy。首次commit ecc56eb已成功push，datasets／模型artifacts依原ignore保留本機。
+- 為本機重現新增LOCAL_RUN指引及prepare_local_clone helper：原SOURCE_MANIFEST保存，source對recorded Git commits做LF／CRLF等價檢查，資料維持exact hashes；生成ignored LOCAL_SOURCE_MANIFEST供preflight使用，排除generated egg-info。
+- 4個新的clone audit測試全部通過：line endings與metadata、source修改拒絕、資料修改拒絕、資料缺失停止。沒有改PPO、reward或VIX政策；V12隔離engine與背景訓練不受影響。

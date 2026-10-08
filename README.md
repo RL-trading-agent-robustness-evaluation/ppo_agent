@@ -1,5 +1,7 @@
 # PPO V11 — 200k chronological adaptive policy
 
+Fresh GitHub clones: see [local installation, required inputs and audit setup](docs/LOCAL_RUN.md).
+
 本目錄實作 [V11 規格](docs/PPO_V11_ADAPTIVE_POLICY_REWARD_SPEC_ZH_HANT.md) 與 [代理 Prompt](docs/prompts/PPO_V11_IMPLEMENTATION_PROMPT_ZH_HANT.md)。使用者修訂版本為 `v11spec2_200k`：初始化請求 **200,000** transitions，SB3 完整 rollout 為 **200,704**；每次 fine-tune **32,768**，不是整條多年 trajectory 的總步數。
 
 保留 V10 的 ledger、SPY features、SMA-200 gate、五日規則與 PPO hyperparameters。新增程式位於 `src/victim_ppo/v11/`；沿用檔案與來源 commits/hashes 見 `SOURCE_MANIFEST.json`。未複製 Git metadata、虛擬環境或舊 checkpoints/results；local licensed processed data 仍由 `.gitignore` 排除。
@@ -12,7 +14,7 @@
 # 在 ppo_v11 目錄執行
 $ppoPython = '..\ppo_v10\.venv\Scripts\python.exe'
 & $ppoPython scripts/run_ppo_v11.py --preflight
-& $ppoPython -m pytest tests
+& $ppoPython -m pytest tests/test_v11.py tests/test_v11_reward_sequence.py tests/test_local_clone.py
 & $ppoPython scripts/run_ppo_v11.py --smoke --arm ppo_v11_vix_nav --tag smoke1
 & $ppoPython scripts/run_ppo_v11.py --smoke --arm ppo_v11_vix_mix --tag smoke1
 & $ppoPython scripts/run_ppo_v11.py --smoke --arm ppo_v11_fixed_nav --tag smoke1
