@@ -1,0 +1,339 @@
+{
+  "status": "PASS",
+  "error": null,
+  "formal": true,
+  "algorithm": "PPO",
+  "arm": "v9_trend_gate",
+  "ppo_arm": "ppo_v9_gate_nav",
+  "fold": "fold_2",
+  "seed": 1,
+  "total_timesteps": 500000,
+  "created_at_utc": "2026-09-30T09:59:26.892144+00:00",
+  "known_period_accessed": false,
+  "preflight": {
+    "status": "PASS",
+    "victimagent_commit": "f4988db5c98d9248533c4ca852cc48ca3f6b7aad",
+    "ppo_repo_commit": "2bbad36d42dfc4f075c52c22dad5de4f1a7e29dc",
+    "required_raw_files": [
+      "crsp_dsf_spy_1993_2008.csv",
+      "crsp_dsf_spy_tlt_gld_2009_2025.csv",
+      "stkdistributions_spy_1993_2008.csv",
+      "stkdistributions_spy_tlt_gld_2009_2025.csv",
+      "DGS3MO_1993_2008.csv",
+      "DGS3MO_2009_2025.csv"
+    ],
+    "missing_raw_files": [],
+    "known_period_accessed": false,
+    "ppo_config_sha256": "289ced9859416ce588d5a10c60f495f0bee4a9b8870f1b31aa7437e8a425a012",
+    "upstream": {
+      "status": "PASS",
+      "git_commit": "f4988db5c98d9248533c4ca852cc48ca3f6b7aad",
+      "known_period_accessed": false,
+      "config_sha256": {
+        "configs/v8_final.yaml": "866a9b7b2eaf7d78dae5d8c47931ceaad396c10762b1fc142b4c56d89df2a6d7",
+        "configs/v8_folds.yaml": "6b376b74b63c463a5970bbc19081f380536535f7e6d046300a04babcfe3eb0ea",
+        "configs/dqn_v2_search.yaml": "bd87d5246f48557bf414145257b40e3c60837c558683e72cdded363ef091a28c"
+      },
+      "data_build": {
+        "raw_sha256": {
+          "crsp_dsf_spy_1993_2008.csv": "f0f5991198e196fffe9e7dfde47b73694e88a823748a1cdd78ff8f27380399bc",
+          "crsp_dsf_spy_tlt_gld_2009_2025.csv": "3448d24ac6f7ac82cb982db27187ab6daa5614f2431b824eabd670332993eb98",
+          "stkdistributions_spy_1993_2008.csv": "a0b0632be384ed3fccdfb2a6c5d39492dc4f47ce710db9bdb5d5aa1d46f4f4c5",
+          "stkdistributions_spy_tlt_gld_2009_2025.csv": "6e0f2b756c5663f23e1ab34cc3e27a0806d8a50f4f605c649bd705f161a2a288",
+          "DGS3MO_1993_2008.csv": "b1409435f79906df7c6dd7f7d2d91a53be8a6bc6132b4c40554f39aaf1782fff",
+          "DGS3MO_2009_2025.csv": "c8cea3d1d9b96e912335925ed138a686e7f4b65a3a37222df95f6e046495caed"
+        },
+        "processed_sha256": {
+          "data/processed/v8/spy_market_1993_2025.csv": "281ed8c0530720b5cedf4abd7e9288375dad4fe073f55b0b814560ebcb54af9b",
+          "data/interim/v8/spy_cash_distributions_1993_2025.csv": "a981523e00b05e804091bf4671835bade363559215403614344bf5a099541668"
+        }
+      },
+      "fold_audit": {
+        "status": "PASS",
+        "global_checks": {
+          "dates_parse": true,
+          "expanding_train_start_is_constant": true,
+          "validation_windows_do_not_overlap": true,
+          "all_selection_dates_end_before_2022": true,
+          "lagged_cash_rate_is_available": true
+        },
+        "per_fold": {
+          "fold_1": {
+            "train_precedes_validation": true,
+            "no_train_validation_overlap": true,
+            "each_fold_has_at_least_one_full_504_decision_training_episode": true,
+            "warmup_coverage_is_available": true,
+            "corporate_action_coverage_is_available": true,
+            "validation_has_sessions": true
+          },
+          "fold_2": {
+            "train_precedes_validation": true,
+            "no_train_validation_overlap": true,
+            "each_fold_has_at_least_one_full_504_decision_training_episode": true,
+            "warmup_coverage_is_available": true,
+            "corporate_action_coverage_is_available": true,
+            "validation_has_sessions": true
+          },
+          "fold_3": {
+            "train_precedes_validation": true,
+            "no_train_validation_overlap": true,
+            "each_fold_has_at_least_one_full_504_decision_training_episode": true,
+            "warmup_coverage_is_available": true,
+            "corporate_action_coverage_is_available": true,
+            "validation_has_sessions": true
+          }
+        }
+      },
+      "python": "3.14.4",
+      "packages": {
+        "stable-baselines3": "2.9.0",
+        "torch": "2.14.0",
+        "numpy": "2.5.3",
+        "gymnasium": "1.3.0",
+        "pandas": "2.3.3"
+      }
+    }
+  },
+  "hyperparameters": {
+    "learning_rate_schedule": "linear",
+    "learning_rate_initial": 0.0003,
+    "learning_rate_final": 3e-05,
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "normalize_advantage": true,
+    "ent_coef": 0.0,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "policy_net_arch": [
+      64,
+      64
+    ],
+    "activation_fn": "Tanh"
+  },
+  "scaler": {
+    "columns": [
+      "log_return_1",
+      "log_return_5",
+      "close_to_sma_5",
+      "close_to_sma_20",
+      "close_to_sma_60",
+      "realized_volatility_20",
+      "close_to_sma_200",
+      "log_return_126",
+      "log_return_252",
+      "realized_volatility_60",
+      "volatility_ratio_20_60",
+      "cash_rate_known"
+    ],
+    "mean": [
+      0.0003397672640861329,
+      0.0017139083718540878,
+      0.0007057887484903826,
+      0.003406875323702393,
+      0.010561279917550109,
+      0.1598123766493586,
+      0.03609824430798464,
+      0.04285564496093918,
+      0.08463857729971334,
+      0.16654174425604387,
+      0.9634964586040503,
+      0.025382457964985266
+    ],
+    "scale": [
+      0.011954065410611055,
+      0.024404748138569923,
+      0.012245259543454071,
+      0.02516968945072352,
+      0.04308033688920761,
+      0.09581479480785339,
+      0.08382609227447729,
+      0.11774529981658069,
+      0.17539250415948304,
+      0.08863274030941622,
+      0.22829266613957264,
+      0.022587384458736783
+    ]
+  },
+  "train_window": {
+    "rows": 5769,
+    "first_date": "1994-02-01",
+    "last_date": "2016-12-30",
+    "cash_distribution_events": 94,
+    "trend_up_share": 0.7441497659906396
+  },
+  "validation_window": {
+    "rows": 502,
+    "first_date": "2017-01-03",
+    "last_date": "2018-12-31",
+    "cash_distribution_events": 8,
+    "trend_up_share": 0.9183266932270916
+  },
+  "checkpoint_path": "artifacts/checkpoints/v9_ppo/ppo_v9_gate_nav_fold_2_seed1_v9spec1.zip",
+  "checkpoint_sha256": "56f8d839c142eb7a07db4c3c4958ff8af38016a54091a8cafd0629af2fd5068e",
+  "train_seconds": 11188.8,
+  "requested_timesteps": 500000,
+  "actual_timesteps": 501760,
+  "final_logged_loss": 0.003422444686293602,
+  "tensorboard_path": "tensorboard/v9_ppo/ppo_v9_gate_nav_fold_2_seed1_v9spec1",
+  "training_log_path": "artifacts/logs/v9_ppo/ppo_v9_gate_nav_fold_2_seed1_v9spec1",
+  "technical_pass": true,
+  "evaluation_state_unchanged": true,
+  "reward_nav_error": 2.6645352591003757e-15,
+  "responsiveness": {
+    "method": "cyclic_shift_first_12_market_and_rate_dimensions",
+    "account_and_rule_dimensions_preserved": true,
+    "action_change_ratio": 0.1656686626746507,
+    "original_action_types": [
+      0,
+      1,
+      2
+    ],
+    "perturbed_action_types": [
+      0,
+      1,
+      2
+    ],
+    "eligible": true
+  },
+  "state_responsive": true,
+  "near_constant_policy": false,
+  "trajectory_path": "artifacts/trajectories/v9_ppo/ppo_v9_gate_nav_fold_2_seed1_v9spec1_validation.csv",
+  "trajectory_sha256": "eb325db82f1bd1bfcff320a905348e478030af196afa8619d76eb31d890ea080",
+  "agent_action_distribution": {
+    "0": 0.13373253493013973,
+    "1": 0.6746506986027944,
+    "2": 0.19161676646706588
+  },
+  "gated_action_distribution": {
+    "0": 0.017964071856287425,
+    "1": 0.003992015968063872,
+    "2": 0.9780439121756487
+  },
+  "executed_action_distribution": {
+    "0": 0.003992015968063872,
+    "1": 0.003992015968063872,
+    "2": 0.9141716566866267,
+    "None": 0.07784431137724551
+  },
+  "gate_override_share": 0.7864271457085829,
+  "gate_forced_share": 0.9201596806387226,
+  "steps": 501,
+  "start_date": "2017-01-03",
+  "end_date": "2018-12-31",
+  "final_wealth": 1.2484383719019823,
+  "cagr": 0.11793235256737367,
+  "annualized_mean_excess_return": 0.10465577855410214,
+  "annualized_mean_gross_excess_return": 0.10768339060621125,
+  "sharpe_excess_cash": 0.8545976615864096,
+  "annualized_volatility": 0.12243252220053398,
+  "max_drawdown": -0.12356728243344517,
+  "average_exposure": 0.9621058207583144,
+  "total_turnover": 6.019181103597876,
+  "number_of_trades": 16,
+  "total_transaction_cost": 7185.811390000001,
+  "action_distribution": {
+    "0": 0.13373253493013973,
+    "1": 0.6746506986027944,
+    "2": 0.19161676646706588
+  },
+  "baselines": {
+    "cash": {
+      "steps": 501,
+      "start_date": "2017-01-03",
+      "end_date": "2018-12-31",
+      "final_wealth": 1.0292080150758445,
+      "cagr": 0.014569206668917145,
+      "annualized_mean_excess_return": 1.47150012593449e-17,
+      "annualized_mean_gross_excess_return": 1.47150012593449e-17,
+      "sharpe_excess_cash": null,
+      "annualized_volatility": 0.0006844517932420675,
+      "max_drawdown": 0.0,
+      "average_exposure": 0.0,
+      "total_turnover": 0.0,
+      "number_of_trades": 0,
+      "total_transaction_cost": 0.0,
+      "action_distribution": {
+        "0": 1.0
+      }
+    },
+    "buy_and_hold": {
+      "steps": 501,
+      "start_date": "2017-01-03",
+      "end_date": "2018-12-31",
+      "final_wealth": 1.1510616812248984,
+      "cagr": 0.07323881706030533,
+      "annualized_mean_excess_return": 0.06430412999469541,
+      "annualized_mean_gross_excess_return": 0.06480653034295887,
+      "sharpe_excess_cash": 0.5081413307480833,
+      "annualized_volatility": 0.12650775197339692,
+      "max_drawdown": -0.1875748977764874,
+      "average_exposure": 0.9839648366338241,
+      "total_turnover": 0.99881974,
+      "number_of_trades": 1,
+      "total_transaction_cost": 998.81974,
+      "action_distribution": {
+        "-1": 0.998003992015968,
+        "2": 0.001996007984031936
+      }
+    },
+    "constant_50": {
+      "steps": 501,
+      "start_date": "2017-01-03",
+      "end_date": "2018-12-31",
+      "final_wealth": 1.091481158833717,
+      "cagr": 0.04495991853142156,
+      "annualized_mean_excess_return": 0.031647723234975826,
+      "annualized_mean_gross_excess_return": 0.032239900033807,
+      "sharpe_excess_cash": 0.4884440396922903,
+      "annualized_volatility": 0.06475479452189996,
+      "max_drawdown": -0.09794375844851211,
+      "average_exposure": 0.49987988821521423,
+      "total_turnover": 1.1773038738667434,
+      "number_of_trades": 469,
+      "total_transaction_cost": 1244.409495,
+      "action_distribution": {
+        "1": 1.0
+      }
+    },
+    "sma_200_gate_only": {
+      "steps": 501,
+      "start_date": "2017-01-03",
+      "end_date": "2018-12-31",
+      "final_wealth": 1.1184372934581885,
+      "cagr": 0.05784694353050712,
+      "annualized_mean_excess_return": 0.048190761948404916,
+      "annualized_mean_gross_excess_return": 0.05222382072307395,
+      "sharpe_excess_cash": 0.4280026616295048,
+      "annualized_volatility": 0.1125541559449052,
+      "max_drawdown": -0.16378005147434893,
+      "average_exposure": 0.9261699954452809,
+      "total_turnover": 8.01810494487776,
+      "number_of_trades": 15,
+      "total_transaction_cost": 9387.87155,
+      "action_distribution": {
+        "0": 1.0
+      },
+      "action_trace": {
+        "agent_action_distribution": {
+          "0": 1.0
+        },
+        "gated_action_distribution": {
+          "0": 0.07984031936127745,
+          "2": 0.9201596806387226
+        },
+        "executed_action_distribution": {
+          "0": 0.031936127744510975,
+          "2": 0.8882235528942116,
+          "None": 0.07984031936127745
+        },
+        "gate_override_share": 0.9201596806387226,
+        "gate_forced_share": 0.9201596806387226
+      }
+    }
+  },
+  "log_relative_wealth_vs_buy_and_hold": 0.08120875025460776
+}

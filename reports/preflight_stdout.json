@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "data_hashes": {
+    "market": "281ed8c0530720b5cedf4abd7e9288375dad4fe073f55b0b814560ebcb54af9b",
+    "events": "a981523e00b05e804091bf4671835bade363559215403614344bf5a099541668",
+    "vix": "675f9bcb86ee88799f8f7a8b7ee9c30f7a0be26a26df8f9549bddf9e84c4a598"
+  },
+  "implementation_hashes": {
+    "src/victim_ppo/v11/__init__.py": "9a73115324dd3c869d8dc5e95389f2e6a8bc25973351949fde6fa0c233e50748",
+    "src/victim_ppo/v11/config.py": "da9440643503845d9d0d26d8861e35671f4fb0200a399b3641b70b56950693bd",
+    "src/victim_ppo/v11/data.py": "09aeb8a060f9b6ba730d4a9c2f590e57b7219d2ef959d90b47cfb663290b3039",
+    "src/victim_ppo/v11/environment.py": "a6eb1c0c29536024de1852d654becdd97a031babe1170570a307067a635182e4",
+    "src/victim_ppo/v11/policy.py": "b2c969a1f74a1c38d0335c6d3b4fbf581f24f478f60352330a222c6cde67a49f",
+    "src/victim_ppo/v11/runner.py": "7dfd963fc5b19508eb786d9dadb946d9c2645f174d76e83fb931290297c9e5ea",
+    "scripts/record_source_manifest.py": "64545c9e747abf5863a61816cdb8c399b7dfaf4821afcce40bda67de4761c275",
+    "scripts/run_ppo_v11.py": "57f1be51409919d2b95de9739b4485d1c0fe057ff7c732beb7fa98d805544a71"
+  },
+  "config_sha256": "69a5b308ccccdae5d800860c2ac5c152bc1bf3e417fe196808d6395ad1601932",
+  "spec_sha256": "cc6b80ad7c708afb86ac5c200d748defd138a2e41252a5193a12edadd3304279",
+  "prompt_sha256": "002d7a1f167490eda497b6c39a4f27975fbb8249afae6739ecd1a030cb988812",
+  "parent_commit": "f4988db5c98d9248533c4ca852cc48ca3f6b7aad",
+  "source_manifest_sha256": "fc00844c8b4c141ab3c952ae111e235ce2f0abb7fab7f4378e3a4bb68a614727",
+  "initial_requested": 200000,
+  "initial_expected": 200704,
+  "fine_tune_transitions": 32768,
+  "scaler_sha256": "ac363bc12ccee1f1e229a19f29c24a0abcc137d449da47613e7d0156603f79a1",
+  "initialization_date": "2010-12-31",
+  "packages": {
+    "stable-baselines3": "2.9.0",
+    "torch": "2.14.0",
+    "gymnasium": "1.3.0",
+    "numpy": "2.5.3",
+    "pandas": "2.3.3"
+  },
+  "known_period_accessed": false,
+  "budget_estimate": {
+    "trajectories": 45,
+    "initial_transitions": 9031680,
+    "per_fold_schedule": {
+      "fold_1": {
+        "vix": {
+          "fine_tunes": 11,
+          "transitions": 561152
+        },
+        "fixed": {
+          "fine_tunes": 11,
+          "transitions": 561152
+        }
+      },
+      "fold_2": {
+        "vix": {
+          "fine_tunes": 15,
+          "transitions": 692224
+        },
+        "fixed": {
+          "fine_tunes": 15,
+          "transitions": 692224
+        }
+      },
+      "fold_3": {
+        "vix": {
+          "fine_tunes": 24,
+          "transitions": 987136
+        },
+        "fixed": {
+          "fine_tunes": 21,
+          "transitions": 888832
+        }
+      }
+    },
+    "total_expected_transitions": 33116160,
+    "note": "Calendar-derived exact update counts on current development data; CPU time measured by smoke."
+  }
+}

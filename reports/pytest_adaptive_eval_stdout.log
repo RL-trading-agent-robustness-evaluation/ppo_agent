@@ -1,0 +1,12 @@
+......................                                                   [100%]
+============================== warnings summary ===============================
+tests/test_v11.py: 14 warnings
+  C:\03_College\Grad_proj\ppo_v10\.venv\Lib\site-packages\gymnasium\spaces\box.py:231: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+    gym.logger.warn(
+
+tests/test_v11.py: 14 warnings
+  C:\03_College\Grad_proj\ppo_v10\.venv\Lib\site-packages\gymnasium\spaces\box.py:297: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+    gym.logger.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+22 passed, 28 warnings in 28.90s

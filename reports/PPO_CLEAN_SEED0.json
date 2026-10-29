@@ -1,0 +1,68 @@
+{
+  "created_at_utc": "2026-09-27T09:04:14.296325+00:00",
+  "algorithm": "PPO",
+  "seed": 0,
+  "test_partition_accessed": false,
+  "known_period_accessed": false,
+  "run_type": "formal",
+  "technical_pass": true,
+  "training": {
+    "partition": "train",
+    "total_timesteps": 200000,
+    "formal_budget": true
+  },
+  "validation": {
+    "steps": 756,
+    "start_date": "2019-01-02",
+    "end_date": "2021-12-31",
+    "final_wealth": 1.48713235796854,
+    "cagr": 0.14167311284775486,
+    "annualized_mean_excess_return": 0.14094925044978998,
+    "annualized_mean_gross_excess_return": 0.1479667850450756,
+    "sharpe_excess_cash": 0.7698623806239713,
+    "annualized_volatility": 0.18306203265460888,
+    "max_drawdown": -0.33684029354661005,
+    "average_exposure": 0.7443289853240204,
+    "total_turnover": 21.05260378585698,
+    "number_of_trades": 329,
+    "total_transaction_cost": 25074.52747,
+    "action_distribution": {
+      "0": 0.037037037037037035,
+      "1": 0.4351851851851852,
+      "2": 0.5277777777777778
+    }
+  },
+  "reward_nav_invariant_error": 1.4432899320127035e-15,
+  "frozen_evaluation": {
+    "parameters_sha256": "4ec5b2f268fca7508f9f974264587cf0aa845e075303b03bea07b745da8ea25e",
+    "optimizer_sha256": "04164cb6630767e5d8ef0b20802c154fb4100fc0fcdb804471ac80e6dd00ccde",
+    "scaler_sha256": "dd560b80e5c5591770b5a7162d6c9a545c19be025dc45d2ee65bbd2e22e57f07",
+    "evaluation_state_unchanged": true
+  },
+  "artifacts": {
+    "checkpoint": "artifacts\\checkpoints\\ppo_v4_seed0.zip",
+    "checkpoint_sha256": "25b6dcc01dcb7591fe8f57e2555a8c87fb95b8e66581389fbd7f2d6a42e1d026",
+    "scaler": "artifacts\\checkpoints\\ppo_v4_seed0.scaler.json",
+    "scaler_sha256": "03e8127d0973324505599dbbb5637ab68f86ae36b4b59c423d7f36792033ae35",
+    "trajectory": "artifacts\\trajectories\\ppo_v4_seed0_validation.csv",
+    "trajectory_sha256": "eea4a5a0a9eefec2fad226d163eaabe5b8e11407364debf21a7c7db184daba64"
+  },
+  "provenance": {
+    "outer_commit": "2bb1d6676cdd8b87f269d967054a97725c636e48",
+    "victimagent_commit": "5701400076bd3ad4fa80dbc86d5687f480c26021",
+    "config_sha256": "5b1f9cde351e3c2899786f224befbe3630cd424c3bec09c55dfe368bc223a372",
+    "split_config_sha256": "20e19c7eff2e40aff35d002b1c9fc7d504ec6cc19532aa4324c59b998a24ad33",
+    "data_sha256": {
+      "market": "dd5ed6c9796551600a182cfd8b51451c326f66f58daeb6daefdc9e5b60626638",
+      "distributions": "a64a8b0254fdfc1032a773ca13de38a10f8707fd26b998434c4f5b73d20dab03"
+    },
+    "python": "3.14.4",
+    "packages": {
+      "stable-baselines3": "2.9.0",
+      "torch": "2.14.0",
+      "numpy": "2.5.3",
+      "gymnasium": "1.3.0",
+      "pandas": "2.3.3"
+    }
+  }
+}

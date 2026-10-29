@@ -1,0 +1,26 @@
+...................                                                      [100%]
+============================== warnings summary ===============================
+tests/test_v11.py::test_reward_identity_same_path_and_reset
+tests/test_v11.py::test_reward_identity_same_path_and_reset
+tests/test_v11.py::test_recent_newest_window_bootstraps
+tests/test_v11.py::test_sampler_reproducible_and_same_across_rewards
+tests/test_v11.py::test_sampler_reproducible_and_same_across_rewards
+tests/test_v11.py::test_action_locked_before_update_and_hold_state_preserved
+tests/test_v11.py::test_resume_roundtrip_and_hash_guard
+tests/test_v11.py::test_resume_roundtrip_and_hash_guard
+  C:\03_College\Grad_proj\ppo_v10\.venv\Lib\site-packages\gymnasium\spaces\box.py:231: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+    gym.logger.warn(
+
+tests/test_v11.py::test_reward_identity_same_path_and_reset
+tests/test_v11.py::test_reward_identity_same_path_and_reset
+tests/test_v11.py::test_recent_newest_window_bootstraps
+tests/test_v11.py::test_sampler_reproducible_and_same_across_rewards
+tests/test_v11.py::test_sampler_reproducible_and_same_across_rewards
+tests/test_v11.py::test_action_locked_before_update_and_hold_state_preserved
+tests/test_v11.py::test_resume_roundtrip_and_hash_guard
+tests/test_v11.py::test_resume_roundtrip_and_hash_guard
+  C:\03_College\Grad_proj\ppo_v10\.venv\Lib\site-packages\gymnasium\spaces\box.py:297: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+    gym.logger.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+19 passed, 16 warnings in 36.56s

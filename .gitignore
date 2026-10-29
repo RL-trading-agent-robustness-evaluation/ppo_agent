@@ -4,8 +4,21 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 .mypy_cache/
+LOCAL_SOURCE_MANIFEST.json
 artifacts/
 data/
 reports/PPO_SMOKE_SEED*.json
 reports/PPO_SMOKE_SEED*.md
+experiments/v9_ppo/attempts/*_smoke*.json
+experiments/v9_ppo/records/*_smoke*.json
+artifacts/checkpoints/v9_ppo/
+artifacts/trajectories/v9_ppo/
+tensorboard/v9_ppo/
+experiments/v10_ppo/attempts/*_smoke*.json
+experiments/v10_ppo/records/*_smoke*.json
+artifacts/checkpoints/v10_ppo/
+artifacts/trajectories/v10_ppo/
+artifacts/logs/v10_ppo/
+artifacts/logs/v10_ppo_pilot_supervisor/
+tensorboard/v10_ppo/
 

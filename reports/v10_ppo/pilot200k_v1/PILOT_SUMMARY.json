@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "label": "development_pilot_not_formal_selection",
+  "fold": "fold_1",
+  "requested_timesteps_per_run": 200000,
+  "actual_timesteps_per_run": 200704,
+  "known_period_accessed": false,
+  "pairs": [
+    {
+      "seed": 0,
+      "control_final_wealth": 1.0408945927863844,
+      "treatment_final_wealth": 1.0020113204698502,
+      "delta_log_wealth": -0.03807122830443259,
+      "control_sharpe": 0.2102390205823749,
+      "treatment_sharpe": 0.05448823963907833,
+      "control_max_drawdown": -0.13786162834259286,
+      "treatment_max_drawdown": -0.19950247388304598,
+      "control_turnover": 17.011330540680675,
+      "treatment_turnover": 15.000537536040266,
+      "control_cost": 16590.77933,
+      "treatment_cost": 13885.585505000001
+    },
+    {
+      "seed": 1,
+      "control_final_wealth": 1.07240540829883,
+      "treatment_final_wealth": 1.0638088492793112,
+      "delta_log_wealth": -0.008048448693094795,
+      "control_sharpe": 0.34231599596699647,
+      "treatment_sharpe": 0.288380792841474,
+      "control_max_drawdown": -0.1203137234365168,
+      "treatment_max_drawdown": -0.16812224934030084,
+      "control_turnover": 9.115854641766436,
+      "treatment_turnover": 11.02325882438574,
+      "control_cost": 9021.923835,
+      "treatment_cost": 10564.16912
+    },
+    {
+      "seed": 2,
+      "control_final_wealth": 1.0800584879108455,
+      "treatment_final_wealth": 1.052632273857963,
+      "delta_log_wealth": -0.02572124059038121,
+      "control_sharpe": 0.3638977296283931,
+      "treatment_sharpe": 0.2535549096763924,
+      "control_max_drawdown": -0.1278849378405188,
+      "treatment_max_drawdown": -0.14289636888446333,
+      "control_turnover": 9.014972168593342,
+      "treatment_turnover": 10.968163692917773,
+      "control_cost": 8825.037980000001,
+      "treatment_cost": 10589.95717
+    },
+    {
+      "seed": 3,
+      "control_final_wealth": 1.0236356496275762,
+      "treatment_final_wealth": 0.9595930695790537,
+      "delta_log_wealth": -0.06460662263143709,
+      "control_sharpe": 0.1438224635160958,
+      "treatment_sharpe": -0.15026184754729638,
+      "control_max_drawdown": -0.15589271431658713,
+      "treatment_max_drawdown": -0.18932040636639114,
+      "control_turnover": 12.998729378621134,
+      "treatment_turnover": 10.985631067722688,
+      "control_cost": 12505.40661,
+      "treatment_cost": 10183.423279999999
+    },
+    {
+      "seed": 4,
+      "control_final_wealth": 1.1062393110044335,
+      "treatment_final_wealth": 1.101254282127535,
+      "delta_log_wealth": -0.004516468239205867,
+      "control_sharpe": 0.42650615536389536,
+      "treatment_sharpe": 0.4017762485937326,
+      "control_max_drawdown": -0.15593675078102875,
+      "treatment_max_drawdown": -0.15414688409540733,
+      "control_turnover": 4.0307568663511715,
+      "treatment_turnover": 4.009327307536413,
+      "control_cost": 3978.33224,
+      "treatment_cost": 3994.29679
+    }
+  ],
+  "positive_pairs": 0,
+  "median_delta_log_wealth": -0.02572124059038121,
+  "mean_delta_log_wealth": -0.02819280169171031,
+  "arm_medians": {
+    "ppo_v10_gate_nav": {
+      "final_wealth": 1.07240540829883,
+      "cagr": 0.03569439317314438,
+      "sharpe_excess_cash": 0.34231599596699647,
+      "max_drawdown": -0.13786162834259286,
+      "average_exposure": 0.8970622871269563,
+      "total_turnover": 9.115854641766436,
+      "total_transaction_cost": 9021.923835
+    },
+    "ppo_v10_gate_nav_streak": {
+      "final_wealth": 1.052632273857963,
+      "cagr": 0.026069056164850224,
+      "sharpe_excess_cash": 0.2535549096763924,
+      "max_drawdown": -0.16812224934030084,
+      "average_exposure": 0.9247212063669488,
+      "total_turnover": 10.985631067722688,
+      "total_transaction_cost": 10564.16912
+    }
+  },
+  "pilot_supports_improvement": false,
+  "caveat": "One-fold 200k development pilot; it does not alter the frozen V10 adoption rule."
+}

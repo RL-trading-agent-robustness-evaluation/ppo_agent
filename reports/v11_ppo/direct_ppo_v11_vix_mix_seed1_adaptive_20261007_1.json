@@ -1,0 +1,7 @@
+{
+  "label": "user_requested_direct_adaptive_known_period_diagnostic",
+  "selection_matrix_completed": false,
+  "adaptive_deployment_allowed": true,
+  "result_label": "ppo_v11_vix_mix_known_seed1_adaptive_20261007_1",
+  "config_sha256": "69a5b308ccccdae5d800860c2ac5c152bc1bf3e417fe196808d6395ad1601932"
+}

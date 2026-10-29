@@ -1,0 +1,217 @@
+{
+  "status": "PASS",
+  "algorithm": "PPO",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "runs_retained": 5,
+  "known_period_accessed": false,
+  "provenance": {
+    "outer_commit": "2bb1d6676cdd8b87f269d967054a97725c636e48",
+    "victimagent_commit": "5701400076bd3ad4fa80dbc86d5687f480c26021",
+    "config_sha256": "5b1f9cde351e3c2899786f224befbe3630cd424c3bec09c55dfe368bc223a372",
+    "split_config_sha256": "20e19c7eff2e40aff35d002b1c9fc7d504ec6cc19532aa4324c59b998a24ad33",
+    "data_sha256": {
+      "market": "dd5ed6c9796551600a182cfd8b51451c326f66f58daeb6daefdc9e5b60626638",
+      "distributions": "a64a8b0254fdfc1032a773ca13de38a10f8707fd26b998434c4f5b73d20dab03"
+    },
+    "python": "3.14.4",
+    "packages": {
+      "stable-baselines3": "2.9.0",
+      "torch": "2.14.0",
+      "numpy": "2.5.3",
+      "gymnasium": "1.3.0",
+      "pandas": "2.3.3"
+    }
+  },
+  "summary": {
+    "final_wealth": {
+      "mean": 1.8617592737441346,
+      "median": 1.9004263271873139,
+      "std": 0.226019799206832,
+      "min": 1.48713235796854,
+      "max": 2.058065706962566,
+      "iqr": 0.16859167022059496
+    },
+    "cagr": {
+      "mean": 0.2288724543575184,
+      "median": 0.23907910285303147,
+      "std": 0.05202561591067717,
+      "min": 0.14167311284775486,
+      "max": 0.2724875799342783,
+      "iqr": 0.03631660301281592
+    },
+    "annualized_mean_excess_return": {
+      "mean": 0.2145724854766229,
+      "median": 0.22625221175312,
+      "std": 0.04405236841512174,
+      "min": 0.14094925044978998,
+      "max": 0.2507978542087837,
+      "iqr": 0.03354576597539699
+    },
+    "sharpe_excess_cash": {
+      "mean": 1.1432788463989687,
+      "median": 1.2456450496530347,
+      "std": 0.2199703312139401,
+      "min": 0.7698623806239713,
+      "max": 1.3102069358860968,
+      "iqr": 0.1438289919207958
+    },
+    "annualized_volatility": {
+      "mean": 0.18751045293866017,
+      "median": 0.1913794078519165,
+      "std": 0.01217315525952098,
+      "min": 0.16908154532782071,
+      "max": 0.2013564030867901,
+      "iqr": 0.009610843117555778
+    },
+    "max_drawdown": {
+      "mean": -0.27652045685130916,
+      "median": -0.2702042701210018,
+      "std": 0.06527813176376362,
+      "min": -0.33685038521502986,
+      "max": -0.17941135172121547,
+      "iqr": 0.07754430989392158
+    },
+    "average_exposure": {
+      "mean": 0.861078980581674,
+      "median": 0.864186568704457,
+      "std": 0.07296211709076426,
+      "min": 0.7443289853240204,
+      "max": 0.9288253822321378,
+      "iqr": 0.06341714324319991
+    },
+    "total_turnover": {
+      "mean": 25.41634518211744,
+      "median": 20.009208980652343,
+      "std": 18.081319695417232,
+      "min": 11.077553941337083,
+      "max": 57.00599629924358,
+      "iqr": 3.1162408823597687
+    },
+    "total_transaction_cost": {
+      "mean": 31316.291102,
+      "median": 23338.32804,
+      "std": 25121.935621946173,
+      "min": 11761.85008,
+      "max": 75306.1029,
+      "iqr": 3973.8804500000006
+    }
+  },
+  "per_seed": [
+    {
+      "seed": 0,
+      "steps": 756,
+      "start_date": "2019-01-02",
+      "end_date": "2021-12-31",
+      "final_wealth": 1.48713235796854,
+      "cagr": 0.14167311284775486,
+      "annualized_mean_excess_return": 0.14094925044978998,
+      "annualized_mean_gross_excess_return": 0.1479667850450756,
+      "sharpe_excess_cash": 0.7698623806239713,
+      "annualized_volatility": 0.18306203265460888,
+      "max_drawdown": -0.33684029354661005,
+      "average_exposure": 0.7443289853240204,
+      "total_turnover": 21.05260378585698,
+      "number_of_trades": 329,
+      "total_transaction_cost": 25074.52747,
+      "action_distribution": {
+        "0": 0.037037037037037035,
+        "1": 0.4351851851851852,
+        "2": 0.5277777777777778
+      }
+    },
+    {
+      "seed": 1,
+      "steps": 756,
+      "start_date": "2019-01-02",
+      "end_date": "2021-12-31",
+      "final_wealth": 2.058065706962566,
+      "cagr": 0.2724875799342783,
+      "annualized_mean_excess_return": 0.2507978542087837,
+      "annualized_mean_gross_excess_return": 0.2567766418432827,
+      "sharpe_excess_cash": 1.3102069358860968,
+      "annualized_volatility": 0.1913794078519165,
+      "max_drawdown": -0.2702042701210018,
+      "average_exposure": 0.9157355549454772,
+      "total_turnover": 17.936362903497212,
+      "number_of_trades": 31,
+      "total_transaction_cost": 21100.64702,
+      "action_distribution": {
+        "0": 0.08068783068783068,
+        "1": 0.003968253968253968,
+        "2": 0.9153439153439153
+      }
+    },
+    {
+      "seed": 2,
+      "steps": 756,
+      "start_date": "2019-01-02",
+      "end_date": "2021-12-31",
+      "final_wealth": 1.9004263271873139,
+      "cagr": 0.23907910285303147,
+      "annualized_mean_excess_return": 0.22625221175312,
+      "annualized_mean_gross_excess_return": 0.22994472973356564,
+      "sharpe_excess_cash": 1.1234254369554726,
+      "annualized_volatility": 0.2013564030867901,
+      "max_drawdown": -0.33685038521502986,
+      "average_exposure": 0.864186568704457,
+      "total_turnover": 11.077553941337083,
+      "number_of_trades": 30,
+      "total_transaction_cost": 11761.85008,
+      "action_distribution": {
+        "0": 0.1283068783068783,
+        "1": 0.011904761904761904,
+        "2": 0.8597883597883598
+      }
+    },
+    {
+      "seed": 3,
+      "steps": 756,
+      "start_date": "2019-01-02",
+      "end_date": "2021-12-31",
+      "final_wealth": 1.8472901531908288,
+      "cagr": 0.22740293656985577,
+      "annualized_mean_excess_return": 0.21065867249801185,
+      "annualized_mean_gross_excess_return": 0.22966067126442638,
+      "sharpe_excess_cash": 1.2456450496530347,
+      "annualized_volatility": 0.16908154532782071,
+      "max_drawdown": -0.17941135172121547,
+      "average_exposure": 0.8523184117022773,
+      "total_turnover": 57.00599629924358,
+      "number_of_trades": 84,
+      "total_transaction_cost": 75306.1029,
+      "action_distribution": {
+        "0": 0.1335978835978836,
+        "1": 0.02513227513227513,
+        "2": 0.8412698412698413
+      }
+    },
+    {
+      "seed": 4,
+      "steps": 756,
+      "start_date": "2019-01-02",
+      "end_date": "2021-12-31",
+      "final_wealth": 2.0158818234114237,
+      "cagr": 0.2637195395826717,
+      "annualized_mean_excess_return": 0.24420443847340884,
+      "annualized_mean_gross_excess_return": 0.25087417480029306,
+      "sharpe_excess_cash": 1.2672544288762684,
+      "annualized_volatility": 0.19267287577216466,
+      "max_drawdown": -0.25929598365268847,
+      "average_exposure": 0.9288253822321378,
+      "total_turnover": 20.009208980652343,
+      "number_of_trades": 35,
+      "total_transaction_cost": 23338.32804,
+      "action_distribution": {
+        "0": 0.06746031746031746,
+        "1": 0.003968253968253968,
+        "2": 0.9285714285714286
+      }
+    }
+  ]
+}

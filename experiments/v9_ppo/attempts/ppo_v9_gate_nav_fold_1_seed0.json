@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "created_at_utc": "2026-09-30T05:02:55.719932+00:00",
+  "arm": "ppo_v9_gate_nav",
+  "fold": "fold_1",
+  "seed": 0,
+  "formal": true
+}
