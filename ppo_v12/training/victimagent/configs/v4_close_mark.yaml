@@ -1,0 +1,40 @@
+version: 1
+status: preregistered_before_v4_training
+purpose: causal_timing_amendment_only
+asset: SPY
+development_cutoff_exclusive: '2022-01-01'
+fold_config: configs/v2_rolling_folds.yaml
+parent_hyperparameters: configs/dqn_v2_search.yaml
+observation: frozen_v3_full_10d_plus_five_rule_state_inputs
+action_weights: [0.0, 0.5, 1.0]
+decision: close_t
+execution: true_raw_open_t_plus_1
+valuation_and_next_observation: close_t_plus_1
+reward: log_true_close_nav_t_plus_1_over_true_close_nav_t
+cash_interest: lagged_dgs3mo_on_cash_at_close_t_before_next_open_events_and_trade
+dividend: ex_date_receivable_before_open_trade_payment_moves_receivable_to_cash
+transaction_cost_bps: 10
+initial_cash: 1000000.0
+episode_decisions: 504
+train_random_start: true
+evaluation_deterministic: true
+evaluation_state_frozen: true
+arms:
+  - v3_control_daily_target
+  - v3_min_hold_five
+folds: [fold_1, fold_2, fold_3]
+seeds: [0, 1, 2, 3, 4]
+timesteps_per_fold_seed: 200000
+baseline_policies: [cash, buy_and_hold, constant_50]
+primary_metric: median_sharpe_excess_lagged_cash
+paired_metrics: [sharpe_excess_cash, annualized_mean_excess_return, total_turnover]
+known_period_accessed: false
+known_period_may_select_model: false
+feature_expansion: deferred_separate_version
+gaussian_observation_noise: deferred_separate_ablation_train_only
+artifact_paths:
+  attempts: experiments/v4_attempts
+  records: experiments/v4_records
+  reports: reports/v4
+  checkpoints: artifacts/checkpoints/v4
+  trajectories: artifacts/trajectories/v4

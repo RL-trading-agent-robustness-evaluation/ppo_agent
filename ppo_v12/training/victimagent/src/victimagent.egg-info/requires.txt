@@ -1,0 +1,10 @@
+gymnasium<2.0,>=1.0
+numpy<3.0,>=1.26
+pandas<3.0,>=2.1
+PyYAML<7.0,>=6.0
+
+[dev]
+pytest<9.0,>=8.0
+
+[rl]
+stable-baselines3==2.9.0

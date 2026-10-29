@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\03_College\Grad_proj\ppo_v12\scripts\compare_existing.py", line 169, in <module>
+    run()
+    ~~~^^
+  File "C:\03_College\Grad_proj\ppo_v12\scripts\compare_existing.py", line 61, in run
+    assert source[str(p)] == config.raw[key+'_sha256'], key
+                             ~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'vix_sha256'

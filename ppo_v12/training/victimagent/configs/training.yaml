@@ -1,0 +1,37 @@
+version: 1
+primary_asset: SPY
+train_partition: train
+validation_partition: validation
+test_partition: test
+
+episode:
+  length_decisions: 504
+  random_start: true
+  start_sampling: uniform
+  initial_cash: 1000000.0
+  force_liquidation_at_end: false
+
+execution:
+  action_weights: [0.0, 0.5, 1.0]
+  transaction_cost_bps: 10.0
+  allow_short: false
+  allow_leverage: false
+
+reproducibility:
+  training_seeds: [0, 1, 2, 3, 4]
+  deterministic_validation: true
+
+preprocessing:
+  normalization_fit_partition: train
+  fit_once_before_training: true
+  update_during_training: false
+  update_during_evaluation: false
+
+evaluation:
+  validation_full_period: true
+  test_locked_until_protocol_freeze: true
+  primary_selection_metric: validation_sharpe_after_costs
+  report_all_seeds: true
+  pre_test_gate: C1
+  one_shot_test_gate: C2
+  test_reconfiguration_forbidden: true

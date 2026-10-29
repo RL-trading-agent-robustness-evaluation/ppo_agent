@@ -1,0 +1,34 @@
+{
+  "user_authorization": "User authorized full training, additional seeds/timesteps, and direct comparisons to new B&H and previous RL versions.",
+  "tag": "full500k_20261008_2",
+  "supervisor_pid": 82124,
+  "created_utc": "2026-10-08T10:44:49.168264+00:00",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "initial_requested": 500000,
+  "initial_actual": 501760,
+  "fine_tune": 32768,
+  "expected_total_per_seed": 1583104,
+  "workers": 2,
+  "arm": "ppo_v12_vix_mix",
+  "adaptive_testing": true,
+  "source_hashes": {
+    "C:\\03_College\\Grad_proj\\ppo_v12\\training\\configs\\ppo_v11.yaml": "39bedd5f7d1ae37f8c37eb2aa6f0d516dcaca73e6d8e02a885fdef32b0946e0c",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\training\\SOURCE_MANIFEST.json": "f2757d06b50207af6dd6744fcf789cc91780d6f738ff6c0d0e98417df7768e2a",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\training\\ENGINE_CHANGES.json": "198f219f5a3a9c177e514c33c399f9bafb5ab3de28d7cf52348161c92c0dd7fd",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\docs\\PPO_V12_FULL_TRAINING_ADDENDUM_ZH_HANT.md": "35bbfeb05719d52ec65d27c5d5ebc34f18ab7d733a1f3de230d83aa337d0875a",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\scripts\\run_full_training_restart.py": "a0773a9b8cee2289e44089cc589b3feb4908f5906d7ea4e10b279e29deffae17",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\training\\src\\victim_ppo\\v11\\config.py": "d42a825f8f017dc18063925567e37d0dd56ef6522cb7ae411822efbf1cfc142f",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\training\\src\\victim_ppo\\v11\\data.py": "2854d703f28e6ef57237176df62af1f8d597847950f7adbab6f4f1c40854ef2d",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\training\\src\\victim_ppo\\v11\\environment.py": "f7e576f2fc6878de527dcd915d7f4252b98428fead35acf08e54f6ab7a23b087",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\training\\src\\victim_ppo\\v11\\policy.py": "ac9cacf3afb26449c39306eb73fc3705345e5d496f7915df85e41311f0c0aa43",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\training\\src\\victim_ppo\\v11\\runner.py": "0cfc0878d9a1a8b382d42e480863f2303bb06a5753c7ecea2b44a721ac4750fd",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\training\\src\\victim_ppo\\v11\\__init__.py": "2b848b22efcaa19fae1fca9a2cd461f14c09c1da0a9f55d4934ba0401e17f989"
+  },
+  "formal_selection_matrix": false
+}

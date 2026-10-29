@@ -1,0 +1,176 @@
+version: 1
+status: frozen_with_pre_hp_control_amendment
+protocol_amendments:
+  - id: hp_parent_control_2026_09_24
+    timing: after_action_and_observation_results_before_any_dqn_hyperparameter_result
+    scope: dqn_hyperparameters_only
+    reason: >-
+      Add the unchanged inherited parent as an explicit control so Gate E0 may
+      retain the parent when every modified hyperparameter candidate is worse.
+    prior_stage_results_unchanged: true
+study_id: dqn_v2_controlled_optimization
+parent_model: dqn_v1
+algorithm: DQN
+implementation: stable_baselines3
+device: cpu
+
+research_question: >-
+  Holding market_true, ledger, execution timing, transaction costs and data
+  availability fixed, can controlled changes to observation, action
+  representation and DQN training improve cross-fold, cross-seed net
+  risk-adjusted validation performance while reducing turnover?
+
+immutable_environment:
+  asset: SPY
+  cash_asset: lagged_DGS3MO
+  long_only: true
+  allow_short: false
+  allow_leverage: false
+  decision_time: close_t
+  execution_time: raw_open_t_plus_1
+  reward: post_cost_nav_log_return
+  primary_transaction_cost_bps: 10.0
+  corporate_action_ledger: required
+  true_observed_stream_separation: required
+  fold_contract: configs/v2_rolling_folds.yaml
+  forbidden_selection_period_start: 2022-01-01
+
+candidate_rules:
+  search_strategy: staged_one_factor_at_a_time
+  change_one_category_per_stage: true
+  parent_config_required: true
+  hypothesis_required_before_run: true
+  append_only_registry: true
+  expand_search_after_results: false
+  reuse_optimizer_or_replay_between_candidates: false
+
+screening:
+  seeds: [0, 1, 2]
+  total_timesteps_per_fold_seed: 100000
+  deterministic_validation: true
+  evaluate_full_validation_fold: true
+  maximum_unique_candidate_configs: 16
+
+finalist_confirmation:
+  maximum_finalists: 3
+  seeds: [0, 1, 2, 3, 4]
+  total_timesteps_per_fold_seed: 200000
+  train_from_scratch: true
+  deterministic_validation: true
+
+stages:
+  - id: action_space
+    parent: dqn_v1
+    candidates:
+      - id: binary_0_1
+        action_weights: [0.0, 1.0]
+      - id: ternary_0_05_1
+        action_weights: [0.0, 0.5, 1.0]
+
+  - id: observation_ablation
+    parent: winner_of_action_space
+    candidates:
+      - id: returns_only
+        market_features: [log_return_1, log_return_5]
+        include_cash_rate: true
+        include_account_state: true
+      - id: returns_volatility
+        market_features: [log_return_1, log_return_5, realized_volatility_20]
+        include_cash_rate: true
+        include_account_state: true
+      - id: observation_v1_full
+        market_features:
+          - log_return_1
+          - log_return_5
+          - close_to_sma_5
+          - close_to_sma_20
+          - close_to_sma_60
+          - realized_volatility_20
+        include_cash_rate: true
+        include_account_state: true
+
+  - id: dqn_hyperparameters
+    parent: winner_of_observation_ablation
+    method: one_axis_at_a_time_then_one_combined_confirmation
+    control_candidate:
+      id: baseline_parent
+      inherit_parent_hyperparameters_unchanged: true
+    baseline:
+      learning_rate: 0.0001
+      gamma: 0.99
+      exploration_fraction: 0.20
+      exploration_final_eps: 0.05
+      target_update_interval: 1000
+      batch_size: 64
+      net_arch: [64, 64]
+    axes:
+      learning_rate: [0.00005, 0.0001, 0.0003]
+      exploration_fraction: [0.10, 0.20, 0.40]
+      target_update_interval: [500, 1000, 5000]
+      net_arch:
+        - [64, 64]
+        - [128, 128]
+    fixed:
+      gamma: 0.99
+      exploration_final_eps: 0.05
+      buffer_size: 50000
+      learning_starts: 500
+      batch_size: 64
+      train_freq_steps: 4
+      gradient_steps: 1
+      tau: 1.0
+      max_grad_norm: 10.0
+
+technical_eligibility:
+  all_unit_leakage_accounting_tests_pass: true
+  finite_loss_q_observation_reward_nav: true
+  reward_nav_invariant_tolerance: 1.0e-10
+  evaluation_state_immutable: true
+  natural_termination_required: true
+  state_responsiveness_required: true
+  failed_runs_must_be_retained: true
+  silent_run_exclusion_forbidden: true
+
+selection:
+  population: all_eligible_fold_seed_validation_results
+  primary_metric: median_sharpe_excess_lagged_cash
+  maximize: true
+  exact_tie_breakers:
+    - higher_median_annualized_excess_return
+    - smaller_median_max_drawdown_magnitude
+    - lower_median_turnover
+    - lexical_experiment_id
+  required_parallel_reporting:
+    - annualized_excess_return
+    - average_exposure
+    - total_turnover
+    - total_transaction_cost
+    - final_wealth
+    - max_drawdown
+    - action_distribution
+  aggregate_statistics:
+    - median
+    - iqr
+    - minimum
+    - maximum
+  paired_comparison:
+    same_seeds: true
+    same_validation_dates: true
+    compare_to_parent: true
+
+not_pass_fail_thresholds:
+  annualized_return_8_to_15_percent: descriptive_aspiration_only
+  sharpe_above_1: descriptive_aspiration_only
+  outperform_buy_and_hold: report_but_not_candidate_eligibility
+  max_drawdown_below_20_percent: report_but_not_candidate_eligibility
+
+cost_sensitivity_after_model_freeze:
+  transaction_cost_bps: [0.0, 5.0, 10.0, 25.0]
+  may_select_or_reconfigure_model: false
+
+outputs:
+  registry_schema: experiments/v2_registry.schema.json
+  registry_jsonl: experiments/v2_registry.jsonl
+  report_directory: reports/v2
+  checkpoint_directory: artifacts/checkpoints/v2
+  trajectory_directory: artifacts/trajectories/v2

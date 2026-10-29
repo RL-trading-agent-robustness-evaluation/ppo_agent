@@ -1,0 +1,80 @@
+version: 1
+status: frozen
+algorithm: DQN
+implementation: stable_baselines3
+implementation_version: 2.9.0
+policy: MlpPolicy
+device: cpu
+
+# These values are fixed before viewing validation or test performance.  A
+# material change requires a new named config (dqn_v2.yaml), never an edit made
+# after seeing disappointing results.
+model:
+  net_arch: [64, 64]
+  activation_fn: ReLU
+  learning_rate: 0.0001
+  gamma: 0.99
+  buffer_size: 50000
+  learning_starts: 500
+  batch_size: 64
+  train_freq_steps: 4
+  gradient_steps: 1
+  target_update_interval: 1000
+  tau: 1.0
+  max_grad_norm: 10.0
+  exploration_initial_eps: 1.0
+  exploration_final_eps: 0.05
+  exploration_fraction: 0.20
+
+environment:
+  asset: SPY
+  train_partition: train
+  selection_partition: validation
+  forbidden_during_development: test
+  episode_length_decisions: 504
+  random_start: true
+  transaction_cost_bps: 10.0
+  action_weights: [0.0, 0.5, 1.0]
+
+toy_gate:
+  seed: 0
+  market_rows: 514
+  episode_length_decisions: 64
+  total_timesteps: 12000
+  evaluation_steps: 512
+  minimum_optimal_action_accuracy: 0.90
+
+smoke:
+  seed: 0
+  total_timesteps: 5000
+  checkpoint_path: artifacts/checkpoints/dqn_v1_seed0_smoke
+  trajectory_path: artifacts/trajectories/dqn_v1_seed0_validation.csv
+
+# Protocol step 4: short real-window memorization diagnostic. This trains the
+# frozen DQN V1 hyperparameters on ONE fixed short train window and evaluates
+# in-sample on the SAME window. It is a wiring/capacity check, not a benchmark:
+# the technical gate covers finiteness, the reward-NAV invariant, and evaluation
+# immutability. Failure to overfit noisy real data is NOT by itself a defect, so
+# the in-sample margin is reported as a diagnostic signal, never a pass/fail.
+memorization:
+  seed: 0
+  window_decisions: 252
+  total_timesteps: 20000
+  reference_static_actions: [0, 1, 2]
+  checkpoint_path: artifacts/checkpoints/dqn_v1_seed0_memorization
+  trajectory_path: artifacts/trajectories/dqn_v1_seed0_memorization.csv
+
+formal:
+  seeds: [0, 1, 2, 3, 4]
+  total_timesteps_per_seed: 200000
+  deterministic_evaluation: true
+  checkpoint_selection_metric: validation_sharpe_after_costs
+  report_every_seed: true
+
+gates:
+  finite_training_loss_required: true
+  finite_q_values_required: true
+  checkpoint_reload_equivalence_required: true
+  evaluation_parameter_immutability_required: true
+  evaluation_replay_immutability_required: true
+  reward_nav_invariant_tolerance: 1.0e-10

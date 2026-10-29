@@ -1,0 +1,677 @@
+# Development log
+
+All timestamps use Asia/Taipei (UTC+08:00) and are recorded to minute precision.
+This file is append-only for project file changes and Git/GitHub operations. Each
+entry identifies whether a change was made by Codex, the user, or an external tool.
+
+## 2026-09-27
+
+### 14:57 — Codex — Repository scaffold commit
+
+- Recreated `victim_ppo` as a clean downstream PPO repository.
+- Added `victimagent` as a Git submodule pinned to the team V4 handoff commit
+  `5701400076bd3ad4fa80dbc86d5687f480c26021`.
+- Added the PPO V4 configuration, training/evaluation separation, data-loading
+  boundary, provenance capture, and JSON/Markdown reporting scaffold.
+- Created local Git commit `03a7c4aa0a82c34d0816dd1a166127cd1577937c`
+  (`feat: scaffold PPO victim on pinned environment V4`).
+- No GitHub push was performed.
+
+### 15:03 — User — Distribution snapshot supplied
+
+- Supplied `data/raw/stkdistributions_spy_tlt_gld_2009_2025.csv` for the pinned
+  victimagent ingestion schema.
+- File is licensed/local data and remains excluded from Git.
+
+### 15:48 — User — DGS3MO snapshot replaced
+
+- Supplied and renamed `data/raw/DGS3MO_2009_2025.csv` with coverage beginning
+  2009-01-02 for the warm-up period.
+- File is local data and remains excluded from Git.
+
+### 15:49 — User — DTB3 snapshot replaced
+
+- Supplied and renamed `data/raw/DTB3_2009_2025.csv` with coverage beginning
+  2009-01-02 for the warm-up period.
+- File is local data and remains excluded from Git.
+
+### 15:56 — Codex — Development logging policy established
+
+- Created `dev/devlog.md` at the user's request.
+- Future project-file modifications and Git/GitHub operations must append a
+  timestamped entry here in the same change set.
+- Verified that all four frozen raw filenames required by the pinned V4 pipeline
+  exist under `data/raw/`.
+
+### 16:04 — Codex — PPO readiness implementation started
+
+- Added a linear PPO learning-rate schedule from `3e-4` to `3e-5`.
+- Added an outer-repository wrapper for the pinned victimagent data pipeline so
+  raw licensed data and generated outputs remain outside the submodule.
+- Added a V4 integration preflight that verifies the exact submodule pin,
+  successful Gate 1 evidence, actual `SingleAssetTradingEnvV4` construction,
+  10-dimensional observations, three shared actions, and known-period exclusion.
+- Added PPO contract and learning-rate unit tests and documented the new setup.
+- Separated smoke and formal output paths, prohibited formal timestep overrides,
+  and required a frozen configuration plus clean worktree for formal runs.
+- No formal training or GitHub operation was performed.
+
+### 16:17 — Codex — Isolated runtime installed
+
+- Created the Git-ignored `.venv` using native Windows Python 3.14.4.
+- Installed both projects in editable mode with the declared development and RL
+  dependencies, including Stable-Baselines3 2.9.0 and CPU PyTorch 2.14.0.
+- Replaced an intermediate MSYS Python 3.12 environment because it could not use
+  the available native NumPy/PyTorch wheels; no project source or data was lost.
+
+### 16:18 — Codex — Shared Gate 1 data pipeline passed
+
+- Ran the pinned victimagent data pipeline through `scripts/build_shared_data.py`.
+- Generated canonical local interim and processed data under `data/interim/` and
+  `data/processed/`; these licensed-derived files remain excluded from Git.
+- Generated `reports/gate1_report.json`, `reports/GATE1_REPORT.md`,
+  `reports/raw_manifest.json`, and `reports/missing_distribution_events.csv`.
+- Gate 1 passed with zero failures. The two upstream warnings are the declared
+  absence of a bundled external exchange calendar and missing embedded download
+  timestamps; source hashes are recorded.
+- Corrected the PPO preflight to read the upstream report's canonical
+  `gate_1_status` field.
+
+### 16:20 — Codex — Test and preflight corrections
+
+- The first combined test command ran pinned tests from the outer repository and
+  produced path-related failures because upstream tests intentionally resolve
+  `configs/` from the victimagent root. No implementation failure was found.
+- Reran the pinned victimagent suite from its repository root: all runnable tests
+  passed, with seven declared skips and upstream warnings only.
+- Ran the outer PPO suite: both tests passed.
+- Corrected the V4 preflight cutoff comparison to compare pandas timestamps
+  rather than a timestamp with a string after its first run raised `TypeError`.
+
+### 16:22 — Codex — PPO V4 smoke passed and configuration frozen
+
+- V4 preflight passed with the exact submodule SHA, actual
+  `SingleAssetTradingEnvV4`, observation shape `(10,)`, action weights
+  `[0.0, 0.5, 1.0]`, 2,264 train rows, 757 validation rows, and no known-period
+  access.
+- Completed the separate 4,096-step PPO seed-0 smoke run and deterministic
+  2019–2021 validation. Evaluation parameters, optimizer, and scaler were
+  unchanged; reward–NAV identity error was approximately `5e-16`.
+- Generated local smoke checkpoint/log/trajectory artifacts and the committed
+  evidence candidates `reports/PPO_SMOKE_SEED0.{json,md}` and
+  `reports/ppo_v4_preflight.json`.
+- Froze `configs/ppo_v4.yaml` before formal training, including the linear
+  learning-rate schedule from `3e-4` to `3e-5`.
+- No formal 200,000-step run or GitHub operation was performed.
+
+### 16:24 — Codex — Frozen-config verification and artifact policy
+
+- Reran PPO tests, V4 preflight, and the 4,096-step PPO smoke against the frozen
+  configuration; all passed.
+- Kept smoke reports and editable-install metadata local through `.gitignore`.
+- Made formal `PPO_CLEAN_SEED<N>` reports trackable for audit retention.
+- Scoped the formal clean-worktree check to research source, scripts, configs,
+  project metadata, and the victimagent submodule so reports from completed
+  seeds do not block later preregistered seeds.
+
+### 16:25 — Codex — Readiness changes prepared for local commit
+
+- Final outer PPO tests passed after all readiness and artifact-policy changes.
+- Prepared one local Git commit containing the implementation, frozen config,
+  Gate 1 evidence, V4 preflight evidence, tests, documentation, and this log.
+- No GitHub push was requested or performed.
+- The first local commit attempt was rejected because the managed sandbox exposed
+  `.git` as read-only; no index or commit was created by that attempt.
+
+### 16:49 — Codex — Five-seed PPO aggregation added
+
+- Added `--aggregate` to require exactly formal seeds 0–4 and reject missing,
+  short-budget, failed, known-period, mutable-evaluation, or mixed-provenance runs.
+- Added mean, median, sample standard deviation, minimum, maximum, and IQR across
+  every retained seed for the declared validation metrics.
+- Added checkpoint, scaler, and trajectory SHA-256 hashes to each future run report.
+- Added an aggregation failure test and documented the command.
+- No formal training or GitHub operation had been performed at this point.
+
+### 16:51 — Codex — Aggregator verified and prepared for local commit
+
+- All three outer PPO tests passed after adding strict aggregation.
+- Prepared the aggregation implementation, test, documentation, and devlog for
+  a local Git commit before starting any formal seed.
+- No GitHub push was requested or performed.
+
+### 17:04 — Codex — Formal PPO seed 0 completed
+
+- Ran the preregistered formal seed 0 for exactly 200,000 training steps at
+  outer commit `2bb1d6676cdd8b87f269d967054a97725c636e48` and victimagent V4 commit
+  `5701400076bd3ad4fa80dbc86d5687f480c26021`.
+- The linear learning rate descended from `3e-4` toward the declared `3e-5`
+  floor; all recorded optimizer diagnostics remained finite.
+- Deterministic 2019–2021 validation technically passed with no known-period
+  access, unchanged parameters/optimizer/scaler, and reward–NAV error
+  `1.44e-15`.
+- Validation metrics: final wealth `1.487132×`, CAGR `14.1673%`, annualized
+  excess return `14.0949%`, Sharpe versus lagged cash `0.769862`, maximum
+  drawdown `-33.6840%`, turnover `21.052604`, and transaction costs
+  `$25,074.53`.
+- Generated `reports/PPO_CLEAN_SEED0.{json,md}` and local checkpoint, scaler,
+  training-log, and validation-trajectory artifacts with SHA-256 hashes.
+- Deliberately did not commit between formal seeds so every seed will record the
+  identical research-code provenance required by the strict aggregator.
+- No GitHub push was performed.
+
+## 2026-09-30
+
+### 11:20 — Codex — V4 formal study preserved as historical reference
+
+- Verified and staged the completed formal reports for PPO seeds 0–4 together
+  with the strict five-seed aggregate report (`PPO_CLEAN_BENCHMARK`).
+- Preserved the reports at outer research-code commit
+  `2bb1d6676cdd8b87f269d967054a97725c636e48` and victimagent V4 commit
+  `5701400076bd3ad4fa80dbc86d5687f480c26021`.
+- The aggregate retained all five seeds and reported median validation CAGR
+  `23.9079%`, Sharpe `1.245645`, maximum drawdown `-27.0204%`, and final wealth
+  `1.900426x`; these results remain historical V4 evidence and will not be
+  overwritten by the V9 study.
+- Prepared a dedicated local commit before changing the victimagent submodule or
+  adding any V9 implementation. No GitHub push was performed.
+
+### 11:21 — Codex — V4 historical-reference commit created
+
+- Created local commit `f0961ae` (`docs: preserve PPO V4 formal results`) with
+  all five formal seed reports, the aggregate benchmark, and their development
+  log history.
+- No GitHub push was performed.
+
+### 11:26 — Codex — PPO V9 reward-ablation scaffold implemented
+
+- Advanced the victimagent submodule to the team V9 pin
+  `f4988db5c98d9248533c4ca852cc48ca3f6b7aad`.
+- Added the frozen two-arm PPO reward-ablation configuration, preserving the
+  linear `3e-4` to `3e-5` learning-rate schedule, `n_steps=2048`, and the
+  documented 500,000 requested / 501,760 realized SB3 transition budget.
+- Added V9 PPO construction, training, true-NAV evaluation, action tracing,
+  state-responsiveness checks, append-only cell records, paired aggregation,
+  TensorBoard output, a serial 30-cell matrix launcher, and user commands.
+- Added explicit six-file raw-data gating. `victimagent/data/raw/` remains empty;
+  no V4 outer-repository data was copied or reused.
+- Added PPO V9 contract and SPY relative-reward tests. The combined outer PPO
+  suite and pinned victimagent V8/V9 suites passed: 27 tests, with 10 upstream
+  Gymnasium float32 precision warnings and no failures.
+- Ran data-free preflight successfully. It reports `WAITING_FOR_DATA`, lists all
+  six missing raw inputs, confirms the exact V9 pin, and confirms that the known
+  period was not accessed.
+- Prepared a local V9 scaffold commit after the successful verification run.
+- No training, data build, known-period access, or GitHub push was performed.
+
+### 12:55 — User/Codex — V9 raw inputs supplied and canonical data built
+
+- The user supplied the six V8/V9 contract inputs under the outer ignored
+  `data/raw/` directory, plus supplemental DFF, DTB3, full-history DGS3MO, and
+  VIX files.
+- Verified that both CRSP market files and both distribution files exactly match
+  the victimagent V9 pinned SHA-256 values. The two FRED DGS3MO inputs are
+  intentionally unpinned by the team contract.
+- Copied only the six contract inputs into the ignored
+  `victimagent/data/raw/` directory. Supplemental series remain unused because
+  the frozen V8/V9 observation contract declares `external_series: none`.
+- Ran the official victimagent V8 data builder. It passed with 8,286 market
+  rows, 130 distribution events, and the required processed hashes:
+  market `281ed8c0530720b5cedf4abd7e9288375dad4fe073f55b0b814560ebcb54af9b`;
+  events `a981523e00b05e804091bf4671835bade363559215403614344bf5a099541668`.
+- Updated the V9 CLI so preflight performs full upstream fold/data/hash checks
+  automatically once all six raw inputs exist, while retaining the useful
+  `WAITING_FOR_DATA` result when inputs are absent.
+- Adjusted formal cleanliness validation to allow the official builder's
+  untracked `victimagent/reports/v8/DATA_BUILD.json`, while still rejecting any
+  tracked submodule modification and enforcing the exact pinned submodule SHA.
+- No training or known-period access was performed.
+
+### 12:57 — Codex — First V9 control smoke stopped before training
+
+- Attempted the preregistered 20,000-step `ppo_v9_gate_nav` smoke cell for
+  fold 1, seed 0.
+- Stable-Baselines3 stopped during logger construction because the TensorBoard
+  package was not installed. No model learning step occurred and no checkpoint
+  or validation trajectory was produced.
+- Retained the failed smoke reservation and record as append-only audit
+  evidence; no file was overwritten or deleted.
+- Added TensorBoard as an explicit runtime dependency and added smoke retry tags
+  so corrected attempts receive new identities such as `_smoke_retry1`.
+
+### 13:01 — Codex — Both corrected PPO V9 smoke cells passed
+
+- Installed the declared TensorBoard 2.21.0 runtime and retained it only in the
+  ignored local virtual environment.
+- Completed new append-only 20,000-requested-step (`20,480` realized) smoke
+  attempts for both `ppo_v9_gate_nav` and `ppo_v9_gate_relative`, fold 1 seed 0.
+- Both runs produced finite losses, updated model parameters, preserved the
+  train-only scaler, preserved model/optimizer/scaler state during evaluation,
+  terminated naturally, passed the true reward–NAV identity at approximately
+  `1.54e-15`, and passed the state-responsiveness check.
+- Both smoke policies produced validation wealth `1.110581x`; this equality is
+  not interpreted as a performance result because smoke runs are technical
+  checks and the trend gate dominated most decisions in this window.
+- TensorBoard logs, checkpoints, training CSV logs, validation trajectories,
+  attempt reservations, and run records were written to their V9 PPO-specific
+  ignored artifact namespaces. No known-period data was accessed.
+- Reran the combined outer PPO and pinned victimagent V8/V9 suites after the
+  data build and smoke corrections: all 27 tests passed with upstream precision
+  warnings only. Prepared the verified formal-run code for a local commit.
+
+### 14:09 — Codex — Updated handoff compliance audit paused formal matrix
+
+- Read the user's updated PPO/A2C V9 handoff in full and audited the frozen PPO
+  runner and completed records against its literal field and report contract.
+- Confirmed that the data, folds, 20-dimensional observations, official V9
+  environment factory, gate, rewards, actions, costs, seeds, PPO settings,
+  deterministic true-NAV evaluation, responsiveness check, and 501,760 realized
+  transitions for a 500,000 requested budget were compliant.
+- Found reporting gaps: PPO-local rather than victimagent arm names in `arm`, no
+  explicit `algorithm`, `total_timesteps`, or outer-repository commit fields,
+  no hard assertion of the frozen DQN buy-and-hold wealth values, and an
+  incomplete validation summary generator.
+- Stopped hidden supervisor PID 44284 before it could launch further batches.
+  Four already-running fold-1 control seeds were subsequently interrupted; all
+  reservations and any completed records remain intact and were not deleted or
+  overwritten.
+- Registered append-only formal record revision `v9spec1`, changed new records
+  to use victimagent arm names with a separate PPO-local label, added algorithm,
+  requested total timesteps, outer commit provenance, and exact per-fold DQN
+  buy-and-hold assertions. Existing records remain historical/noncompliant-schema
+  evidence and will not be included in the revised formal aggregation.
+- No final training or 2022–2025 known-period access was performed.
+
+### 14:24 — Codex — V9 validation summary contract completed
+
+- Expanded revised aggregation to generate append-only
+  `reports/v9_ppo/VALIDATION_SUMMARY.{json,md}` with per-arm/per-fold median
+  log wealth versus buy-and-hold, win counts, paired reward deltas, all required
+  risk/cost/exposure/gate statistics, five-day-rule blocked share, technical and
+  behavioral issue lists, baselines, and the pinned DQN descriptive reference.
+- Changed the configured final-arm identifier to the required shared name
+  `v9_gate_relative_reward`; it remains preregistered rather than selected.
+
+### 20:12 — User/Codex — Local validation stopped after active batch
+
+- At the user's request, stopped validation supervisor PID 40160 so it cannot
+  launch another local batch. The four already-running fold-1 relative-reward
+  cells continue to completion and remain append-only.
+- Added `notebooks/ppo_v9_colab_resume.ipynb` for a Google Drive/Colab handoff.
+  The notebook checks out frozen PPO commit `2bbad36`, verifies victimagent pin
+  `f4988db`, restores existing records and artifacts, rebuilds and verifies the
+  canonical data, refuses ambiguous prior attempts, trains only missing
+  `v9spec1` cells with at most two CPU workers, syncs evidence to Drive after
+  each PASS, and aggregates only after all 30 records pass.
+- Prepared ignored Git bundle `artifacts/ppo_v9_code_2bbad36.bundle` so Colab
+  can reproduce the unpushed frozen outer commit without publishing it first.
+- The notebook does not perform final training or read the known period. Raw
+  licensed files remain Drive-local and are never committed.
+- This notebook and log remain uncommitted while the current formal cells finish
+  so every validation run continues to report frozen code commit `2bbad36`.
+
+### 20:18 — Codex — Local batch completed and Colab state frozen
+
+- Confirmed the four active fold-1 relative-reward cells completed at 501,760
+  transitions with PASS records. Local corrected validation now contains 20 of
+  30 cells, and no local training worker or supervisor remains active.
+- Prepared ignored archive `artifacts/ppo_v9_state_after20.zip` containing the
+  append-only experiment state and all completed V9 PPO checkpoints and
+  trajectories required for the Colab continuation.
+- Updated the notebook to restore this archive before discovering the remaining
+  cells; therefore Colab will train only the final 10 missing cells.
+- Validated the notebook JSON and compiled every Python code cell; verified the
+  state archive contains 115 entries. Prepared the notebook and this log for a
+  local commit; ignored transfer archives remain outside Git.
+
+### 20:24 — Codex — Colab code source changed to GitHub
+
+- Updated the Colab notebook to clone the PPO repository directly from GitHub's
+  `v9` branch and then check out frozen training commit `2bbad36`.
+- Removed the Drive code-bundle requirement. The Drive state archive remains
+  required because checkpoints and trajectories are prohibited from Git, and
+  the six licensed raw inputs remain Drive-only under the team contract.
+- Revalidated the notebook JSON and compiled all Python cells after the change;
+  prepared the notebook and log for a local commit. No GitHub push was made.
+
+### 21:10 — User/Codex — Remaining validation resumed locally
+
+- At the user's request, audited the append-only matrix and confirmed exactly 20
+  compliant PASS records, 10 missing cells, and zero ambiguous attempts for the
+  missing cells.
+- Resumed only the 10 missing `v9_gate_relative_reward` cells (folds 2 and 3,
+  seeds 0–4) with a hidden supervisor limited to two simultaneous processes and
+  one Torch thread per process.
+- The supervisor will run compliant aggregation only after all 30 records pass;
+  final training and known-period confirmation remain out of scope for this run.
+
+### 22:08 — Codex — V4/V9 interim comparison image prepared
+
+- Added `reports/v9_ppo/render_ppo_interim_summary.py` and generated
+  `reports/v9_ppo/ppo_v4_v9_interim_summary.png` in the same academic green
+  table style as the supplied A2C reference image.
+- The image compares SPY buy-and-hold, historical V4 PPO, and the completed V9
+  NAV-control arm on the common 2019–2021 window. It also reports the completed
+  fold-1 reward ablation without treating it as a final conclusion.
+- Marked V9 explicitly `INCOMPLETE`: the snapshot contains 22/30 formal PASS
+  records (15/15 control and 7/15 relative-reward), with eight reward cells
+  still outstanding. The two active fold-2 workers were not interrupted.
+
+## 2026-10-01
+
+### 09:41 — Codex — PPO V10 NAV plus positive-streak reward specification drafted
+
+- Added `docs/PPO_V10_NAV_TREND_REWARD_SPEC_ZH_HANT.md` in Traditional Chinese
+  as a draft handoff for teammates and implementation agents.
+- Preserved the V9 data, folds, V4 ledger and clock, trend gate, five-session
+  rule, PPO settings, true-NAV evaluation, provenance, and known-period policy.
+- Defined the only treatment change as a capped reward bonus proportional to
+  positive NAV log return and increasing across a consecutive positive-return
+  streak, with proposed pre-freeze values `beta=0.10` and `streak_cap=5`.
+- No V10 implementation, smoke, formal training, selection, or known-period
+  access was performed.
+
+### 10:03 — Codex — PPO V10 made deployable and smoke-verified
+
+- Froze `configs/ppo_v10_nav_trend_reward.yaml` with the V9 parent pin, two
+  gate-fixed arms, `beta=0.10`, `streak_cap=5`, the unchanged PPO settings,
+  three folds, five seeds, and a 30-cell formal matrix.
+- Added the isolated `victim_ppo.v10` reward wrapper, contract loader, runner,
+  append-only run records, training diagnostics, deterministic true-NAV
+  evaluation, paired aggregation, adoption rule, CLI, and serial matrix script.
+- Added V10 contract and reward tests, README commands, and smoke-artifact
+  ignore rules. The complete outer PPO suite passed: 12 tests.
+- V10 preflight passed the exact victimagent pin, processed-data hashes, all
+  three fold audits, package checks, and confirmed no known-period access.
+- Completed separate 20,000-requested-step smoke runs for both arms; SB3
+  realized 20,480 transitions in each. Both passed finite-loss, parameter
+  update, scaler immutability, natural evaluation, reward–NAV identity,
+  evaluation-state immutability, and state-responsiveness checks.
+- The treatment smoke recorded a nonzero streak bonus and evaluation still used
+  unshaped true NAV reward. Smoke wealth is diagnostic only and is not a V10
+  performance result.
+- Created the local commit `feat: add deployable PPO V10 streak reward study`
+  containing only the V10 implementation, specification, tests, documentation,
+  and artifact policy. Existing V9 records and reports were left untouched.
+- No GitHub push was requested or performed.
+- No formal V10 matrix or known-period confirmation was started.
+
+### 10:07 — User/Codex — PPO V10 specification promoted from draft to frozen
+
+- At the user's approval, removed the draft label from the Traditional Chinese
+  V10 specification and marked it frozen for formal implementation and training.
+- Replaced provisional wording for the reward parameters, wrapper, and adoption
+  rule with definitive contract language matching the already frozen YAML and
+  smoke-verified implementation.
+- No reward value, environment behavior, training setting, formal artifact, or
+  known-period policy changed.
+
+### 13:14 — User/Codex — PPO V10 paired 200k pilot prepared
+
+- Designated this `ppo_v10` checkout as the only experiment workspace; all
+  sibling projects remain read-only references.
+- Preserved the pre-existing completed V9 workspace state in a local snapshot
+  commit before importing the frozen V10 implementation.
+- Added a frozen one-fold paired pilot: `fold_1`, seeds 0–4, both NAV-control
+  and NAV-plus-streak arms, 200,000 requested / 200,704 expected SB3 steps per
+  run, for 10 independent training cells total.
+- Added a bounded parallel launcher and paired aggregator. The pilot reports all
+  seed pairs and cannot access the known period or alter formal V10 selection.
+- The complete workspace test suite passed 16 tests and V10 preflight passed
+  the pinned environment, data hashes, fold audits, and known-period guard.
+- No pilot training had started at the time of this entry.
+
+### 13:55 — User/Codex — Common-period 2019–2021 comparison completed
+
+- Deterministically evaluated all five V10 streak-reward pilot checkpoints on
+  2019–2021 with the unchanged V9 ledger, gate, costs, and each model's original
+  fold-1 train-only scaler; all five evaluations passed technical checks.
+- Combined the fresh V10 results with retained five-seed V4, V9 NAV-control,
+  V9 relative-reward, and executable SPY buy-and-hold evidence.
+- Median final wealth was V4 `1.9004x`, V9 control `1.8121x`, V9 relative
+  `1.9405x`, V10 streak `1.7841x`, and SPY buy-and-hold `1.9802x`.
+- Recorded explicit comparability limits: V4 used its historical 10-feature
+  protocol; V9 fold 3 trained through 2018 for 500k steps; V10 trained only
+  through 2014 for 200k steps. The table is descriptive, not a matched causal
+  reward ablation.
+- No additional model training or known-period access occurred.
+
+### 15:37 — User/Codex — V10 pilot validation evidence prepared for publication
+
+- Retained all 10 append-only attempt reservations and all 10 PASS run records
+  from the paired fold-1 pilot: five NAV-control and five streak-reward seeds,
+  each with 200,000 requested / 200,704 realized transitions.
+- Retained the generated JSON and Markdown pilot summary. The streak treatment
+  won 0/5 paired seeds and had median delta log wealth `-0.025721`; the report
+  labels this as development-pilot evidence with no formal selection effect.
+- Verified that `origin` had no existing `v10` branch, so publishing this
+  workspace will create `origin/v10` without replacing a remote branch.
+- Checkpoints, trajectories, TensorBoard logs, raw licensed data, and ignored
+  local runtime artifacts remain excluded from Git.
+
+### 15:40 — User/Codex — Full PPO V10 branch published
+
+- After the user explicitly approved publishing the full current branch, pushed
+  the V10 implementation, specification, pilot validation records, and reports
+  to the new GitHub branch `origin/v10`.
+- Verified `refs/heads/v10` resolved to local publication commit
+  `aa59d7a7090634e5a34d4603aa633ef479f0be67` immediately after the push.
+- No pull request was created and no model binaries or licensed raw data were
+  published.
+
+### 18:23 — User/Codex — PPO V9 fold-3 known-period diagnostic completed
+
+- Confirmed that no five-seed PPO V9 final-model set trained through 2021 and
+  no prior fold-3 2022–2025 diagnostic report existed in this workspace.
+- Added and tested a rollout-only evaluator for the five existing fold-3
+  relative-reward checkpoints. No `learn()` call, optimizer update, scaler
+  refit, checkpoint selection, or model/reward tuning occurred.
+- Evaluated 2022-01-03 through 2025-12-31 for exactly 1,002 steps with the
+  shared V9 environment, trend gate, five-session rule, 10 bps cost, frozen
+  train-only scaler, deterministic policy, and true after-cost NAV reward.
+- All checkpoint, config, scaler, processed-data, model-state, optimizer-state,
+  termination, finite-NAV, and reward–NAV identity checks passed. Executable
+  SPY buy-and-hold reproduced final wealth `1.48310441640342` exactly.
+- Five-seed median final wealth was `1.344896`; range was `1.167182` to
+  `1.521299`, and 2/5 seeds beat buy-and-hold. This is explicitly labeled
+  `known_period_diagnostic_fold3_not_final_test`, not an untouched test or a
+  final-model confirmation.
+- Preserved the standalone JSON/Markdown report and attempt record. Five full
+  trajectories remain in the ignored shared-artifact path with SHA-256 hashes
+  recorded in the JSON and are not committed.
+
+### 19:42 — User/Codex — V4/V9/V10 2022–2025 descriptive comparison completed
+
+- Reused the completed V9 fold-3 diagnostic without rerunning it and evaluated
+  all five existing V4 formal checkpoints and all five V10 streak-pilot
+  checkpoints on the same 2022-01-03 through 2025-12-31 window (1,002 steps).
+- No model training, scaler fitting on known-period rows, seed selection,
+  checkpoint selection, or tuning occurred. Every original checkpoint and
+  scaler was verified before deterministic rollout, and all technical checks
+  passed.
+- Median final wealth was V4 `1.194199`, V9 relative fold 3 `1.344896`, V10
+  streak pilot `1.494758`, and executable SPY buy-and-hold `1.483104`.
+  Wins versus buy-and-hold were respectively 1/5, 2/5, and 3/5.
+- The report labels the result
+  `known_period_descriptive_comparison_v4_v9_v10_not_final_test`. V4, V9, and
+  V10 differ in training windows, features, training budgets, and execution
+  contracts, so these figures are descriptive only and cannot establish a
+  causal reward improvement or select a final model.
+- Preserved the complete per-seed JSON and Traditional Chinese Markdown
+  comparison. New V4/V10 trajectories remain ignored local artifacts with
+  their SHA-256 hashes recorded in the JSON.
+
+### 19:54 — User/Codex — Two-page PPO progress summary rendered
+
+- Extended the established academic green summary-card design into two
+  1600×900 PNG pages intended for direct Canva placement.
+- Page 1 records the V4, both V9 arms, and V10 specifications and observations,
+  followed by the five-seed median comparison on the common 2019–2021 window.
+- Page 2 presents the 2022–2025 known-period diagnostic, seed wealth ranges,
+  technical audit status, and a cautious interpretation of the apparent V10
+  signal and its comparability limits.
+- Visually inspected both pages at original resolution and corrected footer
+  spacing and unsupported glyphs. The renderer reads the retained JSON reports
+  so the displayed metrics remain traceable and reproducible.
+
+## 2026-10-07
+
+### 20:41 — User/Codex — V11 specification handoff and 200k implementation
+
+- Carried forward the V10 development log into the new `ppo_v11` folder;
+  earlier entries describe inherited V10 history, not experiments rerun in V11.
+- Recorded the preceding design discussion and two Traditional Chinese
+  handoffs: V11 research/implementation specification and agent prompt.
+  Decisions: 2010–2021 initial-training domain; chronological warm-start PPO;
+  causal online learning during validation and the opened 2022–2025 period;
+  fixed NAV/relative/NAV-plus-streak weights 30/20/50; preserved V10 beta 0.10,
+  streak cap 5, SMA-200 gate, five-session rule and numerical adoption gates.
+- Added a 126-session recency half-life, 80% exponential/20% uniform endpoint
+  sampler, 63-transition windows, 252-session initialization and frozen initial
+  scaler; VIX controls update intervals using a lagged five-session mean,
+  inverse-square clock referenced to 20, and 21–252-session bounds.
+- User reduced initialization from 500k to 200k: new revision
+  `v11spec2_200k`, requested 200,000 / actual 200,704 transitions, with unchanged
+  32,768-transition fine-tunes. Original V10-folder V11 documents remain intact.
+- Created an independent folder rather than copying Git metadata, environment
+  binaries, old experiments or checkpoints. Reused unchanged PPO/shared source,
+  configs and processed market/dividend inputs; source commits and file hashes
+  are recorded in `SOURCE_MANIFEST.json`. Licensed local data remains ignored.
+- Implemented isolated history training, training-only mixed rewards, fresh
+  PPO rollouts with optimizer continuation, deterministic NAV-only scoring,
+  delayed checkpoint activation, append-only provenance, safe full-checkpoint
+  resume and paired reward/schedule aggregation. Added CLI, matrix script,
+  preflight, README and the verification report.
+- Verified 19 tests, preflight and all three smoke arms. Each smoke used
+  20,480 initialization plus one complete 32,768 update. Tests cover causality,
+  sampling, VIX/lag/fill, reward identities, capped/zero/reset streaks, unchanged
+  ledger, action-before-update ordering, checkpoint hashes and adoption edges.
+  Detailed responsiveness and smoke-versus-final-source limitations are in
+  `reports/V11_IMPLEMENTATION_CHECKS.md`; smoke is not formal performance evidence.
+- Calendar-derived formal budget is 33,116,160 transitions across 45 trajectories.
+  No formal 200k cell, full matrix, sensitivity study or known-period run was
+  started. No Git commit, remote push or PR was created by this V11 task.
+
+### 20:54 — User/Codex — Five-seed adaptive 2022–2025 evaluation started
+
+- User explicitly requested 2022–2025 evaluation and allowed dynamic policy
+  updates during testing and later deployment; subsequent clarification chose
+  all five seeds 0–4. Only smoke checkpoints existed, so every seed first builds
+  its chronological 2010–2021 mixed-reward model with the frozen 200k initializer.
+- Added an explicit direct-known-period diagnostic entry point. This honors
+  the user's direct evaluation request without misrepresenting completion of
+  the separate 45-cell selection matrix or using the opened period for tuning.
+- Added a training-only read cache for dates/prices/observation rows while
+  inheriting the original V4 ledger and execution methods. Verified exact
+  equality of observations, rewards, full info, fills, costs and termination
+  against the unchanged parent at three episode starts. Expanded tests: 22 passed.
+- Started seeds 0 and 1 with two concurrent workers; seeds 2–4 remain queued.
+  Preserved protocol/config/source hashes before launch. Each seed will save
+  its pre-2022 checkpoint, adaptive test updates, final NAV trajectory and full
+  deployment boundary state. Results are pending; no adoption claim is made.
+
+### 21:00 — User/Codex — Background execution and quiet completion monitoring
+
+- User chose to continue the five-seed run in the background and receive a
+  notification on completion or failure. The existing supervisor remains
+  active; no duplicate models or alternate parameter sets were launched.
+- Created the current-chat heartbeat `v11-adaptive-evaluation-completion` at a
+  15-minute cadence. It stays quiet during healthy progress, verifies all five
+  retained results, links the final report and disables itself after completion
+  or an unrecoverable failure. It must not relaunch or tune the experiment.
+- Confirmed seeds 0/1 were progressing at 88,064 initializer transitions each;
+  seeds 2–4 are queued. The results are still pending. Keep the local computer
+  awake and the desktop app open for execution and completion monitoring.
+
+## 2026-10-08
+
+### 01:37 — User/Codex — Five-seed adaptive 2022–2025 evaluation completed and verified
+
+- All five user-authorized mixed-reward seeds 0–4 completed successfully. Each
+  trajectory used 200,000 requested / 200,704 actual initialization transitions,
+  24 pre-2022 fine-tunes and 9 causal 2022–2025 fine-tunes of 32,768 transitions;
+  total 1,282,048 transitions per seed. No seed was discarded or selected.
+- Evaluated 1,002 steps from 2022-01-03 through 2025-12-31 with deterministic
+  actions, unchanged costs/gate/holding rule, frozen scaler and true net NAV
+  scoring. Dynamic policy updates used observed history only, with delayed
+  activation; all nine test updates were preserved in each trajectory.
+- Independently verified technical_pass, finite/positive NAV, reward–NAV
+  identities, trajectory/final/pre-2022 checkpoint SHA-256 hashes, summary
+  consistency and deployment boundary state. All checks passed.
+- Median final wealth 1.4509065 (+45.09%), median CAGR 9.7724%, median maximum
+  drawdown -19.0903%; executable SPY buy-and-hold final wealth 1.4831044.
+  Seeds 0 and 3 beat buy-and-hold; 2/5 wins. Final wealth by seed:
+  0=1.5736918, 1=1.4509065, 2=1.2948698, 3=1.6458626, 4=1.3502323.
+- Preserved reports/v11_ppo/adaptive_2022_2025_adaptive_20261007_1.json and .md,
+  all experiment records, pre-2022 and final checkpoints, and full deployment
+  account/optimizer/clock/RNG state. Later causal updates remain authorized.
+- This is a direct adaptive known-period diagnostic, not an untouched test or
+  evidence of separate reward/schedule causality. The 45-cell selection matrix
+  remains unexecuted. Completion monitor is being disabled after this notice.
+
+## 2026-10-08 — V12：定額 B&H 與既有五模型比較
+
+- 使用者先提出 V12 與 200k／四 seeds 試跑，隨後修正範圍：只執行 B&H，讀取已完成的 V11 seeds 0–4，節省時間；未來訓練等待比較後的決定。
+- 已確認基準起始現金 $1,000,000，48 次等額月買，RL 起始資金全部可用；沒有外部入金。費用包含於固定預算；利息、股息保留現金；終點不新增賣出。
+- 建立獨立 ppo_v12、11 節繁體中文研究規格、代理 Prompt、凍結設定與原 V11 參考快照。直接唯讀複用相鄰 V11 資料與交易程式，保留舊模型及紀錄。V12 devlog 保留 V11 原文前綴。
+- 既有 ledger／account feature 使用整股；新增隔離 fractional budget ledger，基準不使用 policy observation。現金及股息事件時序沿用 V4，原整股 B&H 成功重現。此差異已揭露。
+- 9 個單元測試通過；五原始 technical_pass、資料／ledger／checkpoint hashes、重算績效、NAV identities 與同估值日曆全部通過。首次 fixture 缺欄位及兩個整合失敗保留 logs/tracebacks，修正原因不改參數。
+- 期間為 2022-01-03 收盤至 2025-12-31 收盤、1,002 transitions；48 筆月買從 2022-01-04 開始。月買 final wealth 1.5284896667，CAGR 11.2142%，MDD -14.8840%，成本 $999.0010，平均曝險 49.7691%。利息 $81,468.78、股息 $33,732.48，終點現金 $111,069.97、應收股息 $4,131.28。
+- 原 lump-sum B&H wealth 1.4831044164。V11 五模型中位數 wealth 1.4509065145，CAGR 9.7724%，MDD -19.0903%；seed 0、3 勝月買與原 B&H，兩者均 2/5 勝。
+- 完整報告：reports/v12_benchmark/comparison_2022_2025.md 及 JSON；含所有 seeds、兩基準、逐種子差值、曝險、成本、交易細節與 provenance。交付 manifest 保存來源與輸出 hashes。
+- 標示 adaptive known-period diagnostic，正式採用 NOT_EVALUATED；沒有訓練、更新、重新推論、調參或部署。Prompt 保存未來 200k 初始化、四 seeds 0–3 的條件，但本次到此停止，由使用者決定是否保留此基準或進一步訓練。
+
+## 2026-10-08 — V12 完整五模型訓練啟動
+
+- 使用者明確授權完整訓練，允許增加 seeds／timesteps，要求與新 B&H 及先前 RL 版本直接比較。
+- 凍結五 seeds 0–4、500,000 requested／501,760 actual 初始化，每次更新32,768；其餘 reward、2010起因果訓練、VIX排程、scaler、成交與帳戶語義完全保留。預期每 seed1,583,104，全五 seeds7,915,520 transitions，另加必要smoke；本次不根據2022–2025結果調參。
+- 建立獨立 training engine，原V11模型／程式／結果不修改。共同91個source/data/configs逐檔hash核對；V12 engine budget／namespace差異記於ENGINE_CHANGES。22個繼承測試全部通過；28個Gym float32轉型warnings不影響測試。
+- 既有V4／V9／V10的15個known-period trajectories hashes通過；報告保留各版本訓練期間、budget、資料、reward與static/adaptive差異。V11同seed200k為較接近的budget control；仍不是三fold正式採用矩陣。
+- 新執行附錄／Prompt保留既有基準階段規格並明確取代未授權訓練停止條件。背景supervisor先完成三arms smoke，再兩workers執行五個完整模型；每seed保存pre2022/final/update/deployment checkpoints與ledger／optimizer／scaler／clock。
+- tag full500k_20261008_1；狀態與最終比較 reports/full_training/full500k_20261008_1。完成前不得宣稱結果；健康進度保持安靜，只在全部完成或需使用者介入時通知，不自動部署。
+
+## 2026-10-08 18:42 — V12 背景完整訓練中斷
+
+- heartbeat 發現 status 最後更新於06:18:39 UTC；OS process檢查確認supervisor與seed0／1 workers均已不存在，沒有其他同run Python processes。
+- 初始化最後記錄seed0=458,752、seed1=456,704；尚未完成，沒有model／resume checkpoint、completed known records或正常FAIL traceback。seeds2–4尚未派發，三arms smoke仍PASS。
+- retained logs沒有確認原因，系統last boot為9月24日；不推測重啟／OOM。全部partial artifacts保留，沒有修改凍結程式或開始重訓。
+- 中斷說明：reports/full_training/full500k_20261008_1/INTERRUPTION_20261008.md。無checkpoint可resume，繼續須重做兩個初始化；按monitor禁止重訓條件等待使用者指示，完成monitor暫停。
+
+## 2026-10-08 — 使用者授權重啟 V12 五 seeds
+
+- 使用者回覆 yes，明確授權因中斷而重新開始初始化。新 tag full500k_20261008_2；舊 tag／partial artifacts／失敗說明保留，不覆寫。
+- 原 frozen sources hashes 全部一致；保持五 seeds0–4、500k初始化、32,768更新與所有經濟規則。使用獨立 restart supervisor，不改原凍結腳本或 engine。
+- 重用已通過且config／implementation hashes一致的三arms smoke，重新做preflight，不重複已通過的smoke訓練。兩workers重新執行seed0／1，之後派發2–4。
+- completion monitor更新為新tag並重新啟用；健康進度保持安靜，完成或需要介入時才通知。
+
+## 2026-10-08 — 使用者要求下一次監控時暫停
+
+- 使用者要求下一次scheduled monitoring時interrupt並pause訓練，電腦將暫停使用，等使用者明確要求才resume。
+- 已更新既有heartbeat的下次執行指令：核對本run程序，先停supervisor再停workers，保留全部partial artifacts與已完成checkpoint，紀錄每seed進度／可恢復邊界後停用monitor。
+- 此刻未提前停止工作。未完成初始化且尚無checkpoint的seed需在未來重新初始化；不宣稱可保存目前in-memory state或精確續跑。
+
+
+## 2026-10-08 19:00 — 依使用者指示暫停 V12
+
+- scheduled monitor先核對command lines／process tree，停止supervisor後停止全部本run workers，確認零matching processes。
+- 全部partial artifacts與前次中斷run保留，沒有修改凍結程式或重訓。詳見 reports/full_training/full500k_20261008_2/USER_REQUESTED_PAUSE.json／md。
+- seed0: last logged 282624 steps; saved resume=None.
+- seed1: last logged 282624 steps; saved resume=None.
+- seed2: last logged 0 steps; saved resume=None.
+- seed3: last logged 0 steps; saved resume=None.
+- seed4: last logged 0 steps; saved resume=None.
+- 尚無初始化checkpoint；未來需明確resume指示後重新初始化，不能精確接續未儲存的in-memory state。completion monitor停用，等待使用者。
+
+## 2026-10-08 — 使用者明確授權恢復 V12 訓練
+
+- 使用者要求resume，取代先前pause指示。新tag full500k_20261008_3；前兩次partial artifacts與pause紀錄完全保留。
+- 核對前次protocol所有frozen sources hashes一致；沒有活動V12 workers。使用獨立resume supervisor，凍結五seeds0–4、500k初始化、32,768更新與所有reward／排程／資料／成交設定。
+- 因seed0／1尚無初始化checkpoint，本次重新初始化；不宣稱精確續跑。已通過且hashes一致的三arms smoke重用，preflight重新執行。
+- 背景兩workers；完成monitor重新啟用，等待全部五模型後完整比較兩B&H、V11與歷史版本。沒有新的pause要求時不再次自動暫停；不自動部署。
+
+
+## V12 500k 完整五模型訓練完成
+
+- 全部 seeds 0–4 technical_pass；各 1,583,104 transitions。比較：reports/full_training/full500k_20261008_3/COMPARISON.md。
+- 中位數 {"final_wealth": 1.4703332406973788, "cagr": 0.10138729692547765, "max_drawdown": -0.1814170111016642, "total_transaction_cost": 14634.109535000001, "average_exposure": 0.8912907383386902}；基準勝數 {"monthly": 1, "lump_sum": 1}；同 seed V11 正差 2/5。
+- adaptive known-period budget comparison，正式採用 NOT_EVALUATED；不自動部署。

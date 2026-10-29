@@ -1,0 +1,49 @@
+version: 1
+status: preregistered_before_v9_training
+purpose: maximise_validation_wealth_vs_buy_and_hold_then_freeze
+parent: v8_final
+# Everything not listed here is inherited unchanged from configs/v8_final.yaml:
+# data (1993 warm-up, train from 1994-02-01), 11 market features + cash rate,
+# V4 clock, {0, .5, 1} actions, v3_min_hold_five, 10 bps, DQN hyper-parameters.
+timesteps_per_run: 500000
+folds: [fold_1, fold_2, fold_3]
+seeds: [0, 1, 2, 3, 4]
+known_period_accessed: false
+known_period_may_select_model: false
+
+arms:
+  v9_relative_reward: {gate: false, relative_reward: true}
+  v9_trend_gate: {gate: true, relative_reward: false}
+  v9_gate_relative_reward: {gate: true, relative_reward: true}
+
+trend_gate:
+  flag: total_return_feature_price_above_its_200_session_sma_at_close_t
+  stream: market_obs  # observed stream; attack harnesses must recompute it
+  when_up: force_full_exposure_target_through_min_hold_rule
+  when_down: agent_action_unchanged
+  window_fixed_a_priori: 200
+
+relative_reward:
+  training_reward: log(nav_close_t+1 / nav_close_t) - log((spy_close_t+1 + ex_date_cash_t+1) / spy_close_t)
+  evaluation_reward: true_log_nav_unchanged
+  episode_sum: log(agent_nav_ratio / product_of_raw_close_plus_ex_date_cash_ratios)
+  reference_is_not_traded_buy_and_hold: true
+
+selection:
+  incumbent: adopted_arm_in_reports/v8/VALIDATION_DECISION.json
+  score: mean_over_folds_of_median_over_seeds_log(wealth / same_window_buy_and_hold)
+  rule: best_score_arm_is_adopted_only_if_its_paired_median_log_wealth_beats_the_incumbent_in_at_least_2_of_3_folds_else_keep_v8_final
+  reported_not_selected: [sharpe_excess_cash, max_drawdown, average_exposure, total_turnover,
+                          state_responsiveness, trend_up_share]
+
+final:
+  train_start: '1994-02-01'
+  train_end: '2021-12-31'
+  seeds: [0, 1, 2, 3, 4]
+  no_seed_selection: true
+
+known_period:
+  start: '2022-01-01'
+  end: '2025-12-31'
+  label: known_period_confirmation_not_untouched_test
+  one_shot: true

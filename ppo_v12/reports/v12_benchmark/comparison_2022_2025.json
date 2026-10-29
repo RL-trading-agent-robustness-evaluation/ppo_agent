@@ -1,0 +1,333 @@
+{
+  "version": "v12spec1_benchmark_only",
+  "status": "PASS",
+  "technical_pass": true,
+  "created_utc": "2026-10-08T04:50:51.881288+00:00",
+  "label": "adaptive known-period diagnostic",
+  "new_model_runs": 0,
+  "new_training_transitions": 0,
+  "source_tag": "adaptive_20261007_1",
+  "benchmarks": {
+    "monthly": {
+      "steps": 1002,
+      "start_date": "2022-01-03",
+      "end_date": "2025-12-31",
+      "final_wealth": 1.528489666663205,
+      "cagr": 0.1121424348860347,
+      "annualized_mean_excess_return": 0.06989439412468404,
+      "annualized_mean_gross_excess_return": 0.07011416687982934,
+      "sharpe_excess_cash": 0.7527338770028733,
+      "annualized_volatility": 0.09291171049628753,
+      "max_drawdown": -0.14884029015797462,
+      "average_exposure": 0.4976910380326213,
+      "total_turnover": 0.8738583359349346,
+      "number_of_trades": 48,
+      "total_transaction_cost": 999.0009990009676,
+      "action_distribution": {
+        "-1": 0.9520958083832335,
+        "2": 0.04790419161676647
+      },
+      "final_nav": 1528489.666663205,
+      "final_cash": 111069.97494132703,
+      "final_shares": 2072.5135054267257,
+      "final_receivable": 4131.282101285461,
+      "total_cash_interest": 81468.77866418945,
+      "total_dividends": 33732.478378422325,
+      "principal_budget_spent": 999999.9999999993,
+      "reward_nav_error": 1.1657341758564144e-15
+    },
+    "lump_sum": {
+      "steps": 1002,
+      "start_date": "2022-01-03",
+      "end_date": "2025-12-31",
+      "final_wealth": 1.48310441640342,
+      "cagr": 0.1037760930367726,
+      "annualized_mean_excess_return": 0.07351609435467346,
+      "annualized_mean_gross_excess_return": 0.07376726302629023,
+      "sharpe_excess_cash": 0.4171091646318196,
+      "annualized_volatility": 0.17631530178118698,
+      "max_drawdown": -0.2471092613381709,
+      "average_exposure": 0.9758908050375079,
+      "total_turnover": 0.99869448,
+      "number_of_trades": 1,
+      "total_transaction_cost": 998.6944800000001,
+      "action_distribution": {
+        "-1": 0.999001996007984,
+        "2": 0.000998003992015968
+      }
+    }
+  },
+  "models": [
+    {
+      "seed": 0,
+      "technical_pass": true,
+      "metrics": {
+        "final_wealth": 1.5736918131711508,
+        "cagr": 0.12029195568047646,
+        "max_drawdown": -0.1909028079589531,
+        "total_transaction_cost": 14234.28977,
+        "average_exposure": 0.9533558252931846
+      },
+      "final_nav": 1573691.8131711509,
+      "differences": {
+        "monthly": {
+          "final_wealth": 0.04520214650794574,
+          "cagr": 0.008149520794441756,
+          "max_drawdown": -0.04206251780097847,
+          "total_transaction_cost": 13235.288770999032,
+          "average_exposure": 0.4556647872605633
+        },
+        "lump_sum": {
+          "final_wealth": 0.09058739676773087,
+          "cagr": 0.01651586264370386,
+          "max_drawdown": 0.05620645337921781,
+          "total_transaction_cost": 13235.59529,
+          "average_exposure": -0.02253497974432328
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "technical_pass": true,
+      "metrics": {
+        "final_wealth": 1.450906514525365,
+        "cagr": 0.09772361088149739,
+        "max_drawdown": -0.1816422764692719,
+        "total_transaction_cost": 13463.786695,
+        "average_exposure": 0.9365322271101214
+      },
+      "final_nav": 1450906.514525365,
+      "differences": {
+        "monthly": {
+          "final_wealth": -0.07758315213784006,
+          "cagr": -0.014418824004537312,
+          "max_drawdown": -0.03280198631129727,
+          "total_transaction_cost": 12464.785695999033,
+          "average_exposure": 0.4388411890775001
+        },
+        "lump_sum": {
+          "final_wealth": -0.032197901878054935,
+          "cagr": -0.006052482155275207,
+          "max_drawdown": 0.06546698486889901,
+          "total_transaction_cost": 12465.092215,
+          "average_exposure": -0.03935857792738651
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "technical_pass": true,
+      "metrics": {
+        "final_wealth": 1.2948698065842577,
+        "cagr": 0.06687676154867961,
+        "max_drawdown": -0.19067750035775033,
+        "total_transaction_cost": 16797.545885,
+        "average_exposure": 0.7455400293119386
+      },
+      "final_nav": 1294869.8065842576,
+      "differences": {
+        "monthly": {
+          "final_wealth": -0.23361986007894742,
+          "cagr": -0.045265673337355095,
+          "max_drawdown": -0.04183721019977571,
+          "total_transaction_cost": 15798.544885999032,
+          "average_exposure": 0.2478489912793173
+        },
+        "lump_sum": {
+          "final_wealth": -0.1882346098191623,
+          "cagr": -0.03689933148809299,
+          "max_drawdown": 0.056431760980420576,
+          "total_transaction_cost": 15798.851405,
+          "average_exposure": -0.23035077572556928
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "technical_pass": true,
+      "metrics": {
+        "final_wealth": 1.6458625666642965,
+        "cagr": 0.1329472915313492,
+        "max_drawdown": -0.1937038066761353,
+        "total_transaction_cost": 11433.074265000001,
+        "average_exposure": 0.9296571668608467
+      },
+      "final_nav": 1645862.5666642964,
+      "differences": {
+        "monthly": {
+          "final_wealth": 0.11737290000109146,
+          "cagr": 0.020804856645314507,
+          "max_drawdown": -0.04486351651816067,
+          "total_transaction_cost": 10434.073265999034,
+          "average_exposure": 0.4319661288282253
+        },
+        "lump_sum": {
+          "final_wealth": 0.1627581502608766,
+          "cagr": 0.02917119849457661,
+          "max_drawdown": 0.05340545466203561,
+          "total_transaction_cost": 10434.379785000001,
+          "average_exposure": -0.04623363817666126
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "technical_pass": true,
+      "metrics": {
+        "final_wealth": 1.3502323384941535,
+        "cagr": 0.07812522870586136,
+        "max_drawdown": -0.23626532162419933,
+        "total_transaction_cost": 10984.930905,
+        "average_exposure": 0.9202961839160012
+      },
+      "final_nav": 1350232.3384941535,
+      "differences": {
+        "monthly": {
+          "final_wealth": -0.1782573281690516,
+          "cagr": -0.03401720618017334,
+          "max_drawdown": -0.08742503146622471,
+          "total_transaction_cost": 9985.929905999032,
+          "average_exposure": 0.4226051458833799
+        },
+        "lump_sum": {
+          "final_wealth": -0.13287207790926647,
+          "cagr": -0.02565086433091124,
+          "max_drawdown": 0.010843939713971573,
+          "total_transaction_cost": 9986.236425,
+          "average_exposure": -0.055594621121506704
+        }
+      }
+    }
+  ],
+  "medians": {
+    "final_wealth": 1.450906514525365,
+    "cagr": 0.09772361088149739,
+    "max_drawdown": -0.1909028079589531,
+    "total_transaction_cost": 13463.786695,
+    "average_exposure": 0.9296571668608467
+  },
+  "wins": {
+    "monthly": 2,
+    "lump_sum": 2
+  },
+  "source_hashes": {
+    "C:\\03_College\\Grad_proj\\ppo_v11\\data\\processed\\v8\\spy_market_1993_2025.csv": "281ed8c0530720b5cedf4abd7e9288375dad4fe073f55b0b814560ebcb54af9b",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\data\\interim\\v8\\spy_cash_distributions_1993_2025.csv": "a981523e00b05e804091bf4671835bade363559215403614344bf5a099541668",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\data\\raw\\VIXCLS_1990_2026.csv": "675f9bcb86ee88799f8f7a8b7ee9c30f7a0be26a26df8f9549bddf9e84c4a598",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\experiments\\v11_ppo\\records\\known_ppo_v11_vix_mix_known_seed0_adaptive_20261007_1.json": "4cce20a1af077e568e4221254787413c7a38400e3b9db6bc5f00a8082c7694bf",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed0_adaptive_20261007_1\\validation.jsonl": "8c15eb106b81800348a6e534d92f9ab39aa1b0bdf460220f4e7af0770a823d17",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed0_adaptive_20261007_1\\final_model.zip": "b5062636e4d016123f3404a6cc88d2bc35e583fc42d5406a2e516c7dc3dc4b30",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed0_adaptive_20261007_1\\pre_2022_model.zip": "a3202e7d0396ec66772226efc578f97a5bacb4589ed4f925def7108f7db618ec",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\experiments\\v11_ppo\\records\\known_ppo_v11_vix_mix_known_seed1_adaptive_20261007_1.json": "54beece9dd077e604f6a6b8214e267462c5fe1a8861f1005cfc5f0a6c3c799bd",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed1_adaptive_20261007_1\\validation.jsonl": "0d6b83db382c0e84229dba8e756b7cc904ab9b2c0331ea0e9d0e15cc9eabe3b6",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed1_adaptive_20261007_1\\final_model.zip": "8e19df797cddab45b0e7d8b64cfd055fba3e908a0abf052520cfa43219e78ab2",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed1_adaptive_20261007_1\\pre_2022_model.zip": "21e375711019d5843c18962e4f23c9cf3ebf7e2deb4d5d446f4eb0dfe62af4fb",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\experiments\\v11_ppo\\records\\known_ppo_v11_vix_mix_known_seed2_adaptive_20261007_1.json": "3163799e512475eecdcc7d91a05ba652b430583c09f9c72c54463d11ff9a8e06",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed2_adaptive_20261007_1\\validation.jsonl": "524cd6f789071eb2fea80350ba47bafae7a93ad9d0e10b57345207a5adbfd927",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed2_adaptive_20261007_1\\final_model.zip": "d3836af274cdaf44891a048ce75e3ab14b61b6e000624adfc6d92e8913b84406",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed2_adaptive_20261007_1\\pre_2022_model.zip": "249759f596b5863d5b90a9913558331070d0759fe388408a3b3e41d0f8d3790f",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\experiments\\v11_ppo\\records\\known_ppo_v11_vix_mix_known_seed3_adaptive_20261007_1.json": "518b29917f41e08ba0f327b9d15f5fef6b57356ccfe65d3696aec9a59218bd21",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed3_adaptive_20261007_1\\validation.jsonl": "86ed3612730f243d5ec8f4c1ee24233ad7e0059d7cd94ede52d230a03bc5bd59",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed3_adaptive_20261007_1\\final_model.zip": "b05959acb909e5cf3a35e4375a2b33fb02993cf144630ca84683af3765cbb262",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed3_adaptive_20261007_1\\pre_2022_model.zip": "ceb1df570b755ca26bdadd654f5e4acaa2a9d184f0fa496afd7927aa61e25ce2",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\experiments\\v11_ppo\\records\\known_ppo_v11_vix_mix_known_seed4_adaptive_20261007_1.json": "dfb7d46091d02a19b95f64a78615a6f1fc35863dcf4358d87ed46ef9e62fc98e",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed4_adaptive_20261007_1\\validation.jsonl": "1b6e17bc952be6bf4eb4561ddfcef115c35053944c6898df0e7a580f115b0d47",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed4_adaptive_20261007_1\\final_model.zip": "d413d26dd0ff808be5cff31fff0d5f2ee57f7f0f307a3baf25660d4a2474cabb",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\artifacts\\ppo_v11\\known\\ppo_v11_vix_mix_known_seed4_adaptive_20261007_1\\pre_2022_model.zip": "1337099e9f21333f17011fe689a58f6cffa9c1eeb3ab16af3275bb89d9ade3ff",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\configs\\ppo_v11.yaml": "69a5b308ccccdae5d800860c2ac5c152bc1bf3e417fe196808d6395ad1601932",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\SOURCE_MANIFEST.json": "fc00844c8b4c141ab3c952ae111e235ce2f0abb7fab7f4378e3a4bb68a614727",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\src\\v12_benchmark.py": "936fad5162ccc8dbfb05e39aead8f317ecd8b7107e7c3b56c08bf3a055376f51",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\scripts\\compare_existing.py": "90b57c887db50d72042255ae5bf33dae449a411ea70a98a622e12c11c68de33d",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\tests\\test_benchmark.py": "61642ef97de7696214ca2904b9ab961f4c985c5103754ffbe937af5dae00d79e",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\configs\\benchmark_v12.json": "d72f620d1fd3007f1d8023be7629cd77c3b729a512b354091cd51b33c7738f82",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\configs\\ppo_v11_reference.yaml": "69a5b308ccccdae5d800860c2ac5c152bc1bf3e417fe196808d6395ad1601932",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\docs\\PPO_V12_MONTHLY_BH_SPEC_ZH_HANT.md": "4b55820db055089ffab370ed4609529626cdfa506c3864cda34ce0024738a0bf",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\docs\\prompts\\PPO_V12_IMPLEMENTATION_PROMPT_ZH_HANT.md": "19102f3d94699c0fbddba52064fe4c5a58dbbc3e416366513e15a128e69041b1",
+    "C:\\03_College\\Grad_proj\\ppo_v12\\docs\\reference\\PPO_V11_ADAPTIVE_POLICY_REWARD_SPEC_ZH_HANT.md": "405460b628fcf93384c424c823c8d7dfc9900f53db91866348f034b2ca24c971",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\config.py": "9d1e686f08a963accca36f2198e4292af94a84a020b3ff546e617fc4cd6fe3fe",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\data.py": "dfac49ab5bf38d11e87f942e6d7c49acbae2022c2ceb8aca831fb99476576911",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\runner.py": "fd48179bd251d61a0ac96ab48b311fdb44e0bfcb28e6f7a676db9e12d4790aa3",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\__init__.py": "8f7e05ba5aa1d5e678077532eaa9da214105ac681b02f821b7503dc5d6fb12bb",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v10\\config.py": "a7d4d5d8c100785437bd2a100dea2dbbccde75850cc23f14729eae5c387c471e",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v10\\runner.py": "3743f10552176a061457fd21732bbee4e1bab98521383831ef7f9111d4f4ab48",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v10\\wrappers.py": "44a58e0ea664e7229d4a2ebaadf1ea516a80ba468e072ad9a062a0895283f232",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v10\\__init__.py": "448ed25c7b6709d6714f24240ff3379055af7318773fd482669874071fbfd578",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v11\\config.py": "da9440643503845d9d0d26d8861e35671f4fb0200a399b3641b70b56950693bd",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v11\\data.py": "09aeb8a060f9b6ba730d4a9c2f590e57b7219d2ef959d90b47cfb663290b3039",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v11\\environment.py": "f0b2ff760c8abcee5ed546a560db89e4769b91ed7a3b0bdccb1c933df42fa3b6",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v11\\policy.py": "b2c969a1f74a1c38d0335c6d3b4fbf581f24f478f60352330a222c6cde67a49f",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v11\\runner.py": "5d6b10ff9a511c9c1ee99ea832189ec5d6e5eef63beafd8a4bc1233df9e8ae02",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v11\\__init__.py": "9a73115324dd3c869d8dc5e95389f2e6a8bc25973351949fde6fa0c233e50748",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v9\\config.py": "1e9df42f5e37f1d2b624f0e519aef2c693b6a32889da9f46ff84c087c9a0fdb8",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v9\\runner.py": "d6264ded956e709a0679fa514776658d862c56db9d8a578195355d100ad9b7fe",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\src\\victim_ppo\\v9\\__init__.py": "8f66798e1ca9c574ede8621544729a3c705f1139bd131e7b2ee09b6f17bf9bf4",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\baselines.py": "77e5d4662eb4607b96444d0ec38e3aeee40dbb1a3eda6fadeffbe91a7afd85f4",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\dqn.py": "99b09f12520fa6a4223019e79f745b57dc0ad7a88bd2692619a33c4aa8365663",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\environment.py": "707cf9bce4f96442c1006adb6c52dbbf17b9ecf9966d2e999b9d3ac52b2f1d6f",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\evaluation.py": "3eaae6015465de76889ea85fe26d15cc3517875e40d10ec3d606b4f410b494c3",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\features.py": "f9a7740c30aa4a671b55b13356b8b243878debec08a86ea96a003fe18785ec5a",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\gate_c1.py": "61961b23df9281fe75a3ae4819ef65e16003d3fa5a8b1d248d1d38be094aebf0",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\gate_c2.py": "0af811bcda9b118768b585e73bab3cb371cb1c8862295631db1a6690c4c5375d",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\ledger.py": "a872c8a4a18675db6b99b8e510cf3b2b9525846cedcdff254b1ab977b80e1b30",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\preprocessing.py": "a2b5a1749e5fbf506b2fb751b545edd4010245536733e51dc74e5378a788fca7",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\toy_market.py": "352ad670d11e10f9fbc77ba827d961137dae996d68b65e0eeaf84dd70cd424b2",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\training.py": "ed0c374f44b545e3fe3af4b1dc7dad50d40795633ee7337e7b654e779c0395c6",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\training_protocol.py": "340cdf2773f48451574b6556274e72a0aa50d0d7646efdb9fa6408b758152385",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\__init__.py": "1cdd3a0155548828ac86a1354800b091dd1fad142a30cf6c302e0414c64a1b83",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\data\\real_adapter.py": "f3dff910735df29d27e8c4fd84ab58acb16e1e3e61ea16e32bd2492ebcb18f10",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\data\\splits.py": "e299f43304a71fbe858ecd80bedac1a605372fdf35e5d8dde575ac0155bcbffc",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\data\\__init__.py": "23543c4d52a17c5deb2df0c7a6035ca581ccc2dd4902651dc705dcaf9030296e",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v2\\diagnostics.py": "dfb92dcbc4dde54222b062220119ec8a50c616b3016386fe628f467fb2b5c064",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v2\\folds.py": "d3ce0d2c2907ee16a7877474bcf4a43d2cb445fcf19d58360a45526d15b40217",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v2\\registry.py": "621e4756f21504ca092f3dc9b676eea3735b6e067e2983e45f695b3dfab27b1c",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v2\\run.py": "0cbf4e178a476d1b13dd33f139bb2e51fa16fbbf0e47fafa9aece98b971e457b",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v2\\search.py": "68d24a7b6166e7a7f7080da3bd34c5ef9009d1b8b324d170212abda5d9480818",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v2\\select.py": "d90509200ed550db9b965eca37be55bdf96b08d776fef6171e8d5836f88e9c76",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v2\\__init__.py": "b7959ca13370596ba13bc56957a52e35a67c2b42e8ff9f571ee3b046eda6fe62",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v3\\diagnostics.py": "cbbae16067982fda7b9f2a65a9df23f596075e3672412b2111fbbfac628363b7",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v3\\execution.py": "5ad88ff813dde04ae71f471dab88bca9a1616d7e6f0278f33c29c3dbe84484bf",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v3\\known_period.py": "79db742b250be2616907f1dab48900c5605fea512995333addd537336b6b07e8",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v3\\run.py": "29f6d0a28d7c56b126933afdfcf0923503aa99e94b6839d0744508a61d07612c",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v3\\train_validation_gap.py": "794a0ad0bc173e1b9174cf21e03b30414bf34fe272472608e402ef1f45e6141e",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v3\\__init__.py": "eb0183e70ccbac72b1c6be0ea1552e8ee42ce57f0e31a5721b2e3f5358406518",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v4\\environment.py": "7f9f5694e30d7d977a689118b5907dc2a48e954795b27e06eceefc209f980324",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v4\\evaluation.py": "4b242d2e78a3bd427f7734f8fd1d080758274e1ececad1a12d156aac16c69e54",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v4\\study.py": "59da17673cc0905536646efbd2efa9dbe11d77d57a48c5200151677e1ccca123",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v4\\__init__.py": "cd67f3d9fbacd37850068a6470486ecaf113998a8d6c6c2cdba08b8c320cead4",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v5\\study.py": "50c63d3d2c1e8de2e4c3dbe354a66c2c1adb992f60e98c04c6ea3a2d71e46a77",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v5\\__init__.py": "ba523fd3f656f328a111d26d87558308cca68fdee1d89c19d530c8b02dbccad6",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v6\\attribution.py": "41b8b10c7d2cf96c71152f0fbae8b4f3e0d2c337a1f1ff57df2cbf95aa5fb943",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v6\\rule_probe.py": "1ed3354008a0694f12b3cf943c64a50d08d83f77399db9af978b5f85acf74f9e",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v6\\__init__.py": "a286a1531a8051bd5f91a801e6e88f1632c3deaf1ab119972d6cbdf495094547",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v8\\data.py": "a1a210fbb97e8954ee2acc880205e9cb34356d36bf98fd9e95348be07c4de49b",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v8\\features.py": "a4071baccdecd5765b94a8844e0a7809dd50312abf6c7a375253d8fa790e730a",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v8\\study.py": "4d129a80ad684c94321bc2c72086a2f3f8362762da2da39be4d2a7e741f6b19f",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v8\\__init__.py": "b6b8b33f00ce1378f3865b97856773c3ffb106f8502cb16c6197c72cbf8d9f0a",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v9\\study.py": "0530385fa63915712fbbf32c67a97cf88647c3018ca3f073aa6887a2175f7736",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v9\\wrappers.py": "01871ef71e8f6e20455f9355f4cf357e3e66de40bacfc15ae5daddd948573df1",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\v9\\__init__.py": "4e0b3809014a6a22a84fadbaedeeaac51ae8a803202f18bfea95ece57db08c9a",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\validation\\leakage.py": "f51d8bef71a7ea05210b063cd66005aa8bd40982f9bcc82960d5410db4a60fcb",
+    "C:\\03_College\\Grad_proj\\ppo_v11\\victimagent\\src\\victimagent\\validation\\__init__.py": "32f96cd0ccd5d6deaea6731155e7ae1df66a07d133a8b0b27e609de3140b3dc8"
+  },
+  "output_hashes": {
+    "attempt_20261008T044917271504.json": "5881436832d9b2d909860cc7b87af02b718aab379b3ed2d3892d4fce284f4923",
+    "attempt_20261008T044937627667.json": "b1c178c87683eb0f72f0aca698456e11fbf4783ef4e79ce1c1c225d851116e1c",
+    "baseline_metrics.json": "6ebe022a6922ff66164b0f96e7bb5a3d3982e704c13394574c09a73a5542b9fa",
+    "lump_sum_ledger.jsonl": "59a79edfee349ce7ed5d09f146164c8d6b0bed871e9f5f12b1db7553da7bf169",
+    "monthly_ledger.jsonl": "561e9bc4a02eee4f9ff897c15d49e36936bb985ff249b6dfdda99a4ee51e1dfb",
+    "monthly_purchases.json": "19008bf9efd2a327fcb5703b635b6520944b3a92baaaf75d26244875d76ceba2"
+  },
+  "checks": {
+    "data_hashes": true,
+    "five_records_technical_pass": true,
+    "checkpoint_hashes": true,
+    "trajectory_hashes": true,
+    "recomputed_metrics": true,
+    "identical_valuation_calendar": true,
+    "lump_sum_reproduction": true,
+    "48_budgets_and_1000000_total": true,
+    "cash_nonnegative_and_nav_conservation": true,
+    "reward_nav_identity": true
+  },
+  "limitation": "Monthly fractional shares versus original integer shares; different exposure schedules. No training improvement claim or formal adoption."
+}

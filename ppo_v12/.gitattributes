@@ -1,0 +1,2 @@
+# Preserve the exact bytes referenced by frozen training/source manifests.
+* -text

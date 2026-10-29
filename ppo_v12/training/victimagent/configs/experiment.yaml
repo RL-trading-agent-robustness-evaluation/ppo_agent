@@ -1,0 +1,70 @@
+version: victim_v1
+status: implementation_frozen
+change_control:
+  require_dated_revision: true
+  forbid_test_driven_changes: true
+
+assets:
+  primary:
+    ticker: SPY
+    permno: 84398
+  replications:
+    - ticker: TLT
+      permno: 89468
+    - ticker: GLD
+      permno: 90448
+  portfolio_mode: single_asset_plus_cash
+
+market:
+  frequency: daily
+  data_source: CRSP
+  price_fields: raw
+  price_taker: true
+  allow_short: false
+  allow_leverage: false
+  allow_negative_cash: false
+  model_order_book: false
+  model_market_impact: false
+  model_partial_fill: false
+
+timeline:
+  observation_cutoff: close_t
+  action_lock: before_open_t_plus_1_is_revealed
+  execution_time: open_t_plus_1
+  execution_price: market_true_raw_open
+  reward_interval: open_t_plus_1_to_open_t_plus_2
+  reward_type: pretrade_nav_log_return
+
+account:
+  initial_cash_usd: 1000000
+  integer_shares: true
+  target_weights: [0.0, 0.5, 1.0]
+  transaction_cost_bps:
+    primary: 10
+    sensitivity: [0, 5, 25]
+
+cash:
+  primary_series: DGS3MO
+  audit_series: DTB3
+  day_count: ACT_365
+  availability_rule: strictly_prior_observation
+
+corporate_actions:
+  dividend_mode: ex_date_receivable_pay_date_cash
+  split_mode: adjust_shares_before_open
+  fail_on_unknown_distribution: true
+  use_adjusted_prices: false
+  use_crsp_total_return_for_reward: false
+
+streams:
+  true_market:
+    mutable_by_observation_attack: false
+    uses: [execution, dividends, cash, nav, reward]
+  observed_market:
+    clean_equals_true: true
+    uses: [feature_builder, agent_observation]
+
+algorithms:
+  first: DQN
+  second: PPO
+  optional_replication: A2C

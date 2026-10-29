@@ -1,0 +1,23 @@
+{
+  "updated_utc": "2026-10-09T15:09:12.034439+00:00",
+  "phase": "complete",
+  "technical_pass": true,
+  "completed": [
+    1,
+    0,
+    2,
+    3,
+    4
+  ],
+  "medians": {
+    "final_wealth": 1.4703332406973788,
+    "cagr": 0.10138729692547765,
+    "max_drawdown": -0.1814170111016642,
+    "total_transaction_cost": 14634.109535000001,
+    "average_exposure": 0.8912907383386902
+  },
+  "wins": {
+    "monthly": 1,
+    "lump_sum": 1
+  }
+}

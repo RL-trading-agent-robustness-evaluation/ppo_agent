@@ -1,0 +1,50 @@
+project: rl_trading_victim_v1
+timezone: America/New_York
+currency: USD
+
+assets:
+  84398: SPY
+  89468: TLT
+  90448: GLD
+
+files:
+  market_daily: crsp_dsf_spy_tlt_gld_2009_2025.csv
+  distributions: stkdistributions_spy_tlt_gld_2009_2025.csv
+  cash_primary: DGS3MO_2009_2025.csv
+  cash_audit: DTB3_2009_2025.csv
+
+source_metadata:
+  market_daily:
+    provider: CRSP via WRDS
+    table: crsp_a_stock.dsf_v2
+    downloaded_at_utc: null
+  distributions:
+    provider: CRSP via WRDS
+    table: crsp_a_stock.stkdistributions
+    downloaded_at_utc: null
+  cash_primary:
+    provider: FRED
+    series: DGS3MO
+    downloaded_at_utc: null
+  cash_audit:
+    provider: FRED
+    series: DTB3
+    downloaded_at_utc: null
+
+dates:
+  warmup_start: 2009-01-02
+  train_start: 2010-01-04
+  train_end: 2018-12-31
+  validation_start: 2019-01-01
+  validation_end: 2021-12-31
+  test_start: 2022-01-01
+  test_end: 2025-12-31
+
+cash_rate:
+  day_count: ACT_365
+  availability_rule: strictly_prior_observation
+
+checks:
+  dividend_amount_tolerance: 0.00001
+  require_distribution_payment_dates_through: 2025-12-31
+  require_cash_history_from: 2009-01-02

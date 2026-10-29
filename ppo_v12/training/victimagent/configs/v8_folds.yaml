@@ -1,0 +1,61 @@
+version: 8
+status: frozen_before_v8_results
+purpose: v8_final_victim_selection_only
+timezone: America/New_York
+calendar: NYSE
+asset: SPY
+# 252 rows cover the longest V8 lookback (252-session return). 1993 is warm-up.
+warmup_rows: 252
+
+data_roles:
+  warmup:
+    start: 1993-01-29
+    end: 1994-01-31
+    may_generate_actions: false
+    may_generate_rewards: false
+  development:
+    start: 1994-02-01
+    end: 2021-12-31
+    may_select_model: true
+  known_period_confirmation:
+    start: 2022-01-01
+    end: 2025-12-31
+    previously_observed_at_project_level: true
+    may_select_model: false
+    label_in_reports: known_period_confirmation_not_untouched_test
+  untouched_holdout: null
+
+# Validation windows are identical to V2-V5; only the expanding train start
+# moves back from 2010-01-04 to 1994-02-01.
+folds:
+  - id: fold_1
+    train:
+      start: 1994-02-01
+      end: 2014-12-31
+    validation:
+      start: 2015-01-01
+      end: 2016-12-31
+  - id: fold_2
+    train:
+      start: 1994-02-01
+      end: 2016-12-31
+    validation:
+      start: 2017-01-01
+      end: 2018-12-31
+  - id: fold_3
+    train:
+      start: 1994-02-01
+      end: 2018-12-31
+    validation:
+      start: 2019-01-01
+      end: 2021-12-31
+
+preprocessing:
+  fit_scope: per_fold_train_only
+  validation_transform_only: true
+  known_period_transform_only: true
+
+rules:
+  random_time_split_forbidden: true
+  model_selection_on_known_period_forbidden: true
+  folds_may_move_after_results: false

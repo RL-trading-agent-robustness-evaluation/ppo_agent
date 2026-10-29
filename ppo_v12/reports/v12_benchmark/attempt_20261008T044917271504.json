@@ -1,0 +1,4 @@
+{
+  "status": "FAIL",
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\03_College\\Grad_proj\\ppo_v12\\scripts\\compare_existing.py\", line 169, in <module>\n    run()\n    ~~~^^\n  File \"C:\\03_College\\Grad_proj\\ppo_v12\\scripts\\compare_existing.py\", line 61, in run\n    assert source[str(p)] == config.raw[key+'_sha256'], key\n                             ~~~~~~~~~~^^^^^^^^^^^^^^^\nKeyError: 'vix_sha256'\n"
+}

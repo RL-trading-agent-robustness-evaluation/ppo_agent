@@ -1,0 +1,55 @@
+version: 1
+status: frozen
+gate: C2
+purpose: one_shot_clean_test_evaluation
+
+selected_checkpoint:
+  seed: 4
+  path: artifacts/checkpoints/dqn_v1_clean_seed4.zip
+  sha256: fdf9771d4dd8aa6bbb76367d7445c83e27d1b52da86d29e40276db38287b9ef9
+  selection_metric: validation_sharpe_after_costs
+
+provenance:
+  training_commit: e4a46327a0804c360b7c71dbd8d5b3eea0407597
+  gate_c1_commit: 3cf017f592990989182b0e8564cf553482842d6b
+  expected_sha256:
+    dqn_v1.yaml: 1e6f20b6d1e335136d505de332a7c5fa1d7dbc2fdc937f474fb60a38babecb52
+    training.yaml: 0f245bfb7ecf2e7fa77954c980440deaac8b1d52457b1e81650962ade3a5b5a6
+    splits.yaml: 20e19c7eff2e40aff35d002b1c9fc7d504ec6cc19532aa4324c59b998a24ad33
+    processed_market: dd5ed6c9796551600a182cfd8b51451c326f66f58daeb6daefdc9e5b60626638
+    distribution_events: a64a8b0254fdfc1032a773ca13de38a10f8707fd26b998434c4f5b73d20dab03
+
+evaluation:
+  asset: SPY
+  partition: test
+  expected_start: 2022-01-01
+  expected_end: 2025-12-31
+  deterministic: true
+  transaction_cost_bps: 10.0
+  baselines:
+    - cash
+    - buy_and_hold
+    - constant_50
+    - ma_20_60
+  random_baseline_primary_comparison: false
+  economic_pass_threshold: null
+
+execution:
+  confirmation_phrase: I_UNDERSTAND_TEST_IS_ONE_SHOT
+  preflight_record: reports/gate_c2_preflight.json
+  execution_record: reports/gate_c2_execution_record.json
+  report_json: reports/gate_c2_report.json
+  report_markdown: reports/GATE_C2_REPORT.md
+  trajectory_directory: artifacts/trajectories/gate_c2
+  refuse_if_execution_record_exists: true
+  automatic_rerun_after_failure: false
+
+technical_gates:
+  reward_nav_invariant_tolerance: 1.0e-10
+  require_natural_termination: true
+  require_finite_positive_nav: true
+  require_finite_q_values: true
+  require_parameters_unchanged: true
+  require_optimizer_unchanged: true
+  require_replay_unchanged: true
+  require_scaler_unchanged: true

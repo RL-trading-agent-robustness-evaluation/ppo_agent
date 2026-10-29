@@ -1,0 +1,18 @@
+{
+  "version": "v12spec1_benchmark_only",
+  "initial_cash": 1000000.0,
+  "start": "2022-01-01",
+  "end": "2025-12-31",
+  "purchase_months": 48,
+  "cost_bps": 10.0,
+  "budget_includes_cost": true,
+  "share_mode": "fractional",
+  "external_deposits": false,
+  "source_tag": "adaptive_20261007_1",
+  "existing_seeds": [0, 1, 2, 3, 4],
+  "training_authorized": false,
+  "future_initial_requested_transitions": 200000,
+  "future_initial_expected_transitions": 200704,
+  "future_fine_tune_transitions": 32768,
+  "future_seeds": [0, 1, 2, 3]
+}

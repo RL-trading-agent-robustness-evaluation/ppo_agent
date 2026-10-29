@@ -1,0 +1,29 @@
+version: 1
+timezone: America/New_York
+calendar: NYSE
+
+# 2009 is reserved for feature warm-up and data validation. It is not an
+# eligible decision period in the V1 benchmark.
+eligible_start: 2010-01-04
+eligible_end: 2025-12-31
+
+train:
+  start: 2010-01-04
+  end: 2018-12-31
+
+validation:
+  start: 2019-01-01
+  end: 2021-12-31
+
+test:
+  start: 2022-01-01
+  end: 2025-12-31
+
+# Observation Contract V1 has a longest rolling window of 60 market rows.
+# Warm-up rows may be read for causal feature construction but may never
+# generate an action, reward, or performance observation.
+warmup_rows: 60
+
+# No post-2025 data is currently frozen. Add a future holdout only before it is
+# inspected; never carve one out after viewing its performance.
+future_holdout: null

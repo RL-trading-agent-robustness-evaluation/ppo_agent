@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "data_hashes": {
+    "market": "281ed8c0530720b5cedf4abd7e9288375dad4fe073f55b0b814560ebcb54af9b",
+    "events": "a981523e00b05e804091bf4671835bade363559215403614344bf5a099541668",
+    "vix": "675f9bcb86ee88799f8f7a8b7ee9c30f7a0be26a26df8f9549bddf9e84c4a598"
+  },
+  "implementation_hashes": {
+    "src/victim_ppo/v11/__init__.py": "2b848b22efcaa19fae1fca9a2cd461f14c09c1da0a9f55d4934ba0401e17f989",
+    "src/victim_ppo/v11/config.py": "d42a825f8f017dc18063925567e37d0dd56ef6522cb7ae411822efbf1cfc142f",
+    "src/victim_ppo/v11/data.py": "2854d703f28e6ef57237176df62af1f8d597847950f7adbab6f4f1c40854ef2d",
+    "src/victim_ppo/v11/environment.py": "f7e576f2fc6878de527dcd915d7f4252b98428fead35acf08e54f6ab7a23b087",
+    "src/victim_ppo/v11/policy.py": "ac9cacf3afb26449c39306eb73fc3705345e5d496f7915df85e41311f0c0aa43",
+    "src/victim_ppo/v11/runner.py": "0cfc0878d9a1a8b382d42e480863f2303bb06a5753c7ecea2b44a721ac4750fd",
+    "scripts/run_ppo_v11.py": "ccd5649bc126d5a8758fc84fb54998344f59c6e396432ab63a32330cdc2003e4"
+  },
+  "config_sha256": "39bedd5f7d1ae37f8c37eb2aa6f0d516dcaca73e6d8e02a885fdef32b0946e0c",
+  "spec_sha256": "4d00337d94778e5412b93f5dd702d4d971f6c3eec12f07f097f762c74f9abe33",
+  "prompt_sha256": "29cc9fb8d99caf89dc05bfcfded83f6d6bda02458b5b767356c800fd1ee77e76",
+  "parent_commit": "f4988db5c98d9248533c4ca852cc48ca3f6b7aad",
+  "source_manifest_sha256": "f2757d06b50207af6dd6744fcf789cc91780d6f738ff6c0d0e98417df7768e2a",
+  "initial_requested": 500000,
+  "initial_expected": 501760,
+  "fine_tune_transitions": 32768,
+  "scaler_sha256": "ac363bc12ccee1f1e229a19f29c24a0abcc137d449da47613e7d0156603f79a1",
+  "initialization_date": "2010-12-31",
+  "packages": {
+    "stable-baselines3": "2.9.0",
+    "torch": "2.14.0",
+    "gymnasium": "1.3.0",
+    "numpy": "2.5.3",
+    "pandas": "2.3.3"
+  },
+  "known_period_accessed": false,
+  "budget_estimate": {
+    "trajectories": 45,
+    "initial_transitions": 22579200,
+    "per_fold_schedule": {
+      "fold_1": {
+        "vix": {
+          "fine_tunes": 11,
+          "transitions": 862208
+        },
+        "fixed": {
+          "fine_tunes": 11,
+          "transitions": 862208
+        }
+      },
+      "fold_2": {
+        "vix": {
+          "fine_tunes": 15,
+          "transitions": 993280
+        },
+        "fixed": {
+          "fine_tunes": 15,
+          "transitions": 993280
+        }
+      },
+      "fold_3": {
+        "vix": {
+          "fine_tunes": 24,
+          "transitions": 1288192
+        },
+        "fixed": {
+          "fine_tunes": 21,
+          "transitions": 1189888
+        }
+      }
+    },
+    "total_expected_transitions": 46663680,
+    "note": "Calendar-derived exact update counts on current development data; CPU time measured by smoke."
+  }
+}

@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: victimagent
+Version: 0.1.0
+Summary: Auditable RL trading victim and adversarial robustness evaluation
+Requires-Python: >=3.11
+Requires-Dist: gymnasium<2.0,>=1.0
+Requires-Dist: numpy<3.0,>=1.26
+Requires-Dist: pandas<3.0,>=2.1
+Requires-Dist: PyYAML<7.0,>=6.0
+Provides-Extra: dev
+Requires-Dist: pytest<9.0,>=8.0; extra == "dev"
+Provides-Extra: rl
+Requires-Dist: stable-baselines3==2.9.0; extra == "rl"

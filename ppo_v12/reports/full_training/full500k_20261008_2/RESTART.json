@@ -1,0 +1,23 @@
+{
+  "authorization": "User explicitly approved restarting all five seeds after interruption.",
+  "interrupted_tag": "full500k_20261008_1",
+  "fresh_tag": "full500k_20261008_2",
+  "unchanged_initial_requested": 500000,
+  "unchanged_fine_tune": 32768,
+  "reused_passed_smokes": [
+    {
+      "record": "C:\\03_College\\Grad_proj\\ppo_v12\\training\\experiments\\v11_ppo\\records\\smoke_ppo_v12_vix_nav_fold_1_seed0_full500k_20261008_1.json",
+      "sha256": "75c01f6f82064cda5e29f19817251f3ec0a08a9ab258506ec1c2f3225a23d2aa"
+    },
+    {
+      "record": "C:\\03_College\\Grad_proj\\ppo_v12\\training\\experiments\\v11_ppo\\records\\smoke_ppo_v12_vix_mix_fold_1_seed0_full500k_20261008_1.json",
+      "sha256": "e318f4eb9fa24737ce72bfbb8213e087f6bd3fb96bd654fbaf42808c86b16932"
+    },
+    {
+      "record": "C:\\03_College\\Grad_proj\\ppo_v12\\training\\experiments\\v11_ppo\\records\\smoke_ppo_v12_fixed_nav_fold_1_seed0_full500k_20261008_1.json",
+      "sha256": "ce111a44a7ec8074153125feb7518cc8800b9a973c842c65df578c69ffa30d43"
+    }
+  ],
+  "preflight_rerun": true,
+  "reason": "No recoverable initialization checkpoint; preserve all old partial artifacts."
+}

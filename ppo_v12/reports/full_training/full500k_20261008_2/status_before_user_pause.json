@@ -1,0 +1,16 @@
+{
+  "updated_utc": "2026-10-08T11:00:45.703795+00:00",
+  "phase": "training",
+  "supervisor_pid": 82124,
+  "completed": [],
+  "pending": [
+    2,
+    3,
+    4
+  ],
+  "running": {
+    "0": 7600,
+    "1": 30936
+  },
+  "failure": null
+}

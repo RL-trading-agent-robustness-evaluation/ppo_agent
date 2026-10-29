@@ -1,0 +1,118 @@
+version: observation_v1
+status: implementation_frozen
+asset_scope: single_asset
+decision_cutoff: close_t
+output:
+  dtype: float32
+  shape: [10]
+  finite_required: true
+  order:
+    - log_return_1
+    - log_return_5
+    - close_to_sma_5
+    - close_to_sma_20
+    - close_to_sma_60
+    - realized_volatility_20
+    - cash_rate_known
+    - risky_weight_observed
+    - cash_weight_observed
+    - receivable_weight_observed
+
+history:
+  max_lookback_rows: 60
+  warmup_rows: 60
+  warmup_can_generate_actions: false
+  warmup_can_generate_rewards: false
+
+price_basis:
+  primary: causal_total_return
+  sensitivity: raw
+  causal_total_return_formula: feature_price_t = feature_price_t_minus_1 * (close_raw_t + ordinary_dividend_t) / close_raw_t_minus_1
+  causality: forward_only_from_observed_history
+  note: dividend on ex-date offsets the mechanical raw-price drop without using future adjustment factors
+
+market_features:
+  - name: log_return_1
+    source: market_obs.feature_price
+    formula: log(feature_price_t / feature_price_t_minus_1)
+    required_rows: 2
+    scaling: train_zscore
+  - name: log_return_5
+    source: market_obs.feature_price
+    formula: log(feature_price_t / feature_price_t_minus_5)
+    required_rows: 6
+    scaling: train_zscore
+  - name: close_to_sma_5
+    source: market_obs.feature_price
+    formula: feature_price_t / mean(feature_price_t_minus_4_through_t) - 1
+    required_rows: 5
+    scaling: train_zscore
+  - name: close_to_sma_20
+    source: market_obs.feature_price
+    formula: feature_price_t / mean(feature_price_t_minus_19_through_t) - 1
+    required_rows: 20
+    scaling: train_zscore
+  - name: close_to_sma_60
+    source: market_obs.feature_price
+    formula: feature_price_t / mean(feature_price_t_minus_59_through_t) - 1
+    required_rows: 60
+    scaling: train_zscore
+  - name: realized_volatility_20
+    source: market_obs.feature_price
+    formula: sqrt(252) * population_std(last_20_log_returns)
+    required_rows: 21
+    scaling: train_zscore
+
+exogenous_features:
+  - name: cash_rate_known
+    source: strictly_prior_DGS3MO
+    formula: dgs3mo_pct / 100
+    required_rows: 1
+    scaling: train_zscore
+    attackable_in_v1_price_attack: false
+
+account_features:
+  valuation_price: market_obs.close_raw
+  perceived_nav_formula: cash_available + shares * observed_close + dividend_receivable
+  items:
+    - name: risky_weight_observed
+      formula: shares * observed_close / perceived_nav
+      scaling: none
+    - name: cash_weight_observed
+      formula: cash_available / perceived_nav
+      scaling: none
+    - name: receivable_weight_observed
+      formula: dividend_receivable / perceived_nav
+      scaling: none
+
+preprocessing:
+  fit_partition: train
+  transform_partitions: [train, validation, test]
+  scaler: zscore
+  standard_deviation_ddof: 0
+  winsorization: none
+  min_max_scaling: none
+  pca: none
+  reject_zero_variance: true
+  serialize_with_checkpoint: true
+
+missing_values:
+  ohlc_fill: forbidden
+  feature_fill: forbidden
+  incomplete_warmup_action: forbidden
+  incomplete_warmup_reward: forbidden
+
+attack_interface:
+  replaceable_group: market_features
+  immutable_groups: [exogenous_features, account_quantities]
+  clean_market_obs_equals_market_true: true
+  true_stream_must_remain_unchanged: true
+
+forbidden_inputs:
+  - future_return
+  - next_return
+  - target
+  - label
+  - next_action
+  - open_t_plus_1
+  - any_post_decision_information

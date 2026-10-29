@@ -1,0 +1,45 @@
+{
+  "changes": {
+    "src\\victim_ppo\\v11\\config.py": {
+      "source_sha256": "da9440643503845d9d0d26d8861e35671f4fb0200a399b3641b70b56950693bd",
+      "v12_sha256": "d42a825f8f017dc18063925567e37d0dd56ef6522cb7ae411822efbf1cfc142f"
+    },
+    "src\\victim_ppo\\v11\\data.py": {
+      "source_sha256": "09aeb8a060f9b6ba730d4a9c2f590e57b7219d2ef959d90b47cfb663290b3039",
+      "v12_sha256": "2854d703f28e6ef57237176df62af1f8d597847950f7adbab6f4f1c40854ef2d"
+    },
+    "src\\victim_ppo\\v11\\environment.py": {
+      "source_sha256": "f0b2ff760c8abcee5ed546a560db89e4769b91ed7a3b0bdccb1c933df42fa3b6",
+      "v12_sha256": "f7e576f2fc6878de527dcd915d7f4252b98428fead35acf08e54f6ab7a23b087"
+    },
+    "src\\victim_ppo\\v11\\policy.py": {
+      "source_sha256": "b2c969a1f74a1c38d0335c6d3b4fbf581f24f478f60352330a222c6cde67a49f",
+      "v12_sha256": "ac9cacf3afb26449c39306eb73fc3705345e5d496f7915df85e41311f0c0aa43"
+    },
+    "src\\victim_ppo\\v11\\runner.py": {
+      "source_sha256": "5d6b10ff9a511c9c1ee99ea832189ec5d6e5eef63beafd8a4bc1233df9e8ae02",
+      "v12_sha256": "0cfc0878d9a1a8b382d42e480863f2303bb06a5753c7ecea2b44a721ac4750fd"
+    },
+    "src\\victim_ppo\\v11\\__init__.py": {
+      "source_sha256": "9a73115324dd3c869d8dc5e95389f2e6a8bc25973351949fde6fa0c233e50748",
+      "v12_sha256": "2b848b22efcaa19fae1fca9a2cd461f14c09c1da0a9f55d4934ba0401e17f989"
+    },
+    "tests\\conftest.py": {
+      "source_sha256": "abac28df39aa1abd75ac02acf5437d1bd6899b573fc0b0bc69686cf53f27067f",
+      "v12_sha256": "3ce51bbefcd1f6ddff30dc7449e4e57d4b50b6410b9c5f5776237a5b5c72778d"
+    },
+    "tests\\test_v11.py": {
+      "source_sha256": "161578d7333aeb9bbf5bb552bd0c34800c644507467f49f70500f288a2a5c187",
+      "v12_sha256": "279e1b900f38e044a7a2088a327747b96480da276414a3fd8d92f7c838a4ef97"
+    },
+    "tests\\test_v11_reward_sequence.py": {
+      "source_sha256": "396f1ade5b8c07d4b9aaeba2d4cf1f3ee5da390590eeca90c3171459fe6f3534",
+      "v12_sha256": "0342ad0f72aa6d9c1ad0df5479920ac1e075fb4f105e4401fea0cadb37c16067"
+    },
+    "config": {
+      "source_sha256": "69a5b308ccccdae5d800860c2ac5c152bc1bf3e417fe196808d6395ad1601932",
+      "v12_sha256": "39bedd5f7d1ae37f8c37eb2aa6f0d516dcaca73e6d8e02a885fdef32b0946e0c"
+    }
+  },
+  "rationale": "Isolated version/namespace and initialization-budget change only; preserve reward, schedule, fresh rollouts, execution and account contracts."
+}

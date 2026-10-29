@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "C:\03_College\Grad_proj\ppo_v12\scripts\compare_existing.py", line 172, in <module>
+    run()
+    ~~~^^
+  File "C:\03_College\Grad_proj\ppo_v12\scripts\compare_existing.py", line 92, in run
+    monthly_rows,purchases,monthly = run_monthly(bundle)
+                                     ~~~~~~~~~~~^^^^^^^^
+  File "C:\03_College\Grad_proj\ppo_v12\src\v12_benchmark.py", line 95, in run_monthly
+    _, reward, terminated, truncated, info = env.step_target_weight(1. if order else None)
+                                             ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\03_College\Grad_proj\ppo_v11\victimagent\src\victimagent\environment.py", line 195, in step_target_weight
+    return self._step_target_weight(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        target_weight,
+        ^^^^^^^^^^^^^^
+        requested_action="HOLD_SHARES" if target_weight is None else float(target_weight),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        hold_shares=target_weight is None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\03_College\Grad_proj\ppo_v11\victimagent\src\victimagent\v4\environment.py", line 127, in _step_target_weight
+    next_observation = self._compose_observation(next_i)
+  File "C:\03_College\Grad_proj\ppo_v11\victimagent\src\victimagent\environment.py", line 313, in _compose_observation
+    return self.observation_builder.compose(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        row,
+        ^^^^
+        account,
+        ^^^^^^^^
+        observed_close=float(row["observed_close"]),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\03_College\Grad_proj\ppo_v11\victimagent\src\victimagent\features.py", line 208, in compose
+    account.validate()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\03_College\Grad_proj\ppo_v11\victimagent\src\victimagent\features.py", line 67, in validate
+    raise ValueError("shares must be a non-negative integer")
+ValueError: shares must be a non-negative integer

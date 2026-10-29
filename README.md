@@ -1,3 +1,9 @@
+# PPO V12 branch
+
+The V12 implementation, specifications and completed five-seed results are in
+[ppo_v12/](ppo_v12/GITHUB_README.md). Licensed data and checkpoint binaries are
+excluded. The V11 reference source and history below remain available.
+
 # PPO V11 — 200k chronological adaptive policy
 
 Fresh GitHub clones: see [local installation, required inputs and audit setup](docs/LOCAL_RUN.md).

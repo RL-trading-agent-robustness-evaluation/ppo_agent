@@ -1,0 +1,32 @@
+[
+  {
+    "ProcessId": 81904,
+    "ParentProcessId": 6460,
+    "CommandLine": "\"C:\\03_College\\Grad_proj\\ppo_v10\\.venv\\Scripts\\python.exe\" -B C:\\03_College\\Grad_proj\\ppo_v12\\scripts\\run_full_training_restart.py"
+  },
+  {
+    "ProcessId": 82124,
+    "ParentProcessId": 81904,
+    "CommandLine": "\"C:\\03_College\\Grad_proj\\ppo_v10\\.venv\\Scripts\\python.exe\" -B C:\\03_College\\Grad_proj\\ppo_v12\\scripts\\run_full_training_restart.py"
+  },
+  {
+    "ProcessId": 7600,
+    "ParentProcessId": 82124,
+    "CommandLine": "C:\\03_College\\Grad_proj\\ppo_v10\\.venv\\Scripts\\python.exe -B C:\\03_College\\Grad_proj\\ppo_v12\\training\\scripts\\run_ppo_v11.py --direct-known-period --arm ppo_v12_vix_mix --seed 0 --tag full500k_20261008_2"
+  },
+  {
+    "ProcessId": 30936,
+    "ParentProcessId": 82124,
+    "CommandLine": "C:\\03_College\\Grad_proj\\ppo_v10\\.venv\\Scripts\\python.exe -B C:\\03_College\\Grad_proj\\ppo_v12\\training\\scripts\\run_ppo_v11.py --direct-known-period --arm ppo_v12_vix_mix --seed 1 --tag full500k_20261008_2"
+  },
+  {
+    "ProcessId": 50336,
+    "ParentProcessId": 7600,
+    "CommandLine": "C:\\03_College\\Grad_proj\\ppo_v10\\.venv\\Scripts\\python.exe -B C:\\03_College\\Grad_proj\\ppo_v12\\training\\scripts\\run_ppo_v11.py --direct-known-period --arm ppo_v12_vix_mix --seed 0 --tag full500k_20261008_2"
+  },
+  {
+    "ProcessId": 59360,
+    "ParentProcessId": 30936,
+    "CommandLine": "C:\\03_College\\Grad_proj\\ppo_v10\\.venv\\Scripts\\python.exe -B C:\\03_College\\Grad_proj\\ppo_v12\\training\\scripts\\run_ppo_v11.py --direct-known-period --arm ppo_v12_vix_mix --seed 1 --tag full500k_20261008_2"
+  }
+]

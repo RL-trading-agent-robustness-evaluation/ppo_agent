@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "phase": "prelaunch_isolated_engine_tests",
+  "command": "python -B -m pytest ppo_v12/training/tests -q -p no:cacheprovider",
+  "tests_passed": 22,
+  "warnings": 28,
+  "warning_type": "Gymnasium Box low/high precision lowered to float32",
+  "seconds": 46.73,
+  "historical_trajectories_verified": 15,
+  "new_initial_requested": 500000,
+  "new_initial_expected": 501760,
+  "note": "Full command output retained in Codex tool history. Supervisor separately performs frozen source/data preflight and three smoke arms."
+}

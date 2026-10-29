@@ -1,0 +1,14 @@
+test_benchmark_does_not_use_policy_observation (test_benchmark.Tests.test_benchmark_does_not_use_policy_observation) ... ok
+test_constant_path (test_benchmark.Tests.test_constant_path) ... ok
+test_events_and_lagged_interest (test_benchmark.Tests.test_events_and_lagged_interest) ... ok
+test_ex_date_purchase_not_entitled (test_benchmark.Tests.test_ex_date_purchase_not_entitled) ... ok
+test_fixed_cash_variable_price (test_benchmark.Tests.test_fixed_cash_variable_price) ... ok
+test_missing_month_and_insufficient_cash (test_benchmark.Tests.test_missing_month_and_insufficient_cash) ... ok
+test_no_future_price_schedule (test_benchmark.Tests.test_no_future_price_schedule) ... ok
+test_schedule_boundary_and_budget (test_benchmark.Tests.test_schedule_boundary_and_budget) ... ok
+test_split_fractional_and_conservation (test_benchmark.Tests.test_split_fractional_and_conservation) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.177s
+
+OK

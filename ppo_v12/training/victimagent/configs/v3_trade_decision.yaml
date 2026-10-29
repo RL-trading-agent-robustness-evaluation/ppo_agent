@@ -1,0 +1,134 @@
+version: 1
+study_id: dqn_v3_trade_decisions
+status: preregistered_before_v3_training
+preregistered_date_utc: 2026-09-25
+parent_result: v2_finalist_confirmation_dqn_hyperparameters_baseline_parent
+v2_diagnostic: docs/V2_FINALIST_VALIDATION_FINDINGS.md
+runner_status: toy_gate_passed_local_fold_audit_required
+
+immutable:
+  traded_asset: SPY
+  cash_proxy: strictly_lagged_DGS3MO
+  long_only: true
+  leverage: false
+  market_true_and_corporate_action_ledger: unchanged
+  decision: close_t
+  execution: raw_open_t_plus_1
+  reward: post_cost_open_to_open_nav_log_return
+  primary_cost_bps: 10
+  exposure_action_weights: [0.0, 0.5, 1.0]
+  market_observation: inherit_v2_finalist_full_feature_set
+  train_only_scaler: per_fold
+  fold_config: configs/v2_rolling_folds.yaml
+  selector_period_end: 2021-12-31
+  known_period_2022_2025: forbidden_for_model_selection
+  untouched_holdout: null
+
+# Extra rule-state inputs are available to EVERY V3 arm including the control;
+# thus its re-trained control is a V3 control, not the historical V2 result.
+common_rule_state_inputs:
+  features:
+    - last_emitted_action_id
+    - last_executed_action_id
+    - pending_action_id
+    - consecutive_pending_count
+    - sessions_since_last_executed_action_change
+  encoding:
+    action_id: "0, 1 or 2 divided by 2; no-prior or no-pending is -1"
+    consecutive_pending_count: "min(count, 2) divided by 2; initially 0"
+    sessions_since_last_executed_action_change: "min(count, 6) divided by 6; no prior fill is -1"
+  initialize_on_reset: "action IDs -1; counters 0 except no-prior-fill session counter -1"
+  account_state: actual_shares_and_cash_after_fills
+
+candidates:
+  - id: v3_control_daily_target
+    hypothesis: Same contract as the V2 target-weight execution, re-trained with V3 rule-state inputs.
+    rule: rebalance_to_emitted_target_every_next_open
+  - id: v3_change_only
+    hypothesis: Same-action rebalancing is small, so this negative control should have limited effect.
+    rule: first_decision_targets_weight_then_trade_only_on_emitted_action_id_change
+  - id: v3_confirm_two_closes
+    hypothesis: Requiring an action change on two consecutive decision closes can suppress one-day reversal trades.
+    rule: >-
+      From the current executed action ID, ignore matching emissions and reset the
+      pending candidate. Two consecutive closes emitting the same different ID
+      trigger one next-open trade. An intervening different ID resets the streak
+      to one. If the emitted ID equals the executed ID, clear the pending streak.
+      First decision establishes its target at next open without confirmation.
+  - id: v3_min_hold_five
+    hypothesis: Blocking quick reversals can reduce expensive switches.
+    rule: >-
+      First decision establishes its target at next open. After each filled change
+      of action ID, block different-ID orders for the next five decision closes;
+      hold shares during the lock. At the sixth later decision close, the current
+      emitted action may trade at the next open. When unlocked, unchanged-ID
+      emissions follow the V3 control's target rebalancing. Count decisions, not
+      calendar days; skipped orders do not reset the counter.
+
+# Each arm is independent: do not stack confirmation with a holding lock.
+causality:
+  order_decision_uses_only_close_t_state_and_emitted_action: true
+  no_next_open_price_for_trade_trigger: true
+  skipped_order: hold_existing_shares_and_cash_not_set_target_weight
+  events_cash_accrual_and_reward: common_unchanged_ledger
+  rejected_order_must_be_recorded_with_reason: true
+  no_hidden_rule_state: true
+  reset_clears_pending_and_hold_counters: true
+
+screening:
+  folds: [fold_1, fold_2, fold_3]
+  seeds: [0, 1, 2]
+  timesteps_per_fold_seed: 100000
+  include_all_four_arms: true
+  deterministic_validation: true
+  checkpoints_from_scratch: true
+
+confirmation:
+  finalists: [v3_control_daily_target, winner_of_screening]
+  # If control wins screening, confirm the control only; do not re-run a duplicate.
+  if_control_wins: confirm_control_only
+  folds: [fold_1, fold_2, fold_3]
+  seeds: [0, 1, 2, 3, 4]
+  timesteps_per_fold_seed: 200000
+  train_from_scratch: true
+  deterministic_validation: true
+
+technical_gates:
+  same_data_and_dates_across_arms: true
+  all_fold_seeds_present: true
+  loss_q_observation_reward_and_nav_finite: true
+  reward_nav_invariant_tolerance: 1.0e-10
+  evaluation_model_optimizer_buffer_and_scaler_frozen: true
+  state_responsiveness: required_with_failures_retained
+  toy_gate: >-
+    hand-verify action sequences, five-session lock, two-close confirmation,
+    skipped-order cash/dividend/split treatment and reward-NAV identity
+  existing_artifacts_cannot_be_overwritten: true
+  reserve_attempt_and_record_failures_before_writing_artifacts: true
+
+selection:
+  population: all_eligible_fold_seed_validation_results
+  primary: maximize_median_sharpe_excess_lagged_cash
+  tie_breakers:
+    - higher_median_annualized_excess_return
+    - smaller_median_max_drawdown_magnitude
+    - lower_median_turnover
+    - lexical_candidate_id
+  compare_paired_to_v3_control: true
+  report_all_seeds_and_failed_runs: true
+  report:
+    - net_and_gross_annualized_excess_return
+    - annualized_cash_excess_sharpe_and_numerator_denominator
+    - transaction_cost_and_turnover_by_action_switch_and_same_action
+    - max_drawdown_final_wealth_and_nav
+    - exposure_action_distribution_and_trade_count
+    - cash_buy_and_hold_constant_50_same_fold_baselines
+  do_not_select_on_known_period: true
+  economic_thresholds_are_descriptive_only: true
+
+artifact_paths:
+  registry: experiments/v3_registry.jsonl
+  reports: reports/v3
+  checkpoints: artifacts/checkpoints/v3
+  trajectories: artifacts/trajectories/v3
+  never_reuse_v2_artifact_paths: true

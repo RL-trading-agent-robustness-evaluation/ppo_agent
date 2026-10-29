@@ -1,0 +1,129 @@
+version: 1
+status: preregistered_before_v8_training
+purpose: final_dqn_victim_selection_then_freeze
+asset: SPY
+permno: 84398
+development_cutoff_exclusive: '2022-01-01'
+fold_config: configs/v8_folds.yaml
+parent_hyperparameters: configs/dqn_v2_search.yaml
+known_period_accessed: false
+known_period_may_select_model: false
+
+# ---------------------------------------------------------------- data
+# Raw files live in data/raw/ (gitignored, licensed). Only their hashes are
+# recorded. Two eras are spliced: 1993-2008 (new) and 2009-2025 (frozen V1).
+data:
+  raw_dir: data/raw
+  market_files:
+    - crsp_dsf_spy_1993_2008.csv
+    - crsp_dsf_spy_tlt_gld_2009_2025.csv
+  distribution_files:
+    - stkdistributions_spy_1993_2008.csv
+    - stkdistributions_spy_tlt_gld_2009_2025.csv
+  cash_files:
+    - DGS3MO_1993_2008.csv
+    - DGS3MO_2009_2025.csv
+  pinned_sha256:
+    crsp_dsf_spy_1993_2008.csv: f0f5991198e196fffe9e7dfde47b73694e88a823748a1cdd78ff8f27380399bc
+    crsp_dsf_spy_tlt_gld_2009_2025.csv: 3448d24ac6f7ac82cb982db27187ab6daa5614f2431b824eabd670332993eb98
+    stkdistributions_spy_1993_2008.csv: a0b0632be384ed3fccdfb2a6c5d39492dc4f47ce710db9bdb5d5aa1d46f4f4c5
+    stkdistributions_spy_tlt_gld_2009_2025.csv: 6e0f2b756c5663f23e1ab34cc3e27a0806d8a50f4f605c649bd705f161a2a288
+  # FRED DGS3MO files are public and not pinned; their hashes are recorded.
+  processed_market: data/processed/v8/spy_market_1993_2025.csv
+  processed_events: data/interim/v8/spy_cash_distributions_1993_2025.csv
+  build_report: reports/v8/DATA_BUILD.json
+  seam:
+    last_early_session: '2008-12-31'
+    first_late_session: '2009-01-02'
+    return_tolerance: 0.00001
+  dividend_amount_tolerance: 0.00001
+  # Every raw row without a complete positive OHLC must be listed here.
+  # exclude_session: removed from the session calendar; the next step's
+  #   close-to-close NAV change spans the gap (no fill, no imputed price).
+  # warmup_only_missing_open: kept for close-based features only; the date
+  #   must precede every training window, so it can never be executed.
+  session_exceptions:
+    '1993-01-29': warmup_only_missing_open
+    '1993-02-01': warmup_only_missing_open
+    '1994-11-07': exclude_session
+    '1997-03-31': exclude_session
+  # Every distribution row must match one allowlisted cash type, or the build
+  # fails. All three are cash paid to the holder on dispaydt.
+  cash_distribution_allowlist:
+    - {distype: CD, disdetailtype: CDIV, disordinaryflg: 'Y'}
+    - {distype: SD, disdetailtype: SDIV, disordinaryflg: 'Y'}
+    - {distype: CG, disdetailtype: CAPG, disordinaryflg: 'N'}
+
+# ------------------------------------------------------------ candidate
+candidate: v8_long_horizon
+observation:
+  price_basis: causal_total_return_including_all_allowlisted_cash_distributions
+  market_features:
+    - log_return_1
+    - log_return_5
+    - close_to_sma_5
+    - close_to_sma_20
+    - close_to_sma_60
+    - realized_volatility_20
+    - close_to_sma_200
+    - log_return_126
+    - log_return_252
+    - realized_volatility_60
+    - volatility_ratio_20_60
+  include_cash_rate: true
+  account_features: [risky_weight_observed, cash_weight_observed, receivable_weight_observed]
+  warmup_rows: 252
+  scaler: train_only_zscore_per_fold
+  external_series: none
+action_weights: [0.0, 0.5, 1.0]
+execution_rule: v3_min_hold_five
+environment: SingleAssetTradingEnvV4
+decision: close_t
+execution: true_raw_open_t_plus_1
+valuation_and_next_observation: close_t_plus_1
+reward: log_true_close_nav_t_plus_1_over_true_close_nav_t
+transaction_cost_bps: 10
+initial_cash: 1000000.0
+episode_decisions: 504
+train_random_start: true
+evaluation_deterministic: true
+evaluation_state_frozen: true
+hyperparameters: dqn_v2_search_baseline_unchanged
+timesteps_per_run: 500000
+folds: [fold_1, fold_2, fold_3]
+seeds: [0, 1, 2, 3, 4]
+baseline_policies: [cash, buy_and_hold, constant_50]
+
+# ------------------------------------------------------------ selection
+adoption:
+  reference_arm: v5_parent_five_session
+  reference_record: experiments/v5_records/v5_parent_five_session.json
+  statistic: per_fold_median_over_seeds_of_log_v8_wealth_minus_log_reference_wealth
+  rule: adopt_v8_if_statistic_positive_in_at_least_2_of_3_folds_and_all_v8_runs_technical_pass
+  otherwise: final_is_v5_parent_refit
+  same_window_check: buy_and_hold_final_wealth_equal_to_reference_record
+  reported_not_selected: [v6_relative_wealth_vs_buy_and_hold, sharpe_excess_cash, max_drawdown,
+                          average_exposure, total_turnover, state_responsiveness]
+
+# ---------------------------------------------------------------- final
+final:
+  seeds: [0, 1, 2, 3, 4]
+  v8_long_horizon:
+    train_start: '1994-02-01'
+    train_end: '2021-12-31'
+    timesteps: 500000
+  v5_parent_five_session:
+    train_start: '2010-01-04'
+    train_end: '2021-12-31'
+    timesteps: 200000
+    processed_market: data/processed/market_base_with_splits.csv
+    processed_events: data/interim/distribution_events.csv
+  all_seeds_are_the_victim_ensemble_for_attacks: true
+  no_seed_selection: true
+
+known_period:
+  start: '2022-01-01'
+  end: '2025-12-31'
+  label: known_period_confirmation_not_untouched_test
+  one_shot: true
+  may_change_final_model: false

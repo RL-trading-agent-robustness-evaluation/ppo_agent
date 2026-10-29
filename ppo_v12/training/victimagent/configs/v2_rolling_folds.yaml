@@ -1,0 +1,74 @@
+version: 1
+status: frozen_before_v2_results
+purpose: v2_model_selection_only
+timezone: America/New_York
+calendar: NYSE
+asset: SPY
+warmup_rows: 60
+
+data_roles:
+  warmup:
+    start: 2009-01-01
+    end: 2009-12-31
+    may_generate_actions: false
+    may_generate_rewards: false
+  development:
+    start: 2010-01-04
+    end: 2021-12-31
+    may_select_model: true
+  known_period_confirmation:
+    start: 2022-01-01
+    end: 2025-12-31
+    previously_observed_at_project_level: true
+    may_select_model: false
+    label_in_reports: known_period_confirmation_not_untouched_test
+  untouched_holdout: null
+
+folds:
+  - id: fold_1
+    train:
+      start: 2010-01-04
+      end: 2014-12-31
+    validation:
+      start: 2015-01-01
+      end: 2016-12-31
+  - id: fold_2
+    train:
+      start: 2010-01-04
+      end: 2016-12-31
+    validation:
+      start: 2017-01-01
+      end: 2018-12-31
+  - id: fold_3
+    train:
+      start: 2010-01-04
+      end: 2018-12-31
+    validation:
+      start: 2019-01-01
+      end: 2021-12-31
+
+preprocessing:
+  fit_scope: per_fold_train_only
+  validation_transform_only: true
+  known_period_transform_only: true
+  update_statistics_during_validation: false
+  update_statistics_during_known_period_confirmation: false
+
+required_audit_before_training:
+  - dates_parse
+  - train_precedes_validation
+  - no_train_validation_overlap
+  - expanding_train_start_is_constant
+  - validation_windows_do_not_overlap
+  - all_selection_dates_end_before_2022
+  - each_fold_has_at_least_one_full_504_decision_training_episode
+  - warmup_coverage_is_available
+  - corporate_action_coverage_is_available
+  - lagged_cash_rate_is_available
+
+rules:
+  random_time_split_forbidden: true
+  model_selection_on_known_period_forbidden: true
+  known_period_may_restore_untouched_status: false
+  folds_may_move_after_results: false
+  future_holdout_must_be_registered_before_inspection: true

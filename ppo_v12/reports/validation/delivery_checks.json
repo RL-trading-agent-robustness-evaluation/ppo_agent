@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "unit_tests": 9,
+  "all_source_and_output_hashes_match": true,
+  "all_five_existing_seeds": true,
+  "source_snapshots_exact": true,
+  "devlog_history_preserved": true,
+  "spec_sections": 11,
+  "monthly_purchase_count": 48,
+  "calendar_steps": 1002,
+  "new_model_runs": 0,
+  "new_training_transitions": 0
+}

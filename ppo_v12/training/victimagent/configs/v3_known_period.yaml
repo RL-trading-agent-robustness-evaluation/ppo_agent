@@ -1,0 +1,23 @@
+version: 1
+status: frozen_before_known_period_access
+study: v3_known_period_confirmation
+source_training_commit: ab03de36741a4fe0a1543ee9d2d0512270153456
+source_registry_sha256: a43eee12be2e6de68540ef7002061d70c82ca3537aa8fb8f3d0ee9a418a327a5
+source_selection_sha256: e7db408692aa23064a89986ab2fbb7dca901d9260dbb66a8e96f67e2071e47df
+selected_experiment_id: v3_confirmation_v3_min_hold_five
+selected_rule: v3_min_hold_five
+selection_interpretation: sole_technically_eligible_not_economic_outperformance
+asset: SPY
+train_start: 2010-01-04
+train_end: 2021-12-31
+known_start: 2022-01-01
+known_end: 2025-12-31
+seeds: [0, 1, 2, 3, 4]
+timesteps_per_seed: 200000
+transaction_cost_bps: 10
+baselines: [cash, buy_and_hold, constant_50, ma_20_60]
+reward_nav_invariant_tolerance: 1.0e-10
+output_prefix: v3_known_period_v1
+known_period_role: previously_seen_in_v1_not_untouched_test
+model_selection_on_known_period: false
+automatic_rerun_after_failure: false

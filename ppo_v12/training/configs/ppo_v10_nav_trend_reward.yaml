@@ -1,0 +1,87 @@
+version: 1
+status: frozen_before_ppo_v10_training
+algorithm: PPO
+implementation: stable_baselines3
+implementation_version: 2.9.0
+policy: MlpPolicy
+device: cpu
+
+shared_contract:
+  parent: ppo_v9_gate_nav
+  victimagent_commit: f4988db5c98d9248533c4ca852cc48ca3f6b7aad
+  environment_factory: victimagent.v9.study._environment
+  bundle_factory: victimagent.v9.study.v9_bundle
+  observation_dimensions: 20
+  action_weights: [0.0, 0.5, 1.0]
+  initial_cash: 1000000.0
+  transaction_cost_bps: 10.0
+  execution_rule: v3_min_hold_five
+  trend_gate: observed_total_return_feature_price_above_sma_200
+  episode_length_decisions: 504
+  random_start: true
+  folds: [fold_1, fold_2, fold_3]
+  seeds: [0, 1, 2, 3, 4]
+  known_period_accessed_during_development: false
+  expected_processed_sha256:
+    market: 281ed8c0530720b5cedf4abd7e9288375dad4fe073f55b0b814560ebcb54af9b
+    events: a981523e00b05e804091bf4671835bade363559215403614344bf5a099541668
+
+arms:
+  ppo_v10_gate_nav:
+    streak_reward: false
+  ppo_v10_gate_nav_streak:
+    streak_reward: true
+
+streak_reward:
+  beta: 0.10
+  streak_cap: 5
+  positive_threshold: 0.0
+  formula: r_nav + beta * max(min(streak, streak_cap) - 1, 0) * max(r_nav, 0)
+  streak_source: net_nav_log_return
+  zero_breaks_streak: true
+  evaluation_reward: true_nav_log_return
+
+model:
+  learning_rate_schedule: linear
+  learning_rate_initial: 0.0003
+  learning_rate_final: 0.00003
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  normalize_advantage: true
+  ent_coef: 0.0
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  policy_net_arch: [64, 64]
+  activation_fn: Tanh
+
+smoke:
+  fold: fold_1
+  seed: 0
+  requested_timesteps: 20000
+
+formal:
+  record_revision: v10spec1
+  requested_timesteps_per_run: 500000
+  expected_sb3_timesteps_per_run: 501760
+  overshoot_reason: SB3 completes the final 2048-step rollout
+  deterministic_validation: true
+  retain_all_runs: true
+  paired_control: ppo_v10_gate_nav
+  paired_treatment: ppo_v10_gate_nav_streak
+
+adoption:
+  minimum_positive_fold_medians: 2
+  minimum_positive_pairs: 10
+  maximum_median_drawdown_deterioration_pp: 2.0
+  maximum_median_transaction_cost_increase_fraction: 0.10
+
+known_period:
+  start: '2022-01-01'
+  end: '2025-12-31'
+  label: known_period_confirmation_not_untouched_test
+  enabled_by_this_runner: false
+

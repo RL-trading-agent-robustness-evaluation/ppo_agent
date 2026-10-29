@@ -1,0 +1,34 @@
+version: 1
+status: preregistered_before_v5_training
+purpose: paired_action_exposure_floor_ablation
+asset: SPY
+development_cutoff_exclusive: '2022-01-01'
+fold_config: configs/v2_rolling_folds.yaml
+parent_hyperparameters: configs/dqn_v2_search.yaml
+observation: frozen_v3_full_10d_plus_five_rule_state_inputs
+action_weights:
+  v5_parent_five_session: [0.0, 0.5, 1.0]
+  v5_floor_50_five_session: [0.5, 0.75, 1.0]
+execution_rule: v3_min_hold_five
+decision: close_t
+execution: true_raw_open_t_plus_1
+valuation_and_next_observation: close_t_plus_1
+reward: log_true_close_nav_t_plus_1_over_true_close_nav_t
+transaction_cost_bps: 10
+initial_cash: 1000000.0
+episode_decisions: 504
+train_random_start: true
+evaluation_deterministic: true
+evaluation_state_frozen: true
+arms: [v5_parent_five_session, v5_floor_50_five_session]
+folds: [fold_1, fold_2, fold_3]
+seeds: [0, 1, 2, 3, 4]
+timesteps_per_fold_seed: 200000
+baseline_policies: [cash, buy_and_hold, constant_50]
+primary_metric: paired_validation_sharpe_excess_lagged_cash
+paired_metrics: [sharpe_excess_cash, annualized_mean_excess_return,
+                 final_wealth, max_drawdown, average_exposure, total_turnover]
+known_period_accessed: false
+known_period_may_select_model: false
+feature_expansion: deferred_separate_version
+gaussian_observation_noise: deferred_separate_ablation_train_only

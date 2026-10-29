@@ -1,0 +1,65 @@
+{
+  "status": "PAUSED",
+  "reason": "Explicit user request to interrupt at next scheduled monitoring before computer downtime.",
+  "paused_utc": "2026-10-08T11:01:34.301088+00:00",
+  "tag": "full500k_20261008_2",
+  "verified_remaining_processes": 0,
+  "preserved_artifacts": true,
+  "frozen_training_code_unchanged": true,
+  "seeds": [
+    {
+      "seed": 0,
+      "started": true,
+      "progress": [
+        {
+          "path": "C:\\03_College\\Grad_proj\\ppo_v12\\training\\artifacts\\ppo_v12\\known\\ppo_v12_vix_mix_known_seed0_full500k_20261008_2\\update_0000\\progress.csv",
+          "last_logged_timesteps": 282624,
+          "sha256": "f19d80a7cf6d0a55763b99b14e1e1ad43e870f991cd287b04867b810cf5e0ace"
+        }
+      ],
+      "last_usable_resume": null,
+      "completed_updates": [],
+      "resume_limitation": "Initialization must restart after explicit user resume authorization."
+    },
+    {
+      "seed": 1,
+      "started": true,
+      "progress": [
+        {
+          "path": "C:\\03_College\\Grad_proj\\ppo_v12\\training\\artifacts\\ppo_v12\\known\\ppo_v12_vix_mix_known_seed1_full500k_20261008_2\\update_0000\\progress.csv",
+          "last_logged_timesteps": 282624,
+          "sha256": "33bf664f9d6b9a289dbd696a0edbd8d4601f4d3cfb555577df101f3ea5f1f9f5"
+        }
+      ],
+      "last_usable_resume": null,
+      "completed_updates": [],
+      "resume_limitation": "Initialization must restart after explicit user resume authorization."
+    },
+    {
+      "seed": 2,
+      "started": false,
+      "progress": [],
+      "last_usable_resume": null,
+      "completed_updates": [],
+      "resume_limitation": "Not started."
+    },
+    {
+      "seed": 3,
+      "started": false,
+      "progress": [],
+      "last_usable_resume": null,
+      "completed_updates": [],
+      "resume_limitation": "Not started."
+    },
+    {
+      "seed": 4,
+      "started": false,
+      "progress": [],
+      "last_usable_resume": null,
+      "completed_updates": [],
+      "resume_limitation": "Not started."
+    }
+  ],
+  "automatic_resume_allowed": false,
+  "interrupted_previous_tag_untouched": "full500k_20261008_1"
+}
