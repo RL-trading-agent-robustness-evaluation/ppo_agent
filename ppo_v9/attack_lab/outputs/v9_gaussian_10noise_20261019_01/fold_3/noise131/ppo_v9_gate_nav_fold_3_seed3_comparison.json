@@ -1,0 +1,106 @@
+{
+  "arm": "v9_trend_gate",
+  "fold": "fold_3",
+  "seed": 3,
+  "checkpoint_sha256": "b80af4759cc57282aec3f3245429bad6c64ecd61bbf28aa87012a1ace13c5ab3",
+  "original_record_sha256": "c3281118b71146ac58e6dc848d3a4ebbc9db3ea4c6eb0a0b5025505434ebce0a",
+  "clean": {
+    "metrics": {
+      "steps": 756,
+      "start_date": "2019-01-02",
+      "end_date": "2021-12-31",
+      "final_wealth": 1.8325404096766862,
+      "cagr": 0.22412222560160822,
+      "annualized_mean_excess_return": 0.21697621176812318,
+      "annualized_mean_gross_excess_return": 0.21999884064303324,
+      "sharpe_excess_cash": 1.0084234638889165,
+      "annualized_volatility": 0.21513448878414243,
+      "max_drawdown": -0.3368517183514348,
+      "average_exposure": 0.9571835578116498,
+      "total_turnover": 9.067886624730304,
+      "number_of_trades": 20,
+      "total_transaction_cost": 9844.33348,
+      "action_distribution": {
+        "0": 0.23148148148148148,
+        "1": 0.007936507936507936,
+        "2": 0.7605820105820106
+      }
+    },
+    "reward_nav_error": -1.3322676295501878e-15,
+    "technical_pass": true,
+    "trajectory_sha256": "70023e4dec0305a37660cf59bd5f7328c24357588672b02b6ec96bf8636d473b",
+    "trajectory_path": "fold_3\\ppo_v9_gate_nav_fold_3_seed3_clean.csv",
+    "action_trace": {
+      "agent_action_distribution": {
+        "0": 0.23148148148148148,
+        "1": 0.007936507936507936,
+        "2": 0.7605820105820106
+      },
+      "gated_action_distribution": {
+        "0": 0.023809523809523808,
+        "1": 0.0013227513227513227,
+        "2": 0.9748677248677249
+      },
+      "executed_action_distribution": {
+        "0": 0.010582010582010581,
+        "1": 0.0013227513227513227,
+        "2": 0.921957671957672,
+        "None": 0.06613756613756613
+      },
+      "gate_override_share": 0.21428571428571427,
+      "gate_forced_share": 0.8862433862433863
+    }
+  },
+  "perturbed": {
+    "metrics": {
+      "steps": 756,
+      "start_date": "2019-01-02",
+      "end_date": "2021-12-31",
+      "final_wealth": 1.8325404096766862,
+      "cagr": 0.22412222560160822,
+      "annualized_mean_excess_return": 0.21697621176812318,
+      "annualized_mean_gross_excess_return": 0.21999884064303324,
+      "sharpe_excess_cash": 1.0084234638889165,
+      "annualized_volatility": 0.21513448878414243,
+      "max_drawdown": -0.3368517183514348,
+      "average_exposure": 0.9571835578116498,
+      "total_turnover": 9.067886624730304,
+      "number_of_trades": 20,
+      "total_transaction_cost": 9844.33348,
+      "action_distribution": {
+        "0": 0.2261904761904762,
+        "1": 0.007936507936507936,
+        "2": 0.7658730158730159
+      }
+    },
+    "reward_nav_error": -1.3322676295501878e-15,
+    "technical_pass": true,
+    "trajectory_sha256": "9c490d9bf3abe6e30accc48a9b0548d32bb923a60db0ab10f4bafc0f799dc88e",
+    "trajectory_path": "fold_3\\noise131\\ppo_v9_gate_nav_fold_3_seed3_noisy.csv",
+    "action_trace": {
+      "agent_action_distribution": {
+        "0": 0.2261904761904762,
+        "1": 0.007936507936507936,
+        "2": 0.7658730158730159
+      },
+      "gated_action_distribution": {
+        "0": 0.023809523809523808,
+        "1": 0.0013227513227513227,
+        "2": 0.9748677248677249
+      },
+      "executed_action_distribution": {
+        "0": 0.010582010582010581,
+        "1": 0.0013227513227513227,
+        "2": 0.921957671957672,
+        "None": 0.06613756613756613
+      },
+      "gate_override_share": 0.20899470899470898,
+      "gate_forced_share": 0.8862433862433863
+    }
+  },
+  "buy_and_hold": 1.9801822999404477,
+  "clean_beats_bh": false,
+  "perturbed_beats_bh": false,
+  "wealth_change": 0.0,
+  "noise_seed": 131
+}

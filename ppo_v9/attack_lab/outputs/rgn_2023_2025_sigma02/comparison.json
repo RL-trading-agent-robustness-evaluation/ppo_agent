@@ -1,0 +1,84 @@
+{
+  "period": [
+    "2023-01-01",
+    "2025-12-31"
+  ],
+  "config": {
+    "spec_reference": "Attack spec v1-Random Gaussian Noise",
+    "representation": "standardized_observation_features",
+    "columns": [
+      "log_return_1",
+      "log_return_5",
+      "close_to_sma_5",
+      "close_to_sma_20",
+      "close_to_sma_60",
+      "realized_volatility_20",
+      "close_to_sma_200",
+      "log_return_126",
+      "log_return_252",
+      "realized_volatility_60",
+      "volatility_ratio_20_60"
+    ],
+    "sigma": 0.2,
+    "noise_seed": 123,
+    "notes": "Independent noise added to each feature. Mean=0, Std=Sigma."
+  },
+  "buy_and_hold": 1.8358635110988046,
+  "results": [
+    {
+      "seed": 0,
+      "checkpoint": "92e91d3e0548c89378afe9b727334daeac29c98ee20723092944a0c8fa161e9d",
+      "days": 751,
+      "gate": 693,
+      "clean": 1.7054540127499342,
+      "noisy": 1.656490299910277,
+      "agent_action": 96,
+      "gated_action": 5,
+      "executed_action": 15
+    },
+    {
+      "seed": 1,
+      "checkpoint": "156dc90ed70a07d07da33088231ac837e41fb531eda3a87ee044145b2dd9141a",
+      "days": 751,
+      "gate": 693,
+      "clean": 1.677355996742928,
+      "noisy": 1.677355996742928,
+      "agent_action": 72,
+      "gated_action": 0,
+      "executed_action": 0
+    },
+    {
+      "seed": 2,
+      "checkpoint": "c4cd3bafbcb467f48700b79f32e779a1e976d1c331994a7941afc069f5de19e6",
+      "days": 751,
+      "gate": 693,
+      "clean": 1.7166234523026063,
+      "noisy": 1.7865463667659423,
+      "agent_action": 80,
+      "gated_action": 3,
+      "executed_action": 11
+    },
+    {
+      "seed": 3,
+      "checkpoint": "760952722b77d3f36da26560bb763d71394a282569e96f5a1efc43f00e1e4410",
+      "days": 751,
+      "gate": 693,
+      "clean": 1.6435087314165167,
+      "noisy": 1.6435087314165167,
+      "agent_action": 117,
+      "gated_action": 3,
+      "executed_action": 0
+    },
+    {
+      "seed": 4,
+      "checkpoint": "01470191cad15dfe2438c2dddb4bc0987b992f55ac85fdae219ba2538909075a",
+      "days": 751,
+      "gate": 693,
+      "clean": 1.6759571848178896,
+      "noisy": 1.7466525349124398,
+      "agent_action": 56,
+      "gated_action": 8,
+      "executed_action": 4
+    }
+  ]
+}

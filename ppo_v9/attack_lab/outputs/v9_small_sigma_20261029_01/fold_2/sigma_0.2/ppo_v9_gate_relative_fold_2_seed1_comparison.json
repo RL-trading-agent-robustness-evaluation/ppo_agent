@@ -1,0 +1,122 @@
+{
+  "fold": "fold_2",
+  "model_seed": 1,
+  "noise_seed": 123,
+  "sigma": 0.2,
+  "buy_and_hold": 1.1510616812248984,
+  "clean": {
+    "metrics": {
+      "steps": 501,
+      "start_date": "2017-01-03",
+      "end_date": "2018-12-31",
+      "final_wealth": 1.1616055286207527,
+      "cagr": 0.07816676741232009,
+      "annualized_mean_excess_return": 0.06891259375237999,
+      "annualized_mean_gross_excess_return": 0.06993829236473342,
+      "sharpe_excess_cash": 0.5436593995078738,
+      "annualized_volatility": 0.12671295989843467,
+      "max_drawdown": -0.1842158888779999,
+      "average_exposure": 0.9918695020914549,
+      "total_turnover": 2.039186526940791,
+      "number_of_trades": 11,
+      "total_transaction_cost": 2287.96363,
+      "action_distribution": {
+        "0": 0.6127744510978044,
+        "1": 0.0499001996007984,
+        "2": 0.3373253493013972
+      }
+    },
+    "reward_nav_error": 1.887379141862766e-15,
+    "technical_pass": true,
+    "trajectory_sha256": "51c383805e3f278905be0cbabdac700ae5cf831fd086a318696ff3a8d4ef112e",
+    "trajectory_path": "fold_2\\ppo_v9_gate_relative_fold_2_seed1_clean.csv",
+    "action_trace": {
+      "agent_action_distribution": {
+        "0": 0.6127744510978044,
+        "1": 0.0499001996007984,
+        "2": 0.3373253493013972
+      },
+      "gated_action_distribution": {
+        "1": 0.007984031936127744,
+        "2": 0.9920159680638723
+      },
+      "executed_action_distribution": {
+        "1": 0.001996007984031936,
+        "2": 0.9680638722554891,
+        "None": 0.029940119760479042
+      },
+      "gate_override_share": 0.654690618762475,
+      "gate_forced_share": 0.9201596806387226
+    }
+  },
+  "noisy": {
+    "metrics": {
+      "steps": 501,
+      "start_date": "2017-01-03",
+      "end_date": "2018-12-31",
+      "final_wealth": 1.2178931011951866,
+      "cagr": 0.10410571930047885,
+      "annualized_mean_excess_return": 0.09252952276545265,
+      "annualized_mean_gross_excess_return": 0.09405212937720048,
+      "sharpe_excess_cash": 0.7389018772731466,
+      "annualized_volatility": 0.1251932589407941,
+      "max_drawdown": -0.14468662616407701,
+      "average_exposure": 0.9798946312501733,
+      "total_turnover": 3.0270869543081624,
+      "number_of_trades": 12,
+      "total_transaction_cost": 3510.61162,
+      "action_distribution": {
+        "0": 0.5768463073852296,
+        "1": 0.05189620758483034,
+        "2": 0.3712574850299401
+      }
+    },
+    "reward_nav_error": 2.0539125955565396e-15,
+    "technical_pass": true,
+    "trajectory_sha256": "61bd6f715c306251efcfc49d097c535d7359834bbdc2a153d7643ccbac60b163",
+    "trajectory_path": "fold_2\\sigma_0.2\\ppo_v9_gate_relative_fold_2_seed1_noisy.csv",
+    "action_trace": {
+      "agent_action_distribution": {
+        "0": 0.5768463073852296,
+        "1": 0.05189620758483034,
+        "2": 0.3712574850299401
+      },
+      "gated_action_distribution": {
+        "0": 0.003992015968063872,
+        "1": 0.005988023952095809,
+        "2": 0.9900199600798403
+      },
+      "executed_action_distribution": {
+        "0": 0.001996007984031936,
+        "1": 0.001996007984031936,
+        "2": 0.9560878243512974,
+        "None": 0.03992015968063872
+      },
+      "gate_override_share": 0.6187624750499002,
+      "gate_forced_share": 0.9201596806387226
+    }
+  },
+  "sigma_005_reference": {
+    "steps": 501,
+    "start_date": "2017-01-03",
+    "end_date": "2018-12-31",
+    "final_wealth": 1.1616055286207527,
+    "cagr": 0.07816676741232009,
+    "annualized_mean_excess_return": 0.06891259375237999,
+    "annualized_mean_gross_excess_return": 0.06993829236473342,
+    "sharpe_excess_cash": 0.5436593995078738,
+    "annualized_volatility": 0.12671295989843467,
+    "max_drawdown": -0.1842158888779999,
+    "average_exposure": 0.9918695020914549,
+    "total_turnover": 2.039186526940791,
+    "number_of_trades": 11,
+    "total_transaction_cost": 2287.96363,
+    "action_distribution": {
+      "0": 0.6027944111776448,
+      "1": 0.05189620758483034,
+      "2": 0.34530938123752497
+    }
+  },
+  "return_change_pp": 5.628757257443384,
+  "checkpoint_sha256": "a1717f4a6914d257b086eee7e0446c082175599a2ec9c5042cf0b250470caee5"
+}

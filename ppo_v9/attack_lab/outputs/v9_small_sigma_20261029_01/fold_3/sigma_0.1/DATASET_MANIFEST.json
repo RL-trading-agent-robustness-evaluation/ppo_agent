@@ -1,0 +1,142 @@
+{
+  "noise_config": {
+    "spec_reference": "Attack spec v1-Random Gaussian Noise",
+    "representation": "standardized_observation_features",
+    "columns": [
+      "log_return_1",
+      "log_return_5",
+      "close_to_sma_5",
+      "close_to_sma_20",
+      "close_to_sma_60",
+      "realized_volatility_20",
+      "close_to_sma_200",
+      "log_return_126",
+      "log_return_252",
+      "realized_volatility_60",
+      "volatility_ratio_20_60"
+    ],
+    "sigma": 0.1,
+    "noise_seed": 123,
+    "notes": "Independent noise added to each feature. Mean=0, Std=Sigma."
+  },
+  "statistics": {
+    "log_return_1": {
+      "mean_delta": 0.005040750900712878,
+      "std_delta": 0.10313068374255147,
+      "max_abs_delta": 0.3035510217181169,
+      "changed_values": 757
+    },
+    "log_return_5": {
+      "mean_delta": 0.0026474715956013853,
+      "std_delta": 0.09994454074024652,
+      "max_abs_delta": 0.3417977605223692,
+      "changed_values": 757
+    },
+    "close_to_sma_5": {
+      "mean_delta": 0.008343106933889325,
+      "std_delta": 0.1033958796067929,
+      "max_abs_delta": 0.360860161084984,
+      "changed_values": 757
+    },
+    "close_to_sma_20": {
+      "mean_delta": -0.00277422830968613,
+      "std_delta": 0.10132987160996039,
+      "max_abs_delta": 0.29296368759035296,
+      "changed_values": 757
+    },
+    "close_to_sma_60": {
+      "mean_delta": 0.005692906165788564,
+      "std_delta": 0.0981538519990739,
+      "max_abs_delta": 0.3127392333836204,
+      "changed_values": 757
+    },
+    "realized_volatility_20": {
+      "mean_delta": -0.0005031965440913848,
+      "std_delta": 0.09692343421536717,
+      "max_abs_delta": 0.3617055228018684,
+      "changed_values": 757
+    },
+    "close_to_sma_200": {
+      "mean_delta": -0.00020221524005422924,
+      "std_delta": 0.09730133181833421,
+      "max_abs_delta": 0.36303838781183617,
+      "changed_values": 757
+    },
+    "log_return_126": {
+      "mean_delta": -0.0023058048533280634,
+      "std_delta": 0.09944655588582409,
+      "max_abs_delta": 0.34860935842017615,
+      "changed_values": 757
+    },
+    "log_return_252": {
+      "mean_delta": 0.005604085975744779,
+      "std_delta": 0.10586171375214852,
+      "max_abs_delta": 0.34808111921484164,
+      "changed_values": 757
+    },
+    "realized_volatility_60": {
+      "mean_delta": -0.0032585583267613558,
+      "std_delta": 0.09813534422129015,
+      "max_abs_delta": 0.34502455275435695,
+      "changed_values": 757
+    },
+    "volatility_ratio_20_60": {
+      "mean_delta": 0.0027575655228744807,
+      "std_delta": 0.10547842347273545,
+      "max_abs_delta": 0.387548349227873,
+      "changed_values": 757
+    }
+  },
+  "sha256": "b6f94554979e2cb001b8cb0dc1be397eb2c23e15075688fc8bbe5442464e2ab3",
+  "scaler": {
+    "columns": [
+      "log_return_1",
+      "log_return_5",
+      "close_to_sma_5",
+      "close_to_sma_20",
+      "close_to_sma_60",
+      "realized_volatility_20",
+      "close_to_sma_200",
+      "log_return_126",
+      "log_return_252",
+      "realized_volatility_60",
+      "volatility_ratio_20_60",
+      "cash_rate_known"
+    ],
+    "mean": [
+      0.0003364482969588723,
+      0.0016761689962835075,
+      0.0006952928567661696,
+      0.003360191207461381,
+      0.01072349953359509,
+      0.15522905708676332,
+      0.037677684881781366,
+      0.04505858705100555,
+      0.09028804799513909,
+      0.1614452480681942,
+      0.9647788309930879,
+      0.024517700526231864
+    ],
+    "scale": [
+      0.011696729678752862,
+      0.023935888004818988,
+      0.012002991325929557,
+      0.0246618366653175,
+      0.04210991602926304,
+      0.094894745155132,
+      0.0812745182451254,
+      0.11384533076169913,
+      0.16994388097879512,
+      0.08788704769337427,
+      0.2306637518490875,
+      0.021923209348889874
+    ]
+  },
+  "metadata": {
+    "rows": 757,
+    "first_date": "2019-01-02",
+    "last_date": "2021-12-31",
+    "cash_distribution_events": 12,
+    "trend_up_share": 0.8863936591809776
+  }
+}

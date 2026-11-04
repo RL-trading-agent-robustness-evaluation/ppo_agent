@@ -1,0 +1,142 @@
+{
+  "noise_config": {
+    "spec_reference": "Attack spec v1-Random Gaussian Noise",
+    "representation": "standardized_observation_features",
+    "columns": [
+      "log_return_1",
+      "log_return_5",
+      "close_to_sma_5",
+      "close_to_sma_20",
+      "close_to_sma_60",
+      "realized_volatility_20",
+      "close_to_sma_200",
+      "log_return_126",
+      "log_return_252",
+      "realized_volatility_60",
+      "volatility_ratio_20_60"
+    ],
+    "sigma": 0.1,
+    "noise_seed": 123,
+    "notes": "Independent noise added to each feature. Mean=0, Std=Sigma."
+  },
+  "statistics": {
+    "log_return_1": {
+      "mean_delta": 0.004677584413422456,
+      "std_delta": 0.10124433149250726,
+      "max_abs_delta": 0.2813114612884577,
+      "changed_values": 504
+    },
+    "log_return_5": {
+      "mean_delta": 0.008673231738428308,
+      "std_delta": 0.09875127534728687,
+      "max_abs_delta": 0.3417977605223692,
+      "changed_values": 504
+    },
+    "close_to_sma_5": {
+      "mean_delta": 0.010315679960156487,
+      "std_delta": 0.10206064738945382,
+      "max_abs_delta": 0.30879221524053047,
+      "changed_values": 504
+    },
+    "close_to_sma_20": {
+      "mean_delta": -0.004130571218867649,
+      "std_delta": 0.09919234217376587,
+      "max_abs_delta": 0.2614258326410135,
+      "changed_values": 504
+    },
+    "close_to_sma_60": {
+      "mean_delta": 0.00510024634771152,
+      "std_delta": 0.09997789088412148,
+      "max_abs_delta": 0.3127392333836204,
+      "changed_values": 504
+    },
+    "realized_volatility_20": {
+      "mean_delta": -0.0019953737095526536,
+      "std_delta": 0.09617939242982729,
+      "max_abs_delta": 0.3277017392758502,
+      "changed_values": 504
+    },
+    "close_to_sma_200": {
+      "mean_delta": 0.002197445067556205,
+      "std_delta": 0.09737649567404225,
+      "max_abs_delta": 0.3630383878118362,
+      "changed_values": 504
+    },
+    "log_return_126": {
+      "mean_delta": -0.0014322901875086888,
+      "std_delta": 0.09750285185848367,
+      "max_abs_delta": 0.34860935842017615,
+      "changed_values": 504
+    },
+    "log_return_252": {
+      "mean_delta": 0.005811183044410531,
+      "std_delta": 0.1055247200771634,
+      "max_abs_delta": 0.31968455862788603,
+      "changed_values": 504
+    },
+    "realized_volatility_60": {
+      "mean_delta": -0.008215918059345894,
+      "std_delta": 0.09679715564392093,
+      "max_abs_delta": 0.2905566087080963,
+      "changed_values": 504
+    },
+    "volatility_ratio_20_60": {
+      "mean_delta": 0.003673409741171607,
+      "std_delta": 0.10209201585002904,
+      "max_abs_delta": 0.3089894202365411,
+      "changed_values": 504
+    }
+  },
+  "sha256": "aa1e069a4eb26e8f6bcbdebe98429bd7292b3144ca221a523d6c24c87d57ebe5",
+  "scaler": {
+    "columns": [
+      "log_return_1",
+      "log_return_5",
+      "close_to_sma_5",
+      "close_to_sma_20",
+      "close_to_sma_60",
+      "realized_volatility_20",
+      "close_to_sma_200",
+      "log_return_126",
+      "log_return_252",
+      "realized_volatility_60",
+      "volatility_ratio_20_60",
+      "cash_rate_known"
+    ],
+    "mean": [
+      0.0003484015938359815,
+      0.0017624529449917754,
+      0.0007258136148056917,
+      0.003486261276415308,
+      0.01087190820227162,
+      0.16256221900082468,
+      0.03713436826773848,
+      0.0438960135768991,
+      0.08693450770653278,
+      0.16916196578701592,
+      0.9652964861461482,
+      0.02763468186134853
+    ],
+    "scale": [
+      0.012199480487122412,
+      0.024869745798035723,
+      0.012468487237680658,
+      0.025704022733659793,
+      0.04410338462179861,
+      0.09846533177490187,
+      0.08683327778746665,
+      0.12189843383922208,
+      0.18243907187193478,
+      0.09159675570161646,
+      0.2236850972987482,
+      0.02237725971905665
+    ]
+  },
+  "metadata": {
+    "rows": 504,
+    "first_date": "2015-01-02",
+    "last_date": "2016-12-30",
+    "cash_distribution_events": 8,
+    "trend_up_share": 0.7976190476190477
+  }
+}

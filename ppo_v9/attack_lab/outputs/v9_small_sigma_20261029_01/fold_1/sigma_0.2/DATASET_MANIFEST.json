@@ -1,0 +1,142 @@
+{
+  "noise_config": {
+    "spec_reference": "Attack spec v1-Random Gaussian Noise",
+    "representation": "standardized_observation_features",
+    "columns": [
+      "log_return_1",
+      "log_return_5",
+      "close_to_sma_5",
+      "close_to_sma_20",
+      "close_to_sma_60",
+      "realized_volatility_20",
+      "close_to_sma_200",
+      "log_return_126",
+      "log_return_252",
+      "realized_volatility_60",
+      "volatility_ratio_20_60"
+    ],
+    "sigma": 0.2,
+    "noise_seed": 123,
+    "notes": "Independent noise added to each feature. Mean=0, Std=Sigma."
+  },
+  "statistics": {
+    "log_return_1": {
+      "mean_delta": 0.009355168826844914,
+      "std_delta": 0.20248866298501453,
+      "max_abs_delta": 0.5626229225769154,
+      "changed_values": 504
+    },
+    "log_return_5": {
+      "mean_delta": 0.017346463476856613,
+      "std_delta": 0.19750255069457373,
+      "max_abs_delta": 0.6835955210447384,
+      "changed_values": 504
+    },
+    "close_to_sma_5": {
+      "mean_delta": 0.020631359920312974,
+      "std_delta": 0.20412129477890764,
+      "max_abs_delta": 0.6175844304810609,
+      "changed_values": 504
+    },
+    "close_to_sma_20": {
+      "mean_delta": -0.008261142437735297,
+      "std_delta": 0.19838468434753173,
+      "max_abs_delta": 0.522851665282027,
+      "changed_values": 504
+    },
+    "close_to_sma_60": {
+      "mean_delta": 0.010200492695423039,
+      "std_delta": 0.19995578176824297,
+      "max_abs_delta": 0.6254784667672408,
+      "changed_values": 504
+    },
+    "realized_volatility_20": {
+      "mean_delta": -0.003990747419105303,
+      "std_delta": 0.19235878485965457,
+      "max_abs_delta": 0.6554034785517004,
+      "changed_values": 504
+    },
+    "close_to_sma_200": {
+      "mean_delta": 0.004394890135112413,
+      "std_delta": 0.1947529913480845,
+      "max_abs_delta": 0.7260767756236725,
+      "changed_values": 504
+    },
+    "log_return_126": {
+      "mean_delta": -0.0028645803750173733,
+      "std_delta": 0.19500570371696735,
+      "max_abs_delta": 0.6972187168403523,
+      "changed_values": 504
+    },
+    "log_return_252": {
+      "mean_delta": 0.01162236608882106,
+      "std_delta": 0.2110494401543268,
+      "max_abs_delta": 0.6393691172557722,
+      "changed_values": 504
+    },
+    "realized_volatility_60": {
+      "mean_delta": -0.016431836118691787,
+      "std_delta": 0.19359431128784188,
+      "max_abs_delta": 0.5811132174161926,
+      "changed_values": 504
+    },
+    "volatility_ratio_20_60": {
+      "mean_delta": 0.007346819482343216,
+      "std_delta": 0.20418403170005808,
+      "max_abs_delta": 0.6179788404730822,
+      "changed_values": 504
+    }
+  },
+  "sha256": "232e26266dbe60e090feb6d33fb16a2f4578f4239aa04864175aaf2ec7b465da",
+  "scaler": {
+    "columns": [
+      "log_return_1",
+      "log_return_5",
+      "close_to_sma_5",
+      "close_to_sma_20",
+      "close_to_sma_60",
+      "realized_volatility_20",
+      "close_to_sma_200",
+      "log_return_126",
+      "log_return_252",
+      "realized_volatility_60",
+      "volatility_ratio_20_60",
+      "cash_rate_known"
+    ],
+    "mean": [
+      0.0003484015938359815,
+      0.0017624529449917754,
+      0.0007258136148056917,
+      0.003486261276415308,
+      0.01087190820227162,
+      0.16256221900082468,
+      0.03713436826773848,
+      0.0438960135768991,
+      0.08693450770653278,
+      0.16916196578701592,
+      0.9652964861461482,
+      0.02763468186134853
+    ],
+    "scale": [
+      0.012199480487122412,
+      0.024869745798035723,
+      0.012468487237680658,
+      0.025704022733659793,
+      0.04410338462179861,
+      0.09846533177490187,
+      0.08683327778746665,
+      0.12189843383922208,
+      0.18243907187193478,
+      0.09159675570161646,
+      0.2236850972987482,
+      0.02237725971905665
+    ]
+  },
+  "metadata": {
+    "rows": 504,
+    "first_date": "2015-01-02",
+    "last_date": "2016-12-30",
+    "cash_distribution_events": 8,
+    "trend_up_share": 0.7976190476190477
+  }
+}

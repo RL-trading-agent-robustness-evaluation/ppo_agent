@@ -1,0 +1,124 @@
+{
+  "fold": "fold_3",
+  "model_seed": 2,
+  "noise_seed": 123,
+  "sigma": 0.2,
+  "buy_and_hold": 1.9801822999404477,
+  "clean": {
+    "metrics": {
+      "steps": 756,
+      "start_date": "2019-01-02",
+      "end_date": "2021-12-31",
+      "final_wealth": 1.7895651897719154,
+      "cagr": 0.21446203318720602,
+      "annualized_mean_excess_return": 0.20752851498142072,
+      "annualized_mean_gross_excess_return": 0.20921090235865553,
+      "sharpe_excess_cash": 0.998543325054718,
+      "annualized_volatility": 0.20779953503087317,
+      "max_drawdown": -0.3368408193838316,
+      "average_exposure": 0.9493633140619259,
+      "total_turnover": 5.047162131704418,
+      "number_of_trades": 33,
+      "total_transaction_cost": 5396.83566,
+      "action_distribution": {
+        "0": 0.11243386243386243,
+        "1": 0.7314814814814815,
+        "2": 0.15608465608465608
+      }
+    },
+    "reward_nav_error": 1.1102230246251565e-16,
+    "technical_pass": true,
+    "trajectory_sha256": "487b2c528dea4b6d4a093bcdfd565816da1b55ad748cc7947ae1de4074ed83d1",
+    "trajectory_path": "fold_3\\ppo_v9_gate_relative_fold_3_seed2_clean.csv",
+    "action_trace": {
+      "agent_action_distribution": {
+        "0": 0.11243386243386243,
+        "1": 0.7314814814814815,
+        "2": 0.15608465608465608
+      },
+      "gated_action_distribution": {
+        "0": 0.027777777777777776,
+        "1": 0.05291005291005291,
+        "2": 0.9193121693121693
+      },
+      "executed_action_distribution": {
+        "0": 0.009259259259259259,
+        "1": 0.026455026455026454,
+        "2": 0.9047619047619048,
+        "None": 0.05952380952380952
+      },
+      "gate_override_share": 0.7632275132275133,
+      "gate_forced_share": 0.8862433862433863
+    }
+  },
+  "noisy": {
+    "metrics": {
+      "steps": 756,
+      "start_date": "2019-01-02",
+      "end_date": "2021-12-31",
+      "final_wealth": 1.7895651897719154,
+      "cagr": 0.21446203318720602,
+      "annualized_mean_excess_return": 0.20752851498142072,
+      "annualized_mean_gross_excess_return": 0.20921090235865553,
+      "sharpe_excess_cash": 0.998543325054718,
+      "annualized_volatility": 0.20779953503087317,
+      "max_drawdown": -0.3368408193838316,
+      "average_exposure": 0.9493633140619259,
+      "total_turnover": 5.047162131704418,
+      "number_of_trades": 33,
+      "total_transaction_cost": 5396.83566,
+      "action_distribution": {
+        "0": 0.1164021164021164,
+        "1": 0.7208994708994709,
+        "2": 0.1626984126984127
+      }
+    },
+    "reward_nav_error": 1.1102230246251565e-16,
+    "technical_pass": true,
+    "trajectory_sha256": "f2dc58fc7c51c17b4bebff411e07b0f9efe5cbf392f2826b5a08f650d186d146",
+    "trajectory_path": "fold_3\\sigma_0.2\\ppo_v9_gate_relative_fold_3_seed2_noisy.csv",
+    "action_trace": {
+      "agent_action_distribution": {
+        "0": 0.1164021164021164,
+        "1": 0.7208994708994709,
+        "2": 0.1626984126984127
+      },
+      "gated_action_distribution": {
+        "0": 0.026455026455026454,
+        "1": 0.05423280423280423,
+        "2": 0.9193121693121693
+      },
+      "executed_action_distribution": {
+        "0": 0.009259259259259259,
+        "1": 0.026455026455026454,
+        "2": 0.9047619047619048,
+        "None": 0.05952380952380952
+      },
+      "gate_override_share": 0.7566137566137566,
+      "gate_forced_share": 0.8862433862433863
+    }
+  },
+  "sigma_005_reference": {
+    "steps": 756,
+    "start_date": "2019-01-02",
+    "end_date": "2021-12-31",
+    "final_wealth": 1.7895651897719154,
+    "cagr": 0.21446203318720602,
+    "annualized_mean_excess_return": 0.20752851498142072,
+    "annualized_mean_gross_excess_return": 0.20921090235865553,
+    "sharpe_excess_cash": 0.998543325054718,
+    "annualized_volatility": 0.20779953503087317,
+    "max_drawdown": -0.3368408193838316,
+    "average_exposure": 0.9493633140619259,
+    "total_turnover": 5.047162131704418,
+    "number_of_trades": 33,
+    "total_transaction_cost": 5396.83566,
+    "action_distribution": {
+      "0": 0.11243386243386243,
+      "1": 0.7314814814814815,
+      "2": 0.15608465608465608
+    }
+  },
+  "return_change_pp": 0.0,
+  "checkpoint_sha256": "c4cd3bafbcb467f48700b79f32e779a1e976d1c331994a7941afc069f5de19e6"
+}

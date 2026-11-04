@@ -1,0 +1,142 @@
+{
+  "noise_config": {
+    "spec_reference": "Attack spec v1-Random Gaussian Noise",
+    "representation": "standardized_observation_features",
+    "columns": [
+      "log_return_1",
+      "log_return_5",
+      "close_to_sma_5",
+      "close_to_sma_20",
+      "close_to_sma_60",
+      "realized_volatility_20",
+      "close_to_sma_200",
+      "log_return_126",
+      "log_return_252",
+      "realized_volatility_60",
+      "volatility_ratio_20_60"
+    ],
+    "sigma": 0.05,
+    "noise_seed": 129,
+    "notes": "Independent noise added to each feature. Mean=0, Std=Sigma."
+  },
+  "statistics": {
+    "log_return_1": {
+      "mean_delta": -0.0034501121973818257,
+      "std_delta": 0.04808901778545823,
+      "max_abs_delta": 0.16538181749128966,
+      "changed_values": 502
+    },
+    "log_return_5": {
+      "mean_delta": 0.0028177457450596715,
+      "std_delta": 0.048409482183647295,
+      "max_abs_delta": 0.16800986274289825,
+      "changed_values": 502
+    },
+    "close_to_sma_5": {
+      "mean_delta": -4.627190597876605e-05,
+      "std_delta": 0.04917774362031662,
+      "max_abs_delta": 0.14275854015408992,
+      "changed_values": 502
+    },
+    "close_to_sma_20": {
+      "mean_delta": 0.00018399295020598148,
+      "std_delta": 0.04787746016369915,
+      "max_abs_delta": 0.16936130604399946,
+      "changed_values": 502
+    },
+    "close_to_sma_60": {
+      "mean_delta": -0.0020110164650697,
+      "std_delta": 0.049711997703236546,
+      "max_abs_delta": 0.16840296911420782,
+      "changed_values": 502
+    },
+    "realized_volatility_20": {
+      "mean_delta": 0.0017978471343684736,
+      "std_delta": 0.04711579402824151,
+      "max_abs_delta": 0.15180570267914695,
+      "changed_values": 502
+    },
+    "close_to_sma_200": {
+      "mean_delta": -0.000593579938742971,
+      "std_delta": 0.05094591875286016,
+      "max_abs_delta": 0.16970754400933002,
+      "changed_values": 502
+    },
+    "log_return_126": {
+      "mean_delta": 0.0009779850955861417,
+      "std_delta": 0.050025265125142035,
+      "max_abs_delta": 0.13577807943078277,
+      "changed_values": 502
+    },
+    "log_return_252": {
+      "mean_delta": 0.002238039334635408,
+      "std_delta": 0.0490207409935676,
+      "max_abs_delta": 0.1593325227217952,
+      "changed_values": 502
+    },
+    "realized_volatility_60": {
+      "mean_delta": 0.0005845213421707493,
+      "std_delta": 0.048948389286957904,
+      "max_abs_delta": 0.14287210786696414,
+      "changed_values": 502
+    },
+    "volatility_ratio_20_60": {
+      "mean_delta": 0.0024529605842851174,
+      "std_delta": 0.05045619700828045,
+      "max_abs_delta": 0.17161147625155965,
+      "changed_values": 502
+    }
+  },
+  "sha256": "11ae012b38e75822a5e814d1263436ac8bbc8af78bd46fd113f28bb0e747498c",
+  "scaler": {
+    "columns": [
+      "log_return_1",
+      "log_return_5",
+      "close_to_sma_5",
+      "close_to_sma_20",
+      "close_to_sma_60",
+      "realized_volatility_20",
+      "close_to_sma_200",
+      "log_return_126",
+      "log_return_252",
+      "realized_volatility_60",
+      "volatility_ratio_20_60",
+      "cash_rate_known"
+    ],
+    "mean": [
+      0.0003397672640861329,
+      0.0017139083718540878,
+      0.0007057887484903826,
+      0.003406875323702393,
+      0.010561279917550109,
+      0.1598123766493586,
+      0.03609824430798464,
+      0.04285564496093918,
+      0.08463857729971334,
+      0.16654174425604387,
+      0.9634964586040503,
+      0.025382457964985266
+    ],
+    "scale": [
+      0.011954065410611055,
+      0.024404748138569923,
+      0.012245259543454071,
+      0.02516968945072352,
+      0.04308033688920761,
+      0.09581479480785339,
+      0.08382609227447729,
+      0.11774529981658069,
+      0.17539250415948304,
+      0.08863274030941622,
+      0.22829266613957264,
+      0.022587384458736783
+    ]
+  },
+  "metadata": {
+    "rows": 502,
+    "first_date": "2017-01-03",
+    "last_date": "2018-12-31",
+    "cash_distribution_events": 8,
+    "trend_up_share": 0.9183266932270916
+  }
+}

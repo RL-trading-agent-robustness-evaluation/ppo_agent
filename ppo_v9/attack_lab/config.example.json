@@ -1,0 +1,8 @@
+{
+  "spec_reference": "Attack spec v1-Random Gaussian Noise",
+  "representation": "standardized_observation_features",
+  "columns": ["feature_a", "feature_b"],
+  "sigma": 0.05,
+  "noise_seed": 123,
+  "notes": "Independent noise added to each feature. Mean=0, Std=Sigma."
+}

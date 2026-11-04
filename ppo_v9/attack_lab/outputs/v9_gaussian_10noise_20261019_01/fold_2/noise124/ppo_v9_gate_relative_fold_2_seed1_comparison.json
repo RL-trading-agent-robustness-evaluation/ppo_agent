@@ -1,0 +1,102 @@
+{
+  "arm": "v9_gate_relative_reward",
+  "fold": "fold_2",
+  "seed": 1,
+  "checkpoint_sha256": "a1717f4a6914d257b086eee7e0446c082175599a2ec9c5042cf0b250470caee5",
+  "original_record_sha256": "b02188fcc2706ee80234adfd6ae9a41f0278382d7720fced46486cb50de45977",
+  "clean": {
+    "metrics": {
+      "steps": 501,
+      "start_date": "2017-01-03",
+      "end_date": "2018-12-31",
+      "final_wealth": 1.1616055286207527,
+      "cagr": 0.07816676741232009,
+      "annualized_mean_excess_return": 0.06891259375237999,
+      "annualized_mean_gross_excess_return": 0.06993829236473342,
+      "sharpe_excess_cash": 0.5436593995078738,
+      "annualized_volatility": 0.12671295989843467,
+      "max_drawdown": -0.1842158888779999,
+      "average_exposure": 0.9918695020914549,
+      "total_turnover": 2.039186526940791,
+      "number_of_trades": 11,
+      "total_transaction_cost": 2287.96363,
+      "action_distribution": {
+        "0": 0.6127744510978044,
+        "1": 0.0499001996007984,
+        "2": 0.3373253493013972
+      }
+    },
+    "reward_nav_error": 1.887379141862766e-15,
+    "technical_pass": true,
+    "trajectory_sha256": "51c383805e3f278905be0cbabdac700ae5cf831fd086a318696ff3a8d4ef112e",
+    "trajectory_path": "fold_2\\ppo_v9_gate_relative_fold_2_seed1_clean.csv",
+    "action_trace": {
+      "agent_action_distribution": {
+        "0": 0.6127744510978044,
+        "1": 0.0499001996007984,
+        "2": 0.3373253493013972
+      },
+      "gated_action_distribution": {
+        "1": 0.007984031936127744,
+        "2": 0.9920159680638723
+      },
+      "executed_action_distribution": {
+        "1": 0.001996007984031936,
+        "2": 0.9680638722554891,
+        "None": 0.029940119760479042
+      },
+      "gate_override_share": 0.654690618762475,
+      "gate_forced_share": 0.9201596806387226
+    }
+  },
+  "perturbed": {
+    "metrics": {
+      "steps": 501,
+      "start_date": "2017-01-03",
+      "end_date": "2018-12-31",
+      "final_wealth": 1.1616055286207527,
+      "cagr": 0.07816676741232009,
+      "annualized_mean_excess_return": 0.06891259375237999,
+      "annualized_mean_gross_excess_return": 0.06993829236473342,
+      "sharpe_excess_cash": 0.5436593995078738,
+      "annualized_volatility": 0.12671295989843467,
+      "max_drawdown": -0.1842158888779999,
+      "average_exposure": 0.9918695020914549,
+      "total_turnover": 2.039186526940791,
+      "number_of_trades": 11,
+      "total_transaction_cost": 2287.96363,
+      "action_distribution": {
+        "0": 0.6047904191616766,
+        "1": 0.04790419161676647,
+        "2": 0.3473053892215569
+      }
+    },
+    "reward_nav_error": 1.887379141862766e-15,
+    "technical_pass": true,
+    "trajectory_sha256": "6e6079461130ffe1ac810557f5e024751a5433070705628cf39cb290e233ef30",
+    "trajectory_path": "fold_2\\noise124\\ppo_v9_gate_relative_fold_2_seed1_noisy.csv",
+    "action_trace": {
+      "agent_action_distribution": {
+        "0": 0.6047904191616766,
+        "1": 0.04790419161676647,
+        "2": 0.3473053892215569
+      },
+      "gated_action_distribution": {
+        "1": 0.005988023952095809,
+        "2": 0.9940119760479041
+      },
+      "executed_action_distribution": {
+        "1": 0.001996007984031936,
+        "2": 0.9680638722554891,
+        "None": 0.029940119760479042
+      },
+      "gate_override_share": 0.6467065868263473,
+      "gate_forced_share": 0.9201596806387226
+    }
+  },
+  "buy_and_hold": 1.1510616812248984,
+  "clean_beats_bh": true,
+  "perturbed_beats_bh": true,
+  "wealth_change": 0.0,
+  "noise_seed": 124
+}

@@ -1,0 +1,357 @@
+{
+  "status": "COMPLETE",
+  "algorithm": "PPO V9",
+  "arm": "v9_gate_relative_reward",
+  "definition_relative_change": "median over matched model pairs of 100*(W_attack/W_clean-1)",
+  "harm_tolerance": 1e-12,
+  "primary_fold": "fold_3",
+  "model_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "single_noise_seed_results": [
+    {
+      "fold": "fold_3",
+      "sigma": 0.05,
+      "noise_seed": 123,
+      "median_final_wealth": 1.9404570138938249,
+      "median_paired_relative_wealth_change_pct": 0.0,
+      "harmed_seeds": 0,
+      "unchanged_seeds": 4,
+      "improved_seeds": 1,
+      "wins_vs_buy_and_hold": 0,
+      "denominator": 5
+    },
+    {
+      "fold": "fold_3",
+      "sigma": 0.1,
+      "noise_seed": 123,
+      "median_final_wealth": 1.9404570138938249,
+      "median_paired_relative_wealth_change_pct": 0.0,
+      "harmed_seeds": 0,
+      "unchanged_seeds": 4,
+      "improved_seeds": 1,
+      "wins_vs_buy_and_hold": 0,
+      "denominator": 5
+    },
+    {
+      "fold": "fold_3",
+      "sigma": 0.2,
+      "noise_seed": 123,
+      "median_final_wealth": 1.9404570138938249,
+      "median_paired_relative_wealth_change_pct": 0.0,
+      "harmed_seeds": 0,
+      "unchanged_seeds": 4,
+      "improved_seeds": 1,
+      "wins_vs_buy_and_hold": 0,
+      "denominator": 5
+    },
+    {
+      "fold": "fold_1",
+      "sigma": 0.05,
+      "noise_seed": 123,
+      "median_final_wealth": 1.0634290280021155,
+      "median_paired_relative_wealth_change_pct": 0.0,
+      "harmed_seeds": 1,
+      "unchanged_seeds": 3,
+      "improved_seeds": 1,
+      "wins_vs_buy_and_hold": 1,
+      "denominator": 5
+    },
+    {
+      "fold": "fold_1",
+      "sigma": 0.1,
+      "noise_seed": 123,
+      "median_final_wealth": 1.0474475771604066,
+      "median_paired_relative_wealth_change_pct": -1.5028225129168793,
+      "harmed_seeds": 3,
+      "unchanged_seeds": 1,
+      "improved_seeds": 1,
+      "wins_vs_buy_and_hold": 1,
+      "denominator": 5
+    },
+    {
+      "fold": "fold_1",
+      "sigma": 0.2,
+      "noise_seed": 123,
+      "median_final_wealth": 1.0554555359520499,
+      "median_paired_relative_wealth_change_pct": -2.0804974593207737,
+      "harmed_seeds": 3,
+      "unchanged_seeds": 0,
+      "improved_seeds": 2,
+      "wins_vs_buy_and_hold": 1,
+      "denominator": 5
+    },
+    {
+      "fold": "fold_2",
+      "sigma": 0.05,
+      "noise_seed": 123,
+      "median_final_wealth": 1.16667966202795,
+      "median_paired_relative_wealth_change_pct": 0.0,
+      "harmed_seeds": 0,
+      "unchanged_seeds": 4,
+      "improved_seeds": 1,
+      "wins_vs_buy_and_hold": 5,
+      "denominator": 5
+    },
+    {
+      "fold": "fold_2",
+      "sigma": 0.1,
+      "noise_seed": 123,
+      "median_final_wealth": 1.16667966202795,
+      "median_paired_relative_wealth_change_pct": 0.0,
+      "harmed_seeds": 0,
+      "unchanged_seeds": 4,
+      "improved_seeds": 1,
+      "wins_vs_buy_and_hold": 5,
+      "denominator": 5
+    },
+    {
+      "fold": "fold_2",
+      "sigma": 0.2,
+      "noise_seed": 123,
+      "median_final_wealth": 1.1723851510454637,
+      "median_paired_relative_wealth_change_pct": 0.0,
+      "harmed_seeds": 0,
+      "unchanged_seeds": 3,
+      "improved_seeds": 2,
+      "wins_vs_buy_and_hold": 5,
+      "denominator": 5
+    }
+  ],
+  "repeated_noise_results": [
+    {
+      "fold": "fold_1",
+      "median_final_wealth": 1.0652721694635376,
+      "median_paired_relative_wealth_change_pct": 0.0,
+      "harmed_seeds": 14,
+      "unchanged_seeds": 24,
+      "improved_seeds": 12,
+      "wins_vs_buy_and_hold": 10,
+      "denominator": 50
+    },
+    {
+      "fold": "fold_2",
+      "median_final_wealth": 1.16667966202795,
+      "median_paired_relative_wealth_change_pct": 0.0,
+      "harmed_seeds": 2,
+      "unchanged_seeds": 44,
+      "improved_seeds": 4,
+      "wins_vs_buy_and_hold": 43,
+      "denominator": 50
+    },
+    {
+      "fold": "fold_3",
+      "median_final_wealth": 1.9404570138938249,
+      "median_paired_relative_wealth_change_pct": 0.0,
+      "harmed_seeds": 3,
+      "unchanged_seeds": 40,
+      "improved_seeds": 7,
+      "wins_vs_buy_and_hold": 1,
+      "denominator": 50
+    }
+  ],
+  "per_model": {
+    "fold_1": [
+      {
+        "model_seed": 0,
+        "checkpoint_sha256": "4598e18f2ad2bd939a4879f5cf3fdec29fbaee9557356238d2b6022d59c90b17",
+        "clean_wealth": 1.1567763521343868,
+        "buy_and_hold": 1.1366146906263972,
+        "attacked_wealth": {
+          "0.05": 1.1567763521343868,
+          "0.1": 1.1567763521343868,
+          "0.2": 1.1573802110340727
+        }
+      },
+      {
+        "model_seed": 1,
+        "checkpoint_sha256": "0e27b99478784c2279422b6adeda5f70376e73ef6b3b837256167b899d381c65",
+        "clean_wealth": 1.0822852084143308,
+        "buy_and_hold": 1.1366146906263972,
+        "attacked_wealth": {
+          "0.05": 1.0622117745063078,
+          "0.1": 1.047120698552932,
+          "0.2": 1.0010825715020912
+        }
+      },
+      {
+        "model_seed": 2,
+        "checkpoint_sha256": "7ce5ad1a876f52e6f8c636e333853fde9056590f2741a9bf55c28fdc08475105",
+        "clean_wealth": 0.9989717654767365,
+        "buy_and_hold": 1.1366146906263972,
+        "attacked_wealth": {
+          "0.05": 1.0111610325748328,
+          "0.1": 1.0382760684240806,
+          "0.2": 1.0554555359520499
+        }
+      },
+      {
+        "model_seed": 3,
+        "checkpoint_sha256": "7da40e3abfaf0685e64ee3239ba6c235dc5733660bc757ba17544aa74d7d4827",
+        "clean_wealth": 1.0634290280021155,
+        "buy_and_hold": 1.1366146906263972,
+        "attacked_wealth": {
+          "0.05": 1.0634290280021155,
+          "0.1": 1.0474475771604066,
+          "0.2": 1.0208854449617055
+        }
+      },
+      {
+        "model_seed": 4,
+        "checkpoint_sha256": "0771b26994b1273c2594a05cafc1814d37356f4ba3ce526e0cfc8aff19f1c411",
+        "clean_wealth": 1.1051957292021917,
+        "buy_and_hold": 1.1366146906263972,
+        "attacked_wealth": {
+          "0.05": 1.1051957292021917,
+          "0.1": 1.073307421802165,
+          "0.2": 1.0822021601356184
+        }
+      }
+    ],
+    "fold_2": [
+      {
+        "model_seed": 0,
+        "checkpoint_sha256": "45223b5a94097132d54ab177c5c5c9f68f80be85c2c201c37ff833d37a1d4a57",
+        "clean_wealth": 1.16667966202795,
+        "buy_and_hold": 1.1510616812248984,
+        "attacked_wealth": {
+          "0.05": 1.16667966202795,
+          "0.1": 1.16667966202795,
+          "0.2": 1.16667966202795
+        }
+      },
+      {
+        "model_seed": 1,
+        "checkpoint_sha256": "a1717f4a6914d257b086eee7e0446c082175599a2ec9c5042cf0b250470caee5",
+        "clean_wealth": 1.1616055286207527,
+        "buy_and_hold": 1.1510616812248984,
+        "attacked_wealth": {
+          "0.05": 1.1616055286207527,
+          "0.1": 1.1616055286207527,
+          "0.2": 1.2178931011951866
+        }
+      },
+      {
+        "model_seed": 2,
+        "checkpoint_sha256": "49d0ba777ff906a453323d4f33ee6476ce6dafcc18514a747d26e73be8a0190a",
+        "clean_wealth": 1.1723851510454637,
+        "buy_and_hold": 1.1510616812248984,
+        "attacked_wealth": {
+          "0.05": 1.1723851510454637,
+          "0.1": 1.1723851510454637,
+          "0.2": 1.1723851510454637
+        }
+      },
+      {
+        "model_seed": 3,
+        "checkpoint_sha256": "8271d6f8a361cf7837c4cd0d85bc72cf6a2faefb43066cd768f8888fb16877dc",
+        "clean_wealth": 1.1801231047046974,
+        "buy_and_hold": 1.1510616812248984,
+        "attacked_wealth": {
+          "0.05": 1.1801231047046974,
+          "0.1": 1.1801231047046974,
+          "0.2": 1.1801231047046974
+        }
+      },
+      {
+        "model_seed": 4,
+        "checkpoint_sha256": "159632610eefc414094dd455c81beb3e07d6c9acc43d2749f6c6e66ffce504ab",
+        "clean_wealth": 1.1489183541576033,
+        "buy_and_hold": 1.1510616812248984,
+        "attacked_wealth": {
+          "0.05": 1.1632699844849168,
+          "0.1": 1.1632699844849168,
+          "0.2": 1.1632699844849168
+        }
+      }
+    ],
+    "fold_3": [
+      {
+        "model_seed": 0,
+        "checkpoint_sha256": "92e91d3e0548c89378afe9b727334daeac29c98ee20723092944a0c8fa161e9d",
+        "clean_wealth": 1.9623539782689394,
+        "buy_and_hold": 1.9801822999404477,
+        "attacked_wealth": {
+          "0.05": 1.9623539782689394,
+          "0.1": 1.9623539782689394,
+          "0.2": 1.9623539782689394
+        }
+      },
+      {
+        "model_seed": 1,
+        "checkpoint_sha256": "156dc90ed70a07d07da33088231ac837e41fb531eda3a87ee044145b2dd9141a",
+        "clean_wealth": 1.9706684965005579,
+        "buy_and_hold": 1.9801822999404477,
+        "attacked_wealth": {
+          "0.05": 1.9706684965005579,
+          "0.1": 1.9706684965005579,
+          "0.2": 1.9706684965005579
+        }
+      },
+      {
+        "model_seed": 2,
+        "checkpoint_sha256": "c4cd3bafbcb467f48700b79f32e779a1e976d1c331994a7941afc069f5de19e6",
+        "clean_wealth": 1.7895651897719154,
+        "buy_and_hold": 1.9801822999404477,
+        "attacked_wealth": {
+          "0.05": 1.7895651897719154,
+          "0.1": 1.7895651897719154,
+          "0.2": 1.7895651897719154
+        }
+      },
+      {
+        "model_seed": 3,
+        "checkpoint_sha256": "760952722b77d3f36da26560bb763d71394a282569e96f5a1efc43f00e1e4410",
+        "clean_wealth": 1.7118092026696423,
+        "buy_and_hold": 1.9801822999404477,
+        "attacked_wealth": {
+          "0.05": 1.8490303273858353,
+          "0.1": 1.8016326876598787,
+          "0.2": 1.7585693181950677
+        }
+      },
+      {
+        "model_seed": 4,
+        "checkpoint_sha256": "01470191cad15dfe2438c2dddb4bc0987b992f55ac85fdae219ba2538909075a",
+        "clean_wealth": 1.9404570138938249,
+        "buy_and_hold": 1.9801822999404477,
+        "attacked_wealth": {
+          "0.05": 1.9404570138938249,
+          "0.1": 1.9404570138938249,
+          "0.2": 1.9404570138938249
+        }
+      }
+    ]
+  },
+  "trace_audit": {
+    "steps": 62850,
+    "input_changed_steps": 62850,
+    "probability_changed_steps": 62850,
+    "same_state_action_flips": 1536,
+    "flips_masked_by_gate": 1456,
+    "flips_masked_by_five_day_lock": 60,
+    "flips_reaching_executed_target": 20
+  },
+  "sources": [
+    {
+      "path": "C:\\03_College\\Grad_proj\\ppo_v9\\attack_lab\\outputs\\v9_gaussian_20261019_02\\COMPARISON.json",
+      "sha256": "1efa97ea62e78490fe4081e011d7e9bf341558592124b45cf9ed7fa7c3ccf3ec"
+    },
+    {
+      "path": "C:\\03_College\\Grad_proj\\ppo_v9\\attack_lab\\outputs\\v9_gaussian_10noise_20261019_01\\COMPARISON.json",
+      "sha256": "987189fba3f8848601a8b3d38ba53d30f3294965e26bcf8815f15cff2479a753"
+    },
+    {
+      "path": "C:\\03_College\\Grad_proj\\ppo_v9\\attack_lab\\outputs\\v9_small_sigma_20261029_01\\COMPARISON.json",
+      "sha256": "70401be610d6fc3cf16a9453b3a53576e632e9f3b899b271860c5a7b7178c434"
+    },
+    {
+      "path": "C:\\03_College\\Grad_proj\\ppo_v9\\attack_lab\\outputs\\v9_pipeline_trace_20261020_02\\TRACE_REPORT.json",
+      "sha256": "3288e4ee6715c4dfb4429b7c07d9b6d81b0fdf55c1ca92a2ee3dd2cd88969b0d"
+    }
+  ]
+}
