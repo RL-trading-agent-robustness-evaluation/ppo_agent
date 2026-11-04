@@ -1,0 +1,2 @@
+# Preserve original checkpoint and trajectory bytes for delivery SHA-256 checks.
+artifacts/** -text -filter

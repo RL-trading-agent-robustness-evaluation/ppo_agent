@@ -1,0 +1,81 @@
+{
+  "status": "VERIFIED",
+  "models": "PPO V9 gate-relative fold3 seeds0-4, trained through 2018",
+  "files": [
+    {
+      "path": "artifacts/checkpoints/v9_ppo/ppo_v9_gate_relative_fold_3_seed0_v9spec1.zip",
+      "sha256": "92e91d3e0548c89378afe9b727334daeac29c98ee20723092944a0c8fa161e9d",
+      "bytes": 171154
+    },
+    {
+      "path": "artifacts/trajectories/v9_ppo/ppo_v9_gate_relative_fold_3_seed0_v9spec1_validation.csv",
+      "sha256": "10817e1051f3ed00ae3181d307e101cc2636b98c1b628ac6a0b33d5168d51bdc",
+      "bytes": 195673
+    },
+    {
+      "path": "artifacts/trajectories/v9_ppo_known_diagnostic/seed0.csv",
+      "sha256": "09ca30710e40c070f4f416b3bb265d47a47686a1e000b4578bb1fec00f3e8cf2",
+      "bytes": 258884
+    },
+    {
+      "path": "artifacts/checkpoints/v9_ppo/ppo_v9_gate_relative_fold_3_seed1_v9spec1.zip",
+      "sha256": "156dc90ed70a07d07da33088231ac837e41fb531eda3a87ee044145b2dd9141a",
+      "bytes": 171154
+    },
+    {
+      "path": "artifacts/trajectories/v9_ppo/ppo_v9_gate_relative_fold_3_seed1_v9spec1_validation.csv",
+      "sha256": "ebc700fad0019d6064d0464fc1ca3da075f033e145b4d47d5fe57bf101f5561c",
+      "bytes": 195980
+    },
+    {
+      "path": "artifacts/trajectories/v9_ppo_known_diagnostic/seed1.csv",
+      "sha256": "c00bc6e0f522f668768871c8cb15ba15702ff3246d3496faf6ff66afce43e1c0",
+      "bytes": 257831
+    },
+    {
+      "path": "artifacts/checkpoints/v9_ppo/ppo_v9_gate_relative_fold_3_seed2_v9spec1.zip",
+      "sha256": "c4cd3bafbcb467f48700b79f32e779a1e976d1c331994a7941afc069f5de19e6",
+      "bytes": 171154
+    },
+    {
+      "path": "artifacts/trajectories/v9_ppo/ppo_v9_gate_relative_fold_3_seed2_v9spec1_validation.csv",
+      "sha256": "487b2c528dea4b6d4a093bcdfd565816da1b55ad748cc7947ae1de4074ed83d1",
+      "bytes": 195759
+    },
+    {
+      "path": "artifacts/trajectories/v9_ppo_known_diagnostic/seed2.csv",
+      "sha256": "00dcca9ec5244b386c83fa48707cb1e9fbeb168fefcf3f144dbabe2dd71f1be3",
+      "bytes": 258821
+    },
+    {
+      "path": "artifacts/checkpoints/v9_ppo/ppo_v9_gate_relative_fold_3_seed3_v9spec1.zip",
+      "sha256": "760952722b77d3f36da26560bb763d71394a282569e96f5a1efc43f00e1e4410",
+      "bytes": 171154
+    },
+    {
+      "path": "artifacts/trajectories/v9_ppo/ppo_v9_gate_relative_fold_3_seed3_v9spec1_validation.csv",
+      "sha256": "c6d3a4fd4e620fd5280c2cb0be051356fff68aa10d91b2314ae0c6e9ef7b6ced",
+      "bytes": 195399
+    },
+    {
+      "path": "artifacts/trajectories/v9_ppo_known_diagnostic/seed3.csv",
+      "sha256": "7697ab990c8051548f98b5212c0eab96d54a9d343914d2a35895fe140c2807c4",
+      "bytes": 259681
+    },
+    {
+      "path": "artifacts/checkpoints/v9_ppo/ppo_v9_gate_relative_fold_3_seed4_v9spec1.zip",
+      "sha256": "01470191cad15dfe2438c2dddb4bc0987b992f55ac85fdae219ba2538909075a",
+      "bytes": 171154
+    },
+    {
+      "path": "artifacts/trajectories/v9_ppo/ppo_v9_gate_relative_fold_3_seed4_v9spec1_validation.csv",
+      "sha256": "e180eec1b8058df4b51b851a5dabd07715ec8476d1538197c551c63ccd794b02",
+      "bytes": 195933
+    },
+    {
+      "path": "artifacts/trajectories/v9_ppo_known_diagnostic/seed4.csv",
+      "sha256": "c10df3e9884e55db0fdc069211fdaf8edda929132c47c4cf6bc848ec8c6e09b8",
+      "bytes": 260186
+    }
+  ]
+}
